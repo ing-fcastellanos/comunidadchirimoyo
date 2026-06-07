@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Pregunta general
+    url: mailto:contacto@chirimoyo.org
+    about: Para preguntas generales sobre la Comunidad Chirimoyo, mejor escribir al correo de contacto.
+  - name: Reportar vulnerabilidad
+    url: mailto:seguridad@chirimoyo.org
+    about: Vulnerabilidades de seguridad — no abrir issue pública. Ver SECURITY.md.

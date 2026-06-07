@@ -1,0 +1,62 @@
+name: Proponer una feature
+description: Proponer una nueva funcionalidad o mejora
+title: "[Feature] "
+labels: ["type: feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por la propuesta. Antes de mandar, revisa el [`ROADMAP.md`](../../blob/main/ROADMAP.md) y las issues existentes para evitar duplicados.
+
+  - type: dropdown
+    id: subdomain
+    attributes:
+      label: Sub-dominio
+      options:
+        - sitio
+        - comunidad
+        - aves
+        - voluntarios
+        - api
+        - foundation / infra
+        - cross-dominio
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema que resuelve
+      description: ¿Qué problema o necesidad atiende esta feature? ¿Para quién?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+      description: Descripción de la solución que propones.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+    validations:
+      required: false
+
+  - type: textarea
+    id: success
+    attributes:
+      label: Criterios de éxito
+      description: ¿Cómo sabremos que esto funcionó? Tareas marcables si te ayuda.
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Bloqueada por / depende de
+    validations:
+      required: false

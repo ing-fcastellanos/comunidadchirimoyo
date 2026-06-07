@@ -1,0 +1,57 @@
+name: CI Frontend
+
+# Checks de calidad para las apps Next (lint + typecheck + build).
+# No despliega — los deploys son manuales (ver ADR-0009).
+# Se activa solo cuando cambian las apps; hasta que existan, no corre.
+
+on:
+  pull_request:
+    paths:
+      - "apps/**"
+      - ".github/workflows/ci-frontend.yml"
+  push:
+    branches: [main]
+    paths:
+      - "apps/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [sitio, catalogo]
+    defaults:
+      run:
+        working-directory: apps/${{ matrix.app }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detectar si la app existe
+        id: exists
+        shell: bash
+        run: |
+          if [ -f "package.json" ]; then echo "go=true" >> "$GITHUB_OUTPUT"; else echo "go=false" >> "$GITHUB_OUTPUT"; echo "apps/${{ matrix.app }} aún no existe, saltando."; fi
+
+      - uses: actions/setup-node@v4
+        if: steps.exists.outputs.go == 'true'
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: apps/${{ matrix.app }}/package-lock.json
+
+      - name: Install
+        if: steps.exists.outputs.go == 'true'
+        run: npm ci
+
+      - name: Lint
+        if: steps.exists.outputs.go == 'true'
+        run: npm run lint --if-present
+
+      - name: Typecheck
+        if: steps.exists.outputs.go == 'true'
+        run: npx tsc --noEmit
+
+      - name: Build
+        if: steps.exists.outputs.go == 'true'
+        run: npm run build

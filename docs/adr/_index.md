@@ -1,0 +1,37 @@
+# Índice de ADRs
+
+Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada ADR vive en su archivo en [`../decisions/`](../decisions/).
+
+| ID | Título | Estado | Fase | Archivo |
+|----|--------|--------|------|---------|
+| 0001 | Layout del monorepo (2 apps + 1 service, sin tooling) | Accepted | 0 | [0001-monorepo-layout.md](../decisions/0001-monorepo-layout.md) |
+| 0002 | Stack heredado de Sociedad Salvaje | Accepted | 0 | [0002-stack-heredado.md](../decisions/0002-stack-heredado.md) |
+| 0003 | Hosting, DB, storage y ambientes (GCP nuevo) | Accepted | 0 | [0003-hosting-db-ambientes.md](../decisions/0003-hosting-db-ambientes.md) |
+| 0004 | Contenido en repo (Markdown/JSON) en vez de CMS | Accepted | 0 | [0004-contenido-en-repo.md](../decisions/0004-contenido-en-repo.md) |
+| 0005 | Catálogo de fauna estático; anfibios como categoría | Accepted | 1 | [0005-catalogo-estatico-anfibios-categoria.md](../decisions/0005-catalogo-estatico-anfibios-categoria.md) |
+| 0006 | API mínima: inscripciones + contacto | Accepted | 0 | [0006-api-minima.md](../decisions/0006-api-minima.md) |
+| 0007 | Donaciones informativas (sin pasarela) | Accepted | 4 | [0007-donaciones-informativas.md](../decisions/0007-donaciones-informativas.md) |
+| 0008 | Multi-subdominio desde una sola app (Firebase rewrites) | Accepted | 0 | [0008-multisubdominio-una-app.md](../decisions/0008-multisubdominio-una-app.md) |
+| 0009 | CI de checks (GitHub Actions) + deploy manual | Accepted | 0 | [0009-ci-checks-deploy-manual.md](../decisions/0009-ci-checks-deploy-manual.md) |
+| 0010 | Analítica respetuosa de privacidad | Accepted | 0 | [0010-analitica-privada.md](../decisions/0010-analitica-privada.md) |
+| 0011 | Sistema de diseño desde v0.dev; solo-ES i18n-ready | Accepted | 0 | [0011-diseno-i18n.md](../decisions/0011-diseno-i18n.md) |
+| 0012 | Privacidad de datos de voluntarios | Accepted | 4 | [0012-privacidad-datos-voluntarios.md](../decisions/0012-privacidad-datos-voluntarios.md) |
+
+## Estados
+
+- **Proposed**: el problema está identificado pero la decisión no se ha tomado
+- **Accepted**: la decisión está tomada y debe seguirse
+- **Superseded by ADR-NNNN**: una decisión más nueva la reemplaza
+- **Deprecated**: ya no aplica pero no fue reemplazada formalmente
+
+## Cómo agregar un ADR
+
+1. Abre una issue de discusión (label `type: adr`).
+2. Copia [`_template.md`](./_template.md) a `../decisions/NNNN-titulo-corto.md` (NNNN incremental).
+3. Llena las secciones.
+4. Agrega una fila a este índice.
+5. Cierra la issue referenciando el ADR.
+
+## Cómo cambiar una decisión
+
+Los ADRs aceptados **no se editan**. Si la decisión cambia: escribe un nuevo ADR, en "Contexto" explica por qué se reconsideró, marca el viejo como `Superseded by ADR-NNNN` y actualiza este índice.

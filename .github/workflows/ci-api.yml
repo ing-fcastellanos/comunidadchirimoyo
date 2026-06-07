@@ -1,0 +1,49 @@
+name: CI API
+
+# Checks de calidad para services/api (Flask).
+# No despliega — los deploys son manuales (ver ADR-0009).
+
+on:
+  pull_request:
+    paths:
+      - "services/api/**"
+      - ".github/workflows/ci-api.yml"
+  push:
+    branches: [main]
+    paths:
+      - "services/api/**"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/api
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detectar si el servicio existe
+        id: exists
+        shell: bash
+        run: |
+          if [ -f "requirements.txt" ]; then echo "go=true" >> "$GITHUB_OUTPUT"; else echo "go=false" >> "$GITHUB_OUTPUT"; echo "services/api aún no existe, saltando."; fi
+
+      - uses: actions/setup-python@v5
+        if: steps.exists.outputs.go == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        if: steps.exists.outputs.go == 'true'
+        run: |
+          pip install -r requirements.txt
+          pip install ruff
+
+      - name: Lint (ruff)
+        if: steps.exists.outputs.go == 'true'
+        run: ruff check .
+
+      - name: Smoke check de imports
+        if: steps.exists.outputs.go == 'true'
+        run: python -m compileall app

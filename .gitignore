@@ -1,0 +1,42 @@
+# Dependencias
+node_modules/
+**/node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Builds
+.next/
+out/
+dist/
+build/
+
+# Entornos y secretos — NUNCA commitear
+.env
+.env.*
+!.env.example
+**/env_files/.env.*
+**/*service_account*.json
+**/*service-account*.json
+*.pem
+*.key
+
+# Firebase / GCP
+.firebase/
+firebase-debug.log
+.firebaserc.local
+
+# Sistema operativo / editores
+.DS_Store
+Thumbs.db
+*.log
+
+# Coverage / tests
+.coverage
+coverage/
+.pytest_cache/
+
+# Misc
+*.tmp
+.cache/

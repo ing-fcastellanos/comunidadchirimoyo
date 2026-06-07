@@ -1,0 +1,69 @@
+name: Reportar un bug
+description: Reportar algo que no funciona como debería
+title: "[Bug] "
+labels: ["type: bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por reportar este bug. Llena las secciones para ayudarnos a entender y reproducir el problema.
+
+  - type: dropdown
+    id: subdomain
+    attributes:
+      label: Sub-dominio afectado
+      options:
+        - chirimoyo.org (landing)
+        - comunidad.chirimoyo.org
+        - aves.chirimoyo.org
+        - voluntarios.chirimoyo.org
+        - api.chirimoyo.org
+        - foundation / infra
+        - no estoy seguro
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Qué pasó
+      placeholder: Al hacer X, esperaba Y, pero pasó Z.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      placeholder: |
+        1. Voy a ...
+        2. Hago clic en ...
+        3. Veo que ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Qué debería pasar
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Entorno
+      placeholder: |
+        - OS: Windows 11
+        - Browser: Chrome 130
+        - Ambiente: producción
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots, logs o contexto adicional
+      description: Si pegas logs, sanitiza datos sensibles (emails, teléfonos, etc.).
+    validations:
+      required: false

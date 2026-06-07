@@ -1,0 +1,59 @@
+name: Proponer una decisión arquitectónica (ADR)
+description: Iniciar la discusión de una decisión de stack, arquitectura o proceso que merece quedar documentada
+title: "[ADR] "
+labels: ["type: adr"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Las decisiones arquitectónicas se documentan como ADRs en [`docs/decisions/`](../../tree/main/docs/decisions). Esta issue inicia la discusión. Cuando se llegue a decisión, se materializa en un archivo `.md`. Ver [`docs/project-management.md`](../../blob/main/docs/project-management.md#adrs).
+
+  - type: dropdown
+    id: subdomain
+    attributes:
+      label: Sub-dominio afectado
+      options:
+        - foundation (afecta todo)
+        - sitio
+        - comunidad
+        - aves
+        - voluntarios
+        - api
+        - cross-dominio
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+      description: ¿Qué problema o necesidad genera esta decisión? ¿Qué restricciones aplican?
+    validations:
+      required: true
+
+  - type: textarea
+    id: options
+    attributes:
+      label: Opciones a evaluar
+      description: Lista de opciones serias con un párrafo cada una.
+      placeholder: |
+        - Opción A: descripción + pros/cons
+        - Opción B: descripción + pros/cons
+    validations:
+      required: true
+
+  - type: textarea
+    id: criteria
+    attributes:
+      label: Criterios de decisión
+      description: ¿Qué pesa más al elegir? (costo, velocidad, mantenimiento, privacidad, lock-in, etc.)
+    validations:
+      required: true
+
+  - type: textarea
+    id: deadline
+    attributes:
+      label: ¿Cuándo necesitamos decidir?
+      description: ¿Esta decisión bloquea otras issues?
+    validations:
+      required: false
