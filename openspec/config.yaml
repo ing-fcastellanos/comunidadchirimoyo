@@ -1,20 +1,34 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+context: |
+  Comunidad Chirimoyo — monorepo de sitios de difusión para la defensa del humedal
+  de Chirimoyo (norte de Orizaba, Veracruz). Mayormente contenido, no transacción.
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  Apps:
+    - apps/sitio (Next 15) → chirimoyo.org + comunidad + voluntarios
+    - apps/catalogo (Next 15) → aves (incl. anfibios/reptiles como categoría)
+    - services/api (Flask + Firestore) → MÍNIMO: inscripciones de voluntarios + contacto
+
+  Stack: Next.js 15 (App Router) · TypeScript 5 · Tailwind v4 · shadcn/ui ·
+         Python 3.12 · Flask · Google Cloud Firestore · Cloud Run · Firebase Hosting.
+  Idioma: español (estructura preparada para i18n, sin traducir aún).
+  Contenido en repo (Markdown/JSON en content/), sin CMS.
+
+  Reglas duras (ver docs/decisions/):
+    - El catálogo de fauna es 100% estático: datos en content/, búsqueda en cliente. NO endpoint de búsqueda.
+    - El API es mínimo: sin auth de usuarios, sin RBAC, sin pagos. Ampliar alcance requiere ADR.
+    - Datos de voluntarios = PII: nunca loguear, consentimiento + aviso de privacidad, acceso restringido.
+    - Sin tooling de monorepo (Nx/Turborepo/workspaces).
+    - Decisiones no triviales → ADR en docs/decisions/NNNN-titulo.md (inmutables una vez Accepted).
+
+  Flujo: /opsx:explore → [v0.dev si hay UI nueva] → /opsx:propose → /opsx:apply → /opsx:archive.
+  Convenciones completas en CLAUDE.md.
+
+rules:
+  proposal:
+    - Indica siempre los sub-dominios afectados (sitio, comunidad, aves, voluntarios, api, foundation).
+    - Incluye una sección "No-goals" cuando el alcance pueda malinterpretarse.
+    - Si la propuesta rompe una convención documentada, exige un ADR en docs/decisions/.
+  tasks:
+    - Divide en tareas concretas y accionables, marcables como checklist.
+    - Si hay UI con diseño nuevo, referencia el export de v0.dev como fuente visual.

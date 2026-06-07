@@ -19,8 +19,6 @@ Sitios web de la **Comunidad Chirimoyo** — un grupo de vecinos y ecologistas q
 - **Infra**: Docker → Artifact Registry → Cloud Run · Firebase Hosting (rewrites) · región `northamerica-south1`
 - **Contenido**: Markdown/JSON versionado en `content/` (sin CMS)
 
-El stack y las convenciones se heredan del proyecto hermano **Sociedad Salvaje**. Las divergencias (más ligero: 2 apps, API mínima, contenido en repo) están documentadas en los [ADRs](docs/adr/_index.md).
-
 ## Estructura
 
 ```

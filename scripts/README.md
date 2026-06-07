@@ -4,9 +4,9 @@ Scripts `setup-*.sh` que reproducen la estructura de gestión en GitHub (labels,
 
 | Script | Qué crea | Estado |
 |--------|----------|--------|
-| `setup-github-project.sh` | Labels, milestones (Fase 0-5), Project v2 | _por escribir_ |
-| `setup-phase0-foundation.sh` | Issues de Fase 0 | _por escribir_ |
-| `setup-phase1-aves.sh` | Issues de Fase 1 | _por escribir_ |
+| `setup-github-project.sh` | Labels, milestones (Fase 0-5), Project v2 | ✅ listo |
+| `setup-phase0-foundation.sh` | 8 issues de Fase 0 | ✅ listo |
+| `setup-phase1-aves.sh` | 7 issues de Fase 1 | ✅ listo |
 | _(fases 2-5)_ | Issues de cada fase | _por escribir cuando se llegue_ |
 
 ## Requisitos
