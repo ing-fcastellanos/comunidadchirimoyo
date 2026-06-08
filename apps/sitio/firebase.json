@@ -1,0 +1,32 @@
+{
+  "hosting": {
+    "site": "chirimoyo",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/app/**",
+      "**/components/**",
+      "**/lib/**",
+      "**/.next/**",
+      "**/Dockerfile",
+      "**/package*.json",
+      "**/tsconfig.json",
+      "**/next.config.ts",
+      "**/postcss.config.mjs",
+      "**/eslint.config.mjs",
+      "**/middleware.ts",
+      "**/README.md"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "sitio",
+          "region": "us-central1"
+        }
+      }
+    ]
+  }
+}
