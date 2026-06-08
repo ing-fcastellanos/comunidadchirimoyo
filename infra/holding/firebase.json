@@ -1,0 +1,7 @@
+{
+  "hosting": {
+    "site": "chirimoyo",
+    "public": ".",
+    "ignore": ["firebase.json", "**/.*", "README.md"]
+  }
+}
