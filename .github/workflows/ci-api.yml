@@ -2,16 +2,14 @@ name: CI API
 
 # Checks de calidad para services/api (Flask).
 # No despliega — los deploys son manuales (ver ADR-0009).
+# Corre en todo PR/push (sin filtro de paths) para que el status check sea
+# confiable como required en branch protection; la detección "si el servicio
+# existe" hace el skip rápido cuando aplica.
 
 on:
   pull_request:
-    paths:
-      - "services/api/**"
-      - ".github/workflows/ci-api.yml"
   push:
     branches: [main]
-    paths:
-      - "services/api/**"
 
 jobs:
   check:

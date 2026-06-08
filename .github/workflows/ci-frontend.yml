@@ -2,17 +2,14 @@ name: CI Frontend
 
 # Checks de calidad para las apps Next (lint + typecheck + build).
 # No despliega — los deploys son manuales (ver ADR-0009).
-# Se activa solo cuando cambian las apps; hasta que existan, no corre.
+# Corre en todo PR/push (sin filtro de paths) para que el status check sea
+# confiable como required en branch protection; la detección "si la app existe"
+# hace el skip rápido cuando aplica.
 
 on:
   pull_request:
-    paths:
-      - "apps/**"
-      - ".github/workflows/ci-frontend.yml"
   push:
     branches: [main]
-    paths:
-      - "apps/**"
 
 jobs:
   build:
@@ -36,7 +33,7 @@ jobs:
       - uses: actions/setup-node@v4
         if: steps.exists.outputs.go == 'true'
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: apps/${{ matrix.app }}/package-lock.json
 
