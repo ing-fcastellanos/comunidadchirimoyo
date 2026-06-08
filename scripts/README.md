@@ -9,7 +9,8 @@ Hay dos versiones equivalentes: **PowerShell** (`.ps1`, para Windows) y **bash**
 | `setup-github-project.{ps1,sh}` | Labels, milestones (Fase 0-5), Project v2 | ✅ listo |
 | `setup-phase0-foundation.{ps1,sh}` | 8 issues de Fase 0 | ✅ listo |
 | `setup-phase1-aves.{ps1,sh}` | 7 issues de Fase 1 | ✅ listo |
-| _(fases 2-5)_ | Issues de cada fase | _por escribir cuando se llegue_ |
+| `setup-backlog-phases-2-5.{ps1,sh}` | 11 issues "épica" placeholder (Fases 2-5, P3) | ✅ listo |
+| `setup-phase{2,3,4,5}-*.{ps1,sh}` | Issues accionables de cada fase | _se generan en la mini-sesión al iniciar la fase_ |
 
 ## Requisitos
 
