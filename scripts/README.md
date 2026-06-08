@@ -12,6 +12,16 @@ Hay dos versiones equivalentes: **PowerShell** (`.ps1`, para Windows) y **bash**
 | `setup-backlog-phases-2-5.{ps1,sh}` | 11 issues "épica" placeholder (Fases 2-5, P3) | ✅ listo |
 | `setup-phase{2,3,4,5}-*.{ps1,sh}` | Issues accionables de cada fase | _se generan en la mini-sesión al iniciar la fase_ |
 
+## Otros scripts
+
+| Script | Qué hace |
+|--------|----------|
+| `sync-design-tokens.mjs` | Copia el sistema de diseño canónico (`docs/design-system/tokens.css`) a `apps/<app>/app/tokens.css`. Node, multiplataforma, idempotente. Correr tras editar los tokens canónicos o tras scaffoldear una app. Ver [ADR-0013](../docs/decisions/0013-tokens-compartidos-por-copia.md). |
+
+```bash
+node scripts/sync-design-tokens.mjs
+```
+
 ## Requisitos
 
 - [`gh` CLI](https://cli.github.com/) autenticada con scopes `repo`, `project`, `read:user`.
