@@ -17,6 +17,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0011 | Sistema de diseño desde v0.dev; solo-ES i18n-ready | Accepted | 0 | [0011-diseno-i18n.md](../decisions/0011-diseno-i18n.md) |
 | 0012 | Privacidad de datos de voluntarios | Accepted | 4 | [0012-privacidad-datos-voluntarios.md](../decisions/0012-privacidad-datos-voluntarios.md) |
 | 0013 | Tokens de diseño compartidos por copia desde fuente canónica | Accepted | 0 | [0013-tokens-compartidos-por-copia.md](../decisions/0013-tokens-compartidos-por-copia.md) |
+| 0014 | Catálogo como export estático en Firebase Hosting (sin Cloud Run) | Accepted | 0 | [0014-catalogo-export-estatico.md](../decisions/0014-catalogo-export-estatico.md) |
 
 ## Estados
 

@@ -13,7 +13,7 @@ Fuente de verdad del diseño del proyecto. Estética **naturalista y editorial**
 ## Cómo lo consume una app (en el scaffold #5/#6)
 
 1. Ejecutar `node scripts/sync-design-tokens.mjs` → copia `tokens.css` a `apps/<app>/app/tokens.css`.
-2. En `app/globals.css`: `@import "./tokens.css";`
+2. En `app/globals.css`: `@import "tailwindcss";` y luego `@import "./tokens.css";`
 3. Copiar `fonts.ts` a la app y aplicar las variables en el root layout:
    `<html lang="es" className={\`${serif.variable} ${sans.variable}\`}>`
 4. Copiar `primitives/*` a `components/ui/` y añadir la dependencia `lucide-react`.
