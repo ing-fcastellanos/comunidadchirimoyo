@@ -18,7 +18,21 @@ forma: garza
 tamano: muy-grande
 colores: [blanco]
 donde: orilla
-featured: true
+autoridad: "Linnaeus, 1758"
+otrosNombres:
+  - "Garzón Blanco"
+  - "Garza Grande"
+  - "Garza Real"
+  - "Garceta Grande"
+  - "Garza Blanca Grande"
+envergadura: "131–170 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Sus plumas encendieron uno de los primeros gritos conservacionistas."
+medidas:
+  tamanoCm: [80, 104]
+  pesoG: [700, 1500]
+habitat:
+  - "Humedales, marismas y orillas acuáticas"
 fuentes:
   - "eBird"
   - "Audubon"

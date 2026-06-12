@@ -18,6 +18,20 @@ forma: pajaro
 tamano: mediana
 colores: [amarillo, cafe, negro]
 donde: poste
+autoridad: "(Linnaeus, 1766)"
+otrosNombres:
+  - "Bienteveo Común"
+  - "Luis Grande"
+  - "Cristofué"
+  - "Bichofué"
+  - "Güis Común"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Grita su propio nombre y pesca como un martín pescador."
+medidas:
+  tamanoCm: [25, 28]
+  pesoG: [53, 72]
+habitat:
+  - "Zonas abiertas, jardines y orillas de agua"
 fuentes:
   - "eBird"
   - "iNaturalist (Naturalista MX)"

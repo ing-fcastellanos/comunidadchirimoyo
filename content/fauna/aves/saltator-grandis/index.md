@@ -18,6 +18,17 @@ forma: pajaro
 tamano: mediana
 colores: [gris, cafe]
 donde: arbol
+autoridad: "(Deppe, 1830)"
+otrosNombres:
+  - "Saltador gris mesoamericano"
+  - "Pepitero ventricanelo"
+  - "Saltador ventricanelo"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Su silbido melodioso abre el amanecer."
+medidas:
+  tamanoCm: [20, 24]
+habitat:
+  - "Matorrales y vegetación secundaria abierta"
 fuentes:
   - "Birds of the World (Cornell)"
   - "eBird"

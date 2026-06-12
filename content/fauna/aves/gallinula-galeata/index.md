@@ -18,6 +18,19 @@ forma: gallineta
 tamano: mediana
 colores: [negro, gris]
 donde: nadando
+autoridad: "(Lichtenstein, 1818)"
+otrosNombres:
+  - "Gallineta común"
+  - "Polla de agua"
+  - "Gallareta frentirroja"
+envergadura: "54–62 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Sus polluelos trepan la vegetación con diminutos espolones."
+medidas:
+  tamanoCm: [32, 35]
+  pesoG: [192, 493]
+habitat:
+  - "Humedales con vegetación densa"
 fuentes:
   - "Cornell All About Birds"
   - "eBird"

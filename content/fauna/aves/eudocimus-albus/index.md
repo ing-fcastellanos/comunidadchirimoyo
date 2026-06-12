@@ -18,6 +18,22 @@ forma: garza
 tamano: grande
 colores: [blanco]
 donde: orilla
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - "Coco"
+  - "Coco Blanco"
+  - "Corocoro"
+  - "Corocoro Blanco"
+envergadura: "90–105 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Un visitante costero perdido en la montaña."
+medidas:
+  tamanoCm: [53, 71]
+  pesoG: [750, 1050]
+habitat:
+  - "Humedales, marismas y manglares costeros"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "iNaturalist México"

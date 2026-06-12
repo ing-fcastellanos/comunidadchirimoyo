@@ -18,6 +18,20 @@ forma: pajaro
 tamano: chica
 colores: [azul, naranja, blanco]
 donde: volando
+autoridad: "Linnaeus, 1758"
+otrosNombres:
+  - "Golondrina Común"
+  - "Golondrina Ranchera"
+envergadura: "32–34.5 cm"
+mejorHora: "Mañana y tarde"
+pullQuote: "Las hembras eligen al macho de cola más larga."
+medidas:
+  tamanoCm: [17, 19]
+  pesoG: [16, 22]
+habitat:
+  - "Campos abiertos y áreas habitadas"
+temporada:
+  meses: [3, 4, 5, 6, 7, 8, 9, 10]
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"

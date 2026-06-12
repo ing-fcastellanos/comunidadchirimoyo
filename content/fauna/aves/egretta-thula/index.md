@@ -18,7 +18,21 @@ forma: garza
 tamano: grande
 colores: [blanco]
 donde: orilla
-featured: true
+autoridad: "(Molina, 1782)"
+otrosNombres:
+  - "Garceta Nívea"
+  - "Garcita Blanca"
+  - "Garza Patiamarilla"
+  - "Garceta Pie Dorado"
+  - "Chusmita"
+envergadura: "84–105 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Calza zapatillas doradas para delatar a sus presas."
+medidas:
+  tamanoCm: [56, 66]
+  pesoG: [352, 475]
+habitat:
+  - "Humedales, marismas y orillas costeras"
 fuentes:
   - "eBird"
   - "Audubon"

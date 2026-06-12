@@ -18,7 +18,19 @@ forma: pajaro
 tamano: chica
 colores: [amarillo, verde, negro]
 donde: arbol
-featured: true
+autoridad: "(Linnaeus, 1766)"
+otrosNombres:
+  - "Mascarita norteña"
+  - "Chipe de cara negra"
+  - "Reinita gorgigualda"
+envergadura: "15–19 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Canta 'güichití' sin asomar nunca el antifaz."
+medidas:
+  tamanoCm: [11, 13]
+  pesoG: [9, 11]
+habitat:
+  - "Humedales y vegetación densa"
 fuentes:
   - "eBird"
   - "Enciclovida"

@@ -18,7 +18,19 @@ forma: pato
 tamano: grande
 colores: [cafe, negro, blanco]
 donde: nadando
-featured: true
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - "Pijije ala blanca"
+  - "Pichichi"
+  - "Pato silbón vientre negro"
+envergadura: "76–94 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Un pato que silba y anida en los árboles."
+medidas:
+  tamanoCm: [47, 56]
+  pesoG: [652, 1020]
+habitat:
+  - "Lagunas, esteros y zonas inundables"
 fuentes:
   - "eBird"
   - "iNaturalist México"

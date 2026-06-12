@@ -18,6 +18,22 @@ forma: pajaro
 tamano: chica
 colores: [cafe, blanco]
 donde: orilla
+autoridad: "(Gmelin, 1789)"
+otrosNombres:
+  - "Reinita Acuática Norteña"
+  - "Reinita Acuática"
+  - "Chipe-suelero charquero"
+  - "Cigüita de agua"
+envergadura: "21–24 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Un chipe disfrazado de playero que camina el fango."
+medidas:
+  tamanoCm: [12, 15]
+  pesoG: [13, 25]
+habitat:
+  - "Orillas de agua, pantanos y manglares"
+temporada:
+  meses: [8, 9, 10, 11, 12, 1, 2, 3, 4, 5]
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"

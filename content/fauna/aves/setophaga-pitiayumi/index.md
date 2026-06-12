@@ -18,6 +18,18 @@ forma: pajaro
 tamano: muy-chica
 colores: [azul, amarillo]
 donde: arbol
+autoridad: "(Vieillot, 1817)"
+otrosNombres:
+  - "Reinita Tropical"
+  - "Chipe Tropical"
+  - "Chipe azul olivo tropical"
+  - "Pitiayumí"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Anida solo donde cuelga el heno español."
+medidas:
+  pesoG: [5, 8]
+habitat:
+  - "Dosel de bosques y bordes"
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"

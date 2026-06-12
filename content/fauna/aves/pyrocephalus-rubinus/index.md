@@ -18,6 +18,20 @@ forma: pajaro
 tamano: chica
 colores: [rojo, negro]
 donde: poste
+autoridad: "(Boddaert, 1783)"
+otrosNombres:
+  - "Mosquero Bermellón"
+  - "Cardenalito"
+  - "Churrinche"
+  - "Papamoscas cardenalito"
+  - "Atrapamoscas sangretoro"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Una chispa bermellón que canta en pleno vuelo."
+medidas:
+  tamanoCm: [13, 14]
+  pesoG: [11, 14]
+habitat:
+  - "Áreas abiertas, riberas y pastizales"
 fuentes:
   - "eBird"
   - "Enciclovida/CONABIO"

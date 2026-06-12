@@ -18,6 +18,20 @@ forma: pajaro
 tamano: mediana
 colores: [cafe]
 donde: suelo
+autoridad: "Bonaparte, 1838"
+otrosNombres:
+  - "Zorzal Pardo"
+  - "Mirla Parda"
+  - "Mirlo Café"
+  - "Mirlo Huertero"
+  - "Yigüirro"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "El yigüirro que, dicen, anuncia la llegada de las lluvias."
+medidas:
+  tamanoCm: [23, 27]
+  pesoG: [74, 76]
+habitat:
+  - "Bosques, jardines y zonas urbanas"
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"

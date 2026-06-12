@@ -18,6 +18,18 @@ forma: pajaro
 tamano: chica
 colores: [cafe, gris]
 donde: arbol
+autoridad: "(Latham, 1790)"
+otrosNombres:
+  - "Chingolo pantanero"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "El gorrión que vadea el lodo como una playera."
+medidas:
+  tamanoCm: [12, 15]
+  pesoG: [15, 23]
+habitat:
+  - "Pantanos y humedales con vegetación densa"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"

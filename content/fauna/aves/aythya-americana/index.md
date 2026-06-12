@@ -18,6 +18,21 @@ forma: pato
 tamano: grande
 colores: [rojo, gris, negro]
 donde: nadando
+autoridad: "(Eyton, 1838)"
+otrosNombres:
+  - "Porrón americano"
+  - "Porrón cabecirrojo"
+  - "Pato cabezón"
+envergadura: "74–84 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Casi toda su especie inverna en un solo rincón del Golfo."
+medidas:
+  tamanoCm: [37, 56]
+  pesoG: [907, 1600]
+habitat:
+  - "Lagunas y marismas de agua dulce"
+temporada:
+  meses: [11, 12, 1, 2, 3]
 fuentes:
   - "eBird"
   - "Audubon"

@@ -18,6 +18,22 @@ forma: pajaro
 tamano: chica
 colores: [amarillo]
 donde: arbol
+autoridad: "(Linnaeus, 1766)"
+otrosNombres:
+  - "Reinita Amarilla"
+  - "Reinita Dorada"
+  - "Canario de mangle"
+  - "Chipe Manglero"
+envergadura: "16–20 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Sepulta los huevos intrusos bajo un piso nuevo."
+medidas:
+  tamanoCm: [12, 13]
+  pesoG: [9, 11]
+habitat:
+  - "Matorrales ribereños y manglares"
+temporada:
+  meses: [9, 10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"

@@ -18,7 +18,21 @@ forma: pajaro
 tamano: chica
 colores: [amarillo, verde, negro]
 donde: arbol
-featured: true
+autoridad: "(Wilson, 1811)"
+otrosNombres:
+  - "Chipe de Wilson"
+  - "Reinita de Wilson"
+  - "Reinita gorrinegra"
+envergadura: "14–17 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Veracruz es su autopista migratoria de ida y vuelta."
+medidas:
+  tamanoCm: [10, 12]
+  pesoG: [5, 10]
+habitat:
+  - "Matorrales, bordes y vegetación riparia"
+temporada:
+  meses: [9, 10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "All About Birds (Cornell)"

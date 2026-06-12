@@ -18,6 +18,22 @@ forma: pajaro
 tamano: chica
 colores: [negro, blanco]
 donde: arbol
+autoridad: "(Linnaeus, 1766)"
+otrosNombres:
+  - "Chipe blanco y negro"
+  - "Cebrita trepadora"
+  - "Reinita trepadora"
+  - "Chipe blanquinegro"
+envergadura: "18–22 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "El chipe que trepa troncos como un trepatroncos."
+medidas:
+  tamanoCm: [11, 13]
+  pesoG: [8, 15]
+habitat:
+  - "Bosques y troncos de árboles"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "Cornell All About Birds"
   - "eBird"

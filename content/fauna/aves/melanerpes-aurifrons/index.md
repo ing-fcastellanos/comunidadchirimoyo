@@ -18,6 +18,19 @@ forma: pajaro
 tamano: mediana
 colores: [blanco, negro, naranja]
 donde: arbol
+autoridad: "(Wagler, 1829)"
+otrosNombres:
+  - "Carpintero frente dorada"
+  - "Carpintero común"
+  - "Cheje"
+envergadura: "41–43 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Su tamborileo es, a la vez, comida y mensaje."
+medidas:
+  tamanoCm: [22, 26]
+  pesoG: [65, 102]
+habitat:
+  - "Bosques secos y matorrales"
 fuentes:
   - "eBird"
   - "Audubon"

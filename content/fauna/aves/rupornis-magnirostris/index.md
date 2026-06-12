@@ -18,7 +18,20 @@ forma: rapaz
 tamano: mediana
 colores: [gris, cafe]
 donde: poste
-featured: true
+autoridad: "(Gmelin, 1788)"
+otrosNombres:
+  - "Busardo Caminero"
+  - "Gavilán Caminero"
+  - "Gavilán Pollero"
+  - "Gavilán Chapulinero"
+envergadura: "68–79 cm"
+mejorHora: "Media mañana"
+pullQuote: "La rapaz que vigila desde cada poste del camino."
+medidas:
+  tamanoCm: [33, 41]
+  pesoG: [250, 300]
+habitat:
+  - "Bordes de bosque y zonas semiabiertas"
 fuentes:
   - "eBird"
   - "iNaturalist (Naturalista MX)"

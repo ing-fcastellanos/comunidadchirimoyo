@@ -18,6 +18,20 @@ forma: garza
 tamano: mediana
 colores: [verde, cafe]
 donde: orilla
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - "Garza Verde"
+  - "Garcita Verdosa"
+  - "Garcilla Verde"
+  - "Joito"
+envergadura: "62–70 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Pesca con carnada: de las pocas aves que usan herramientas."
+medidas:
+  tamanoCm: [40, 48]
+  pesoG: [184, 211]
+habitat:
+  - "Orillas de ríos, lagunas y manglares"
 fuentes:
   - "eBird"
   - "Audubon"

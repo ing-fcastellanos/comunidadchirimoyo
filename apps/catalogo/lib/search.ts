@@ -69,7 +69,7 @@ export function fichaToBird(f: FichaEspecie): Bird {
     conservation: f.conservacion.nom059 !== "ninguno" ? "NOM-059" : "Sin Amenaza",
     featured: Boolean(f.featured),
     img: f.fotos[0] ? fotoUrl(f.slug, f.fotos[0].archivo, "thumb") : null,
-    href: `/${f.slug}`,
+    href: `/aves/${f.slug}`,
     desc: resumen(f.cuerpo),
     keywords: [f.nombreComun, f.nombreCientifico, f.familia, f.orden, ...(f.colores ?? [])]
       .join(" ")

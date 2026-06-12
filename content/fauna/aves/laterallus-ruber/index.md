@@ -18,7 +18,18 @@ forma: gallineta
 tamano: chica
 colores: [cafe, naranja]
 donde: orilla
-featured: true
+autoridad: "(Sclater & Salvin, 1860)"
+otrosNombres:
+  - "Polluela Canela"
+  - "Polluela Colorada"
+  - "Burrito Colorado"
+  - "Gallineta Colorada"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Casi un rumor: se le conoce por su trino, no por su figura."
+medidas:
+  tamanoCm: [14, 16.5]
+habitat:
+  - "Marismas de agua dulce y zonas inundables"
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"

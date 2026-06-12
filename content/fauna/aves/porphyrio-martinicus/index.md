@@ -18,7 +18,19 @@ forma: gallineta
 tamano: mediana
 colores: [azul, verde]
 donde: nadando
-featured: true
+autoridad: "(Linnaeus, 1766)"
+otrosNombres:
+  - "Calamoncillo americano"
+  - "Polla azul"
+  - "Gallareta morada"
+envergadura: "50–61 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Camina sobre nenúfares con sus larguísimos dedos."
+medidas:
+  tamanoCm: [26, 37]
+  pesoG: [141, 305]
+habitat:
+  - "Pantanos con vegetación flotante"
 fuentes:
   - "eBird"
   - "Enciclovida/CONABIO"

@@ -18,6 +18,21 @@ forma: garza
 tamano: grande
 colores: [negro, gris, blanco]
 donde: orilla
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - "Garza Nocturna Corona Negra"
+  - "Pedrete Corona Negra"
+  - "Huaco"
+  - "Garza Bruja"
+  - "Guaco"
+envergadura: "105–112 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Duerme de día y caza al amparo de la noche."
+medidas:
+  tamanoCm: [58, 65]
+  pesoG: [730, 1010]
+habitat:
+  - "Humedales arbolados, marismas y manglares"
 fuentes:
   - "eBird"
   - "iNaturalist México"

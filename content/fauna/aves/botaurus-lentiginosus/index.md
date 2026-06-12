@@ -18,7 +18,20 @@ forma: garza
 tamano: grande
 colores: [cafe]
 donde: orilla
-featured: true
+autoridad: "(Rackett, 1813)"
+otrosNombres:
+  - "Avetoro Lentiginoso"
+  - "Avetoro Americano"
+envergadura: "92–115 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Más fácil de oír, como un bombeo bajo el agua, que de ver."
+medidas:
+  tamanoCm: [58, 85]
+  pesoG: [370, 1072]
+habitat:
+  - "Humedales con vegetación densa"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3]
 fuentes:
   - "eBird"
   - "Audubon"

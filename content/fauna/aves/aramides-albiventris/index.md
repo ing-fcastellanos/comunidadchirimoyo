@@ -18,6 +18,20 @@ forma: gallineta
 tamano: grande
 colores: [cafe, gris, naranja]
 donde: orilla
+autoridad: "Lawrence, 1868"
+otrosNombres:
+  - "Cotara Ventriblanca"
+  - "Rascón Cuelligrís"
+  - "Chirincoco"
+  - "Cocaleca"
+  - "Pone-pone"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Se oye mucho antes de dejarse ver."
+medidas:
+  tamanoCm: [33, 40]
+  pesoG: [450, 600]
+habitat:
+  - "Bosques pantanosos, manglares y arroyos"
 fuentes:
   - "Enciclovida"
   - "iNaturalist MX"

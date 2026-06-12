@@ -18,7 +18,19 @@ forma: pajaro
 tamano: mediana
 colores: [amarillo, gris]
 donde: poste
-featured: true
+autoridad: "Vieillot, 1819"
+otrosNombres:
+  - "Tirano pirirí"
+  - "Sirirí común"
+  - "Benteveo real"
+envergadura: "38–41 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Pequeño pero temerario: persigue hasta a las rapaces."
+medidas:
+  tamanoCm: [18, 23]
+  pesoG: [32, 43]
+habitat:
+  - "Áreas abiertas con árboles dispersos"
 fuentes:
   - "eBird"
   - "Birds of the World"

@@ -18,6 +18,21 @@ forma: pato
 tamano: mediana
 colores: [rojo, negro, blanco]
 donde: nadando
+autoridad: "(Gmelin, 1789)"
+otrosNombres:
+  - "Pato rufo"
+  - "Pato chaparro"
+  - "Pato zambullidor"
+envergadura: "47–62 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Corteja golpeando el agua con su vistoso pico azul."
+medidas:
+  tamanoCm: [34, 43]
+  pesoG: [310, 795]
+habitat:
+  - "Lagunas y humedales de agua dulce"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "iNaturalist"

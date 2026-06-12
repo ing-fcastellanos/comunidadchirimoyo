@@ -18,6 +18,18 @@ forma: pajaro
 tamano: muy-chica
 colores: [verde, naranja, iridiscente]
 donde: arbol
+autoridad: "(Lichtenstein, 1830)"
+otrosNombres:
+  - "Amazilia berilina"
+  - "Colibrí colicastaña"
+  - "Colibrí de berilo"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Alas de fuego rufo cuando vuela a contraluz."
+medidas:
+  tamanoCm: [8, 10]
+  pesoG: [4, 5]
+habitat:
+  - "Bosques y bordes de montaña"
 fuentes:
   - "eBird"
   - "Audubon"

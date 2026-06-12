@@ -18,7 +18,20 @@ forma: pajaro
 tamano: mediana
 colores: [azul, gris, blanco]
 donde: poste
-featured: true
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - "Martín Pescador de Collar Norteño"
+  - "Martín-pescador Norteño"
+envergadura: "48–58 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Aquí la hembra viste más colorida que el macho."
+medidas:
+  tamanoCm: [28, 35]
+  pesoG: [113, 178]
+habitat:
+  - "Ríos, lagos y costas con peces"
+temporada:
+  meses: [9, 10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"

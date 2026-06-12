@@ -18,6 +18,21 @@ forma: pajaro
 tamano: chica
 colores: [gris, verde, blanco]
 donde: arbol
+autoridad: "(Wilson, 1810)"
+otrosNombres:
+  - "Vireo solitario"
+  - "Vireo cabeciazul"
+  - "Vireo de anteojos"
+envergadura: "20–24 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Lleva anteojos blancos pintados alrededor de los ojos."
+medidas:
+  tamanoCm: [12.6, 14.8]
+  pesoG: [13, 19]
+habitat:
+  - "Bosques mixtos y de coníferas"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "Cornell All About Birds"
   - "Birds of the World (Cornell)"

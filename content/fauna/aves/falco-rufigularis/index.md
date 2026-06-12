@@ -18,6 +18,20 @@ forma: rapaz
 tamano: mediana
 colores: [negro, blanco, naranja]
 donde: poste
+autoridad: "Daudin, 1800"
+otrosNombres:
+  - "Halcón negro chico"
+  - "Halcón plomizo menor"
+  - "Halcón golondrina"
+  - "Halcón enano"
+envergadura: "51–67 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Caza murciélagos al filo del crepúsculo."
+medidas:
+  tamanoCm: [23, 30]
+  pesoG: [108, 242]
+habitat:
+  - "Bordes de selva tropical y claros"
 fuentes:
   - "eBird"
   - "Enciclovida/CONABIO"

@@ -18,7 +18,22 @@ forma: garza
 tamano: grande
 colores: [cafe, iridiscente]
 donde: orilla
-featured: true
+autoridad: "(Vieillot, 1817)"
+otrosNombres:
+  - "Morito Cariblanco"
+  - "Ibis de Cara Blanca"
+  - "Cuervillo de Cañada"
+  - "Cuervo de Pantano"
+envergadura: "90–93 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Ojos rojos y antifaz blanco lo delatan."
+medidas:
+  tamanoCm: [46, 56]
+  pesoG: [450, 525]
+habitat:
+  - "Humedales, marismas y pastizales inundados"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "Birds of the World"

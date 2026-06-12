@@ -18,6 +18,21 @@ forma: pajaro
 tamano: chica
 colores: [cafe, gris]
 donde: volando
+autoridad: "(Townsend, 1839)"
+otrosNombres:
+  - "Vencejo Común"
+  - "Vencejo Lomimarrón"
+  - "Vencejo Grisáceo"
+envergadura: "28–31 cm"
+mejorHora: "Mañana y tarde"
+pullQuote: "Al anochecer, miles giran en remolino hacia una chimenea."
+medidas:
+  tamanoCm: [10, 12]
+  pesoG: [11, 18]
+habitat:
+  - "Bosques y zonas urbanas con chimeneas"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"

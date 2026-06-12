@@ -2,7 +2,54 @@
    de cada valor de enum. Portado del handoff de diseño
    (docs/design/buscar-aves/project/assets/birds-data.js). Es UI, no contenido:
    las fichas/CSV guardan solo los ids; aquí viven sus presentaciones. */
-import type { Forma, Tamano, Color, Donde } from "./fauna-schema";
+import type {
+  Forma,
+  Tamano,
+  Color,
+  Donde,
+  EstatusMigratorio,
+  GradoOcurrencia,
+  EstatusDistribucion,
+  Nom059,
+} from "./fauna-schema";
+
+/** Etiquetas legibles de los enums de estatus, para la ficha de detalle. */
+export const MIGRATORIO_LABEL: Record<EstatusMigratorio, string> = {
+  residente: "Residente",
+  "migratoria-invierno": "Migratoria de invierno",
+  "migratoria-verano": "Migratoria de verano",
+  transitoria: "Transitoria",
+};
+export const OCURRENCIA_LABEL: Record<GradoOcurrencia, string> = {
+  comun: "Común",
+  "poco-comun": "Poco común",
+  rara: "Rara",
+};
+export const DISTRIBUCION_LABEL: Record<EstatusDistribucion, string> = {
+  nativa: "Nativa",
+  introducida: "Introducida",
+};
+export const NOM059_LABEL: Record<Nom059, string> = {
+  pr: "Protección Especial",
+  a: "Amenazada",
+  p: "En Peligro",
+  e: "Probablemente Extinta",
+  ninguno: "",
+};
+
+/** Etiquetas legibles del vocabulario semilla de `habitat` (kebab → texto). */
+export const HABITAT_LABEL: Record<string, string> = {
+  "espejo-de-agua": "Espejo de agua",
+  "vegetacion-ribereña": "Vegetación ribereña",
+  tular: "Tular",
+  "orilla-fangosa": "Orilla fangosa",
+  dosel: "Dosel",
+  arbustos: "Arbustos",
+  pastizal: "Pastizal",
+  suelo: "Suelo",
+  troncos: "Troncos",
+  aire: "Aire",
+};
 
 /** Gremio ecológico (categoría), en minúsculas como id de filtro. */
 export type CategoriaId =
