@@ -27,3 +27,31 @@ Export del catálogo inicial de aves de la Laguna del Chirimoyo (46 especies), n
 | — (fotos en Drive) | frontmatter `fotos[]` (se cablean en #10) |
 
 Parseo de conservación: `Sin categoría de riesgo`→`ninguno`, `Amenazada`→`a`, `Protección Especial`→`pr`; IUCN `Preocupación Menor`→`LC`.
+
+## Manifiesto de créditos (`creditos_imagenes.json`)
+
+Vive **fuera del repo**, junto al banco de imágenes. Lo consume el script de migración para poblar la atribución de cada `fotos[]`. Estructura: un objeto con metadata (`fuente_principal`, `licencias_incluidas`, `nota`, `total_imagenes`) y una lista `imagenes`, **una entrada por archivo de foto**.
+
+Cada entrada se **indexa por** `(nombre_cientifico, basename(archivo))` y mapea así a la ficha:
+
+| Campo del manifiesto | Destino en `Foto` |
+|---|---|
+| `atribucion` (o `autor` como respaldo) | `credito` |
+| `licencia` | `licencia` |
+| `foto_pagina` (o `observacion_url`) | `creditoUrl` |
+| `licencia_url` | `licenciaUrl` |
+| `archivo` | empareja con el archivo del banco (la foto migrada usa el mismo nombre con extensión `.webp`) |
+
+Si un archivo del banco no figura en el manifiesto, el script marca su `credito` como pendiente y **no inventa** atribución. El emparejamiento banco↔manifiesto↔CSV debe ser exacto (reconciliación 63/63 especies, 503/503 archivos).
+
+## Script de migración
+
+`scripts/migrar-fauna.py` (issue #10). Genera las fichas y, con `--upload`, sube las imágenes al bucket GCS (ver [ADR-0016](../../../docs/decisions/0016-storage-imagenes-fauna-gcs.md)). Es **idempotente**: por defecto no pisa fichas existentes (`--force` regenera). Ejemplos:
+
+```
+# Genera/actualiza solo las fichas nuevas (no sube imágenes):
+python scripts/migrar-fauna.py
+
+# Sube raw/web/thumb al bucket (requiere google-cloud-storage + credenciales GCP):
+python scripts/migrar-fauna.py --upload
+```

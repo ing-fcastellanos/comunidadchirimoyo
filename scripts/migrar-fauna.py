@@ -1,0 +1,476 @@
+#!/usr/bin/env python3
+"""migrar-fauna.py — Migración idempotente del catálogo de fauna (issue #10).
+
+Lee el CSV de origen (`content/fauna/_origen/aves-especies.csv`) y genera una ficha
+`content/fauna/aves/<slug>/index.md` por especie, conforme al esquema congelado en #9
+(ver `content/fauna/aves/_ejemplo.md`). Empareja cada especie con su carpeta del banco
+de imágenes (carpeta = nombre científico), deduplica, optimiza a WebP (web ~1600 px,
+thumb ~600 px) y —con `--upload`— sube `raw/`, `web/` y `thumb/` al bucket GCS
+`catalogo-aves-chirimoyo`. Los créditos salen del manifiesto `creditos_imagenes.json`.
+
+IDEMPOTENCIA:
+  * Fichas: por defecto NO se sobrescribe una ficha existente (las fichas son la fuente
+    de verdad final y se curan a mano). Usa `--force` para regenerarlas desde el CSV.
+  * Subidas: solo ocurren con `--upload` y omiten objetos ya presentes (salvo `--force`).
+
+SEGURIDAD: no sube nada sin `--upload`. `google-cloud-storage` + credenciales solo se
+necesitan para subir. Sin `--upload`, el script genera fichas y (opcionalmente, con
+`--img-out`) escribe las variantes optimizadas localmente para revisión.
+
+Ver el mapeo columna→ficha y el parseo de conservación en
+`content/fauna/_origen/README.md`, y la decisión de storage en ADR-0016.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import io
+import re
+import sys
+import unicodedata
+from pathlib import Path
+
+# Rutas por defecto (relativas a la raíz del repo, dos niveles arriba de scripts/).
+REPO = Path(__file__).resolve().parents[1]
+DEFAULT_CSV = REPO / "content" / "fauna" / "_origen" / "aves-especies.csv"
+DEFAULT_OUT = REPO / "content" / "fauna" / "aves"
+DEFAULT_BANCO = Path(r"C:\Users\Frank\Downloads\Img guia aves\Imagenes aves")
+DEFAULT_CREDITOS = Path(r"C:\Users\Frank\Downloads\Img guia aves\creditos_imagenes.json")
+DEFAULT_BUCKET = "catalogo-aves-chirimoyo"
+
+WEB_MAX = 1600
+WEB_QUALITY = 82
+THUMB_MAX = 600
+THUMB_QUALITY = 75
+IMG_EXTS = {".jpg", ".jpeg", ".png"}
+
+
+# --------------------------------------------------------------------------- #
+# Utilidades de texto
+# --------------------------------------------------------------------------- #
+def strip_accents(s: str) -> str:
+    return "".join(
+        c for c in unicodedata.normalize("NFKD", s) if not unicodedata.combining(c)
+    )
+
+
+def slugify(nombre_cientifico: str) -> str:
+    """Ardea alba -> ardea-alba (minúsculas, sin acentos, espacios→'-')."""
+    s = strip_accents(nombre_cientifico).lower().strip()
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    return s.strip("-")
+
+
+def nkey(s: str) -> str:
+    """Clave de comparación insensible a acentos/mayúsculas/espacios."""
+    return re.sub(r"\s+", " ", strip_accents(s).lower().strip())
+
+
+def yaml_q(s: str) -> str:
+    """Escala YAML como string entre comillas dobles (seguro para ':' y demás)."""
+    s = s.replace("\\", "\\\\").replace('"', '\\"')
+    return f'"{s}"'
+
+
+# --------------------------------------------------------------------------- #
+# Mapeo de enums y conservación
+# --------------------------------------------------------------------------- #
+MIGRATORIO = {
+    "residente": "residente",
+    "migratoria de invierno": "migratoria-invierno",
+    "migratoria de verano": "migratoria-verano",
+    "transitoria": "transitoria",
+}
+OCURRENCIA = {"comun": "comun", "poco comun": "poco-comun", "rara": "rara"}
+DISTRIBUCION = {"nativa": "nativa", "introducida": "introducida"}
+
+NOM059 = {
+    "sin categoria de riesgo": "ninguno",
+    "amenazada": "a",
+    "proteccion especial": "pr",
+    "en peligro de extincion": "p",
+    "en peligro": "p",
+    "probablemente extinta en el medio silvestre": "e",
+    "probablemente extinta": "e",
+}
+IUCN = {
+    "preocupacion menor": "LC",
+    "casi amenazada": "NT",
+    "vulnerable": "VU",
+    "en peligro": "EN",
+    "en peligro critico": "CR",
+    "datos insuficientes": "DD",
+    "no evaluada": "NE",
+}
+
+
+def map_enum(table: dict[str, str], value: str, campo: str) -> str:
+    v = table.get(nkey(value))
+    if v is None:
+        raise ValueError(f"valor de {campo} no reconocido: {value!r}")
+    return v
+
+
+def parse_conservacion(texto: str) -> tuple[str, str | None]:
+    """'Amenazada (NOM-059); Preocupación Menor (UICN)' -> ('a', 'LC')."""
+    nom059: str | None = None
+    iucn: str | None = None
+    for parte in texto.split(";"):
+        parte = parte.strip()
+        if not parte:
+            continue
+        etiqueta = re.sub(r"\(.*?\)", "", parte).strip()
+        k = nkey(etiqueta)
+        if "nom-059" in nkey(parte) or "nom059" in nkey(parte):
+            nom059 = NOM059.get(k)
+        elif "uicn" in nkey(parte) or "iucn" in nkey(parte):
+            iucn = IUCN.get(k)
+    if nom059 is None:
+        raise ValueError(f"no se pudo parsear NOM-059 de: {texto!r}")
+    return nom059, iucn
+
+
+# --------------------------------------------------------------------------- #
+# Manifiesto de créditos
+# --------------------------------------------------------------------------- #
+def load_manifest(path: Path) -> dict[tuple[str, str], dict]:
+    """Indexa el manifiesto por (nombre_cientifico_normalizado, basename)."""
+    import json
+
+    data = json.loads(path.read_text(encoding="utf-8"))
+    idx: dict[tuple[str, str], dict] = {}
+    for e in data.get("imagenes", []):
+        archivo = e["archivo"].replace("\\", "/")
+        basename = archivo.split("/")[-1]
+        idx[(nkey(e["nombre_cientifico"]), basename)] = e
+    return idx
+
+
+def credito_de(entry: dict | None) -> dict:
+    """Mapea una entrada del manifiesto a los campos de Foto."""
+    if entry is None:
+        return {"credito": "Crédito pendiente de atribuir (#10)"}
+    foto = {
+        "credito": entry.get("atribucion") or entry.get("autor") or "Crédito pendiente",
+        "licencia": entry.get("licencia"),
+        "creditoUrl": entry.get("foto_pagina") or entry.get("observacion_url"),
+        "licenciaUrl": entry.get("licencia_url"),
+    }
+    return {k: v for k, v in foto.items() if v}
+
+
+# --------------------------------------------------------------------------- #
+# Imágenes
+# --------------------------------------------------------------------------- #
+def optimizar(src: Path) -> tuple[bytes, bytes]:
+    """Devuelve (web_webp, thumb_webp) optimizados, sin EXIF."""
+    from PIL import Image
+
+    def variante(im: Image.Image, lado: int, calidad: int) -> bytes:
+        copia = im.copy()
+        copia.thumbnail((lado, lado), Image.LANCZOS)
+        buf = io.BytesIO()
+        copia.save(buf, format="WEBP", quality=calidad, method=6)
+        return buf.getvalue()
+
+    with Image.open(src) as im:
+        im = im.convert("RGB")
+        return variante(im, WEB_MAX, WEB_QUALITY), variante(im, THUMB_MAX, THUMB_QUALITY)
+
+
+# --------------------------------------------------------------------------- #
+# Emisión de la ficha (template controlado, replica el estilo de _ejemplo.md)
+# --------------------------------------------------------------------------- #
+SECCIONES = [
+    ("descripcion", "Descripción"),
+    ("dieta_ecologia", "Dieta y ecología"),
+    ("reproduccion", "Reproducción"),
+    ("distribucion", "Distribución"),
+    ("claves_apariencia", "Cómo identificarla"),
+    (None, "Dónde y cuándo observarla"),  # combina zona + fechas
+    ("aspectos_adicionales", "¿Sabías que?"),
+]
+
+
+def emit_ficha(slug: str, row: dict, fotos: list[dict]) -> str:
+    nom059, iucn = parse_conservacion(row["estatus_conservacion_detallado"])
+    fuentes = [f.strip() for f in row["fuentes"].split(";") if f.strip()]
+    nombre_comun = row["nombre_comun"].strip()
+    nombre_cientifico = row["nombre_cientifico"].strip()
+
+    L: list[str] = ["---"]
+    L.append(f"slug: {slug}")
+    L.append("grupo: aves")
+    L.append(f"categoria: {yaml_q(row['categoria'].strip())}")
+    L.append(f"nombreComun: {yaml_q(nombre_comun)}")
+    L.append(f"nombreCientifico: {yaml_q(nombre_cientifico)}")
+    L.append(f"orden: {yaml_q(row['orden'].strip())}")
+    L.append(f"familia: {yaml_q(row['familia'].strip())}")
+    L.append(f"genero: {yaml_q(row['genero'].strip())}")
+    L.append(f"estatusMigratorio: {map_enum(MIGRATORIO, row['estatus_migratorio'], 'estatusMigratorio')}")
+    L.append(f"gradoOcurrencia: {map_enum(OCURRENCIA, row['grado_ocurrencia'], 'gradoOcurrencia')}")
+    L.append(f"estatusDistribucion: {map_enum(DISTRIBUCION, row['estatus_distribucion'], 'estatusDistribucion')}")
+    L.append("conservacion:")
+    L.append(f"  nom059: {nom059}")
+    if iucn:
+        L.append(f"  iucn: {iucn}")
+    if row.get("simbologia_recomendada", "").strip():
+        L.append(f"simbologia: {yaml_q(row['simbologia_recomendada'].strip())}")
+    L.append("fuentes:")
+    for f in fuentes:
+        L.append(f"  - {yaml_q(f)}")
+    L.append("fotos:")
+    for foto in fotos:
+        L.append(f"  - archivo: {yaml_q(foto['archivo'])}")
+        L.append(f"    credito: {yaml_q(foto['credito'])}")
+        L.append(f"    alt: {yaml_q(foto['alt'])}")
+        if foto.get("licencia"):
+            L.append(f"    licencia: {yaml_q(foto['licencia'])}")
+        if foto.get("creditoUrl"):
+            L.append(f"    creditoUrl: {yaml_q(foto['creditoUrl'])}")
+        if foto.get("licenciaUrl"):
+            L.append(f"    licenciaUrl: {yaml_q(foto['licenciaUrl'])}")
+    L.append("---")
+    L.append("")
+
+    for col, titulo in SECCIONES:
+        if titulo == "Dónde y cuándo observarla":
+            zona = row.get("claves_zona_observacion", "").strip()
+            fechas = row.get("claves_fechas_observacion", "").strip()
+            cuerpo = " ".join(p for p in [zona, fechas] if p)
+        else:
+            cuerpo = row.get(col, "").strip()
+        if not cuerpo:
+            continue
+        L.append(f"## {titulo}")
+        L.append("")
+        L.append(cuerpo)
+        L.append("")
+
+    return "\n".join(L).rstrip() + "\n"
+
+
+# --------------------------------------------------------------------------- #
+# GCS
+# --------------------------------------------------------------------------- #
+class Uploader:
+    """Sube las variantes a GCS. Las optimizadas (web/thumb) van al bucket público;
+    las crudas (raw) al bucket de archivo privado (ver ADR-0016). Si no se da un
+    bucket de archivo, las crudas no se suben."""
+
+    def __init__(self, bucket: str, raw_bucket: str | None, project: str, force: bool):
+        from google.cloud import storage  # import perezoso (solo con --upload)
+        from google.auth.exceptions import DefaultCredentialsError
+
+        try:
+            # project explícito: evita depender del proyecto activo de gcloud
+            # (que puede ser otro) y fija la cuota/billing en el correcto.
+            self.client = storage.Client(project=project)
+        except DefaultCredentialsError as exc:
+            raise SystemExit(
+                "ERROR: no hay Application Default Credentials (ADC).\n"
+                "  `gcloud auth login` autentica el CLI, pero las librerías de Python\n"
+                "  necesitan ADC. Ejecuta:\n\n"
+                "      gcloud auth application-default login\n\n"
+                f"  Detalle: {exc}"
+            )
+        self.bucket = self._open(bucket, project)
+        self.raw_bucket = self._open(raw_bucket, project) if raw_bucket else None
+        self.force = force
+
+    def _open(self, name: str, project: str):
+        b = self.client.bucket(name)
+        if not b.exists():
+            raise SystemExit(
+                f"ERROR: el bucket gs://{name} no existe o no es accesible con tu\n"
+                f"  cuenta en el proyecto '{project}'. Créalo primero, p. ej.:\n\n"
+                f"      gcloud storage buckets create gs://{name} \\\n"
+                f"          --project={project} --location=northamerica-south1 \\\n"
+                f"          --uniform-bucket-level-access\n"
+            )
+        return b
+
+    def _put_bytes(self, bkt, key: str, data: bytes, content_type: str) -> bool:
+        blob = bkt.blob(key)
+        if blob.exists() and not self.force:
+            return False
+        blob.upload_from_string(data, content_type=content_type)
+        return True
+
+    def put_web(self, key: str, data: bytes, content_type: str) -> bool:
+        return self._put_bytes(self.bucket, key, data, content_type)
+
+    def put_raw(self, key: str, src: Path) -> bool:
+        if self.raw_bucket is None:
+            return False
+        blob = self.raw_bucket.blob(key)
+        if blob.exists() and not self.force:
+            return False
+        blob.upload_from_filename(str(src))
+        return True
+
+
+# --------------------------------------------------------------------------- #
+# Proceso principal
+# --------------------------------------------------------------------------- #
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Migrar el catálogo de fauna (#10).")
+    ap.add_argument("--csv", type=Path, default=DEFAULT_CSV)
+    ap.add_argument("--banco", type=Path, default=DEFAULT_BANCO)
+    ap.add_argument("--creditos", type=Path, default=DEFAULT_CREDITOS)
+    ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    ap.add_argument("--bucket", default=DEFAULT_BUCKET,
+                    help="Bucket público para web/ y thumb/.")
+    ap.add_argument("--raw-bucket", default=DEFAULT_BUCKET + "-raw",
+                    help="Bucket privado de archivo para las crudas; '' para no subirlas.")
+    ap.add_argument("--project", default="chirimoyo",
+                    help="Proyecto GCP del bucket (no el proyecto activo de gcloud).")
+    ap.add_argument("--img-out", type=Path, default=None,
+                    help="Escribe las variantes web/thumb localmente para revisión.")
+    ap.add_argument("--upload", action="store_true", help="Sube raw/web/thumb a GCS.")
+    ap.add_argument("--no-images", action="store_true", help="Solo genera fichas.")
+    ap.add_argument("--force", action="store_true",
+                    help="Regenera fichas existentes y re-sube objetos.")
+    ap.add_argument("--limit", type=int, default=None)
+    args = ap.parse_args()
+
+    rows = list(csv.DictReader(args.csv.open(encoding="utf-8")))
+    if args.limit:
+        rows = rows[: args.limit]
+
+    manifest = load_manifest(args.creditos) if not args.no_images else {}
+    uploader = (
+        Uploader(args.bucket, args.raw_bucket or None, args.project, args.force)
+        if args.upload
+        else None
+    )
+
+    # Carpetas del banco indexadas por nombre científico normalizado.
+    bank_dirs: dict[str, Path] = {}
+    if args.banco.exists():
+        for d in args.banco.iterdir():
+            if d.is_dir():
+                bank_dirs[nkey(d.name)] = d
+
+    slugs_vistos: dict[str, str] = {}
+    errores: list[str] = []
+    sin_carpeta: list[str] = []
+    fichas_escritas = fichas_saltadas = 0
+    subidas = 0
+
+    for row in rows:
+        sci = row["nombre_cientifico"].strip()
+        slug = slugify(sci)
+
+        if slug in slugs_vistos:
+            errores.append(
+                f"colisión de slug {slug!r}: {slugs_vistos[slug]!r} vs {sci!r}"
+            )
+            continue
+        slugs_vistos[slug] = sci
+
+        # --- Imágenes / fotos[] ---
+        fotos: list[dict] = []
+        alt = f"{row['nombre_comun'].strip()} ({sci})"
+        bank = bank_dirs.get(nkey(sci))
+        if not args.no_images:
+            if bank is None:
+                sin_carpeta.append(sci)
+            else:
+                vistos_hash: set[str] = set()
+                archivos = sorted(
+                    p for p in bank.iterdir()
+                    if p.suffix.lower() in IMG_EXTS and p.is_file()
+                )
+                for src in archivos:
+                    h = hashlib.md5(src.read_bytes()).hexdigest()
+                    if h in vistos_hash:
+                        continue
+                    vistos_hash.add(h)
+
+                    archivo_webp = src.stem + ".webp"
+                    entry = manifest.get((nkey(sci), src.name))
+                    foto = {"archivo": archivo_webp, "alt": alt, **credito_de(entry)}
+                    fotos.append(foto)
+
+                    # Solo optimizamos si vamos a subir o a guardar local; para
+                    # generar fichas basta con el nombre + crédito (más rápido).
+                    if not (uploader or args.img_out):
+                        continue
+                    web_b, thumb_b = optimizar(src)
+                    if uploader:
+                        # En el bucket de archivo dedicado las crudas van directo
+                        # bajo <slug>/ (sin prefijo `raw/`, que sería redundante).
+                        if uploader.put_raw(f"{slug}/{src.name}", src):
+                            subidas += 1
+                        if uploader.put_web(f"web/{slug}/{archivo_webp}", web_b, "image/webp"):
+                            subidas += 1
+                        if uploader.put_web(f"thumb/{slug}/{archivo_webp}", thumb_b, "image/webp"):
+                            subidas += 1
+                    else:
+                        for variante, data in (("web", web_b), ("thumb", thumb_b)):
+                            dest = args.img_out / variante / slug / archivo_webp
+                            dest.parent.mkdir(parents=True, exist_ok=True)
+                            dest.write_bytes(data)
+
+        # --- Validación de núcleo ---
+        faltan = []
+        for campo in ("nombre_comun", "nombre_cientifico", "categoria", "orden", "familia"):
+            if not row.get(campo, "").strip():
+                faltan.append(campo)
+        if not row.get("estatus_conservacion_detallado", "").strip():
+            faltan.append("estatus_conservacion_detallado")
+        if not args.no_images and not fotos:
+            faltan.append("fotos (≥1)")
+        if not row.get("descripcion", "").strip():
+            faltan.append("descripcion")
+        if faltan:
+            errores.append(f"{sci} ({slug}): núcleo incompleto: {', '.join(faltan)}")
+            continue
+
+        # --- Emitir ficha ---
+        ficha_dir = args.out / slug
+        ficha_path = ficha_dir / "index.md"
+        if ficha_path.exists() and not args.force:
+            fichas_saltadas += 1
+        else:
+            ficha_dir.mkdir(parents=True, exist_ok=True)
+            md = emit_ficha(slug, row, fotos)
+            # Auto-verificación: re-parsear el frontmatter emitido.
+            try:
+                import yaml
+                fm = md.split("---", 2)[1]
+                yaml.safe_load(fm)
+            except Exception as exc:  # pragma: no cover
+                errores.append(f"{sci} ({slug}): frontmatter emitido inválido: {exc}")
+                continue
+            ficha_path.write_text(md, encoding="utf-8")
+            fichas_escritas += 1
+
+    # --- Reporte ---
+    carpetas_sin_especie = sorted(
+        d.name for k, d in bank_dirs.items()
+        if k not in {nkey(r["nombre_cientifico"]) for r in rows}
+    )
+    print(f"Especies en CSV:        {len(rows)}")
+    print(f"Fichas escritas:        {fichas_escritas}")
+    print(f"Fichas saltadas (exist):{fichas_saltadas}")
+    if not args.no_images:
+        modo = "subidas a GCS" if args.upload else ("escritas local" if args.img_out else "en memoria")
+        print(f"Variantes de imagen:    {modo} ({subidas} objetos subidos)" if args.upload
+              else f"Imágenes procesadas:    {modo}")
+    if sin_carpeta:
+        print(f"Especies SIN carpeta de fotos ({len(sin_carpeta)}): {', '.join(sin_carpeta)}")
+    if carpetas_sin_especie:
+        print(f"Carpetas SIN especie en CSV ({len(carpetas_sin_especie)}): {', '.join(carpetas_sin_especie)}")
+    if errores:
+        print(f"\nERRORES ({len(errores)}):", file=sys.stderr)
+        for e in errores:
+            print(f"  - {e}", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
