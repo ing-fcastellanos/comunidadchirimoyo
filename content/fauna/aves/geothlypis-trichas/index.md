@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-C-SR-N"
+forma: pajaro
+tamano: chica
+colores: [amarillo, verde, negro]
+donde: arbol
+featured: true
 fuentes:
   - "eBird"
   - "Enciclovida"

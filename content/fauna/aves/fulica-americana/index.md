@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-C-SR-N"
+forma: gallineta
+tamano: mediana
+colores: [negro, gris]
+donde: nadando
+featured: true
 fuentes:
   - "Cornell All About Birds"
   - "eBird"

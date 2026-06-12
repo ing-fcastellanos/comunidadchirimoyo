@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-PC-SR-N"
+forma: gallineta
+tamano: mediana
+colores: [azul, verde]
+donde: nadando
+featured: true
 fuentes:
   - "eBird"
   - "Enciclovida/CONABIO"

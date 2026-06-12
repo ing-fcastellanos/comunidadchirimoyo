@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-C-SR-N"
+forma: pajaro
+tamano: mediana
+colores: [amarillo, gris]
+donde: poste
+featured: true
 fuentes:
   - "eBird"
   - "Birds of the World"

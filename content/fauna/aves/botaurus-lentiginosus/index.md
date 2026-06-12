@@ -14,6 +14,11 @@ conservacion:
   nom059: a
   iucn: LC
 simbologia: "MI-Ra-A-N"
+forma: garza
+tamano: grande
+colores: [cafe]
+donde: orilla
+featured: true
 fuentes:
   - "eBird"
   - "Audubon"

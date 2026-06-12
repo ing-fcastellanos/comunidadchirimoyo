@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "MI-C-SR-N"
+forma: pajaro
+tamano: chica
+colores: [amarillo, verde, negro]
+donde: arbol
+featured: true
 fuentes:
   - "eBird"
   - "All About Birds (Cornell)"

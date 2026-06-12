@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-C-SR-N"
+forma: pato
+tamano: grande
+colores: [cafe, negro, blanco]
+donde: nadando
+featured: true
 fuentes:
   - "eBird"
   - "iNaturalist México"

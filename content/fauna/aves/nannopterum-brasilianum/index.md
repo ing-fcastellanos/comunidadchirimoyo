@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-PC-SR-N"
+forma: buceador
+tamano: muy-grande
+colores: [negro]
+donde: nadando
+featured: true
 fuentes:
   - "Cornell Birds of the World"
   - "eBird"

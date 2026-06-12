@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "MI-PC-SR-N"
+forma: pajaro
+tamano: chica
+colores: [cafe, gris]
+donde: volando
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"

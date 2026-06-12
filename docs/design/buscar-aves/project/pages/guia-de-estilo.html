@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guía de estilo · Guía de Aves del Chirimoyo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/styles.css" />
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
+<style>
+  .swatch { transition: transform .15s ease; }
+  .swatch:hover { transform: translateY(-2px); }
+</style>
+</head>
+<body class="bg-paper text-ink antialiased">
+
+<!-- top bar -->
+<header class="sticky top-0 z-20 border-b border-forest/10 bg-paper-card/90 backdrop-blur-md">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-3">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="inline-flex items-center gap-1.5 rounded-full bg-mint-wash px-3 py-1.5 text-[12px] font-600 text-forest-deep ring-1 ring-forest/15 transition-colors hover:bg-mint-soft">
+        <i data-lucide="chevron-left" class="h-3.5 w-3.5"></i> Catálogo
+      </a>
+      <span class="font-serif text-[20px] font-600 leading-none text-forest-deep">Guía de estilo</span>
+    </div>
+    <a href="../index.html" class="inline-flex items-center gap-1.5 text-[12px] font-600 text-forest transition-colors hover:text-forest-deep">
+      Ver ficha completa <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
+    </a>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="border-b border-forest/10">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 py-14 sm:py-20 lg:grid-cols-[1fr_auto]">
+    <div>
+      <div class="mb-3 flex items-center gap-2 text-[12px] font-700 uppercase tracking-[0.24em] text-forest">
+        <i data-lucide="palette" class="h-4 w-4"></i> Lineamientos visuales
+      </div>
+      <h1 class="font-serif text-[clamp(40px,6vw,68px)] font-600 leading-[0.98] text-forest-deep">
+        Sistema de diseño
+      </h1>
+      <p class="mt-4 max-w-xl text-[18px] leading-relaxed text-ink/80">
+        Estética naturalista y editorial para una guía de campo digital. La paleta nace del
+        logotipo de la Comunidad del Chirimoyo —verdes de humedal— y se apoya en una serif
+        elegante para títulos y una sans legible para el cuerpo.
+      </p>
+    </div>
+    <figure class="flex flex-col items-center gap-3">
+      <img src="../assets/logo-chirimoyo.jpeg" alt="Logotipo de la Comunidad del Chirimoyo" class="h-40 w-40 rounded-full object-cover shadow-card ring-1 ring-forest/15" />
+      <figcaption class="font-mono text-[12px] text-ink-soft/70">Logotipo · fuente de la paleta</figcaption>
+    </figure>
+  </div>
+</section>
+
+<main class="mx-auto max-w-6xl px-6">
+
+  <!-- ============ PALETA ============ -->
+  <section class="border-b border-forest/10 py-14 sm:py-20">
+    <div class="mb-9 flex items-end gap-4">
+      <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-mint-wash text-forest-deep ring-1 ring-forest/10"><i data-lucide="droplet" class="h-6 w-6"></i></span>
+      <div>
+        <div class="mb-0.5 text-[12px] font-700 uppercase tracking-[0.22em] text-forest">01 · Color</div>
+        <h2 class="font-serif text-[34px] font-600 leading-none text-forest-deep">Paleta</h2>
+      </div>
+    </div>
+
+    <p class="mb-8 max-w-2xl text-[16px] leading-relaxed text-ink/80">
+      Extraída directamente del logotipo. El <strong class="font-600 text-forest-deep">verde bosque</strong> conduce
+      títulos y acciones; el <strong class="font-600 text-forest-deep">verde menta</strong> aporta acentos suaves y
+      fondos de apoyo; el <strong class="font-600 text-forest-deep">verde pino</strong> oscuro reserva el contraste
+      para bloques inmersivos. Tres acentos cálidos (ámbar, terracota, teal) codifican el estatus en las insignias.
+    </p>
+
+    <div id="palette" class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"></div>
+
+    <div class="mt-6 rounded-xl bg-mint-wash/60 p-5 text-[14px] leading-relaxed text-forest-deep/85 ring-1 ring-forest/10">
+      <strong class="font-600">Regla de uso:</strong> los verdes dominan (≈90% de la superficie); los acentos
+      cálidos solo aparecen en insignias y micro-señales de estado. Nunca usar un acento como fondo de sección.
+    </div>
+  </section>
+
+  <!-- ============ TIPOGRAFÍA ============ -->
+  <section class="border-b border-forest/10 py-14 sm:py-20">
+    <div class="mb-9 flex items-end gap-4">
+      <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-mint-wash text-forest-deep ring-1 ring-forest/10"><i data-lucide="type" class="h-6 w-6"></i></span>
+      <div>
+        <div class="mb-0.5 text-[12px] font-700 uppercase tracking-[0.22em] text-forest">02 · Tipografía</div>
+        <h2 class="font-serif text-[34px] font-600 leading-none text-forest-deep">Tipos</h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl bg-paper-card p-8 shadow-card ring-1 ring-forest/[0.07]">
+        <div class="flex items-baseline justify-between">
+          <span class="text-[12px] font-700 uppercase tracking-[0.18em] text-forest/70">Títulos</span>
+          <code class="font-mono text-[12px] text-ink-soft/70">font-serif</code>
+        </div>
+        <div class="mt-3 font-serif text-[56px] font-600 leading-none text-forest-deep">Cormorant<br />Garamond</div>
+        <p class="mt-4 text-[15px] leading-relaxed text-ink/75">Serif de alto contraste para nombres, encabezados y citas. Pesos 400–700; itálica para el nombre científico.</p>
+        <div class="mt-5 flex flex-wrap items-baseline gap-x-5 gap-y-2 font-serif text-forest-deep">
+          <span class="text-[40px] font-600">Aa</span>
+          <span class="text-[26px] font-500">Botaurus</span>
+          <span class="text-[22px] italic">lentiginosus</span>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-paper-card p-8 shadow-card ring-1 ring-forest/[0.07]">
+        <div class="flex items-baseline justify-between">
+          <span class="text-[12px] font-700 uppercase tracking-[0.18em] text-forest/70">Cuerpo</span>
+          <code class="font-mono text-[12px] text-ink-soft/70">font-sans</code>
+        </div>
+        <div class="mt-3 font-sans text-[48px] font-600 leading-none text-ink">Source Sans 3</div>
+        <p class="mt-4 text-[15px] leading-relaxed text-ink/75">Sans humanista, muy legible en párrafos largos y etiquetas. Pesos 300–700. Interlineado 1.6–1.75 en cuerpo.</p>
+        <div class="mt-5 space-y-1 text-ink">
+          <p class="text-[17px]">Garza críptica y solitaria de los humedales.</p>
+          <p class="text-[13px] font-700 uppercase tracking-[0.16em] text-forest/70">Etiqueta · Mejor hora</p>
+          <p class="font-mono text-[13px] text-ink-soft/80">Foto: Avetoro Norteño — pie monoespaciado</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 overflow-hidden rounded-2xl bg-paper-card shadow-card ring-1 ring-forest/[0.07]">
+      <table class="w-full text-left text-[14px]">
+        <thead>
+          <tr class="bg-mint-wash text-[11px] font-700 uppercase tracking-[0.16em] text-forest">
+            <th class="px-6 py-3 font-700">Rol</th><th class="px-6 py-3 font-700">Familia</th>
+            <th class="px-6 py-3 font-700">Tamaño</th><th class="px-6 py-3 font-700">Peso</th>
+          </tr>
+        </thead>
+        <tbody id="typescale" class="text-ink/85"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ TOKENS ============ -->
+  <section class="border-b border-forest/10 py-14 sm:py-20">
+    <div class="mb-9 flex items-end gap-4">
+      <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-mint-wash text-forest-deep ring-1 ring-forest/10"><i data-lucide="ruler" class="h-6 w-6"></i></span>
+      <div>
+        <div class="mb-0.5 text-[12px] font-700 uppercase tracking-[0.22em] text-forest">03 · Tokens</div>
+        <h2 class="font-serif text-[34px] font-600 leading-none text-forest-deep">Radios, sombras y espaciado</h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="rounded-2xl bg-paper-card p-7 shadow-card ring-1 ring-forest/[0.07]">
+        <h3 class="font-serif text-[22px] font-600 text-forest-deep">Esquinas</h3>
+        <p class="mt-1 text-[14px] text-ink/70">Suaves y generosas, nunca puntiagudas.</p>
+        <div class="mt-5 flex items-end gap-4">
+          <div class="flex flex-col items-center gap-2"><div class="h-14 w-14 rounded-lg bg-mint-soft ring-1 ring-forest/15"></div><code class="font-mono text-[11px] text-ink-soft/70">lg</code></div>
+          <div class="flex flex-col items-center gap-2"><div class="h-14 w-14 rounded-xl bg-mint-soft ring-1 ring-forest/15"></div><code class="font-mono text-[11px] text-ink-soft/70">xl</code></div>
+          <div class="flex flex-col items-center gap-2"><div class="h-14 w-14 rounded-2xl bg-mint-soft ring-1 ring-forest/15"></div><code class="font-mono text-[11px] text-ink-soft/70">2xl</code></div>
+          <div class="flex flex-col items-center gap-2"><div class="h-14 w-14 rounded-full bg-mint-soft ring-1 ring-forest/15"></div><code class="font-mono text-[11px] text-ink-soft/70">full</code></div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-paper-card p-7 shadow-card ring-1 ring-forest/[0.07]">
+        <h3 class="font-serif text-[22px] font-600 text-forest-deep">Sombras</h3>
+        <p class="mt-1 text-[14px] text-ink/70">Verdosas y sutiles, no grises.</p>
+        <div class="mt-5 flex items-end gap-5">
+          <div class="flex flex-col items-center gap-2"><div class="h-16 w-20 rounded-xl bg-paper-card shadow-soft ring-1 ring-forest/[0.06]"></div><code class="font-mono text-[11px] text-ink-soft/70">soft</code></div>
+          <div class="flex flex-col items-center gap-2"><div class="h-16 w-20 rounded-xl bg-paper-card shadow-card ring-1 ring-forest/[0.06]"></div><code class="font-mono text-[11px] text-ink-soft/70">card</code></div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-paper-card p-7 shadow-card ring-1 ring-forest/[0.07]">
+        <h3 class="font-serif text-[22px] font-600 text-forest-deep">Ritmo</h3>
+        <p class="mt-1 text-[14px] text-ink/70">Secciones con respiración amplia.</p>
+        <ul class="mt-4 space-y-2 text-[14px] text-ink/80">
+          <li class="flex justify-between"><span>Ancho de contenido</span><code class="font-mono text-[12px] text-forest">max-w-6xl</code></li>
+          <li class="flex justify-between"><span>Padding lateral</span><code class="font-mono text-[12px] text-forest">px-6</code></li>
+          <li class="flex justify-between"><span>Aire vertical</span><code class="font-mono text-[12px] text-forest">py-12→16</code></li>
+          <li class="flex justify-between"><span>Gap de tarjetas</span><code class="font-mono text-[12px] text-forest">gap-4→6</code></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ICONOGRAFÍA ============ -->
+  <section class="border-b border-forest/10 py-14 sm:py-20">
+    <div class="mb-9 flex items-end gap-4">
+      <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-mint-wash text-forest-deep ring-1 ring-forest/10"><i data-lucide="feather" class="h-6 w-6"></i></span>
+      <div>
+        <div class="mb-0.5 text-[12px] font-700 uppercase tracking-[0.22em] text-forest">04 · Iconografía</div>
+        <h2 class="font-serif text-[34px] font-600 leading-none text-forest-deep">Iconos</h2>
+      </div>
+    </div>
+    <p class="mb-7 max-w-2xl text-[16px] leading-relaxed text-ink/80">
+      Trazo fino de <strong class="font-600 text-forest-deep">Lucide</strong> (≈2px), siempre en verde sobre
+      lavado menta. Los controles interactivos (carrusel, lightbox, play) usan glifos SVG propios para no
+      depender de la librería en zonas que se re-renderizan.
+    </p>
+    <div id="icons" class="grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-8"></div>
+  </section>
+
+  <!-- ============ VOZ Y TONO ============ -->
+  <section class="border-b border-forest/10 py-14 sm:py-20">
+    <div class="mb-9 flex items-end gap-4">
+      <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-mint-wash text-forest-deep ring-1 ring-forest/10"><i data-lucide="message-circle" class="h-6 w-6"></i></span>
+      <div>
+        <div class="mb-0.5 text-[12px] font-700 uppercase tracking-[0.22em] text-forest">05 · Contenido</div>
+        <h2 class="font-serif text-[34px] font-600 leading-none text-forest-deep">Voz y tono</h2>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="rounded-2xl bg-paper-card p-8 shadow-card ring-1 ring-forest/[0.07]">
+        <h3 class="flex items-center gap-2 font-serif text-[22px] font-600 text-forest-deep"><i data-lucide="check" class="h-5 w-5 text-forest"></i> Hacer</h3>
+        <ul class="mt-4 space-y-2.5 text-[15px] leading-relaxed text-ink/80">
+          <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-forest"></span> Español divulgativo, claro y preciso; tono de guía de campo.</li>
+          <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-forest"></span> Nombre científico en itálica; comillas angulares «...».</li>
+          <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-forest"></span> Cifras con rango y unidad: «59–70 cm».</li>
+          <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-forest"></span> Señalar incertidumbre cuando las fuentes difieren.</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-paper-card p-8 shadow-card ring-1 ring-forest/[0.07]">
+        <h3 class="flex items-center gap-2 font-serif text-[22px] font-600 text-forest-deep"><i data-lucide="x" class="h-5 w-5 text-terra"></i> Evitar</h3>
+        <ul class="mt-4 space-y-2.5 text-[15px] leading-relaxed text-ink/80">
+          <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-terra"></span> Lenguaje comercial o de marketing.</li>
+          <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-terra"></span> Datos de relleno o estadísticas sin fuente.</li>
+          <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-terra"></span> Emojis, gradientes llamativos, neón o glassmorphism.</li>
+          <li class="flex gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-terra"></span> Afirmar reproducción local (no cría en el Chirimoyo).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACCESIBILIDAD ============ -->
+  <section class="py-14 sm:py-20">
+    <div class="mb-9 flex items-end gap-4">
+      <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-mint-wash text-forest-deep ring-1 ring-forest/10"><i data-lucide="accessibility" class="h-6 w-6"></i></span>
+      <div>
+        <div class="mb-0.5 text-[12px] font-700 uppercase tracking-[0.22em] text-forest">06 · Accesibilidad</div>
+        <h2 class="font-serif text-[34px] font-600 leading-none text-forest-deep">Bases técnicas</h2>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-2xl bg-mint-wash p-6 ring-1 ring-forest/10"><i data-lucide="contrast" class="h-6 w-6 text-forest-deep"></i><h3 class="mt-3 font-serif text-[19px] font-600 text-forest-deep">Contraste AA</h3><p class="mt-1 text-[14px] leading-relaxed text-ink/75">Texto sobre crema y sobre pino oscuro cumple WCAG AA.</p></div>
+      <div class="rounded-2xl bg-mint-wash p-6 ring-1 ring-forest/10"><i data-lucide="code-2" class="h-6 w-6 text-forest-deep"></i><h3 class="mt-3 font-serif text-[19px] font-600 text-forest-deep">Semántica</h3><p class="mt-1 text-[14px] leading-relaxed text-ink/75">header, section, article, figure y table reales.</p></div>
+      <div class="rounded-2xl bg-mint-wash p-6 ring-1 ring-forest/10"><i data-lucide="image" class="h-6 w-6 text-forest-deep"></i><h3 class="mt-3 font-serif text-[19px] font-600 text-forest-deep">Alt &amp; ARIA</h3><p class="mt-1 text-[14px] leading-relaxed text-ink/75">Imágenes con alt; mapa y controles con aria-label.</p></div>
+      <div class="rounded-2xl bg-mint-wash p-6 ring-1 ring-forest/10"><i data-lucide="keyboard" class="h-6 w-6 text-forest-deep"></i><h3 class="mt-3 font-serif text-[19px] font-600 text-forest-deep">Teclado</h3><p class="mt-1 text-[14px] leading-relaxed text-ink/75">Lightbox navegable con ←/→/Esc y foco visible.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-forest/10 bg-paper-deep">
+  <div class="mx-auto max-w-6xl px-6 py-8 text-[13px] text-ink-soft/70">
+    Guía de estilo · Guía de Aves – Laguna del Chirimoyo, Orizaba, Veracruz · Dr. Eduardo Roldán Reyes, 2025.
+  </div>
+</footer>
+
+<script>
+  /* ---- paleta ---- */
+  const COLORS = [
+    { name:'Verde bosque', token:'forest', hex:'#15824c', use:'Títulos, acciones primarias', dark:true },
+    { name:'Bosque profundo', token:'forest-deep', hex:'#0c5a36', use:'Texto destacado, hover', dark:true },
+    { name:'Bosque suave', token:'forest-soft', hex:'#2f9d6a', use:'Nombre científico', dark:true },
+    { name:'Pino', token:'pine', hex:'#073d24', use:'Bloques inmersivos', dark:true },
+    { name:'Pino profundo', token:'pine-deep', hex:'#052e1b', use:'Banner de canto, lightbox', dark:true },
+    { name:'Menta', token:'mint', hex:'#8ed8c0', use:'Acentos, zona de invernada', dark:false },
+    { name:'Menta suave', token:'mint-soft', hex:'#cdeedd', use:'Insignias, números', dark:false },
+    { name:'Menta lavado', token:'mint-wash', hex:'#e4f3ec', use:'Fondos de icono y tablas', dark:false },
+    { name:'Menta profunda', token:'mint-deep', hex:'#46b08c', use:'Bordes de cita, viñetas', dark:false },
+    { name:'Crema', token:'paper', hex:'#eef5ef', use:'Fondo general', dark:false },
+    { name:'Tarjeta', token:'paper-card', hex:'#ffffff', use:'Superficie de tarjetas', dark:false },
+    { name:'Crema profunda', token:'paper-deep', hex:'#e1eee5', use:'Footer, código', dark:false },
+    { name:'Tinta', token:'ink', hex:'#143226', use:'Texto de cuerpo', dark:true },
+    { name:'Ámbar', token:'ochre', hex:'#b08a2e', use:'Insignia «Rara»', dark:true },
+    { name:'Terracota', token:'terra', hex:'#b5543a', use:'Insignia NOM-059', dark:true },
+    { name:'Teal', token:'teal', hex:'#2f8d77', use:'Insignia «Nativa»', dark:true },
+  ];
+  document.getElementById('palette').innerHTML = COLORS.map(c => `
+    <div class="swatch overflow-hidden rounded-2xl shadow-card ring-1 ring-forest/[0.08]">
+      <div class="flex h-24 items-end p-3" style="background:${c.hex}">
+        <span class="font-mono text-[11px] ${c.dark ? 'text-white/85' : 'text-forest-deep/80'}">${c.hex}</span>
+      </div>
+      <div class="bg-paper-card p-3">
+        <div class="font-serif text-[17px] font-600 leading-tight text-forest-deep">${c.name}</div>
+        <code class="font-mono text-[11px] text-forest">${c.token}</code>
+        <p class="mt-1 text-[12px] leading-snug text-ink/70">${c.use}</p>
+      </div>
+    </div>`).join('');
+
+  /* ---- escala tipográfica ---- */
+  const SCALE = [
+    ['Nombre común (H1)','Cormorant Garamond','46–82px','600'],
+    ['Título de sección (H2)','Cormorant Garamond','34px','600'],
+    ['Subtítulo / tarjeta (H3)','Cormorant Garamond','22–24px','600'],
+    ['Nombre científico','Cormorant Garamond itálica','22–30px','400'],
+    ['Cuerpo','Source Sans 3','16–17px','400'],
+    ['Etiqueta / kicker','Source Sans 3 · versalitas','11–12px','700'],
+    ['Pie de foto','Monoespaciada','12–13px','400'],
+  ];
+  document.getElementById('typescale').innerHTML = SCALE.map((r,i) => `
+    <tr class="${i ? 'border-t border-forest/[0.07]' : ''}">
+      <td class="px-6 py-3 font-600 text-forest-deep">${r[0]}</td>
+      <td class="px-6 py-3">${r[1]}</td>
+      <td class="px-6 py-3 font-mono text-[12px] text-forest">${r[2]}</td>
+      <td class="px-6 py-3 font-mono text-[12px] text-forest">${r[3]}</td>
+    </tr>`).join('');
+
+  /* ---- iconos ---- */
+  const ICONS = ['bird','feather','ruler','move-horizontal','list-tree','trees','sunrise','fish','egg','map','map-pin','binoculars','eye','calendar-range','shield-check','audio-lines','sparkles','git-fork','camera','play'];
+  document.getElementById('icons').innerHTML = ICONS.map(n => `
+    <div class="flex flex-col items-center gap-2 rounded-xl bg-paper-card p-4 shadow-soft ring-1 ring-forest/[0.06]">
+      <span class="grid h-11 w-11 place-items-center rounded-xl bg-mint-wash text-forest-deep"><i data-lucide="${n}" class="h-[22px] w-[22px]"></i></span>
+      <code class="font-mono text-[10px] text-ink-soft/70">${n}</code>
+    </div>`).join('');
+
+  if (window.lucide) window.lucide.createIcons();
+</script>
+</body>
+</html>

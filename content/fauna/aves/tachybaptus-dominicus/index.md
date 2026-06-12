@@ -14,6 +14,11 @@ conservacion:
   nom059: pr
   iucn: LC
 simbologia: "R-C-Pr-N"
+forma: buceador
+tamano: chica
+colores: [cafe, gris]
+donde: nadando
+featured: true
 fuentes:
   - "NOM-059-SEMARNAT-2010"
   - "Cornell Birds of the World"

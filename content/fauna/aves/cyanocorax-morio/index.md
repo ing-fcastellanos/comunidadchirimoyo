@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-PC-SR-N"
+forma: pajaro
+tamano: grande
+colores: [cafe]
+donde: arbol
 fuentes:
   - "Birds of the World"
   - "eBird"

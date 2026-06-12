@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "MI-PC-SR-N"
+forma: garza
+tamano: grande
+colores: [cafe, iridiscente]
+donde: orilla
+featured: true
 fuentes:
   - "eBird"
   - "Birds of the World"

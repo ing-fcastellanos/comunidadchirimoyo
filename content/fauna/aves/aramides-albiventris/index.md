@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-PC-SR-N"
+forma: gallineta
+tamano: grande
+colores: [cafe, gris, naranja]
+donde: orilla
 fuentes:
   - "Enciclovida"
   - "iNaturalist MX"

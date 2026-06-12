@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-C-SR-N"
+forma: pajaro
+tamano: chica
+colores: [cafe, blanco]
+donde: volando
 fuentes:
   - "eBird"
   - "Audubon"

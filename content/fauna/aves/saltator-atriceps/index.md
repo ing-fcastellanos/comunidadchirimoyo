@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-PC-SR-N"
+forma: pajaro
+tamano: mediana
+colores: [negro, verde, blanco]
+donde: arbol
 fuentes:
   - "Birds of the World (Cornell)"
   - "eBird"

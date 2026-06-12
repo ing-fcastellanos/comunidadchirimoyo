@@ -51,6 +51,18 @@ El `slug` (y el nombre de la carpeta) se deriva del **nombre científico** en ke
 
 **Opcionales:** `simbologia` (string, p. ej. `R-PC-SR-N`), `medidas` (`{ tamanoCm?: [min,max], pesoG?: [min,max], notas? }`), `habitat` (string[] de etiquetas), `temporada` (`{ meses?: number[] 1–12, notas? }`), `audios` (Audio[]).
 
+**Búsqueda visual (opcionales)** — alimentan los filtros del buscador para principiantes; vocabularios cerrados:
+
+| Campo | Cardinalidad | Valores |
+|---|---|---|
+| `forma` | uno | `pato` · `garza` · `gallineta` · `buceador` · `playera` · `rapaz` · `pajaro` |
+| `tamano` | uno | `muy-chica` · `chica` · `mediana` · `grande` · `muy-grande` |
+| `colores` | lista (≥1) | `blanco` · `negro` · `cafe` · `gris` · `azul` · `verde` · `amarillo` · `rojo` · `naranja` · `iridiscente` |
+| `donde` | uno | `nadando` · `orilla` · `volando` · `arbol` · `suelo` · `poste` |
+| `featured` | booleano | `true` / `false` |
+
+Las etiquetas, iconos y colores de cada valor viven en `apps/catalogo/lib/dictionary.ts` (vocabulario de UI). En el CSV de origen son las columnas `forma`, `tamano`, `colores` (separadas por `;`), `donde`, `featured`.
+
 **Conservación** — `nom059` (NOM-059-SEMARNAT, primaria): `pr` (protección especial) · `a` (amenazada) · `p` (en peligro) · `e` (probablemente extinta) · `ninguno`. `iucn` (código IUCN, p. ej. `LC`, `VU`) y `notas` opcionales.
 
 **Foto** — `{ archivo, credito, alt, licencia?, creditoUrl?, licenciaUrl? }`. `credito` y `alt` obligatorios. `creditoUrl` (enlace a la observación/foto original) y `licenciaUrl` (texto legal de la licencia) son opcionales y dan la **atribución enlazable** que exigen CC BY / CC BY-SA (extensión aditiva del esquema, ver [ADR-0016](../docs/decisions/0016-storage-imagenes-fauna-gcs.md)). `archivo` es solo el **nombre del archivo**: las imágenes optimizadas de fauna viven en el bucket público GCS `catalogo-aves-chirimoyo` y se sirven por su URL pública componiendo la variante (`web` para detalle, `thumb` para cards) con `fotoUrl(slug, archivo, variante)` de `apps/catalogo/lib/content.ts`. Las crudas se archivan en un bucket privado aparte. Ver [ADR-0016](../docs/decisions/0016-storage-imagenes-fauna-gcs.md). **Audio** — `{ archivo, credito, descripcion?, licencia? }`.

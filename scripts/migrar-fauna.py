@@ -193,6 +193,49 @@ SECCIONES = [
 ]
 
 
+# Vocabularios cerrados de los campos de búsqueda visual.
+FORMAS = {"pato", "garza", "gallineta", "buceador", "playera", "rapaz", "pajaro"}
+TAMANOS = {"muy-chica", "chica", "mediana", "grande", "muy-grande"}
+COLORES = {"blanco", "negro", "cafe", "gris", "azul", "verde", "amarillo", "rojo", "naranja", "iridiscente"}
+DONDES = {"nadando", "orilla", "volando", "arbol", "suelo", "poste"}
+
+
+def _one(val: str, vocab: set[str], campo: str) -> str | None:
+    """Valida un valor único contra su vocabulario (o None si vacío)."""
+    v = (val or "").strip().lower()
+    if not v:
+        return None
+    if v not in vocab:
+        raise ValueError(f"{campo}: valor fuera del vocabulario: {val!r}")
+    return v
+
+
+def search_fields_yaml(row: dict) -> list[str]:
+    """Líneas YAML de los 5 campos de búsqueda visual (valida vocabularios)."""
+    out: list[str] = []
+    forma = _one(row.get("forma", ""), FORMAS, "forma")
+    if forma:
+        out.append(f"forma: {forma}")
+    tamano = _one(row.get("tamano", ""), TAMANOS, "tamano")
+    if tamano:
+        out.append(f"tamano: {tamano}")
+    colores = [c.strip().lower() for c in (row.get("colores", "") or "").split(";") if c.strip()]
+    for c in colores:
+        if c not in COLORES:
+            raise ValueError(f"colores: valor fuera del vocabulario: {c!r}")
+    if colores:
+        out.append("colores: [" + ", ".join(colores) + "]")
+    donde = _one(row.get("donde", ""), DONDES, "donde")
+    if donde:
+        out.append(f"donde: {donde}")
+    feat = (row.get("featured", "") or "").strip().lower()
+    if feat in ("true", "sí", "si", "1", "x"):
+        out.append("featured: true")
+    elif feat and feat not in ("false", "no", "0"):
+        raise ValueError(f"featured: valor no booleano: {row.get('featured')!r}")
+    return out
+
+
 def emit_ficha(slug: str, row: dict, fotos: list[dict]) -> str:
     nom059, iucn = parse_conservacion(row["estatus_conservacion_detallado"])
     fuentes = [f.strip() for f in row["fuentes"].split(";") if f.strip()]
@@ -217,6 +260,7 @@ def emit_ficha(slug: str, row: dict, fotos: list[dict]) -> str:
         L.append(f"  iucn: {iucn}")
     if row.get("simbologia_recomendada", "").strip():
         L.append(f"simbologia: {yaml_q(row['simbologia_recomendada'].strip())}")
+    L.extend(search_fields_yaml(row))
     L.append("fuentes:")
     for f in fuentes:
         L.append(f"  - {yaml_q(f)}")
@@ -435,16 +479,14 @@ def main() -> int:
         if ficha_path.exists() and not args.force:
             fichas_saltadas += 1
         else:
-            ficha_dir.mkdir(parents=True, exist_ok=True)
-            md = emit_ficha(slug, row, fotos)
-            # Auto-verificación: re-parsear el frontmatter emitido.
             try:
-                import yaml
-                fm = md.split("---", 2)[1]
-                yaml.safe_load(fm)
-            except Exception as exc:  # pragma: no cover
-                errores.append(f"{sci} ({slug}): frontmatter emitido inválido: {exc}")
+                md = emit_ficha(slug, row, fotos)
+                import yaml  # auto-verificación: re-parsear el frontmatter emitido
+                yaml.safe_load(md.split("---", 2)[1])
+            except Exception as exc:
+                errores.append(f"{sci} ({slug}): {exc}")
                 continue
+            ficha_dir.mkdir(parents=True, exist_ok=True)
             ficha_path.write_text(md, encoding="utf-8")
             fichas_escritas += 1
 
