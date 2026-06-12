@@ -19,6 +19,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0013 | Tokens de diseño compartidos por copia desde fuente canónica | Accepted | 0 | [0013-tokens-compartidos-por-copia.md](../decisions/0013-tokens-compartidos-por-copia.md) |
 | 0014 | Catálogo como export estático en Firebase Hosting (sin Cloud Run) | Accepted | 0 | [0014-catalogo-export-estatico.md](../decisions/0014-catalogo-export-estatico.md) |
 | 0015 | `sitio` en Cloud Run us-central1 (Firebase rewrites no soportan northamerica-south1) | Accepted | 0 | [0015-sitio-cloud-run-us-central1.md](../decisions/0015-sitio-cloud-run-us-central1.md) |
+| 0016 | Storage de imágenes de fauna en GCS, servidas por URL pública del bucket | Accepted | 1 | [0016-storage-imagenes-fauna-gcs.md](../decisions/0016-storage-imagenes-fauna-gcs.md) |
 
 ## Estados
 

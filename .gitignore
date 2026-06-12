@@ -21,6 +21,7 @@ build/
 **/*service-account*.json
 *.pem
 *.key
+.venv/
 
 # Firebase / GCP
 .firebase/

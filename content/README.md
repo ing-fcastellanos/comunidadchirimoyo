@@ -53,7 +53,7 @@ El `slug` (y el nombre de la carpeta) se deriva del **nombre científico** en ke
 
 **Conservación** — `nom059` (NOM-059-SEMARNAT, primaria): `pr` (protección especial) · `a` (amenazada) · `p` (en peligro) · `e` (probablemente extinta) · `ninguno`. `iucn` (código IUCN, p. ej. `LC`, `VU`) y `notas` opcionales.
 
-**Foto** — `{ archivo, credito, alt, licencia? }`. `archivo` es ruta relativa a la carpeta de la ficha; `credito` y `alt` obligatorios. **Audio** — `{ archivo, credito, descripcion?, licencia? }`.
+**Foto** — `{ archivo, credito, alt, licencia?, creditoUrl?, licenciaUrl? }`. `credito` y `alt` obligatorios. `creditoUrl` (enlace a la observación/foto original) y `licenciaUrl` (texto legal de la licencia) son opcionales y dan la **atribución enlazable** que exigen CC BY / CC BY-SA (extensión aditiva del esquema, ver [ADR-0016](../docs/decisions/0016-storage-imagenes-fauna-gcs.md)). `archivo` es solo el **nombre del archivo**: las imágenes optimizadas de fauna viven en el bucket público GCS `catalogo-aves-chirimoyo` y se sirven por su URL pública componiendo la variante (`web` para detalle, `thumb` para cards) con `fotoUrl(slug, archivo, variante)` de `apps/catalogo/lib/content.ts`. Las crudas se archivan en un bucket privado aparte. Ver [ADR-0016](../docs/decisions/0016-storage-imagenes-fauna-gcs.md). **Audio** — `{ archivo, credito, descripcion?, licencia? }`.
 
 ### Cuerpo Markdown — secciones convenidas
 
