@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-C-SR-N"
+forma: pajaro
+tamano: grande
+colores: [negro, iridiscente]
+donde: suelo
 fuentes:
   - "Birds of the World"
   - "Mexican Birds"

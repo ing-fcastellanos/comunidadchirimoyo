@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "T-Ra-SR-N"
+forma: garza
+tamano: grande
+colores: [blanco]
+donde: orilla
 fuentes:
   - "eBird"
   - "iNaturalist México"

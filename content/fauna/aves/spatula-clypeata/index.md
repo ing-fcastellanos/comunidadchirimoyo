@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "MI-C-SR-N"
+forma: pato
+tamano: grande
+colores: [verde, blanco, cafe]
+donde: nadando
 fuentes:
   - "Cornell All About Birds"
   - "eBird"

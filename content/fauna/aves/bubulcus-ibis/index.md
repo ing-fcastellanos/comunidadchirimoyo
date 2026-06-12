@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-C-SR-I"
+forma: garza
+tamano: grande
+colores: [blanco]
+donde: suelo
 fuentes:
   - "eBird"
   - "Audubon"

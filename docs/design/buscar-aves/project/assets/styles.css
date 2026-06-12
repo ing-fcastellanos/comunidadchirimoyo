@@ -1,0 +1,16 @@
+/* styles.css — estilos base compartidos de la Guía de Aves del Chirimoyo */
+html { scroll-behavior: smooth; }
+body { background: #eef5ef; }
+
+.placeholder-stripes {
+  background-color: #e1eee5;
+  background-image: repeating-linear-gradient(135deg, rgba(7,61,36,.08) 0 2px, transparent 2px 12px);
+}
+
+.pull-quote::before { content: '\00AB'; }
+.pull-quote::after  { content: '\00BB'; }
+
+::selection { background: #15824c; color: #ffffff; }
+
+/* los iconos lucide heredan currentColor y tamaño de su clase */
+[data-lucide] { display: inline-block; vertical-align: middle; }

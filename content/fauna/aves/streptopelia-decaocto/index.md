@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-C-SR-I"
+forma: pajaro
+tamano: mediana
+colores: [cafe, gris]
+donde: suelo
 fuentes:
   - "eBird"
   - "SciELO México"

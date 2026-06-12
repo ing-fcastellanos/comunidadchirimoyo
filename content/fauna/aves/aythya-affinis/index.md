@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "MI-PC-SR-N"
+forma: pato
+tamano: grande
+colores: [negro, gris, blanco]
+donde: nadando
 fuentes:
   - "eBird"
   - "Audubon"

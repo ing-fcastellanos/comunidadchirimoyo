@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "MI-Ra-SR-N"
+forma: pajaro
+tamano: mediana
+colores: [azul, gris, blanco]
+donde: poste
+featured: true
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"

@@ -14,6 +14,11 @@ conservacion:
   nom059: pr
   iucn: LC
 simbologia: "R-Ra-Pr-N"
+forma: gallineta
+tamano: chica
+colores: [cafe, naranja]
+donde: orilla
+featured: true
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"

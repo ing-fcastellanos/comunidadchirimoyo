@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sección de vocalización · Componente · Guía de Aves</title>
+<base href="../" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/styles.css" />
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head><body class="bg-paper text-ink antialiased">
+<header class="border-b border-forest/10 bg-paper-card">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-3">
+    <div class="flex items-center gap-3">
+      <a href="pages/index.html" class="inline-flex items-center gap-1.5 rounded-full bg-mint-wash px-3 py-1.5 text-[12px] font-600 text-forest-deep ring-1 ring-forest/15 transition-colors hover:bg-mint-soft">
+        <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Catálogo
+      </a>
+      <span class="font-serif text-[20px] font-600 leading-none text-forest-deep">Sección de vocalización</span>
+      <code class="hidden rounded bg-paper-deep px-2 py-0.5 font-mono text-[11px] text-ink-soft sm:inline">components/Vocalization.jsx</code>
+    </div>
+    <a href="index.html" class="inline-flex items-center gap-1.5 text-[12px] font-600 text-forest transition-colors hover:text-forest-deep">
+      Ver ficha completa
+      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </a>
+  </div>
+  <div class="border-t border-forest/5 bg-mint-wash/40"><div class="mx-auto max-w-7xl px-6 py-2 text-[12px] leading-relaxed text-forest-deep/80">Reproductor del canto «oonk-GA-loonk» sintetizado con Web Audio + visualizador de onda.</div></div>
+</header>
+<div id="root"></div>
+<script type="text/babel" src="components/_shared.jsx"></script>
+<script type="text/babel" src="components/Vocalization.jsx"></script>
+<script>
+  (function () {
+    function boot() {
+      var Comp = window["VocalizationSection"];
+      if (!Comp || !window.useLucide || !window.React || !window.ReactDOM) { return setTimeout(boot, 30); }
+      var R = window.React;
+      function Demo() { window.useLucide(); return R.createElement(Comp); }
+      window.ReactDOM.createRoot(document.getElementById("root")).render(R.createElement(Demo));
+    }
+    boot();
+  })();
+</script>
+</body>
+</html>

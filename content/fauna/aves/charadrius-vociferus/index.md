@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-PC-SR-N"
+forma: playera
+tamano: mediana
+colores: [cafe, blanco, negro]
+donde: orilla
 fuentes:
   - "Cornell All About Birds"
   - "eBird"

@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-Ra-SR-N"
+forma: rapaz
+tamano: mediana
+colores: [negro, blanco, naranja]
+donde: poste
 fuentes:
   - "eBird"
   - "Enciclovida/CONABIO"

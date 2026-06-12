@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-PC-SR-N"
+forma: playera
+tamano: grande
+colores: [negro, blanco]
+donde: orilla
 fuentes:
   - "eBird"
   - "iNaturalist MX"

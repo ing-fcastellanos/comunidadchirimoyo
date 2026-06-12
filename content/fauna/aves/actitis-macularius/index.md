@@ -14,6 +14,10 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "MI-PC-SR-N"
+forma: playera
+tamano: chica
+colores: [cafe, blanco]
+donde: orilla
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"

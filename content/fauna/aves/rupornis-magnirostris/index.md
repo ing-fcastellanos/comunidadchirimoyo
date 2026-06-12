@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-C-SR-N"
+forma: rapaz
+tamano: mediana
+colores: [gris, cafe]
+donde: poste
+featured: true
 fuentes:
   - "eBird"
   - "iNaturalist (Naturalista MX)"

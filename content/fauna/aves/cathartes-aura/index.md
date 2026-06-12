@@ -14,6 +14,11 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-PC-SR-N"
+forma: rapaz
+tamano: muy-grande
+colores: [negro]
+donde: volando
+featured: true
 fuentes:
   - "eBird"
   - "Pronatura Veracruz"
