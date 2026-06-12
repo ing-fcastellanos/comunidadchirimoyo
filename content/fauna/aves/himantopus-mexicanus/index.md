@@ -18,6 +18,19 @@ forma: playera
 tamano: grande
 colores: [negro, blanco]
 donde: orilla
+autoridad: "(Müller, 1776)"
+otrosNombres:
+  - "Cigüeñuela americana"
+  - "Monjita americana"
+  - "Cigüeñuela de cuello negro"
+envergadura: "71.5–75.5 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Zancos rosados y un escándalo cuando hay peligro."
+medidas:
+  tamanoCm: [35, 39]
+  pesoG: [150, 176]
+habitat:
+  - "Lagunas y humedales someros"
 fuentes:
   - "eBird"
   - "iNaturalist MX"

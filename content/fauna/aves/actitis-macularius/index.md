@@ -18,6 +18,21 @@ forma: playera
 tamano: chica
 colores: [cafe, blanco]
 donde: orilla
+autoridad: "(Linnaeus, 1766)"
+otrosNombres:
+  - "Playero Manchado"
+  - "Andarríos Maculado"
+  - "Andarríos Coleador"
+envergadura: "37–40 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Una cola que nunca deja de mecerse."
+medidas:
+  tamanoCm: [18, 20]
+  pesoG: [34, 50]
+habitat:
+  - "Orillas de ríos, lagos y costas"
+temporada:
+  meses: [8, 9, 10, 11, 12, 1, 2, 3, 4, 5]
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"

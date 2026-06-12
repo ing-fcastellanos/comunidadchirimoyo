@@ -18,6 +18,18 @@ forma: pajaro
 tamano: mediana
 colores: [negro, verde, blanco]
 donde: arbol
+autoridad: "(Lesson, 1832)"
+otrosNombres:
+  - "Saltador cabecinegro"
+  - "Pepitero cabecinegro"
+  - "Chepito"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Una voz potente que casi nunca da la cara."
+medidas:
+  tamanoCm: [23, 25]
+  pesoG: [63, 116]
+habitat:
+  - "Matorrales y bordes de selva húmeda"
 fuentes:
   - "Birds of the World (Cornell)"
   - "eBird"

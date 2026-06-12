@@ -18,6 +18,21 @@ forma: garza
 tamano: grande
 colores: [blanco]
 donde: suelo
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - "Garza Vaquera"
+  - "Garcilla Bueyera"
+  - "Garza Bueyera"
+  - "Espulgabuey"
+  - "Garza Boyera"
+envergadura: "88–96 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Cruzó un océano por su cuenta para seguir al ganado."
+medidas:
+  tamanoCm: [46, 56]
+  pesoG: [270, 512]
+habitat:
+  - "Pastizales y campos con ganado"
 fuentes:
   - "eBird"
   - "Audubon"

@@ -18,6 +18,17 @@ forma: pajaro
 tamano: grande
 colores: [negro, cafe, amarillo]
 donde: arbol
+autoridad: "(Gray, 1845)"
+otrosNombres:
+  - "Oropéndola cabecicastaña"
+  - "Cacique cabecicastaño"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Corteja inclinándose, con un canto líquido y gorgoteante."
+medidas:
+  tamanoCm: [28, 35]
+  pesoG: [125, 225]
+habitat:
+  - "Selva húmeda y bordes tropicales"
 fuentes:
   - "Birds of the World"
   - "Mexican Birds"

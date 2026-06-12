@@ -51,6 +51,19 @@ El `slug` (y el nombre de la carpeta) se deriva del **nombre científico** en ke
 
 **Opcionales:** `simbologia` (string, p. ej. `R-PC-SR-N`), `medidas` (`{ tamanoCm?: [min,max], pesoG?: [min,max], notas? }`), `habitat` (string[] de etiquetas), `temporada` (`{ meses?: number[] 1–12, notas? }`), `audios` (Audio[]).
 
+**Ficha de detalle (opcionales)** — alimentan el hero, los datos rápidos y la observación de la página de detalle:
+
+| Campo | Cardinalidad | Ejemplo · columna CSV |
+|---|---|---|
+| `autoridad` | uno | `Rackett, 1813` · `autoridad` |
+| `otrosNombres` | lista (`;`) | `Avetoro Lentiginoso; Martinete` · `otros_nombres` |
+| `envergadura` | uno | `95–115 cm` · `envergadura` |
+| `mejorHora` | uno | `Amanecer y atardecer` · `mejor_hora` |
+| `medidas.tamanoCm` | rango | `59-70` · `tamano_cm` |
+| `medidas.pesoG` | rango | `370-500` · `peso_g` |
+| `temporada.meses` | lista (`;`) | `10;11;12;1;2;3` · `temporada_meses` (+ `temporada_notas`) |
+| `pullQuote` | uno | cita destacada de la descripción · `pull_quote` |
+
 **Búsqueda visual (opcionales)** — alimentan los filtros del buscador para principiantes; vocabularios cerrados:
 
 | Campo | Cardinalidad | Valores |

@@ -18,6 +18,19 @@ forma: buceador
 tamano: mediana
 colores: [cafe]
 donde: nadando
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - "Zambullidor piquipinto"
+  - "Macá pico grueso"
+  - "Zampullín picogrueso"
+envergadura: "45–62 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Ante el peligro se hunde hasta dejar solo la mirada."
+medidas:
+  tamanoCm: [31, 38]
+  pesoG: [253, 568]
+habitat:
+  - "Lagunas y estanques de agua dulce"
 fuentes:
   - "Cornell All About Birds"
   - "eBird"

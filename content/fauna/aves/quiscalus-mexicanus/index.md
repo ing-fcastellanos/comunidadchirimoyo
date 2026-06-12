@@ -18,6 +18,19 @@ forma: pajaro
 tamano: grande
 colores: [negro, iridiscente]
 donde: suelo
+autoridad: "(Gmelin, 1788)"
+otrosNombres:
+  - "Zanate mexicano"
+  - "Clarinero"
+  - "Chanate"
+envergadura: "48–58 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "La voz estridente que conquistó las plazas de México."
+medidas:
+  tamanoCm: [33, 43]
+  pesoG: [102, 253]
+habitat:
+  - "Zonas abiertas, urbanas y agrícolas"
 fuentes:
   - "Birds of the World"
   - "Mexican Birds"

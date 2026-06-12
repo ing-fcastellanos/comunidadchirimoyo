@@ -18,6 +18,19 @@ forma: pajaro
 tamano: grande
 colores: [cafe]
 donde: arbol
+autoridad: "(Wagler, 1829)"
+otrosNombres:
+  - "Chara papán"
+  - "Urraca parda"
+  - "Piapia"
+  - "Papán oscuro"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Bandadas ruidosas donde los jóvenes lucen el pico amarillo."
+medidas:
+  tamanoCm: [38, 44]
+  pesoG: [173, 224]
+habitat:
+  - "Bosques, bordes y matorrales tropicales"
 fuentes:
   - "Birds of the World"
   - "eBird"

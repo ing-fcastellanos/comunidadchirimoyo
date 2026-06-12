@@ -18,6 +18,19 @@ forma: garza
 tamano: grande
 colores: [azul, gris]
 donde: orilla
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - "Garceta Azul"
+  - "Garcita Azul"
+  - "Garceta Morena"
+envergadura: "100–105 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Nace blanca y madura hacia el azul pizarra."
+medidas:
+  tamanoCm: [56, 74]
+  pesoG: [315, 410]
+habitat:
+  - "Humedales, marismas y manglares"
 fuentes:
   - "eBird"
   - "Audubon"

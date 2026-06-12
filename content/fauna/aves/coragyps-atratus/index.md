@@ -18,6 +18,21 @@ forma: rapaz
 tamano: muy-grande
 colores: [negro]
 donde: volando
+autoridad: "(Bechstein, 1793)"
+otrosNombres:
+  - "Zopilote Negro"
+  - "Gallinazo"
+  - "Chulo"
+  - "Zamuro"
+  - "Jote de Cabeza Negra"
+envergadura: "133–167 cm"
+mejorHora: "Media mañana"
+pullQuote: "Su estómago disuelve hasta los patógenos más letales."
+medidas:
+  tamanoCm: [56, 74]
+  pesoG: [1180, 3000]
+habitat:
+  - "Zonas abiertas, urbanas y basureros"
 fuentes:
   - "Audubon"
   - "UICN"

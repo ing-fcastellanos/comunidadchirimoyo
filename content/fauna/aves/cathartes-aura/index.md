@@ -18,7 +18,21 @@ forma: rapaz
 tamano: muy-grande
 colores: [negro]
 donde: volando
-featured: true
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - "Aura Gallipavo"
+  - "Aura Común"
+  - "Aura Tiñosa"
+  - "Zopilote Cabecirrojo"
+  - "Jote de Cabeza Colorada"
+envergadura: "160–183 cm"
+mejorHora: "Media mañana"
+pullQuote: "Huele la muerte a kilómetros de distancia."
+medidas:
+  tamanoCm: [64, 81]
+  pesoG: [800, 2410]
+habitat:
+  - "Áreas abiertas, bosques y carroñeo amplio"
 fuentes:
   - "eBird"
   - "Pronatura Veracruz"

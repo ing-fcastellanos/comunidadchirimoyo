@@ -18,6 +18,23 @@ forma: garza
 tamano: muy-grande
 colores: [gris, azul]
 donde: orilla
+autoridad: "Linnaeus, 1758"
+otrosNombres:
+  - "Garza Azul"
+  - "Garzón Azulado"
+  - "Garzón Cenizo"
+  - "Garza Azulada"
+  - "Garza Ceniza"
+envergadura: "167–201 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "La gigante sigilosa que vuela con el cuello plegado."
+medidas:
+  tamanoCm: [91, 137]
+  pesoG: [1820, 3600]
+habitat:
+  - "Humedales, marismas, lagunas y costas"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "Audubon"

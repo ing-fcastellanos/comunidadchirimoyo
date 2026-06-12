@@ -18,6 +18,21 @@ forma: pato
 tamano: grande
 colores: [negro, gris, blanco]
 donde: nadando
+autoridad: "(Eyton, 1838)"
+otrosNombres:
+  - "Porrón bola"
+  - "Porrón menor"
+  - "Pato canadiense"
+envergadura: "68–78 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "El pato buceador más numeroso del invierno."
+medidas:
+  tamanoCm: [38, 48]
+  pesoG: [454, 1090]
+habitat:
+  - "Lagunas y aguas abiertas"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "Audubon"

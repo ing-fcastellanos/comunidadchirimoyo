@@ -18,6 +18,18 @@ forma: pajaro
 tamano: mediana
 colores: [cafe, gris]
 donde: suelo
+autoridad: "(Frivaldszky, 1838)"
+otrosNombres:
+  - "Tórtola turca"
+  - "Paloma de collar turca"
+  - "Tórtola de collar"
+envergadura: "47–55 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Una invasora que avanza tras las huellas del hombre."
+medidas:
+  pesoG: [125, 240]
+habitat:
+  - "Zonas urbanas y agrícolas"
 fuentes:
   - "eBird"
   - "SciELO México"

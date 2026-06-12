@@ -113,6 +113,10 @@ export interface FichaEspecie {
   categoria: Categoria;
   nombreComun: string;
   nombreCientifico: string;
+  /** Autor y año del binomio (p. ej. `Rackett, 1813`). */
+  autoridad?: string;
+  /** Nombres comunes alternos. */
+  otrosNombres?: string[];
   // --- Taxonomía ---
   orden: string;
   familia: string;
@@ -129,9 +133,15 @@ export interface FichaEspecie {
   audios?: Audio[];
   // --- Opcionales descriptivos ---
   simbologia?: string;
+  /** Cita destacada (pull-quote) de la descripción, para la ficha de detalle. */
+  pullQuote?: string;
   medidas?: Medidas;
+  /** Envergadura como rango legible (p. ej. `95–115 cm`). */
+  envergadura?: string;
   habitat?: string[];
   temporada?: Temporada;
+  /** Mejor hora para avistarla (p. ej. `Amanecer y atardecer`). */
+  mejorHora?: string;
   // --- Búsqueda visual (opcionales; alimentan los filtros del buscador) ---
   forma?: Forma;
   tamano?: Tamano;

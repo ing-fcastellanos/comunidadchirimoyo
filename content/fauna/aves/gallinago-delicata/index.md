@@ -18,6 +18,20 @@ forma: playera
 tamano: mediana
 colores: [cafe, negro]
 donde: orilla
+autoridad: "(Ord, 1825)"
+otrosNombres:
+  - "Becasina de Wilson"
+  - "Agachadiza Común de Wilson"
+envergadura: "39–45 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Su cola tamborilea el aire durante el cortejo."
+medidas:
+  tamanoCm: [23, 28]
+  pesoG: [79, 147]
+habitat:
+  - "Marismas, ciénagas y pastizales húmedos"
+temporada:
+  meses: [9, 10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"

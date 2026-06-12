@@ -45,7 +45,7 @@ búsqueda detallada al aplicarse.
 Los resultados SHALL renderizarse con una tarjeta de especie (`BirdCard`) que muestre foto
 (variante `thumb`), nombre común y científico, chip de categoría, indicadores de presencia/
 observación, sello de NOM-059 cuando aplique, rasgos (tamaño/color/hábitat) y un enlace
-"Ver ficha" a `/<slug>`. La pantalla SHALL ofrecer **vista de cuadrícula y de lista**, un
+"Ver ficha" a `/aves/<slug>`. La pantalla SHALL ofrecer **vista de cuadrícula y de lista**, un
 control de **orden** (relevancia, alfabético, por categoría, de más común a más raro) y un
 conteo de resultados.
 
@@ -59,7 +59,7 @@ conteo de resultados.
 
 #### Scenario: Enlace al detalle
 - **WHEN** el usuario activa "Ver ficha" en una tarjeta
-- **THEN** navega a `/<slug>` de esa especie
+- **THEN** navega a `/aves/<slug>` de esa especie
 
 ### Requirement: Filtros activos y estado vacío
 

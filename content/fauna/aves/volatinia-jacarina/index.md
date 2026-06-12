@@ -18,6 +18,19 @@ forma: pajaro
 tamano: muy-chica
 colores: [negro, azul]
 donde: arbol
+autoridad: "(Linnaeus, 1766)"
+otrosNombres:
+  - "Semillero volatinero"
+  - "Semillerito negro azulado"
+  - "Espiguero saltarín"
+  - "Negrillo"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Brinca de su percha zumbando para enamorar."
+medidas:
+  tamanoCm: [10, 11]
+  pesoG: [9, 12]
+habitat:
+  - "Pastizales y campos abiertos"
 fuentes:
   - "Birds of the World (Cornell)"
   - "eBird"

@@ -236,6 +236,65 @@ def search_fields_yaml(row: dict) -> list[str]:
     return out
 
 
+# Marcadores de "dato faltante" que el experto usa en celdas sin valor.
+FALTANTE = re.compile(r"dato\s*faltante|^n/?a$|^-+$|^pendiente$|^sin\s*dato$", re.I)
+
+
+def _val(row: dict, col: str) -> str:
+    """Valor de una columna, tratando los marcadores de faltante como vacío."""
+    v = (row.get(col) or "").strip()
+    return "" if (not v or FALTANTE.search(v)) else v
+
+
+def _rango(s: str) -> list | None:
+    """'80-104' / '9.5-11.25' → [min, max] (int si es entero, float si no)."""
+    partes = [p.strip() for p in re.split(r"[-–—]", s) if p.strip()]
+    if len(partes) != 2:
+        return None
+    try:
+        nums = [float(p) for p in partes]
+    except ValueError:
+        return None
+    return [int(n) if n.is_integer() else n for n in nums]
+
+
+def detalle_fields_yaml(row: dict) -> list[str]:
+    """Líneas YAML de los campos Tier B de la ficha de detalle (tolerante a faltantes)."""
+    out: list[str] = []
+    if (aut := _val(row, "autoridad")):
+        out.append(f"autoridad: {yaml_q(aut)}")
+    otros = [x.strip() for x in _val(row, "otros_nombres").split(";") if x.strip()]
+    if otros:
+        out.append("otrosNombres:")
+        out += [f"  - {yaml_q(o)}" for o in otros]
+    if (env := _val(row, "envergadura")):
+        out.append(f"envergadura: {yaml_q(env)}")
+    if (mh := _val(row, "mejor_hora")):
+        out.append(f"mejorHora: {yaml_q(mh)}")
+    if (pq := _val(row, "pull_quote")):
+        out.append(f"pullQuote: {yaml_q(pq)}")
+    tam, pes = _rango(_val(row, "tamano_cm")), _rango(_val(row, "peso_g"))
+    if tam or pes:
+        out.append("medidas:")
+        if tam:
+            out.append(f"  tamanoCm: [{tam[0]}, {tam[1]}]")
+        if pes:
+            out.append(f"  pesoG: [{pes[0]}, {pes[1]}]")
+    hab = [x.strip() for x in _val(row, "habitat").split(";") if x.strip()]
+    if hab:
+        out.append("habitat:")
+        out += [f"  - {yaml_q(h)}" for h in hab]
+    meses = [m.strip() for m in _val(row, "temporada_meses").split(";") if m.strip()]
+    notas = _val(row, "temporada_notas")
+    if meses or notas:
+        out.append("temporada:")
+        if meses:
+            out.append("  meses: [" + ", ".join(str(int(float(m))) for m in meses) + "]")
+        if notas:
+            out.append(f"  notas: {yaml_q(notas)}")
+    return out
+
+
 def emit_ficha(slug: str, row: dict, fotos: list[dict]) -> str:
     nom059, iucn = parse_conservacion(row["estatus_conservacion_detallado"])
     fuentes = [f.strip() for f in row["fuentes"].split(";") if f.strip()]
@@ -261,6 +320,7 @@ def emit_ficha(slug: str, row: dict, fotos: list[dict]) -> str:
     if row.get("simbologia_recomendada", "").strip():
         L.append(f"simbologia: {yaml_q(row['simbologia_recomendada'].strip())}")
     L.extend(search_fields_yaml(row))
+    L.extend(detalle_fields_yaml(row))
     L.append("fuentes:")
     for f in fuentes:
         L.append(f"  - {yaml_q(f)}")

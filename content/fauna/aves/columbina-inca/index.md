@@ -18,6 +18,19 @@ forma: pajaro
 tamano: mediana
 colores: [cafe, gris]
 donde: suelo
+autoridad: "(Lesson, 1847)"
+otrosNombres:
+  - "Tortolita cola larga"
+  - "Tórtola inca"
+  - "Coquita"
+envergadura: "28.5–32 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Su arrullo melancólico acompaña el día entero."
+medidas:
+  tamanoCm: [16.5, 23]
+  pesoG: [30, 58]
+habitat:
+  - "Zonas urbanas y matorrales secos"
 fuentes:
   - "eBird"
   - "Enciclovida"

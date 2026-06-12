@@ -18,7 +18,18 @@ forma: buceador
 tamano: chica
 colores: [cafe, gris]
 donde: nadando
-featured: true
+autoridad: "(Linnaeus, 1766)"
+otrosNombres:
+  - "Zambullidor chico"
+  - "Zampullín enano"
+  - "Macá gris"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "El zambullidor más pequeño del continente, bajo protección."
+medidas:
+  tamanoCm: [21, 27]
+  pesoG: [112, 180]
+habitat:
+  - "Lagunas y estanques con vegetación"
 fuentes:
   - "NOM-059-SEMARNAT-2010"
   - "Cornell Birds of the World"

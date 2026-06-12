@@ -18,7 +18,18 @@ forma: gallineta
 tamano: mediana
 colores: [negro, gris]
 donde: nadando
-featured: true
+autoridad: "Gmelin, 1789"
+otrosNombres:
+  - "Focha americana"
+  - "Gallareta de pico blanco"
+envergadura: "58–71 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Nada como pato, pero corre sobre el agua para alzar el vuelo."
+medidas:
+  tamanoCm: [34, 43]
+  pesoG: [427, 848]
+habitat:
+  - "Lagunas y aguas abiertas con vegetación"
 fuentes:
   - "Cornell All About Birds"
   - "eBird"

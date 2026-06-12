@@ -18,7 +18,21 @@ forma: buceador
 tamano: muy-grande
 colores: [negro]
 donde: nadando
-featured: true
+autoridad: "(Gmelin, 1789)"
+otrosNombres:
+  - "Cormorán Biguá"
+  - "Cormorán Oliváceo"
+  - "Biguá"
+  - "Corúa de Agua Dulce"
+  - "Pato Yeco"
+envergadura: "100–110 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Seca sus alas al sol como un estandarte negro."
+medidas:
+  tamanoCm: [63, 71]
+  pesoG: [1100, 1500]
+habitat:
+  - "Cuerpos de agua dulce y costeros"
 fuentes:
   - "Cornell Birds of the World"
   - "eBird"

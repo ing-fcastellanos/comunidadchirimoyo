@@ -18,6 +18,21 @@ forma: pato
 tamano: mediana
 colores: [cafe, azul]
 donde: nadando
+autoridad: "(Linnaeus, 1766)"
+otrosNombres:
+  - "Cerceta aliazul"
+  - "Pato media luna"
+  - "Pato de alas azules"
+envergadura: "58–62 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Primera en partir; llega hasta Sudamérica."
+medidas:
+  tamanoCm: [37, 41]
+  pesoG: [280, 410]
+habitat:
+  - "Charcas y humedales someros"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "Cornell All About Birds"
   - "eBird"

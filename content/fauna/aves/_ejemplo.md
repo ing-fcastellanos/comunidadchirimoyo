@@ -8,6 +8,10 @@ grupo: aves
 categoria: Vadeadoras
 nombreComun: Garza Blanca
 nombreCientifico: Ardea alba
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - Garza Real
+  - Garzón Blanco
 orden: Pelecaniformes
 familia: Ardeidae
 genero: Ardea
@@ -18,8 +22,12 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: R-C-SR-N
+pullQuote: Acecha inmóvil en aguas someras y atrapa peces con veloces estocadas de su pico.
 medidas:
   tamanoCm: [80, 100]
+  pesoG: [700, 1500]
+envergadura: 131–170 cm
+mejorHora: Amanecer y atardecer
 habitat:
   - espejo-de-agua
   - orilla-fangosa

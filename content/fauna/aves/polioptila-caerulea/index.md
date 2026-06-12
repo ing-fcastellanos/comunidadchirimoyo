@@ -18,7 +18,19 @@ forma: pajaro
 tamano: muy-chica
 colores: [gris, azul]
 donde: arbol
-featured: true
+autoridad: "(Linnaeus, 1766)"
+otrosNombres:
+  - "Perlita grisilla"
+  - "Perlita común"
+  - "Perlita azul-gris"
+envergadura: "16 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Migratoria por naturaleza, residente en el trópico."
+medidas:
+  tamanoCm: [10, 13]
+  pesoG: [5, 7]
+habitat:
+  - "Bosques y matorrales abiertos"
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"

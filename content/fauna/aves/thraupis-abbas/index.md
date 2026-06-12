@@ -18,6 +18,18 @@ forma: pajaro
 tamano: chica
 colores: [gris, azul, amarillo]
 donde: arbol
+autoridad: "(Deppe, 1830)"
+otrosNombres:
+  - "Tángara Alas Amarillas"
+  - "Azulejo buscahigo"
+  - "Carbonero"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Conquista nuevas tierras siguiendo huertos y ciudades."
+medidas:
+  tamanoCm: [17, 18]
+  pesoG: [38, 55]
+habitat:
+  - "Bosques, bordes y zonas semiabiertas"
 fuentes:
   - "eBird"
   - "Enciclovida/CONABIO"

@@ -18,6 +18,21 @@ forma: pato
 tamano: grande
 colores: [rojo, blanco, negro]
 donde: nadando
+autoridad: "(Wilson, 1814)"
+otrosNombres:
+  - "Porrón coacoxtle"
+  - "Porrón lomiblanco"
+  - "Pato lomiblanco"
+envergadura: "79–89 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "El mayor pato buceador, bautizado por su planta favorita."
+medidas:
+  tamanoCm: [48, 56]
+  pesoG: [862, 1588]
+habitat:
+  - "Lagunas y aguas abiertas extensas"
+temporada:
+  meses: [11, 12, 1, 2, 3]
 fuentes:
   - "eBird"
   - "Birds of the World"

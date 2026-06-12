@@ -18,6 +18,19 @@ forma: pajaro
 tamano: chica
 colores: [cafe, blanco]
 donde: volando
+autoridad: "(Audubon, 1838)"
+otrosNombres:
+  - "Golondrina Aserrada"
+  - "Golondrina Alirrasposa Norteña"
+  - "Golondrina Ala Aserrada"
+envergadura: "27–30 cm"
+mejorHora: "Mañana y tarde"
+pullQuote: "Lleva sierras diminutas en el borde de las alas."
+medidas:
+  tamanoCm: [13, 15]
+  pesoG: [10, 18]
+habitat:
+  - "Riberas, barrancos y zonas abiertas"
 fuentes:
   - "eBird"
   - "Audubon"

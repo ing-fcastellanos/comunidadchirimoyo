@@ -18,6 +18,21 @@ forma: pato
 tamano: grande
 colores: [verde, blanco, cafe]
 donde: nadando
+autoridad: "(Linnaeus, 1758)"
+otrosNombres:
+  - "Pato cuchara"
+  - "Pato cucharón"
+  - "Cuchara común"
+envergadura: "70–85 cm"
+mejorHora: "Amanecer y atardecer"
+pullQuote: "Su pico es un colador de más de cien láminas."
+medidas:
+  tamanoCm: [43, 56]
+  pesoG: [400, 1100]
+habitat:
+  - "Lagunas y aguas someras"
+temporada:
+  meses: [10, 11, 12, 1, 2, 3, 4]
 fuentes:
   - "Cornell All About Birds"
   - "eBird"

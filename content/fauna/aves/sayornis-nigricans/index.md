@@ -18,6 +18,19 @@ forma: pajaro
 tamano: chica
 colores: [negro, blanco]
 donde: poste
+autoridad: "(Swainson, 1827)"
+otrosNombres:
+  - "Mosquero negro"
+  - "Mosquero de agua"
+  - "Cazamoscas negro"
+envergadura: "27–28 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Atado al agua, anida bajo puentes y muros."
+medidas:
+  tamanoCm: [15, 18]
+  pesoG: [15, 22]
+habitat:
+  - "Cerca de cuerpos de agua"
 fuentes:
   - "Birds of the World (Cornell)"
   - "eBird"

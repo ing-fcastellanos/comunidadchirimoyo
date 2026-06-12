@@ -18,6 +18,19 @@ forma: playera
 tamano: mediana
 colores: [cafe, blanco, negro]
 donde: orilla
+autoridad: "Linnaeus, 1758"
+otrosNombres:
+  - "Chorlitejo Culirrojo"
+  - "Chorlo Gritón"
+  - "Chorlitejo Colirrojo"
+envergadura: "59–63 cm"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Finge un ala rota para salvar a sus crías."
+medidas:
+  tamanoCm: [20, 28]
+  pesoG: [72, 121]
+habitat:
+  - "Pastizales, campos abiertos y orillas"
 fuentes:
   - "Cornell All About Birds"
   - "eBird"

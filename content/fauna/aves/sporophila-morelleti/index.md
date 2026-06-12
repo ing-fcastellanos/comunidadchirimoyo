@@ -18,6 +18,17 @@ forma: pajaro
 tamano: chica
 colores: [negro, blanco]
 donde: arbol
+autoridad: "Bonaparte, 1850"
+otrosNombres:
+  - "Semillero cuelliblanco"
+  - "Semillero de Morelet"
+  - "Espiguero de Morelet"
+mejorHora: "Primeras horas de la mañana"
+pullQuote: "Bautizado por un naturalista; cantor incansable."
+medidas:
+  tamanoCm: [9.5, 11.25]
+habitat:
+  - "Pastizales, matorrales y bordes húmedos"
 fuentes:
   - "Cornell All About Birds"
   - "eBird"
