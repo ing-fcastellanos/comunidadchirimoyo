@@ -2,6 +2,8 @@
 
 Contenido versionado del proyecto (Markdown/JSON). Fuente de verdad de todo lo editable sin tocar código. Ver [ADR-0004](../docs/decisions/0004-contenido-en-repo.md).
 
+> Para **agregar una ave nueva** al catálogo (fotos, audio, ficha, mapa), sigue la guía paso a paso en [docs/guias/agregar-una-ave.md](../docs/guias/agregar-una-ave.md).
+
 ## Estructura prevista
 
 ```
