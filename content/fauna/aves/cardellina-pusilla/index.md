@@ -33,6 +33,10 @@ habitat:
   - "Matorrales, bordes y vegetación riparia"
 temporada:
   meses: [9, 10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA"]
+  notas: "En Mexico inverna ampliamente en ambas vertientes y tierras altas; en Veracruz (region de Orizaba, humedal de Chirimoyo) esta presente como visitante invernal y de paso, no se reproduce localmente. Su limite sur de invernada regular es el oeste y centro de Panama; en Colombia solo hay registros marginales/casuales, por lo que no se pinta. No alcanza el resto de Sudamerica."
 fuentes:
   - "eBird"
   - "All About Birds (Cornell)"

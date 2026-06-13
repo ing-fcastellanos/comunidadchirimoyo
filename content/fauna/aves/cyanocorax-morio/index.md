@@ -31,6 +31,9 @@ medidas:
   pesoG: [173, 224]
 habitat:
   - "Bosques, bordes y matorrales tropicales"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA"]
+  notas: "En Estados Unidos su presencia se limita al extremo sur de Texas (bajo valle del Río Grande). En México ocupa principalmente la vertiente del Golfo y, en menor medida, la del Pacífico sur, en tierras bajas y medias; no se distribuye por el centro-norte árido. En Centroamérica es más común en la vertiente del Golfo/Caribe que en la del Pacífico. El límite sur de su rango es el oeste de Panamá; no alcanza Sudamérica."
 fuentes:
   - "Birds of the World"
   - "eBird"

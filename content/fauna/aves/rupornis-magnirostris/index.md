@@ -32,11 +32,16 @@ medidas:
   pesoG: [250, 300]
 habitat:
   - "Bordes de bosque y zonas semiabiertas"
+distribucion:
+  residente: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "Especie residente sedentaria; no migra. En México se restringe a tierras bajas y medias de las vertientes del Golfo, Pacífico y el sureste, no al norte árido ni al altiplano. Su rango continúa al sur del cuadro del mapa hasta Paraguay, Uruguay y el norte/centro de Argentina (omitidos por no existir en el encuadre). No habita las islas del Caribe. En Estados Unidos solo aparece como divagante en el sur de Texas, por lo que se omite."
 fuentes:
   - "eBird"
   - "iNaturalist (Naturalista MX)"
   - "Enciclovida (CONABIO)"
   - "Wikipedia"
+  - "BirdLife International"
+  - "Avibase"
 fotos:
   - archivo: "DSCN3129.webp"
     credito: "Any Isabel Pérez Santiago"

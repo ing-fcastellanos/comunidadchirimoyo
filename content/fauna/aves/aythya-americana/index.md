@@ -33,11 +33,17 @@ habitat:
   - "Lagunas y marismas de agua dulce"
 temporada:
   meses: [11, 12, 1, 2, 3]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["US", "MX", "GT", "BZ", "BS", "CU"]
+  notas: "El Pato Cabeza Roja se reproduce sobre todo en la región de las Prairie Potholes (sur de Canadá y oeste/norte de EE. UU.), con poblaciones menores y periféricas en Alaska central. Inverna concentrado en las costas del Golfo de México: cerca del 80% de la población se agrupa en la Laguna Madre de Texas y Tamaulipas. En México inverna principalmente en humedales costeros del Golfo y, de forma local, en lagunas interiores; en Veracruz es visitante de invierno escaso. Hacia el sur el límite de invernada llega a Guatemala y al norte del Caribe (Bahamas, Cuba) en números menores; en Belice solo hay registros raros/accidentales. No alcanza Sudamérica."
 fuentes:
   - "eBird"
   - "Audubon"
   - "Birds of the World"
   - "Animal Diversity Web"
+  - "IUCN Red List"
+  - "BirdLife International"
 fotos:
   - archivo: "Aythya_americana_01.webp"
     credito: "(c) Juan Carlos Pérez Magaña, some rights reserved (CC BY-SA)"

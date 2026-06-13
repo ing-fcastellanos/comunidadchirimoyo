@@ -30,11 +30,15 @@ medidas:
   pesoG: [63, 116]
 habitat:
   - "Matorrales y bordes de selva húmeda"
+distribucion:
+  residente: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA"]
+  notas: "En Mexico es residente de las tierras bajas y medias tropicales de ambas vertientes (Golfo/Caribe y Pacifico), no del norte arido ni del altiplano alto. Su limite sur esta en el este de Panama (zona del Canal): no llega a Colombia ni a Sudamerica, por lo que ningun pais del rango queda fuera del encuadre del mapa."
 fuentes:
   - "Birds of the World (Cornell)"
   - "eBird"
   - "NOM-059-SEMARNAT-2010"
   - "iNaturalist"
+  - "Avibase"
 fotos:
   - archivo: "Saltator_atriceps_01.webp"
     credito: "(c) Kevin Brix, some rights reserved (CC BY-SA)"

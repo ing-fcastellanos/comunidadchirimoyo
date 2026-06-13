@@ -30,11 +30,18 @@ medidas:
   pesoG: [5, 8]
 habitat:
   - "Dosel de bosques y bordes"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "La Parula Tropical (Setophaga pitiayumi) es esencialmente residente en todo su rango; solo las poblaciones más norteñas (sur de Texas) realizan movimientos locales parciales. En EE. UU. ocupa únicamente el extremo sur de Texas; en México habita las vertientes montañosas (subespecie nigrilora en el oriente, pulchra en el occidente hasta Sonora). Su rango continúa hacia el sur más allá del encuadre del mapa, alcanzando Paraguay, Uruguay y el norte de Argentina, países que se omiten por quedar fuera de los 26 del cuadro. En el humedal de Chirimoyo es residente poco común."
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"
   - "Enciclovida/CONABIO"
   - "NaturaLista MX"
+  - "BirdLife International"
+  - "Birds of the World"
+  - "Avibase"
+  - "Wikipedia"
 fotos:
   - archivo: "DSCN4732.webp"
     credito: "Any Isabel Pérez Santiago"

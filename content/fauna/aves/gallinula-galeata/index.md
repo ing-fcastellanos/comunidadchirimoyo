@@ -31,11 +31,17 @@ medidas:
   pesoG: [192, 493]
 habitat:
   - "Humedales con vegetación densa"
+distribucion:
+  cria: ["CA"]
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El rango global real continúa hacia el sur fuera del cuadro del mapa: la subespecie galeata llega hasta el norte de Argentina y Uruguay, y garmani habita los Andes (Perú a noroeste de Argentina), regiones que el encuadre de 26 países no incluye. En el extremo norte, las poblaciones del sur de Canadá (y del norte de EE. UU.) se reproducen y migran al sur en invierno cuando las aguas se congelan; CA se marca como zona de cría porque allí no inverna. En EE. UU., México y casi toda el área es residente anual de humedales de costa e interior, coherente con su estatus local residente en el humedal de Chirimoyo."
 fuentes:
   - "Cornell All About Birds"
   - "eBird"
   - "Audubon"
   - "Enciclovida/CONABIO"
+  - "Wikipedia"
+  - "Birds of the World"
 fotos:
   - archivo: "Gallinula_galeata_01.webp"
     credito: "(c) Adrianh M. Orozco, some rights reserved (CC BY)"

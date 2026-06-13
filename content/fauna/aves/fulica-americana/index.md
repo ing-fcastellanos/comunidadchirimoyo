@@ -30,11 +30,19 @@ medidas:
   pesoG: [427, 848]
 habitat:
   - "Lagunas y aguas abiertas con vegetación"
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["PA"]
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "BS", "CU", "JM", "HT", "DO", "PR", "CO", "VE"]
+  notas: "El núcleo reproductor migratorio del norte ocupa el sur de Canadá y el centro-norte de EE. UU. (región Prairie-Pothole), por eso CA y US figuran en cría; el oeste y sur de EE. UU. y todo México sostienen además poblaciones de presencia anual (residente), con fuerte aumento invernal por migrantes norteños. La especie se reproduce hacia el sur hasta Nicaragua y el NW de Costa Rica, y reside todo el año en las Antillas Mayores (Cuba, Jamaica, La Española y Puerto Rico) y Bahamas —donde la antigua \"focha caribeña\" F. caribaea es hoy conespecífica y nidificante—, así como en la costa del norte de Venezuela; por eso esas islas van en residente y no en invernada. En Panamá solo inverna (visitante no reproductor). En los Andes de Colombia reside la subespecie F. a. columbiana. NO se incluye Perú: las fochas andinas de Perú corresponden a Fulica ardesiaca, especie distinta. Ecuador se omite porque la población andina de columbiana está posiblemente extirpada y no está confirmada. En el humedal de Chirimoyo (Orizaba, Veracruz) es residente común con incremento invernal por migrantes del norte."
 fuentes:
   - "Cornell All About Birds"
   - "eBird"
   - "Audubon"
   - "Enciclovida/CONABIO"
+  - "Birds of the World"
+  - "IUCN Red List"
+  - "Avibase"
 fotos:
   - archivo: "DSCN0055.webp"
     credito: "Any Isabel Pérez Santiago"

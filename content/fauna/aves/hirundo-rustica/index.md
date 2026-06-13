@@ -32,11 +32,18 @@ habitat:
   - "Campos abiertos y áreas habitadas"
 temporada:
   meses: [3, 4, 5, 6, 7, 8, 9, 10]
+distribucion:
+  cria: ["CA", "US", "MX"]
+  invernada: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "Migratoria de larga distancia, completamente migratoria en América (sin poblaciones residentes anuales). Cría en Canadá y Estados Unidos de forma extendida, y en México de manera localizada (hay registros de anidación incluso en tierras del Pacífico como Guerrero, no solo en el altiplano). La invernada abarca desde México por toda Mesoamérica y Sudamérica; las aves más norteñas \"saltan\" el norte de Sudamérica e invernan sobre todo al sur de la Amazonía, llegando hasta el centro de Argentina, países que quedan fuera del encuadre del mapa (26 países). El Caribe insular (Cuba, Bahamas, La Española, etc.) se omite por ser principalmente zona de paso y no de invernada núcleo. En el humedal de Chirimoyo es migrante de paso abundante."
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"
   - "Audubon"
   - "BirdLife DataZone"
+  - "Birds of the World"
+  - "Enciclovida"
+  - "BirdLife International"
 fotos:
   - archivo: "Hirundo_rustica_01.webp"
     credito: "(c) Juan Carlos Pérez Magaña, some rights reserved (CC BY-SA)"

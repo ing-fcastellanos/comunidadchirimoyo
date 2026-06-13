@@ -34,11 +34,16 @@ habitat:
   - "Bosques y troncos de árboles"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "TT", "BS", "CU", "JM", "HT", "DO", "PR", "CO", "VE", "EC", "PE"]
+  notas: "En el sur de Estados Unidos (Florida, costa del Golfo, sur de Texas) y California/Arizona invernan números reducidos, por eso US figura tanto en cría como en invernada. En México es visitante de invierno ampliamente distribuida en ambas vertientes, incluida la zona montañosa de Veracruz (Orizaba) y el humedal de Chirimoyo, donde es de presencia no reproductiva. Por el sur, la invernada regular alcanza el norte de Sudamérica (Colombia, Venezuela, Ecuador) y de forma marginal llega hasta el norte de Perú (límite sur) y, como registro escaso, hasta Trinidad (límite oriental); no penetra las Guayanas, la Amazonia ni el sur del continente."
 fuentes:
   - "Cornell All About Birds"
   - "eBird"
   - "NOM-059-SEMARNAT-2010"
   - "Audubon"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN0675.webp"
     credito: "Any Isabel Pérez Santiago"

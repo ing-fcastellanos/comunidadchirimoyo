@@ -31,11 +31,18 @@ medidas:
   pesoG: [10, 18]
 habitat:
   - "Riberas, barrancos y zonas abiertas"
+distribucion:
+  cria: ["CA", "US"]
+  residente: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "PR"]
+  notas: "La especie se reproduce ampliamente en Canadá y Estados Unidos (poblaciones migratorias del norte) y mantiene poblaciones residentes todo el año desde México a través de Centroamérica hasta Panamá y en el Caribe (Bahamas, Cuba, Jamaica, La Española y Puerto Rico). En invierno los migrantes norteños descienden hasta la costa del Golfo de EE. UU., México y Centroamérica, solapándose con las poblaciones residentes; por eso México y Centroamérica se pintan como residente en lugar de invernada. En La Española solo Haití cuenta con presencia regular; en República Dominicana (DO) los registros son de divagante, por lo que se omite del mapa. El rango no alcanza Sudamérica continental (se detiene en Panamá). Islas Caimán y Turcas y Caicos, donde también es nativa, quedan fuera del cuadro del mapa. En el humedal de Chirimoyo y en Veracruz es residente común."
 fuentes:
   - "eBird"
   - "Audubon"
   - "iNaturalist (Naturalista MX)"
   - "Enciclovida (CONABIO)"
+  - "BirdLife International"
+  - "Wikipedia"
+  - "Texas Breeding Bird Atlas"
 fotos:
   - archivo: "DSCN9163.webp"
     credito: "Any Isabel Pérez Santiago"

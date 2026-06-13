@@ -33,11 +33,18 @@ habitat:
   - "Bosques y zonas urbanas con chimeneas"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["US", "CA"]
+  residente: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "VE"]
+  notas: "El vencejo de Vaux tiene presencia ANUAL (poblaciones residentes) desde México hasta el norte de Venezuela: subespecies richmondi (sur de México a Costa Rica), gaumeri (Yucatán), warneri (occidente de México), tamaulipensis (oriente de México), ochropygia (este de Panamá) y aphanes (norte de Venezuela). Por eso esos países se pintan como residente, no como invernada. Solo la subespecie nominal (C. v. vauxi) es migratoria: cría en el oeste de Canadá y EE. UU. e inverna desde el centro de México por Centroamérica, donde se superpone a las poblaciones residentes; Panamá y Venezuela NO reciben migrantes norteños (son residentes puros), así que etiquetarlos como invernada sería incorrecto. Localmente en Chirimoyo la especie es migratoria de invierno: lo que llega a Veracruz son sobre todo migrantes norteños (oct–abr), posiblemente con individuos residentes. La antigua C. v. andrei del este de Venezuela ya se separó como especie distinta (Chaetura andrei) y no se incluye aquí."
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"
   - "Animal Diversity Web"
   - "Wikipedia"
+  - "IUCN Red List"
+  - "BirdLife International"
+  - "Avibase"
 fotos:
   - archivo: "Chaetura_vauxi_01.webp"
     credito: "(c) Juan Carlos Pérez Magaña, some rights reserved (CC BY-SA)"

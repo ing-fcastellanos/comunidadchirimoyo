@@ -33,11 +33,17 @@ habitat:
   - "Lagunas y aguas abiertas extensas"
 temporada:
   meses: [11, 12, 1, 2, 3]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["US", "MX"]
+  notas: "El Pato Coacoxtle (Canvasback) es estrictamente migratorio: se reproduce en las praderas con charcas (prairie potholes) del norte de Norteamerica, desde Alaska y el oeste de Canada hasta el norte de EE. UU. Inverna en gran parte de EE. UU. (costas del Pacifico y Atlantico, valle bajo del Misisipi, Grandes Lagos) y alcanza el norte y centro de Mexico, incluida Baja California y humedales interiores; en Veracruz es un invernante raro. En Mexico se concentra en lagunas y bahias de ambas vertientes. Su limite sur regular esta en Mexico; solo de forma ocasional alcanza el Caribe (Cuba) o Centroamerica (Guatemala), por lo que no se pintan esos paises del cuadro."
 fuentes:
   - "eBird"
   - "Birds of the World"
   - "Audubon"
   - "Wikipedia"
+  - "IUCN Red List"
+  - "Enciclovida"
 fotos:
   - archivo: "Aythya_valisineria_01.webp"
     credito: "(c) Xochitl Zambrano, some rights reserved (CC BY)"

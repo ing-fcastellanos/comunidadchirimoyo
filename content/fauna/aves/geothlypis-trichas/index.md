@@ -31,11 +31,17 @@ medidas:
   pesoG: [9, 11]
 habitat:
   - "Humedales y vegetación densa"
+distribucion:
+  cria: ["CA"]
+  invernada: ["GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR"]
+  residente: ["US", "MX"]
+  notas: "En México hay tanto poblaciones residentes (incluido el centro de Veracruz y la Laguna del Chirimoyo, donde se observa todo el año) como refuerzo invernal de migrantes del norte; por eso México y el sur de EE.UU. se marcan como residentes. La invernada de las poblaciones norteñas se extiende por Centroamérica hasta Panamá y por las Antillas (Bahamas, Cuba, Jamaica, La Española y Puerto Rico). Las Islas Caimán quedan fuera del juego de países del mapa y se omiten. En Sudamérica solo hay registros excepcionales de divagantes (p. ej. Colombia), por lo que ningún país sudamericano se pinta."
 fuentes:
   - "eBird"
   - "Enciclovida"
   - "Avibase"
   - "Wikipedia"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN3178.webp"
     credito: "Any Isabel Pérez Santiago"

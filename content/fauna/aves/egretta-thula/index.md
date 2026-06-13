@@ -33,10 +33,14 @@ medidas:
   pesoG: [352, 475]
 habitat:
   - "Humedales, marismas y orillas costeras"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "Egretta thula es residente todo el año en la mayor parte de su rango americano, desde el sur de Estados Unidos (costas del Golfo, Atlántico y Pacífico) hasta Sudamérica y el Caribe. La reproducción regular en Norteamérica alcanza su límite norte en Maine (EE. UU.); la presencia en Canadá es dispersión posreproductiva y divagación, no cría establecida, por lo que Canadá no se pinta. El rango continúa hacia el sur fuera del cuadro del mapa, hasta el centro de Argentina y el sur de Chile (AR, CL, UY, PY no existen en el mapa y se omiten). En el humedal de Chirimoyo (centro de Veracruz) es residente común."
 fuentes:
   - "eBird"
   - "Audubon"
   - "Enciclovida"
+  - "IUCN Red List"
 fotos:
   - archivo: "DSCN0199.webp"
     credito: "Any Isabel Pérez Santiago"

@@ -31,11 +31,18 @@ medidas:
   pesoG: [72, 121]
 habitat:
   - "Pastizales, campos abiertos y orillas"
+distribucion:
+  cria: ["CA"]
+  invernada: ["GT", "BZ", "HN", "SV", "NI", "CR", "PA", "CO", "VE"]
+  residente: ["US", "MX", "BS", "CU", "JM", "HT", "DO", "PR", "EC", "PE"]
+  notas: "El Chorlo Tildío es residente en gran parte de EE. UU. y México; la subespecie nominal (C. v. vociferus) cría hacia el norte hasta el sur de Canadá. En el Caribe es residente vía C. v. ternominatus (Bahamas, Antillas Mayores e Islas Vírgenes), y en Sudamérica una población residente disyunta (C. v. peruvianus) ocupa el oeste de Ecuador, Perú y el extremo noroeste de Chile (Chile queda fuera del cuadro del mapa). Los migrantes norteños invernan en Centroamérica, el Caribe, Colombia y el norte de Venezuela. Existe además una población reproductora disyunta en Costa Rica; aquí Costa Rica se pinta como zona de invernada de los migrantes norteños. Localmente, en el humedal de Chirimoyo (Veracruz) es residente, poco común, con números mayores en invierno por migrantes."
 fuentes:
   - "Cornell All About Birds"
   - "eBird"
   - "Audubon"
   - "Enciclovida/CONABIO"
+  - "Wikipedia"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN6316.webp"
     credito: "Any Isabel Pérez Santiago"

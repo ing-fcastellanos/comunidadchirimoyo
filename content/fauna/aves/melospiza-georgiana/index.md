@@ -30,11 +30,18 @@ habitat:
   - "Pantanos y humedales con vegetación densa"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["US", "MX"]
+  notas: "En México es visitante invernal raro y marginal, restringido al norte y centro del país (incluido el centro de Veracruz, como en el humedal de Chirimoyo), no en todo el territorio. La especie es endémica de Norteamérica: cría en Canadá y el norte/este de EE.UU., e inverna en el sureste y suroeste de EE.UU. y norte de México. Su rango no alcanza de forma regular Centroamérica ni el Caribe (solo registros accidentales en Bahamas y Turcas y Caicos), por lo que no se pintan países al sur de México."
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"
   - "Animal Diversity Web"
   - "UICN"
+  - "Audubon"
+  - "iNaturalist MX"
+  - "Enciclovida"
 fotos:
   - archivo: "DSCN2528.webp"
     credito: "Any Isabel Pérez Santiago"

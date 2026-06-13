@@ -31,11 +31,16 @@ medidas:
   pesoG: [102, 253]
 habitat:
   - "Zonas abiertas, urbanas y agrícolas"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "CO", "VE", "EC", "PE"]
+  notas: "El Zanate Mayor es residente sedentario en todo su rango (sin poblaciones reproductoras o invernantes separadas), por eso todos los paises van en 'residente', coherente con el estatus local. En Estados Unidos ocupa sobre todo el sur y oeste (de Oregon/California y hasta Minnesota por el norte, y de costa a costa hasta Florida) tras una fuerte expansion historica; en Canada solo aparece como divagante accidental (pocos registros en Alberta, Manitoba, Ontario y Nueva Escocia), no como residente establecido, por lo que CA se omite. En Sudamerica alcanza solo el noroeste: oeste de Colombia, noroeste de Venezuela, Ecuador y noroeste de Peru, que marca su limite austral; este limite queda dentro del encuadre, asi que no se omiten paises por estar fuera de cuadro."
 fuentes:
   - "Birds of the World"
   - "Mexican Birds"
   - "iNaturalist"
   - "Enciclovida/CONABIO"
+  - "eBird"
+  - "Wikipedia"
 fotos:
   - archivo: "DSCN0633.webp"
     credito: "Any Isabel Pérez Santiago"

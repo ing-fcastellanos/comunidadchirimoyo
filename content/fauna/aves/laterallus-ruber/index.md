@@ -30,11 +30,16 @@ medidas:
   tamanoCm: [14, 16.5]
 habitat:
   - "Marismas de agua dulce y zonas inundables"
+distribucion:
+  residente: ["MX", "BZ", "GT", "HN", "SV", "NI", "CR"]
+  notas: "Especie residente (no migratoria) en todo su rango. En México habita solo tierras bajas y de altitud media de las vertientes del Golfo y del Pacífico (no el interior árido ni el altiplano), desde el sur de Tamaulipas y Guerrero hacia el sur, incluida la Península de Yucatán. El límite sur del rango es el noroeste de Costa Rica (Guanacaste), donde es raro y de presencia marginal (por décadas se le consideró posiblemente extirpado allí). En El Salvador y Nicaragua ocurre de forma localizada en tierras bajas e interiores húmedos. En el humedal de Chirimoyo es residente local, coherente con su estatus regional en el centro de Veracruz."
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"
   - "Enciclovida (CONABIO)"
   - "NOM-059-SEMARNAT-2010"
+  - "Wikipedia"
+  - "Avibase"
 fotos:
   - archivo: "DSCN1960.webp"
     credito: "Any Isabel Pérez Santiago"

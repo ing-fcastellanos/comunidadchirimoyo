@@ -33,11 +33,19 @@ medidas:
   pesoG: [730, 1010]
 habitat:
   - "Humedales arbolados, marismas y manglares"
+distribucion:
+  cria: ["CA"]
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El rango real es cosmopolita y en América continúa al sur del encuadre hasta Argentina, Chile y Tierra del Fuego (subespecies hoactli y obscurus), países fuera de los 26 pintables. En Canadá es solo reproductor estival: las poblaciones del norte se retiran al sur en invierno, por eso se pinta como zona de cría y no como residente. En México y EE. UU. coexisten poblaciones residentes (sur y costas) e invernantes/reproductoras del norte; a nivel de país predomina la presencia anual."
 fuentes:
   - "eBird"
   - "iNaturalist México"
   - "Enciclovida/CONABIO"
   - "Wikipedia"
+  - "Birds of the World"
+  - "Heron Specialist Group (IUCN)"
+  - "Audubon"
+  - "Avibase"
 fotos:
   - archivo: "DSCN8413.webp"
     credito: "Any Isabel Pérez Santiago"

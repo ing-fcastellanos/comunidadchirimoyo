@@ -29,11 +29,16 @@ medidas:
   pesoG: [125, 225]
 habitat:
   - "Selva húmeda y bordes tropicales"
+distribucion:
+  residente: ["MX", "BZ", "GT", "HN", "NI", "CR", "PA", "CO", "EC"]
+  notas: "Especie residente (no migratoria) en toda su área. En México se restringe a la vertiente del Golfo/Caribe del sureste (sur de Veracruz, Puebla y Chiapas), no a todo el país. Se omite El Salvador: es el único país centroamericano del rango donde está ausente. Hacia el sur, en el bajo Centroamérica y Colombia/Ecuador ocupa también la vertiente del Pacífico; el extremo sur del rango (NO de Ecuador, hasta El Oro/Manabí) ya cae dentro del cuadro del mapa, por lo que no quedan países fuera de encuadre. Localmente, en el humedal de Chirimoyo (~1230 m, Orizaba) es residente poco común, cerca de su límite altitudinal."
 fuentes:
   - "Birds of the World"
   - "Mexican Birds"
   - "BirdLife/UICN"
   - "Enciclovida/CONABIO"
+  - "eBird"
+  - "Wikipedia"
 fotos:
   - archivo: "Psarocolius_wagleri_01.webp"
     credito: "(c) Oscar Marín, some rights reserved (CC BY-SA)"

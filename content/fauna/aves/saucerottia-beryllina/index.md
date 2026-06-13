@@ -30,11 +30,16 @@ medidas:
   pesoG: [4, 5]
 habitat:
   - "Bosques y bordes de montaña"
+distribucion:
+  cria: ["US"]
+  residente: ["MX", "GT", "SV", "HN"]
+  notas: "En México habita tierras medias y altas (foothills y montañas, ~500-1800 m) de la vertiente del Pacífico (Sonora a Guerrero, subespecie viola) y del oriente/centro (Veracruz a Oaxaca, subespecie beryllina), no en planicies costeras bajas del Golfo; alcanza el centro y sur de Veracruz y Oaxaca. El límite sur del rango es el centro de Honduras (subespecie devillei, de forma discontinua por el sur de Guatemala y El Salvador). En Estados Unidos (sureste de Arizona, con registros en Nuevo México y oeste de Texas) es muy local y raro: divagante que ocasionalmente se reproduce, no población residente estable; de ahí su asignación a 'cría' y no a residente. No rebasa Honduras hacia el sur, por lo que no hay países omitidos del cuadro."
 fuentes:
   - "eBird"
   - "Audubon"
   - "Enciclovida/CONABIO"
   - "Birds of the World"
+  - "Wikipedia"
 fotos:
   - archivo: "DSCN2664.webp"
     credito: "Any Isabel Pérez Santiago"

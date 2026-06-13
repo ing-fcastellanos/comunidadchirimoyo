@@ -33,11 +33,18 @@ habitat:
   - "Bosques mixtos y de coníferas"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR"]
+  notas: "El invierno se concentra en el sureste de EE. UU., el este y sur de Mexico y el norte de Centroamerica; el limite sur documentado es Costa Rica. No alcanza regularmente Panama ni Sudamerica. En las Antillas (Cuba, Bahamas) solo aparece como divagante/accidental, por lo que no se pintan. En Mexico (incluida la zona montanosa de Orizaba, Veracruz) es migratoria de invierno regular y no se reproduce. EE. UU. aparece tanto en cria (este/centro y Apalaches) como en invernada (sureste)."
 fuentes:
   - "Cornell All About Birds"
   - "Birds of the World (Cornell)"
   - "eBird"
   - "NOM-059-SEMARNAT-2010"
+  - "Audubon"
+  - "Wikipedia"
+  - "Avibase"
 fotos:
   - archivo: "Vireo_solitarius_01.webp"
     credito: "(c) Oscar Marín, some rights reserved (CC BY-SA)"

@@ -32,11 +32,17 @@ medidas:
   pesoG: [108, 242]
 habitat:
   - "Bordes de selva tropical y claros"
+distribucion:
+  residente: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "Especie residente no migratoria en todo su rango neotropical. En Mexico habita tierras bajas tropicales humedas de ambas vertientes (no el altiplano). Su distribucion continua mas al sur del cuadro del mapa: alcanza el norte de Argentina, Paraguay y la Guayana Francesa, paises que se omiten por no estar disponibles en el encuadre. No ocupa Chile ni Uruguay, ni las islas del Caribe salvo Trinidad. En el humedal de Chirimoyo es residente local poco numeroso."
 fuentes:
   - "eBird"
   - "Enciclovida/CONABIO"
   - "iNaturalist MX"
   - "UICN"
+  - "BirdLife International"
+  - "Birds of the World"
+  - "Wikipedia"
 fotos:
   - archivo: "Falco_rufigularis_01.webp"
     credito: "(c) Adrianh M. Orozco, some rights reserved (CC BY)"

@@ -34,11 +34,19 @@ habitat:
   - "Humedales, marismas y pastizales inundados"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["US", "CA"]
+  invernada: ["MX", "GT", "SV", "HN"]
+  residente: ["BO", "BR"]
+  notas: "El rango global es bipartito: (1) poblaciones migratorias norteamericanas que crían en el oeste de EE. UU. y sur de Canadá e invernan desde el sur de EE. UU. a través de casi todo México (salvo la Península de Yucatán) hasta Guatemala, El Salvador y Honduras; y (2) poblaciones residentes no migratorias en Sudamérica, cuyo núcleo dentro del encuadre del mapa son el centro/sureste de Bolivia y el sur de Brasil (Rio Grande do Sul). El grueso del rango sudamericano continúa fuera del cuadro hacia el sur (Paraguay, centro de Argentina, Uruguay y costa central de Chile), países no incluidos en el encuadre. En Perú la especie es solo divagante, con registros escasos y cuestionados (Arequipa, Lima), por lo que no se pinta como país de rango. En México existen también poblaciones reproductoras locales (Durango, Jalisco, Tamaulipas, Tabasco), pero se clasifica como invernada por ser donde recae nuestra región y el grueso de la presencia mexicana. En el humedal de Chirimoyo es migratoria de invierno (octubre–abril)."
 fuentes:
   - "eBird"
   - "Birds of the World"
   - "Enciclovida/CONABIO"
   - "iNaturalist México"
+  - "Audubon"
+  - "BirdLife International"
+  - "Animal Diversity Web"
 fotos:
   - archivo: "DSCN0175.webp"
     credito: "Any Isabel Pérez Santiago"

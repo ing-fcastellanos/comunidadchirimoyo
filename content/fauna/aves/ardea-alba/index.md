@@ -33,10 +33,15 @@ medidas:
   pesoG: [700, 1500]
 habitat:
   - "Humedales, marismas y orillas acuáticas"
+distribucion:
+  cria: ["CA"]
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "La Garza Blanca (subespecie egretta) es residente y reproductora local en prácticamente toda América al sur de Estados Unidos, incluyendo costas de México, Centroamérica y el Caribe. Canadá es solo zona de cría estival (es el límite norte de reproducción y migra al sur en invierno). El rango real continúa más al sur del encuadre del mapa, hasta el centro-sur de Argentina y Chile (AR, CL, UY, PY no existen en el mapa y se omiten). En el humedal de Chirimoyo es residente todo el año."
 fuentes:
   - "eBird"
   - "Audubon"
   - "Enciclovida"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN5867_dup.webp"
     credito: "Any Isabel Pérez Santiago"

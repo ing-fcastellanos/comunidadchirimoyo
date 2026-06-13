@@ -33,11 +33,18 @@ medidas:
   pesoG: [800, 2410]
 habitat:
   - "Áreas abiertas, bosques y carroñeo amplio"
+distribucion:
+  cria: ["CA"]
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El rango real del Zopilote Aura se extiende más al sur de lo que el mapa puede mostrar: hay poblaciones residentes en el centro de Chile, el centro de Argentina, Uruguay y el extremo sur de Sudamérica, países fuera del encuadre de 26 (de Sudamérica austral solo BR aparece y se pinta como residente). En Canadá (CA) es exclusivamente reproductor de verano —llega en marzo-abril y se marcha en septiembre-noviembre—, por lo que se asigna a 'cría'. En el resto del continente (sur de EE. UU., México, Centroamérica, el Caribe —Cuba, Jamaica, norte de Bahamas, La Española y Puerto Rico— y Sudamérica) mantiene presencia anual, de ahí su clasificación como residente, coherente con su estatus local residente en el humedal de Chirimoyo. Las poblaciones del norte de EE. UU. son migratorias, pero el sur conserva poblaciones residentes todo el año, por lo que US se asigna a residente."
 fuentes:
   - "eBird"
   - "Pronatura Veracruz"
   - "iNaturalist (Naturalista MX)"
   - "Wikipedia"
+  - "IUCN Red List"
+  - "Birds of the World"
+  - "Avibase"
 fotos:
   - archivo: "DSCN8530.webp"
     credito: "Any Isabel Pérez Santiago"

@@ -30,11 +30,17 @@ medidas:
   pesoG: [125, 240]
 habitat:
   - "Zonas urbanas y agrícolas"
+distribucion:
+  residente: ["CA", "US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT"]
+  notas: "Especie introducida y sedentaria: es residente todo el año donde se establece, por eso todo su rango se pinta como presencia anual (no tiene zonas de cría ni invernada separadas, propias de las migratorias). Tras su introducción en las Bahamas (años 1970) colonizó el Caribe, Norteamérica y se extendió hacia el sur por México y Centroamérica (Panamá la sumó a su lista en 2017). En Trinidad y Tobago hay población reproductora establecida —primer reporte sudamericano hacia 2008, aceptado luego por el SACC (propuesta 935)—. No está establecida en Sudamérica continental: los registros de Venezuela, Ecuador y Curazao fueron identificaciones erróneas de tórtola doméstica (S. roseogrisea) y no hay registros confirmados de Colombia, por lo que CO/VE/EC y el resto del sur se omiten del mapa. Groenlandia (GL) queda fuera de su rango. En el humedal de Chirimoyo se asocia a zonas urbanas y agrícolas, no al humedal en sí."
 fuentes:
   - "eBird"
   - "SciELO México"
   - "iNaturalist MX"
   - "Wikipedia"
+  - "IUCN GISD"
+  - "SACC"
+  - "Avibase"
 fotos:
   - archivo: "DSCN1549.webp"
     credito: "Any Isabel Pérez Santiago"

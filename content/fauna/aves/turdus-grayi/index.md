@@ -32,11 +32,16 @@ medidas:
   pesoG: [74, 76]
 habitat:
   - "Bosques, jardines y zonas urbanas"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "CO"]
+  notas: "Especie residente todo el año en todo su rango. El extremo norte apenas alcanza el sur de Texas (US), donde está expandiéndose. En México se concentra en la vertiente del Golfo/Atlántico (más una población aislada en Oaxaca), no en todo el país. El límite sur llega solo al norte de Colombia; no penetra más en Sudamérica (no alcanza Ecuador ni Perú). En el humedal de Chirimoyo es residente común."
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"
   - "Audubon"
   - "NaturaLista MX"
+  - "IUCN Red List"
+  - "Wikipedia"
 fotos:
   - archivo: "DSCN3136.webp"
     credito: "Any Isabel Pérez Santiago"

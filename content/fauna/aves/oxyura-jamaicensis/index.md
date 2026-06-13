@@ -33,11 +33,20 @@ habitat:
   - "Lagunas y humedales de agua dulce"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["GT", "BZ", "SV"]
+  residente: ["MX", "BS", "CU", "JM", "HT", "DO", "PR"]
+  notas: "El Pato Tepalcate (Oxyura jamaicensis, sensu stricto) cría en la región de praderas (pothole) del centro-oeste de Canadá y el oeste y centro de EE. UU., extendiéndose al sur hasta Baja California y el Eje Neovolcánico de México. En México mantiene poblaciones residentes y reproductoras todo el año (altiplano y vertiente del Pacífico), reforzadas en invierno por migrantes del norte; por eso se pinta como residente aunque en Chirimoyo (Veracruz) sea invernante (octubre–abril). En las Antillas Mayores (Cuba, Jamaica —localidad tipo—, La Española y Puerto Rico) y las Bahamas hay poblaciones residentes. El invernante estricto del norte alcanza por el sur solo hasta el oeste de Guatemala, Belice y El Salvador; no llega a Honduras, Costa Rica ni Panamá. Las antiguas poblaciones andino-sudamericanas hoy se tratan como especie aparte (Oxyura ferruginea, pato andino) y quedan fuera del concepto de especie y del cuadro del mapa."
 fuentes:
   - "eBird"
   - "iNaturalist"
   - "Enciclovida/CONABIO"
   - "Wikipedia"
+  - "All About Birds (Cornell)"
+  - "Birds of the World"
+  - "Animal Diversity Web"
+  - "Avibase"
 fotos:
   - archivo: "DSCN2475.webp"
     credito: "Any Isabel Pérez Santiago"

@@ -34,6 +34,11 @@ habitat:
   - "Matorrales ribereños y manglares"
 temporada:
   meses: [9, 10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "CO", "VE", "EC", "PE", "BO", "BR"]
+  residente: ["BS", "CU", "JM", "HT", "DO", "PR", "TT"]
+  notas: "El grupo migratorio norteño (aestiva, al que pertenecen las aves del humedal) cría en Canadá y casi todo EE. UU. —llegando marginalmente hasta el centro-norte de México, salvo el extremo suroeste y la costa del Golfo— e inverna desde el sur de California y México por toda Centroamérica hasta el norte de Sudamérica, la región amazónica, Bolivia y el norte de Perú; ese es su límite sur real, ya cubierto por PE/BO/BR dentro del cuadro (no continúa hacia el cono sur). En México el grupo norteño es migratorio invernal dominante, mientras que en las costas del Golfo y del Pacífico existen poblaciones residentes de manglar; por simplicidad MX se pinta en invernada, coherente con el estatus local. Las formas residentes de manglar y \"golden\" ocupan todo el año las islas del Caribe (asignadas a residente). El borde de la costa de las Guayanas (GY/SR) queda en el margen del rango y no se pinta por falta de respaldo claro a nivel país."
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"

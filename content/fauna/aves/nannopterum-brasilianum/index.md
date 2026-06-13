@@ -33,11 +33,16 @@ medidas:
   pesoG: [1100, 1500]
 habitat:
   - "Cuerpos de agua dulce y costeros"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "Cormorán Neotropical: residente prácticamente en todo su rango americano, sin migración verdadera (solo desplazamientos locales según disponibilidad de agua), por lo que cría e inverna en las mismas regiones y todos los países se asignan a 'residente'. En Estados Unidos ocupa sobre todo la franja sur (Río Grande, costa del Golfo, sur de Arizona, Nuevo México y California); los registros norteños (Saskatchewan, Pensilvania) son divagantes. En el Caribe se reproduce de forma establecida solo en Bahamas, Cuba y Trinidad; en las Antillas Mayores (Jamaica, La Española, Puerto Rico) es divagante/ocasional, no residente, por lo que se omiten del mapa. Su rango continúa hacia el sur de Sudamérica hasta Tierra del Fuego (Argentina, Chile, Uruguay, Paraguay), países fuera del encuadre del mapa y por eso omitidos. En el humedal de Chirimoyo es residente con movimientos locales."
 fuentes:
   - "Cornell Birds of the World"
   - "eBird"
   - "Enciclovida/CONABIO"
   - "iNaturalist MX"
+  - "BirdLife International"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN7268.webp"
     credito: "Any Isabel Pérez Santiago"

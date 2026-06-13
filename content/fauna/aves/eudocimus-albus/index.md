@@ -34,11 +34,17 @@ habitat:
   - "Humedales, marismas y manglares costeros"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "CO", "VE", "EC", "PE", "GY", "SR"]
+  notas: "El Ibis Blanco es esencialmente residente costero a lo largo de su rango (no migratorio de larga distancia); por eso todo su rango se pinta como presencia anual. En Estados Unidos ocupa las costas del Golfo y del Atlántico (de Virginia/Carolinas hacia el sur), no el interior ni el oeste. En México se restringe a ambas costas (Golfo y Pacífico), no al altiplano. Por el Pacífico llega hasta el noroeste de Perú (Tumbes), pasando por Ecuador; por el Atlántico, el límite oriental es la Guayana Francesa (pasando por Guyana y Surinam). La Guayana Francesa (GF) queda fuera del encuadre de 26 países y se omite. NO se incluye Brasil ni Trinidad y Tobago: ahí el género está representado por el Ibis Escarlata (Eudocimus ruber), no por E. albus. En el humedal de Chirimoyo (altitud media, Veracruz) es solo un visitante raro de paso, lejos de su hábitat costero típico."
 fuentes:
   - "eBird"
   - "iNaturalist México"
   - "Enciclovida/CONABIO"
   - "Bio Campeche"
+  - "Avibase"
+  - "Birds of the World"
+  - "Wikipedia"
 fotos:
   - archivo: "DSCN1607.webp"
     credito: "Any Isabel Pérez Santiago"

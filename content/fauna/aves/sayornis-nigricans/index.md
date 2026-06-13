@@ -31,11 +31,17 @@ medidas:
   pesoG: [15, 22]
 habitat:
   - "Cerca de cuerpos de agua"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "NI", "CR", "PA", "CO", "VE", "EC", "PE", "BO"]
+  notas: "El rango real continúa al sur por los Andes hasta el noroeste de Argentina, país que queda fuera del cuadro del mapa y por eso se omite. En Estados Unidos ocupa solo el suroeste; en Sudamérica es estrictamente andino y de las montañas costeras de Venezuela (no llega a Brasil, las Guayanas ni el Caribe). En Belice es muy local y escaso, restringido a los ríos de las tierras altas (Maya Mountains). Está ausente en El Salvador, por lo que no se incluye. Localmente es residente común en el humedal de Chirimoyo."
 fuentes:
   - "Birds of the World (Cornell)"
   - "eBird"
   - "NOM-059-SEMARNAT-2010"
   - "Audubon"
+  - "Wikipedia"
+  - "Birds of the World"
+  - "Avibase"
 fotos:
   - archivo: "DSCN4578.webp"
     credito: "Any Isabel Pérez Santiago"

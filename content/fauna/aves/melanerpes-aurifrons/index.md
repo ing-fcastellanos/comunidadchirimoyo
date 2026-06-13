@@ -31,11 +31,17 @@ medidas:
   pesoG: [65, 102]
 habitat:
   - "Bosques secos y matorrales"
+distribucion:
+  residente: ["US", "MX", "BZ", "GT", "SV", "HN", "NI"]
+  notas: "Especie residente (no migratoria) anual en todo su rango. En Estados Unidos solo alcanza el sur (suroeste de Oklahoma y Texas); en Centroamerica el limite sur esta en el norte de Nicaragua, sin llegar a Costa Rica. Todo el rango cae dentro del cuadro del mapa, asi que no se omite ningun pais. En el humedal de Chirimoyo es residente comun."
 fuentes:
   - "eBird"
   - "Audubon"
   - "iNaturalist MX"
   - "Wikipedia"
+  - "Birds of the World"
+  - "Animal Diversity Web"
+  - "U.S. Fish & Wildlife Service"
 fotos:
   - archivo: "DSCN6016.webp"
     credito: "Any Isabel Pérez Santiago"

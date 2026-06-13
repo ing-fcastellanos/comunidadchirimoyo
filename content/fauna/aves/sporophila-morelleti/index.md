@@ -29,11 +29,17 @@ medidas:
   tamanoCm: [9.5, 11.25]
 habitat:
   - "Pastizales, matorrales y bordes húmedos"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA"]
+  notas: "Especie residente (sedentaria) en todo su rango; no migra. En Estados Unidos solo ocupa de forma marginal el extremo sur de Texas (bajo Valle del Río Grande, área de Falcón/San Ignacio). En México es residente sobre todo en las tierras bajas húmedas de la vertiente del Golfo y, a partir del Istmo de Tehuantepec, también en la vertiente del Pacífico, no en todo el país. El rango se extiende continuo por toda Centroamérica (incluida Honduras y Costa Rica) hasta el oeste y centro de Panamá y no alcanza Sudamérica."
 fuentes:
   - "Cornell All About Birds"
   - "eBird"
   - "NOM-059-SEMARNAT-2010"
   - "Audubon"
+  - "Birds of the World"
+  - "Avibase"
+  - "Wikipedia"
 fotos:
   - archivo: "DSCN0648.webp"
     credito: "Any Isabel Pérez Santiago"
