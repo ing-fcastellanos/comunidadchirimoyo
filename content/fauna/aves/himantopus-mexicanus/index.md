@@ -52,6 +52,14 @@ fotos:
     alt: "Candelero Americano (Himantopus mexicanus)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC747193.mp3"
+    credito: "Manuel Grosselet"
+    tipo: llamado
+    fuenteId: "XC747193"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/747193"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { HABITAT_LABEL } from "@/lib/dictionary";
 import type { FichaEspecie } from "@/lib/fauna-schema";
-import type { BadgeVista, FotoVista, Secciones } from "@/lib/ficha";
+import type { AudioVista, BadgeVista, FotoVista, Secciones } from "@/lib/ficha";
 import { FichaCarrusel } from "./FichaCarrusel";
 
 /** Renderiza prosa (uno o más párrafos separados por línea en blanco). */
@@ -183,6 +183,50 @@ export function ObservacionSec({ comoIdentificarla, dondeObservarla }: { comoIde
             </span>
             <h3 className="font-serif text-[24px] font-semibold text-forest-deep">{o.title}</h3>
             <div className="mt-2 space-y-3 text-[16px] leading-relaxed text-ink/80"><Prosa texto={o.body} /></div>
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+const TIPO_VOZ_LABEL: Record<string, string> = { canto: "Canto", llamado: "Llamado" };
+
+export function VocalizacionSec({ audios }: { audios: AudioVista[] }) {
+  if (!audios.length) return null;
+  return (
+    <Section className="py-12 sm:py-16">
+      <SectionTitle kicker="Cómo suena" icon="Volume2">Vocalización</SectionTitle>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {audios.map((a) => (
+          <article key={a.src} className="rounded-2xl bg-paper-card p-7 shadow-card ring-1 ring-forest/[0.07]">
+            {a.tipo && (
+              <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-mint-wash px-3 py-1 text-[12px] font-bold uppercase tracking-[0.16em] text-forest-deep">
+                <Icon name="AudioLines" className="h-3.5 w-3.5" />
+                {TIPO_VOZ_LABEL[a.tipo] ?? a.tipo}
+              </div>
+            )}
+            {/* <audio> nativo: sin JS de cliente, compatible con el export estático (ADR-0014). */}
+            <audio controls preload="none" src={a.src} className="w-full">
+              Tu navegador no puede reproducir este audio.
+            </audio>
+            <p className="mt-3 text-[13px] leading-relaxed text-ink-soft/80">
+              {a.creditoUrl ? (
+                <a href={a.creditoUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-forest/30 underline-offset-2 hover:text-forest">{a.credito}</a>
+              ) : (
+                a.credito
+              )}
+              {a.licencia && (
+                <>
+                  {" · "}
+                  {a.licenciaUrl ? (
+                    <a href={a.licenciaUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-forest/30 underline-offset-2 hover:text-forest">{a.licencia}</a>
+                  ) : (
+                    a.licencia
+                  )}
+                </>
+              )}
+            </p>
           </article>
         ))}
       </div>

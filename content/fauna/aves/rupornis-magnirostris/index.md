@@ -113,6 +113,14 @@ fotos:
     alt: "Aguililla Caminera (Rupornis magnirostris)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC1007977.mp3"
+    credito: "Étienne Leroy"
+    tipo: llamado
+    fuenteId: "XC1007977"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1007977"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

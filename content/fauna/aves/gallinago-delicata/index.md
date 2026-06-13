@@ -88,6 +88,14 @@ fotos:
     alt: "Agachadiza de Wilson (Gallinago delicata)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC1142921.mp3"
+    credito: "Dag Österlund"
+    tipo: llamado
+    fuenteId: "XC1142921"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1142921"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

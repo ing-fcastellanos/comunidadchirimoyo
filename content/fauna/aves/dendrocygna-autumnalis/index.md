@@ -57,6 +57,14 @@ fotos:
     alt: "Pijije Alas Blancas (Dendrocygna autumnalis)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC920149.mp3"
+    credito: "Leonardo Guzman Hernandez"
+    tipo: canto
+    fuenteId: "XC920149"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/920149"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

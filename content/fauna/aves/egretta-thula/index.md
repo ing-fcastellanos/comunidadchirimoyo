@@ -73,6 +73,14 @@ fotos:
     alt: "Garza Dedos Dorados (Egretta thula)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC636492.mp3"
+    credito: "Manuel Grosselet"
+    tipo: llamado
+    fuenteId: "XC636492"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/636492"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

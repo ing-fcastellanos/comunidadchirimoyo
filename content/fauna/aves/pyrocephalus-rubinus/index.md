@@ -83,6 +83,14 @@ fotos:
     alt: "Mosquero Cardenal (Pyrocephalus rubinus)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC956063.mp3"
+    credito: "JAYRSON ARAUJO DE OLIVEIRA"
+    tipo: llamado
+    fuenteId: "XC956063"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/956063"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

@@ -71,6 +71,14 @@ fotos:
     alt: "Colibrí Berilo (Saucerottia beryllina)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC1070690.mp3"
+    credito: "Manuel Grosselet"
+    tipo: llamado
+    fuenteId: "XC1070690"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1070690"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

@@ -95,6 +95,14 @@ fotos:
     licencia: "CC BY 4.0"
     creditoUrl: "https://www.inaturalist.org/photos/32152913"
     licenciaUrl: "https://creativecommons.org/licenses/by/4.0/"
+audios:
+  - archivo: "XC1030184.mp3"
+    credito: "Manuel Grosselet"
+    tipo: llamado
+    fuenteId: "XC1030184"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1030184"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

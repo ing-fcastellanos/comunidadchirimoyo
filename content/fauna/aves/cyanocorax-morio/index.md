@@ -97,6 +97,14 @@ fotos:
     licencia: "CC BY-SA 4.0"
     creditoUrl: "https://www.inaturalist.org/photos/8246139"
     licenciaUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+audios:
+  - archivo: "XC1106708.mp3"
+    credito: "Homero Bennet"
+    tipo: llamado
+    fuenteId: "XC1106708"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1106708"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción
