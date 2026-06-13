@@ -29,7 +29,7 @@ function Footer() {
               Laguna del Chirimoyo, Orizaba, Veracruz, México.
             </p>
             <p className="mt-1 text-[15px] text-ink/75">
-              Dr. Eduardo Roldán Reyes · 2.ª Ed. Digital, 2025.
+              Comunidad del Chirimoyo · 2.ª Ed. Digital, 2025.
             </p>
           </div>
           <div>

@@ -100,7 +100,7 @@ SECCIONES (en este orden)
    · Familia: Ardeidae · Género: Botaurus · Especie: Botaurus lentiginosus.
 
 10) FOOTER con créditos: "Guía de Aves – Laguna del Chirimoyo, Orizaba,
-    Veracruz, México. Dr. Eduardo Roldán Reyes, 2025." y lista de
+    Veracruz, México." y lista de
     fuentes (EncicloVida/CONABIO, eBird, Audubon, Wikipedia).
 
 REQUISITOS TÉCNICOS
