@@ -74,6 +74,14 @@ fotos:
     alt: "Zopilote Aura (Cathartes aura)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC520288.mp3"
+    credito: "Cristian Pinto"
+    tipo: llamado
+    fuenteId: "XC520288"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/520288"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

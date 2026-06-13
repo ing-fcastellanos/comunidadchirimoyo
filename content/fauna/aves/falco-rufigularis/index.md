@@ -98,6 +98,14 @@ fotos:
     licencia: "CC BY 4.0"
     creditoUrl: "https://www.inaturalist.org/photos/174338388"
     licenciaUrl: "https://creativecommons.org/licenses/by/4.0/"
+audios:
+  - archivo: "XC223021.mp3"
+    credito: "Peter Boesman"
+    tipo: llamado
+    fuenteId: "XC223021"
+    licencia: "CC BY-NC-ND 4.0"
+    creditoUrl: "https://xeno-canto.org/223021"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
 ---
 
 ## Descripción

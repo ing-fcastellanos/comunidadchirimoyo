@@ -161,6 +161,61 @@ def credito_de(entry: dict | None) -> dict:
 
 
 # --------------------------------------------------------------------------- #
+# Audio (vocalización, #32)
+# --------------------------------------------------------------------------- #
+# El tipo en la ficha es estricto (canto | llamado). Los valores ambiguos del
+# origen ('canto / llamado', 'uncertain') se omiten en vez de inventar un valor.
+TIPO_VOZ = {"canto": "canto", "llamado": "llamado"}
+
+
+def licencia_url(nombre: str) -> str | None:
+    """Deriva la URL del texto legal CC desde el nombre, p. ej.
+    'CC BY-NC-SA 4.0' -> https://creativecommons.org/licenses/by-nc-sa/4.0/."""
+    m = re.search(r"CC\s+([A-Z-]+)\s+([\d.]+)", nombre.strip(), re.IGNORECASE)
+    if not m:
+        return None
+    codigo = m.group(1).lower()  # by-nc-sa
+    version = m.group(2)
+    return f"https://creativecommons.org/licenses/{codigo}/{version}/"
+
+
+def audio_de(row: dict) -> dict | None:
+    """Construye el objeto Audio desde las columnas sonido_* del CSV. Devuelve
+    None si la especie no tiene grabación. NO incluye calidad/país (fuera del
+    esquema de la ficha; quedan solo en el CSV). No inventa atribución faltante."""
+    sonido_id = row.get("sonido_id", "").strip()
+    if not sonido_id or not row.get("sonido_url", "").strip():
+        return None
+    # xeno-canto sirve mp3 en /<id>/download; el nombre del archivo se deriva del
+    # id. Si la descarga revela otro formato, --upload lo reporta (ver main()).
+    audio = {
+        "archivo": f"{sonido_id}.mp3",
+        "credito": row.get("sonido_autor", "").strip(),
+        "creditoUrl": row.get("sonido_pagina", "").strip(),
+        "licencia": row.get("sonido_licencia", "").strip(),
+        "licenciaUrl": licencia_url(row.get("sonido_licencia", "")),
+        "tipo": TIPO_VOZ.get(row.get("sonido_tipo", "").strip().lower()),
+        "fuenteId": sonido_id,
+    }
+    return {k: v for k, v in audio.items() if v}
+
+
+def descargar_audio(url: str) -> tuple[bytes, str]:
+    """Descarga la grabación VERBATIM (sin tocar). Devuelve (bytes, content_type).
+    No transcodifica ni recorta — obligatorio para las licencias ND (ADR-0017)."""
+    import urllib.request
+
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": "comunidadchirimoyo-migracion/1.0 (+https://chirimoyo.org)"},
+    )
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        data = resp.read()
+        ctype = (resp.headers.get("Content-Type") or "audio/mpeg").split(";")[0].strip()
+    return data, ctype
+
+
+# --------------------------------------------------------------------------- #
 # Imágenes
 # --------------------------------------------------------------------------- #
 def optimizar(src: Path) -> tuple[bytes, bytes]:
@@ -335,6 +390,22 @@ def emit_ficha(slug: str, row: dict, fotos: list[dict]) -> str:
             L.append(f"    creditoUrl: {yaml_q(foto['creditoUrl'])}")
         if foto.get("licenciaUrl"):
             L.append(f"    licenciaUrl: {yaml_q(foto['licenciaUrl'])}")
+    audio = audio_de(row)
+    if audio:
+        L.append("audios:")
+        L.append(f"  - archivo: {yaml_q(audio['archivo'])}")
+        if audio.get("credito"):
+            L.append(f"    credito: {yaml_q(audio['credito'])}")
+        if audio.get("tipo"):
+            L.append(f"    tipo: {audio['tipo']}")
+        if audio.get("fuenteId"):
+            L.append(f"    fuenteId: {yaml_q(audio['fuenteId'])}")
+        if audio.get("licencia"):
+            L.append(f"    licencia: {yaml_q(audio['licencia'])}")
+        if audio.get("creditoUrl"):
+            L.append(f"    creditoUrl: {yaml_q(audio['creditoUrl'])}")
+        if audio.get("licenciaUrl"):
+            L.append(f"    licenciaUrl: {yaml_q(audio['licenciaUrl'])}")
     L.append("---")
     L.append("")
 
@@ -405,6 +476,9 @@ class Uploader:
     def put_web(self, key: str, data: bytes, content_type: str) -> bool:
         return self._put_bytes(self.bucket, key, data, content_type)
 
+    def put_audio(self, key: str, data: bytes, content_type: str) -> bool:
+        return self._put_bytes(self.bucket, key, data, content_type)
+
     def put_raw(self, key: str, src: Path) -> bool:
         if self.raw_bucket is None:
             return False
@@ -412,6 +486,15 @@ class Uploader:
         if blob.exists() and not self.force:
             return False
         blob.upload_from_filename(str(src))
+        return True
+
+    def put_raw_bytes(self, key: str, data: bytes, content_type: str) -> bool:
+        if self.raw_bucket is None:
+            return False
+        blob = self.raw_bucket.blob(key)
+        if blob.exists() and not self.force:
+            return False
+        blob.upload_from_string(data, content_type=content_type)
         return True
 
 
@@ -433,7 +516,9 @@ def main() -> int:
     ap.add_argument("--img-out", type=Path, default=None,
                     help="Escribe las variantes web/thumb localmente para revisión.")
     ap.add_argument("--upload", action="store_true", help="Sube raw/web/thumb a GCS.")
-    ap.add_argument("--no-images", action="store_true", help="Solo genera fichas.")
+    ap.add_argument("--no-images", action="store_true", help="Solo genera fichas (omite imágenes).")
+    ap.add_argument("--no-audio", action="store_true",
+                    help="Omite la descarga/subida de audio (las fichas igual emiten audios:).")
     ap.add_argument("--force", action="store_true",
                     help="Regenera fichas existentes y re-sube objetos.")
     ap.add_argument("--limit", type=int, default=None)
@@ -459,9 +544,11 @@ def main() -> int:
 
     slugs_vistos: dict[str, str] = {}
     errores: list[str] = []
+    audio_errores: list[str] = []
     sin_carpeta: list[str] = []
     fichas_escritas = fichas_saltadas = 0
     subidas = 0
+    audios_subidos = 0
 
     for row in rows:
         sci = row["nombre_cientifico"].strip()
@@ -518,6 +605,33 @@ def main() -> int:
                             dest.parent.mkdir(parents=True, exist_ok=True)
                             dest.write_bytes(data)
 
+        # --- Audio / vocalización (#32) ---
+        # Sube la grabación VERBATIM (sin transcodificar ni recortar; obligatorio
+        # para las licencias ND, ver ADR-0017): copia pública bajo audio/<slug>/ y
+        # cruda bajo <slug>/ en el bucket de archivo. Un fallo de descarga se
+        # reporta por especie sin abortar ni subir objetos parciales.
+        if uploader and not args.no_audio:
+            audio = audio_de(row)
+            if audio:
+                key_pub = f"audio/{slug}/{audio['archivo']}"
+                ya_existe = uploader.bucket.blob(key_pub).exists()
+                if ya_existe and not args.force:
+                    pass  # ya subido; no re-descargar
+                else:
+                    try:
+                        data, ctype = descargar_audio(row["sonido_url"].strip())
+                        if "mpeg" not in ctype and "mp3" not in ctype:
+                            audio_errores.append(
+                                f"{sci} ({slug}): content-type inesperado {ctype!r} "
+                                f"para {audio['archivo']} (la ficha asume .mp3)"
+                            )
+                        if uploader.put_audio(key_pub, data, ctype or "audio/mpeg"):
+                            audios_subidos += 1
+                        if uploader.put_raw_bytes(f"{slug}/{audio['archivo']}", data, ctype or "audio/mpeg"):
+                            audios_subidos += 1
+                    except Exception as exc:
+                        audio_errores.append(f"{sci} ({slug}): fallo al descargar audio: {exc}")
+
         # --- Validación de núcleo ---
         faltan = []
         for campo in ("nombre_comun", "nombre_cientifico", "categoria", "orden", "familia"):
@@ -562,10 +676,16 @@ def main() -> int:
         modo = "subidas a GCS" if args.upload else ("escritas local" if args.img_out else "en memoria")
         print(f"Variantes de imagen:    {modo} ({subidas} objetos subidos)" if args.upload
               else f"Imágenes procesadas:    {modo}")
+    if args.upload and not args.no_audio:
+        print(f"Audios subidos a GCS:   {audios_subidos} objetos")
     if sin_carpeta:
         print(f"Especies SIN carpeta de fotos ({len(sin_carpeta)}): {', '.join(sin_carpeta)}")
     if carpetas_sin_especie:
         print(f"Carpetas SIN especie en CSV ({len(carpetas_sin_especie)}): {', '.join(carpetas_sin_especie)}")
+    if audio_errores:
+        print(f"\nAVISOS DE AUDIO ({len(audio_errores)}):", file=sys.stderr)
+        for e in audio_errores:
+            print(f"  - {e}", file=sys.stderr)
     if errores:
         print(f"\nERRORES ({len(errores)}):", file=sys.stderr)
         for e in errores:

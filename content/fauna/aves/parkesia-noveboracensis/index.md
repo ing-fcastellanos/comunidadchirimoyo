@@ -60,6 +60,14 @@ fotos:
     alt: "Chipe Charquero (Parkesia noveboracensis)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC872217.mp3"
+    credito: "Alán Palacios"
+    tipo: llamado
+    fuenteId: "XC872217"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/872217"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

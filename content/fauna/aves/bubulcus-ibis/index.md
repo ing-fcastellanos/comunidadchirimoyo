@@ -64,6 +64,14 @@ fotos:
     alt: "Garza Ganadera (Bubulcus ibis)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC811818.mp3"
+    credito: "Manuel Grosselet"
+    tipo: llamado
+    fuenteId: "XC811818"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/811818"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

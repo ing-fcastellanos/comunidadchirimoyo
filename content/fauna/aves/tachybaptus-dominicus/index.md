@@ -81,6 +81,14 @@ fotos:
     alt: "Zambullidor Menor (Tachybaptus dominicus)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC817510.mp3"
+    credito: "Manuel Grosselet"
+    tipo: llamado
+    fuenteId: "XC817510"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/817510"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

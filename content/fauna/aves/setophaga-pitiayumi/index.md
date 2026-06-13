@@ -56,6 +56,14 @@ fotos:
     alt: "Parula Tropical (Setophaga pitiayumi)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC922745.mp3"
+    credito: "ALAN MONROY OJEDA"
+    tipo: canto
+    fuenteId: "XC922745"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/922745"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

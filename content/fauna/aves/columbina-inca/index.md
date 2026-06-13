@@ -57,6 +57,14 @@ fotos:
     alt: "Tórtola Colilarga (Columbina inca)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC1092842.mp3"
+    credito: "Manuel Grosselet"
+    tipo: canto
+    fuenteId: "XC1092842"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1092842"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

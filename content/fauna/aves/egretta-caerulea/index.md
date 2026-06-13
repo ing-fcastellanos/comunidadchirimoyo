@@ -56,6 +56,14 @@ fotos:
     alt: "Garza Azul (Egretta caerulea)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC617773.mp3"
+    credito: "Manuel Grosselet"
+    tipo: llamado
+    fuenteId: "XC617773"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/617773"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

@@ -51,6 +51,13 @@ fotos:
     alt: "Tángara Aliamarilla (Thraupis abbas)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC927850.mp3"
+    credito: "Richard E. Webster"
+    fuenteId: "XC927850"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/927850"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

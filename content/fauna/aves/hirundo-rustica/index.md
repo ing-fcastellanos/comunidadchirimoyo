@@ -98,6 +98,14 @@ fotos:
     licencia: "CC BY 4.0"
     creditoUrl: "https://www.inaturalist.org/photos/23892864"
     licenciaUrl: "https://creativecommons.org/licenses/by/4.0/"
+audios:
+  - archivo: "XC1143018.mp3"
+    credito: "David Darrell-Lambert"
+    tipo: llamado
+    fuenteId: "XC1143018"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1143018"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

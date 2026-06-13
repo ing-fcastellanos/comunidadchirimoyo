@@ -99,6 +99,14 @@ fotos:
     licencia: "CC BY-SA 4.0"
     creditoUrl: "https://www.inaturalist.org/photos/19557004"
     licenciaUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+audios:
+  - archivo: "XC1079577.mp3"
+    credito: "Marc Anderson"
+    tipo: llamado
+    fuenteId: "XC1079577"
+    licencia: "CC BY-NC-ND 4.0"
+    creditoUrl: "https://xeno-canto.org/1079577"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
 ---
 
 ## Descripción

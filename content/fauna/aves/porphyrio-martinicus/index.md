@@ -132,6 +132,14 @@ fotos:
     alt: "Gallineta Morada (Porphyrio martinicus)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC351563.mp3"
+    credito: "Frank Lambert"
+    tipo: llamado
+    fuenteId: "XC351563"
+    licencia: "CC BY-NC-ND 4.0"
+    creditoUrl: "https://xeno-canto.org/351563"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
 ---
 
 ## Descripción

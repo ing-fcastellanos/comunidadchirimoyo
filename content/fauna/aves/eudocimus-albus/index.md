@@ -65,6 +65,14 @@ fotos:
     alt: "Ibis Blanco (Eudocimus albus)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC571807.mp3"
+    credito: "Isain Contreras Rodríguez"
+    tipo: llamado
+    fuenteId: "XC571807"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/571807"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

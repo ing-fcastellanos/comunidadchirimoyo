@@ -72,6 +72,14 @@ fotos:
     alt: "Avetoro Norteño (Botaurus lentiginosus)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC1013532.mp3"
+    credito: "Stanislas Wroza"
+    tipo: canto
+    fuenteId: "XC1013532"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1013532"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

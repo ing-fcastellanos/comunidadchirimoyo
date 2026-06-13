@@ -77,6 +77,13 @@ fotos:
     alt: "Zanate Mayor (Quiscalus mexicanus)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC971653.mp3"
+    credito: "Homero Bennet"
+    fuenteId: "XC971653"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/971653"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

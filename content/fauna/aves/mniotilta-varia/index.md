@@ -60,6 +60,14 @@ fotos:
     alt: "Chipe Trepador (Mniotilta varia)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC695989.mp3"
+    credito: "Manuel Grosselet"
+    tipo: llamado
+    fuenteId: "XC695989"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/695989"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

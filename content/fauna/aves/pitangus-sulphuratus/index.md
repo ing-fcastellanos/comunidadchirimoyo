@@ -58,6 +58,14 @@ fotos:
     alt: "Luis Bienteveo (Pitangus sulphuratus)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC1088263.mp3"
+    credito: "Manuel Grosselet"
+    tipo: canto
+    fuenteId: "XC1088263"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1088263"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción
