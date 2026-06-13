@@ -32,6 +32,8 @@ medidas:
   pesoG: [450, 600]
 habitat:
   - "Bosques pantanosos, manglares y arroyos"
+distribucion:
+  residente: ["MX", "GT", "BZ", "HN", "NI", "CR"]
 fuentes:
   - "Enciclovida"
   - "iNaturalist MX"

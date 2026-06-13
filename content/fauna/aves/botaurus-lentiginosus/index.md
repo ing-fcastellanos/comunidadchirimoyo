@@ -32,6 +32,10 @@ habitat:
   - "Humedales con vegetación densa"
 temporada:
   meses: [10, 11, 12, 1, 2, 3]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "CU", "DO", "HT", "JM"]
+  notas: "En invierno también ocupa las costas del sur de Estados Unidos."
 fuentes:
   - "eBird"
   - "Audubon"

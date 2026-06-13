@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllFichas } from "@/lib/content";
-import { parseSecciones, fotosVista, audiosVista, badgesDe, relacionadas, resumenDescripcion } from "@/lib/ficha";
+import { parseSecciones, fotosVista, audiosVista, badgesDe, relacionadas, resumenDescripcion, distribucionVista } from "@/lib/ficha";
 import {
   HeroFicha,
   QuickFacts,
@@ -65,7 +65,7 @@ export default async function FichaPage({ params }: Params) {
       <QuickFacts ficha={ficha} />
       {sec.descripcion && <DescripcionSec texto={sec.descripcion} pullQuote={ficha.pullQuote} />}
       <DetailCards dieta={sec.dietaEcologia} reproduccion={sec.reproduccion} />
-      <DistribucionSec texto={sec.distribucion} />
+      <DistribucionSec texto={sec.distribucion} dist={distribucionVista(ficha)} />
       <ObservacionSec comoIdentificarla={sec.comoIdentificarla} dondeObservarla={sec.dondeObservarla} />
       <VocalizacionSec audios={audios} />
       <ConservacionSec ficha={ficha} sabiasQue={sec.sabiasQue} />

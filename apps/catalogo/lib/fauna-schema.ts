@@ -93,6 +93,22 @@ export interface Temporada {
   notas?: string;
 }
 
+/** Distribución por zonas, como listas de códigos ISO 3166-1 alpha-2
+    (compatibles con Natural Earth admin-0). Sin geometría: el mapa base
+    precomputado (`mapa-americas.ts`) provee los polígonos. Ver ADR-0018.
+    Opcional: las fichas sin `distribucion` caen al render por defecto
+    (geografía + marcador local + etiqueta derivada de `estatusMigratorio`). */
+export interface Distribucion {
+  /** Regiones donde cría (tono forest). */
+  cria?: string[];
+  /** Regiones donde inverna (tono mint). */
+  invernada?: string[];
+  /** Regiones de presencia anual (tono teal). */
+  residente?: string[];
+  /** Matiz textual opcional (string traducible, i18n-ready). */
+  notas?: string;
+}
+
 export interface Foto {
   /** Nombre del archivo; la URL se compone con `fotoUrl(slug, archivo, variante)`. */
   archivo: string;
@@ -149,6 +165,8 @@ export interface FichaEspecie {
   // --- Medios ---
   fotos: Foto[];
   audios?: Audio[];
+  // --- Distribución (opcional; alimenta el mapa por especie) ---
+  distribucion?: Distribucion;
   // --- Opcionales descriptivos ---
   simbologia?: string;
   /** Cita destacada (pull-quote) de la descripción, para la ficha de detalle. */
