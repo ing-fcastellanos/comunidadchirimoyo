@@ -31,11 +31,19 @@ medidas:
   pesoG: [5, 7]
 habitat:
   - "Bosques y matorrales abiertos"
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["GT", "BZ", "HN", "BS", "CU"]
+  residente: ["MX", "SV"]
+  notas: "La especie tiene un patrón mixto: las poblaciones del norte (Canadá y EE. UU.) son migratorias y crían allí; Canadá es solo de cría y EE. UU. alberga además invernantes en su franja sur. México tiene amplias poblaciones residentes (incluida la subespecie deppei del centro de Veracruz, residente local en el humedal), por lo que se marca como presencia anual. En el norte de Centroamérica las poblaciones que crían son en su mayoría residentes (Birds of the World: \"individuals breeding in Central America are largely resident\"); El Salvador marca el límite sur del rango de cría/residente y se asigna a 'residente', no a invernada. Los migrantes del norte invernan en el sur de EE. UU., México, Belice, Guatemala y Honduras, y en el Caribe (Cuba, Bahamas; también Islas Caimán y Turcas y Caicos, no representables en el mapa de 26 países). El rango no alcanza Panamá, Costa Rica, Nicaragua ni Sudamérica."
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"
   - "Enciclovida/CONABIO"
   - "NaturaLista MX"
+  - "IUCN Red List"
+  - "Audubon"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN4664.webp"
     credito: "Any Isabel Pérez Santiago"

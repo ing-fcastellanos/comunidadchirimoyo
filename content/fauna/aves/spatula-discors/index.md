@@ -33,11 +33,19 @@ habitat:
   - "Charcas y humedales someros"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "Cría exclusivamente en Norteamérica, en las praderas y humedales del norte-centro de EE. UU. y de Canadá (de Alaska al Atlántico). Es el pato de superficie norteamericano que más se adentra en Sudamérica: el grueso de la invernada ocurre en Centroamérica, el Caribe y el norte de Sudamérica (Colombia, Venezuela, las Guayanas, Ecuador), y alcanza Perú, Bolivia y Brasil. Sigue de forma menos numerosa hasta el centro de Chile y el norte de Argentina, países que quedan fuera del cuadro del mapa y por eso se omiten. En México inverna sobre todo en humedales costeros y de tierras altas; en Veracruz/Chirimoyo es invernante regular pero localmente poco común (oct–abr). EE. UU. aparece también en invernada porque su mitad sur alberga aves no reproductoras durante el invierno."
 fuentes:
   - "Cornell All About Birds"
   - "eBird"
   - "Audubon"
   - "Enciclovida/CONABIO"
+  - "Birds of the World"
+  - "IUCN Red List"
+  - "BirdLife International"
+  - "All About Birds (Cornell)"
 fotos:
   - archivo: "DSCN1959.webp"
     credito: "Any Isabel Pérez Santiago"

@@ -32,10 +32,18 @@ medidas:
   pesoG: [184, 211]
 habitat:
   - "Orillas de ríos, lagunas y manglares"
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["CO", "VE", "EC"]
+  residente: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "CU", "JM", "HT", "DO", "PR", "BS", "TT"]
+  notas: "El núcleo reproductivo (cría) está en el este de EE. UU. y el sureste de Canadá; en EE. UU. existen además poblaciones residentes costeras. En México, Centroamérica, Panamá y el Caribe (Antillas Mayores y Menores, Bahamas, Trinidad y Tobago) la especie es residente todo el año y allí también se reproduce, por lo que esas áreas se pintan como residente y no como cría. En invierno parte de la población alcanza el norte de Sudamérica (Colombia, Venezuela y Ecuador). Su rango regular no llega más al sur, por lo que países del cuadro como Perú, Bolivia, Brasil, Guyana y Surinam no se pintan."
 fuentes:
   - "eBird"
   - "Audubon"
   - "Enciclovida"
+  - "Birds of the World"
+  - "IUCN Red List"
+  - "BirdLife International"
 fotos:
   - archivo: "DSCN0208.webp"
     credito: "Any Isabel Pérez Santiago"

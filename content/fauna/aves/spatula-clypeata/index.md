@@ -33,11 +33,16 @@ habitat:
   - "Lagunas y aguas someras"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "CO", "VE"]
+  notas: "Especie holártica: cría también ampliamente en Europa y Asia, e inverna en el sur de Europa, África, India y el sudeste asiático, todo fuera del cuadro del mapa. En Norteamérica el sur de EE. UU. es a la vez zona de invernada (pintado aquí como cría por su identidad reproductiva dominante). En Sudamérica solo alcanza el norte (Colombia y Venezuela) como invernante; más al sur (Ecuador y otros) solo hay registros divagantes, por lo que se omiten. En el humedal de Chirimoyo y en Veracruz es exclusivamente visitante invernal no reproductor."
 fuentes:
   - "Cornell All About Birds"
   - "eBird"
   - "Audubon"
   - "Enciclovida/CONABIO"
+  - "BirdLife International"
 fotos:
   - archivo: "Spatula_clypeata_01.webp"
     credito: "(c) Juan Carlos Pérez Magaña, some rights reserved (CC BY-SA)"

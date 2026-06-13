@@ -30,11 +30,16 @@ medidas:
   pesoG: [112, 180]
 habitat:
   - "Lagunas y estanques con vegetación"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El Zambullidor Menor es residente (no migratorio) en todo su rango. Su distribución continúa más al sur, fuera del cuadro del mapa: alcanza el norte de Argentina y, marginalmente, Chile y zonas vecinas, por lo que esos países meridionales se omiten del mapa. En Estados Unidos solo ocupa el extremo sur (sur de Texas y suroeste); en México y el resto del rango es residente local, ligado a humedales con buena cobertura vegetal."
 fuentes:
   - "NOM-059-SEMARNAT-2010"
   - "Cornell Birds of the World"
   - "eBird"
   - "Enciclovida/CONABIO"
+  - "BirdLife International"
+  - "Audubon"
 fotos:
   - archivo: "DSCN1604.webp"
     credito: "Any Isabel Pérez Santiago"

@@ -31,11 +31,18 @@ medidas:
   pesoG: [150, 176]
 habitat:
   - "Lagunas y humedales someros"
+distribucion:
+  cria: ["CA"]
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El Candelero Americano es residente anual en el grueso de su rango: sur y costas de EE. UU., México, toda Centroamérica, el Caribe (Bahamas, Antillas Mayores y Menores hasta Trinidad) y el norte/oeste de Sudamérica (lowlands del Pacífico desde el SO de Colombia hasta el sur de Perú, valles interandinos, Llanos de Colombia y Venezuela, NE de Brasil y altiplano de Bolivia). En EE. UU. las poblaciones costeras y del sur son residentes mientras que las del interior oeste son reproductoras estivales que se desplazan hacia las costas y el sur en invierno; a nivel de país se pinta como residente por su presencia anual dominante. En Canadá (Praderas/oeste) es solo reproductor estival, no residente anual, por lo que se marca únicamente como cría. El rango continúa hacia el extremo sur de Sudamérica (Argentina, Chile, Uruguay, Paraguay —forma melanurus, tratada aquí en sentido amplio—) que queda fuera del encuadre de 26 países y por eso se omite. Las poblaciones de Ecuador incluyen las Islas Galápagos. En México es residente y reproductora en humedales costeros e interiores; en el humedal de Chirimoyo (interior de altitud, Veracruz) su presencia es más local y dependiente de las condiciones del cuerpo de agua."
 fuentes:
   - "eBird"
   - "iNaturalist MX"
   - "Bio Campeche"
   - "Wikipedia"
+  - "IUCN Red List"
+  - "Audubon"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN9151.webp"
     credito: "Any Isabel Pérez Santiago"

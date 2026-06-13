@@ -34,11 +34,17 @@ habitat:
   - "Orillas de agua, pantanos y manglares"
 temporada:
   meses: [8, 9, 10, 11, 12, 1, 2, 3, 4, 5]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC"]
+  notas: "Migratoria neotropical de larga distancia. Cría en la franja boreal del norte de Norteamérica (Alaska, Canadá y norte de Estados Unidos); en EE. UU. también inverna en el extremo sur (Florida), pero se marca como cría porque el grueso de su área reproductiva es estadounidense. Inverna desde México (sobre todo costas, manglares y humedales del Golfo y del Pacífico) por toda Centroamérica, las Antillas y el norte de Sudamérica: Colombia, Venezuela, las Guayanas (Guyana y Surinam), Ecuador y Trinidad. Hacia el sur solo alcanza de forma marginal el extremo norte de Perú como divagante (pocos registros), por lo que Perú y países más al sur no se pintan. En el humedal de Chirimoyo es migratoria invernal y de paso."
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"
   - "U.S. Fish & Wildlife Service"
   - "UICN"
+  - "Audubon"
+  - "BirdLife International"
 fotos:
   - archivo: "DSCN5994.webp"
     credito: "Any Isabel Pérez Santiago"

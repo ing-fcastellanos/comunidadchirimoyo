@@ -33,11 +33,17 @@ medidas:
   pesoG: [1180, 3000]
 habitat:
   - "Zonas abiertas, urbanas y basureros"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El Zopilote Común es residente no migratorio en todo su rango. En Estados Unidos su presencia se concentra en el este y sureste (con poblaciones también en el suroeste, p. ej. sureste de Arizona); no llega a Canadá, donde solo es divagante. En el Caribe solo está establecido como residente en Trinidad (TT); en Cuba, Jamaica, La Española, Puerto Rico y Bahamas se considera divagante, por lo que se omiten. El rango real continúa hacia el sur de Sudamérica (Chile central, Uruguay, Argentina, Paraguay), fuera del encuadre del mapa, por lo que esos países no se pintan. En el humedal de Chirimoyo y Veracruz es residente abundante todo el año."
 fuentes:
   - "Audubon"
   - "UICN"
   - "Enciclovida/CONABIO"
   - "Birds of the World"
+  - "BirdLife International"
+  - "Avibase"
+  - "eBird"
 fotos:
   - archivo: "Coragyps_atratus_01.webp"
     credito: "no rights reserved"

@@ -31,11 +31,18 @@ medidas:
   pesoG: [652, 1020]
 habitat:
   - "Lagunas, esteros y zonas inundables"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El Pijije Aliblanco es residente (no migratorio de larga distancia) en la mayor parte de su rango, por eso se pinta como presencia anual en todo el continente. En Estados Unidos ocupa sobre todo el sur —Texas, costa del Golfo y suroeste—, donde se ha ido expandiendo en décadas recientes. Su distribución continúa más al sur del encuadre del mapa, hasta el norte de Argentina y Uruguay, países que no figuran entre los representados. En el humedal de Chirimoyo es residente todo el año."
 fuentes:
   - "eBird"
   - "iNaturalist México"
   - "Enciclovida/CONABIO"
   - "Bio Campeche"
+  - "BirdLife International"
+  - "Avibase"
+  - "Wikipedia"
+  - "Audubon"
 fotos:
   - archivo: "DSCN0558_1.webp"
     credito: "Any Isabel Pérez Santiago"

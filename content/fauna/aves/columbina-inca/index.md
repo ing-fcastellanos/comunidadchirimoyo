@@ -31,11 +31,15 @@ medidas:
   pesoG: [30, 58]
 habitat:
   - "Zonas urbanas y matorrales secos"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA"]
+  notas: "Especie residente todo el año en su rango; no es migratoria. En Estados Unidos ocupa solo el suroeste (de California a Texas) y su rango se ha expandido hacia el norte en décadas recientes. El límite sur de presencia regular es Costa Rica; en Panamá solo alcanza marginalmente el extremo oeste (\"far western Panama\"). A pesar de su nombre, no habita Sudamérica ni las islas del Caribe. En el humedal de Chirimoyo es residente común."
 fuentes:
   - "eBird"
   - "Enciclovida"
   - "iNaturalist MX"
   - "Wikipedia"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN5128.webp"
     credito: "Any Isabel Pérez Santiago"

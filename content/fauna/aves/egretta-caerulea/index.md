@@ -31,10 +31,16 @@ medidas:
   pesoG: [315, 410]
 habitat:
   - "Humedales, marismas y manglares"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "En la mayor parte de su rango (sur de EE. UU., México, Centroamérica, el Caribe y el norte de Sudamérica) es residente reproductor anual; es un migrante parcial, no migratorio estricto. Solo las poblaciones del interior y del borde norte de EE. UU. se retiran al sur en invierno (hacia México, Centroamérica, el Caribe y Sudamérica), mientras que las costeras del Atlántico (Virginia a Texas) y del Golfo permanecen todo el año; por eso todo el rango en cuadro se pinta como residente. El rango continúa más al sur hasta el sur de Brasil, Uruguay y el norte de Argentina, que quedan fuera del encuadre del mapa y se omiten. Bolivia es marginal (registros escasos). En el humedal de Chirimoyo (centro de Veracruz) es residente común, coherente con su estatus local."
 fuentes:
   - "eBird"
   - "Audubon"
   - "Enciclovida"
+  - "IUCN Red List"
+  - "BirdLife International"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN0238.webp"
     credito: "Any Isabel Pérez Santiago"

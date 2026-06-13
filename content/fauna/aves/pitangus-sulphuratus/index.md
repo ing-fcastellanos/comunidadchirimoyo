@@ -32,11 +32,17 @@ medidas:
   pesoG: [53, 72]
 habitat:
   - "Zonas abiertas, jardines y orillas de agua"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "Especie residente no migratoria en todo su rango. El rango real continúa al sur fuera del cuadro del mapa: Paraguay, Uruguay y el centro de Argentina (omitidos por no estar entre los 26 países pintables). Ausente de Chile. En México es residente en ambas vertientes (Golfo y Pacífico) y el sureste; en Estados Unidos solo ocupa el extremo sur de Texas (bajo Río Bravo). No habita las Antillas Mayores ni las Bahamas; en el Caribe está presente en Trinidad y Tobago (en Tobago por introducción hacia 1970)."
 fuentes:
   - "eBird"
   - "iNaturalist (Naturalista MX)"
   - "Animalia.bio"
   - "GBIF"
+  - "Birds of the World"
+  - "BirdLife International"
+  - "Avibase"
 fotos:
   - archivo: "DSCN5516.webp"
     credito: "Any Isabel Pérez Santiago"

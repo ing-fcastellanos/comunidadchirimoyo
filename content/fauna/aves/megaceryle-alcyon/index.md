@@ -32,11 +32,16 @@ habitat:
   - "Ríos, lagos y costas con peces"
 temporada:
   meses: [9, 10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR"]
+  notas: "El Martín Pescador Norteño es migratorio: cría en Alaska, Canadá y la mitad norte de Estados Unidos, e inverna desde el sur de EE. UU. a través de México, Centroamérica (hasta Panamá) y las Antillas. EE. UU. aparece tanto en cría como en invernada porque cría en el norte e inverna en el sur; de hecho, en la franja central y costera de EE. UU. es residente anual donde el agua no se congela. En Sudamérica (CO, VE, GY, SR) es solo visitante invernal raro/ocasional en la franja norte, no regular; más al sur no aparece en el mapa. En Ecuador solo hay registros de vagabundo en Galápagos, por lo que se omite. Groenlandia se descarta de la cría: la especie solo ha aparecido allí como vagabundo extremadamente raro, no se reproduce. En Veracruz y México es visitante invernal por debajo de ~2,500 m, no se reproduce localmente."
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"
   - "Mexican-Birds.org"
   - "Wikipedia"
+  - "Animal Diversity Web"
 fotos:
   - archivo: "DSCN4087.webp"
     credito: "Any Isabel Pérez Santiago"

@@ -32,11 +32,17 @@ habitat:
   - "Marismas, ciénagas y pastizales húmedos"
 temporada:
   meses: [9, 10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE"]
+  notas: "En México es visitante invernal ampliamente distribuida en humedales de tierras bajas y altas (incluido el centro montañoso de Veracruz, donde está el humedal de Chirimoyo). Especie totalmente migratoria: cría en todo Canadá y el norte de EE. UU. (desde Alaska/Yukón hasta Terranova, y al sur hasta Dakota del Norte, Míchigan, Nueva York y Maine) e inverna desde la mitad sur de EE. UU. a través de México, toda Centroamérica y las Antillas hasta el norte de Colombia y Venezuela, que marcan el límite sur regular de invernada. También llega como visitante invernal a Trinidad y Tobago. Registros más al sur (Ecuador, Perú, las Guayanas, Brasil) son marginales o accidentales y se omiten del mapa. EE. UU. aparece en cría e invernada porque anida en el norte e inverna en su mitad sur."
 fuentes:
   - "eBird"
   - "Cornell Birds of the World"
   - "Animal Diversity Web"
   - "UICN"
+  - "Audubon"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN3083.webp"
     credito: "Any Isabel Pérez Santiago"

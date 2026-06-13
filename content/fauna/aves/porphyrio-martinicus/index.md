@@ -31,11 +31,17 @@ medidas:
   pesoG: [141, 305]
 habitat:
   - "Pantanos con vegetación flotante"
+distribucion:
+  cria: ["US"]
+  residente: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El rango real continúa al sur de Sudamérica hasta el norte de Argentina, Uruguay y Paraguay; esos países quedan fuera del encuadre del mapa y se omiten. En el sureste de Estados Unidos es reproductora estival migratoria (se pinta como zona de cría), aunque en el sur de Florida hay población residente todo el año; las poblaciones norteñas se repliegan en invierno hacia Florida, el Caribe y Centroamérica. En el resto del continente es residente anual. En México ocupa humedales de ambas vertientes (Golfo y Pacífico). Localmente, en el humedal de Chirimoyo, es residente."
 fuentes:
   - "eBird"
   - "Enciclovida/CONABIO"
   - "NaturaLista MX"
   - "Birds of the World (Cornell)"
+  - "BirdLife International"
+  - "Wikipedia"
 fotos:
   - archivo: "DSCN4624.webp"
     credito: "Any Isabel Pérez Santiago"

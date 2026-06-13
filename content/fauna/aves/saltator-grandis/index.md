@@ -29,11 +29,16 @@ medidas:
   tamanoCm: [20, 24]
 habitat:
   - "Matorrales y vegetación secundaria abierta"
+distribucion:
+  residente: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA"]
+  notas: "En México habita tierras bajas y medias de ambas vertientes (vertiente del Pacífico de Sonora a Oaxaca y vertiente del Golfo desde el sur de Tamaulipas), evitando el altiplano árido del norte y Baja California. Residente no migratorio todo el año en todo su rango; su límite sur es el centro de Panamá, dentro del cuadro del mapa, por lo que no se omite ningún país."
 fuentes:
   - "Birds of the World (Cornell)"
   - "eBird"
   - "NOM-059-SEMARNAT-2010"
   - "Avibase"
+  - "Birds of the World"
+  - "Wikipedia"
 fotos:
   - archivo: "Saltator_grandis_01.webp"
     credito: "(c) Gonzalo Zepeda Martínez, some rights reserved (CC BY-SA)"

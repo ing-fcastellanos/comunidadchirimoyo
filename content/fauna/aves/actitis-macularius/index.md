@@ -33,11 +33,17 @@ habitat:
   - "Orillas de ríos, lagos y costas"
 temporada:
   meses: [8, 9, 10, 11, 12, 1, 2, 3, 4, 5]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El rango invernal continúa al sur del encuadre del mapa: la especie inverna hasta el norte de Chile, norte de Argentina y Uruguay, países que no se pintan aquí. La reproducción ocurre en Canadá y casi todo Estados Unidos (al sur hasta Arizona, Nuevo México y Texas), sin reproducirse en territorio mexicano. En México y el humedal de Chirimoyo es estrictamente visitante invernal y de paso, sin anidar."
 fuentes:
   - "eBird"
   - "Birds of the World (Cornell)"
   - "Audubon"
   - "BirdLife DataZone"
+  - "Animal Diversity Web"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN0691_1.webp"
     credito: "Any Isabel Pérez Santiago"

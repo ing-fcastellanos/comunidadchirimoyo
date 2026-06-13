@@ -33,11 +33,16 @@ habitat:
   - "Lagunas y aguas abiertas"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA", "US"]
+  invernada: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "CO", "VE"]
+  notas: "El área de cría abarca Alaska (parte de US) y el oeste/norte de Canadá, extendiéndose hacia el sur hasta el norte de EE. UU. (no hay código aparte para Alaska; queda dentro de US). La invernada regular llega hasta el norte de Colombia, abarcando las costas del Pacífico y Atlántico de EE. UU., todo México (lagunas costeras e interiores de ambas vertientes), Centroamérica y las Antillas. Venezuela se incluye en el límite austral, pero el registro allí es ocasional/divagante, no invernada regular (también hay registros divagantes en Ecuador, Surinam y Trinidad, y no se pintan en el mapa). En el humedal de Chirimoyo es visitante de invierno (octubre–abril) y no se reproduce localmente."
 fuentes:
   - "eBird"
   - "Audubon"
   - "Birds of the World"
   - "Enciclovida/CONABIO"
+  - "IUCN Red List"
 fotos:
   - archivo: "Aythya_affinis_01.webp"
     credito: "(c) Juan Carlos Pérez Magaña, some rights reserved (CC BY-SA)"

@@ -31,11 +31,16 @@ medidas:
   pesoG: [9, 12]
 habitat:
   - "Pastizales y campos abiertos"
+distribucion:
+  residente: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "Especie residente neotropical. En México se distribuye en tierras bajas y medias de ambas vertientes, principalmente del centro-sur hacia el sur; escasa o ausente en el norte árido interior y en el altiplano. Su rango continúa más al sur de lo que abarca el mapa: hasta el norte de Chile, Argentina y Paraguay, países fuera del encuadre y por ello omitidos. En el Caribe es residente en Trinidad y Tobago (y Granada, fuera de la lista de 26 del mapa); no ocurre en Cuba, Jamaica, La Española, Puerto Rico ni Bahamas."
 fuentes:
   - "Birds of the World (Cornell)"
   - "eBird"
   - "NOM-059-SEMARNAT-2010"
   - "iNaturalist"
+  - "Avibase"
+  - "BirdLife International"
 fotos:
   - archivo: "Volatinia_jacarina_01.webp"
     credito: "(c) Gonzalo Zepeda Martínez, some rights reserved (CC BY-SA)"

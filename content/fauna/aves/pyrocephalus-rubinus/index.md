@@ -32,11 +32,16 @@ medidas:
   pesoG: [11, 14]
 habitat:
   - "Áreas abiertas, riberas y pastizales"
+distribucion:
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "CO", "VE", "GY", "EC", "PE", "BO", "BR"]
+  notas: "El Mosquero Cardenal es esencialmente residente permanente en casi todo su rango; solo las poblaciones más norteñas (suroeste de EE. UU.) son migratorias de corta distancia, por lo que en EE. UU. se concentra en el suroeste (Arizona, Nuevo México, Texas) y costa del Golfo, no en todo el país. En México y Veracruz está presente todo el año, coherente con su estatus local de residente. Tomada en sentido amplio (incluyendo las poblaciones a veces separadas como P. obscurus/mexicanus al norte y como P. rubinus sensu stricto al sur), la especie ocupa además el norte de Sudamérica —incluida la subespecie saturatus en Guyana— y continúa hacia el sur fuera del encuadre del mapa hacia Paraguay, Uruguay, norte de Chile y Argentina, países que se omiten por no existir en el cuadro de 26 países. No se incluyen Surinam ni Trinidad y Tobago por carecer de población documentada (presencia accidental a lo sumo)."
 fuentes:
   - "eBird"
   - "Enciclovida/CONABIO"
   - "Birds of the World (Cornell)"
   - "BirdLife/UICN"
+  - "Avibase"
+  - "Wikipedia"
 fotos:
   - archivo: "DSCN4996.webp"
     credito: "Any Isabel Pérez Santiago"

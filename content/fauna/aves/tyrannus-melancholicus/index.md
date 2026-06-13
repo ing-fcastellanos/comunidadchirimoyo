@@ -31,11 +31,17 @@ medidas:
   pesoG: [32, 43]
 habitat:
   - "Áreas abiertas con árboles dispersos"
+distribucion:
+  cria: ["US"]
+  residente: ["MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El rango continúa hacia el sur hasta el centro de Argentina, fuera del cuadro del mapa; las poblaciones australes del extremo sur son migratorias. En EE. UU. solo cría en el sur de Arizona y el bajo valle del Río Grande de Texas, retirándose al sur en invierno, por eso se marca como zona de cría y no residente. No se incluye en las Antillas Mayores (Cuba, Jamaica, La Española, Puerto Rico, Bahamas), donde es solo divagante; ese nicho insular lo ocupa el congénere Tyrannus dominicensis. En el humedal de Chirimoyo (Veracruz) es residente común todo el año."
 fuentes:
   - "eBird"
   - "Birds of the World"
   - "Mexican Birding"
   - "Avibase"
+  - "IUCN Red List"
+  - "Audubon"
 fotos:
   - archivo: "DSCN0541.webp"
     credito: "Any Isabel Pérez Santiago"

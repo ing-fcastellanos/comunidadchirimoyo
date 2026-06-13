@@ -31,11 +31,17 @@ medidas:
   pesoG: [253, 568]
 habitat:
   - "Lagunas y estanques de agua dulce"
+distribucion:
+  cria: ["CA"]
+  residente: ["US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "El zambullidor pico grueso es residente en casi toda su área de distribución americana; solo las poblaciones del extremo norte (Canadá), donde las aguas se congelan en invierno, son migratorias y se desplazan hacia el sur, por lo que Canadá se marca como zona de cría. Su rango continúa más al sur de lo que abarca el mapa: la subespecie P. p. antarcticus llega como residente/reproductor hasta el centro de Chile y Argentina, países que quedan fuera del encuadre. En Veracruz y el humedal de Chirimoyo es residente local de presencia poco común."
 fuentes:
   - "Cornell All About Birds"
   - "eBird"
   - "Audubon"
   - "Enciclovida/CONABIO"
+  - "BirdLife International"
+  - "Birds of the World"
 fotos:
   - archivo: "DSCN2218.webp"
     credito: "Any Isabel Pérez Santiago"

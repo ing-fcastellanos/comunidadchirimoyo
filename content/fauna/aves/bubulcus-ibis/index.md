@@ -33,6 +33,9 @@ medidas:
   pesoG: [270, 512]
 habitat:
   - "Pastizales y campos con ganado"
+distribucion:
+  residente: ["CA", "US", "MX", "GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "CU", "JM", "HT", "DO", "PR", "TT", "CO", "VE", "GY", "SR", "EC", "PE", "BO", "BR"]
+  notas: "Especie de presencia esencialmente anual en todo el continente americano: su rango reproductivo e invernal se solapan ampliamente y es no migratoria en la mayor parte de su rango, por lo que se pinta como residente. En Canadá su presencia se concentra en el sur (sobre todo en verano, expandiéndose hacia el norte). En México está ampliamente distribuida en todo el país. Su rango real continúa más al sur de Sudamérica (Argentina, Chile, Uruguay, Paraguay), fuera del encuadre del mapa, por lo que esos países se omiten. Colonizó América de forma natural desde África a partir de finales del siglo XIX (Surinam ~1870s, Colombia ~1917, Florida ~1940s) y se expandió ligada a la ganadería."
 fuentes:
   - "eBird"
   - "Audubon"

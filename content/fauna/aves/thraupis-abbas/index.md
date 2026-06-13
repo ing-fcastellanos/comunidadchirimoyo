@@ -30,11 +30,16 @@ medidas:
   pesoG: [38, 55]
 habitat:
   - "Bosques, bordes y zonas semiabiertas"
+distribucion:
+  residente: ["MX", "BZ", "GT", "HN", "SV", "NI"]
+  notas: "En México es residente en la vertiente del Golfo/Caribe (desde el sur de Tamaulipas y el este de San Luis Potosí, por Veracruz, Hidalgo, Puebla, Oaxaca, Chiapas y la península de Yucatán) y en la vertiente del Pacífico desde Chiapas; no ocupa el centro/norte árido ni el noroeste. Hacia el sur su área de presencia anual llega hasta Nicaragua (Pacífico hasta Honduras). En Costa Rica solo existe un registro marginal y reciente (Los Chiles, norte del país, desde octubre de 2010), por lo que no se pinta como país de presencia residente; se trata de un caso aislado de posible expansión, no de población establecida. Toda el área de distribución se encuentra dentro del cuadro del mapa."
 fuentes:
   - "eBird"
   - "Enciclovida/CONABIO"
   - "NaturaLista MX"
   - "Birds of the World (Cornell)"
+  - "Wikipedia"
+  - "U.S. Fish & Wildlife Service"
 fotos:
   - archivo: "DSCN9018.webp"
     credito: "Any Isabel Pérez Santiago"

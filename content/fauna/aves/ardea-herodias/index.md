@@ -35,11 +35,19 @@ habitat:
   - "Humedales, marismas, lagunas y costas"
 temporada:
   meses: [10, 11, 12, 1, 2, 3, 4]
+distribucion:
+  cria: ["CA"]
+  invernada: ["GT", "BZ", "HN", "SV", "NI", "CR", "PA", "BS", "JM", "HT", "DO", "PR", "CO", "VE"]
+  residente: ["US", "MX", "CU"]
+  notas: "En México es residente reproductor en muchas costas (Baja California, Sonora, Sinaloa, Tamaulipas, Tabasco, Yucatán) y, además, migratorio de invierno en gran parte del interior; por eso se pinta como residente a escala de país. EE. UU. es reproductor migratorio en el norte y residente todo el año en el sur. Cuba tiene población reproductora residente. En Centroamérica (GT a PA) y las Antillas restantes es principalmente visitante invernal. El límite austral regular es el norte de Colombia y el norte de Venezuela; más al sur (GY, SR, EC, PE, etc.) es accidental y queda omitido. Existe una población residente en las Islas Galápagos (subespecie A. h. cognata) que cae fuera del encuadre del mapa. En el humedal de Chirimoyo es solo visitante invernal poco frecuente."
 fuentes:
   - "eBird"
   - "Audubon"
   - "Enciclovida"
   - "Wikipedia"
+  - "Birds of the World"
+  - "NatureServe"
+  - "Heron Specialist Group (IUCN)"
 fotos:
   - archivo: "Ardea_herodias_01.webp"
     credito: "(c) Juan Carlos Pérez Magaña, some rights reserved (CC BY-SA)"
