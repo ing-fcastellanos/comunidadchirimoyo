@@ -5,7 +5,7 @@ const { Icon, Section, SectionTitle } = window;
 const FACTS = [
   "En México alcanza hasta el centro del país durante la invernada; rara vez se le reporta más al sur.",
   "Su comportamiento críptico hace que esté seguramente subreportada en muchos humedales.",
-  "En la Laguna del Chirimoyo fue documentada por el Dr. Eduardo Roldán Reyes en los pastizales del humedal \u2014 uno de los hitos del catálogo.",
+  "En la Laguna del Chirimoyo fue documentada por la comunidad y especialistas en los pastizales del humedal \u2014 uno de los hitos del catálogo.",
 ];
 
 function Conservation() {

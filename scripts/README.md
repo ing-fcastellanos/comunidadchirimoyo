@@ -12,6 +12,25 @@ Hay dos versiones equivalentes: **PowerShell** (`.ps1`, para Windows) y **bash**
 | `setup-backlog-phases-2-5.{ps1,sh}` | 11 issues "épica" placeholder (Fases 2-5, P3) | ✅ listo |
 | `setup-phase{2,3,4,5}-*.{ps1,sh}` | Issues accionables de cada fase | _se generan en la mini-sesión al iniciar la fase_ |
 
+## Catálogo de fauna (aves)
+
+Scripts del pipeline de contenido del catálogo. El proceso completo de **agregar una
+ave** está documentado en [docs/guias/agregar-una-ave.md](../docs/guias/agregar-una-ave.md).
+
+| Script | Qué hace |
+|--------|----------|
+| `descargar-imagenes-inaturalist.py` | Siembra fotos con licencia libre (CC0/CC BY/CC BY-SA) de iNaturalist para una especie, al banco que consume `migrar-fauna.py`, y fusiona los créditos en `creditos_imagenes.json`. Solo stdlib; no sube nada. |
+| `migrar-fauna.py` | Genera las fichas `content/fauna/aves/<slug>/index.md` desde el CSV de origen y, con `--upload`, optimiza y sube fotos/audio a GCS. Idempotente. Ver [ADR-0016](../docs/decisions/0016-storage-imagenes-fauna-gcs.md) / [ADR-0017](../docs/decisions/0017-storage-audio-fauna-gcs.md). |
+| `gen-mapa-base.py` | Genera el asset del mapa base (`apps/catalogo/lib/mapa-americas.ts`) desde Natural Earth admin-0. Correr una sola vez. Ver [ADR-0018](../docs/decisions/0018-mapa-distribucion-geografia-real.md). |
+
+```bash
+# 1) fotos CC para una especie nueva:
+python scripts/descargar-imagenes-inaturalist.py \
+    --cientifico "Psarocolius montezuma" --comun "Oropéndola de Moctezuma"
+# 2) generar la ficha y subir la media (requiere ADC de gcloud):
+python scripts/migrar-fauna.py --upload
+```
+
 ## Otros scripts
 
 | Script | Qué hace |

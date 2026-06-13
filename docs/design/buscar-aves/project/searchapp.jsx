@@ -199,7 +199,7 @@ function BuscarAves() {
 
       <footer className="border-t border-forest/10 bg-paper-deep">
         <div className="mx-auto max-w-6xl px-6 py-8 text-[13px] text-ink-soft/70">
-          Guía de Aves – Laguna del Chirimoyo, Orizaba, Veracruz, México · Dr. Eduardo Roldán Reyes, 2025.
+          Guía de Aves – Laguna del Chirimoyo, Orizaba, Veracruz, México .
         </div>
       </footer>
     </div>

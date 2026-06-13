@@ -152,5 +152,5 @@ export const QUICKS: {
   { id: "agua", icon: "droplet", title: "Aves del agua", desc: "Vadeadoras, nadadoras y playeras", patch: { categorias: ["vadeadoras", "nadadoras", "playeras"] } },
   { id: "tierra", icon: "trees", title: "Aves de tierra y árboles", desc: "Terrestres y voladoras", patch: { categorias: ["terrestres", "voladoras"] } },
   { id: "rapaces", icon: "raptor", title: "Rapaces y carroñeras", desc: "Depredadoras del cielo", patch: { categorias: ["rapaces"] } },
-  { id: "destacadas", icon: "star", title: "Destacadas del autor", desc: "Selección del Dr. Roldán", patch: { featured: true } },
+  { id: "destacadas", icon: "star", title: "Destacadas del autor", desc: "Selección de la comunidad", patch: { featured: true } },
 ];
