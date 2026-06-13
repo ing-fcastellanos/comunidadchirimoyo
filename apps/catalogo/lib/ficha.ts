@@ -101,6 +101,42 @@ export function badgesDe(f: FichaEspecie): BadgeVista[] {
   return b;
 }
 
+export type TonoZona = "forest" | "mint" | "teal";
+
+export interface ZonaVista {
+  tono: TonoZona;
+  label: string;
+  /** Códigos ISO a rellenar en el mapa base. */
+  codes: string[];
+}
+
+export interface DistribucionVista {
+  /** Zonas curadas a pintar (vacío si no hay `distribucion`). */
+  zonas: ZonaVista[];
+  /** Etiqueta derivada de `estatusMigratorio` (p. ej. "Residente"). */
+  etiquetaEstatus: string;
+  notas?: string;
+  /** true si la ficha trae `distribucion` con al menos una zona. */
+  curada: boolean;
+}
+
+/** View-model del mapa de distribución: zonas curadas + etiqueta de estatus.
+    Sin `distribucion`, `zonas` queda vacío y el mapa cae al render por defecto
+    (geografía + marcador + etiqueta), sin inventar rango. Ver ADR-0018. */
+export function distribucionVista(f: FichaEspecie): DistribucionVista {
+  const d = f.distribucion;
+  const zonas: ZonaVista[] = [];
+  if (d?.residente?.length) zonas.push({ tono: "teal", label: "Presencia anual", codes: d.residente });
+  if (d?.cria?.length) zonas.push({ tono: "forest", label: "Zona de cría", codes: d.cria });
+  if (d?.invernada?.length) zonas.push({ tono: "mint", label: "Zona de invernada", codes: d.invernada });
+  return {
+    zonas,
+    etiquetaEstatus: MIGRATORIO_LABEL[f.estatusMigratorio],
+    notas: d?.notas,
+    curada: zonas.length > 0,
+  };
+}
+
 /** Especies relacionadas: misma familia primero, luego misma categoría. */
 export function relacionadas(actual: FichaEspecie, todas: FichaEspecie[], n = 6): FichaEspecie[] {
   const otras = todas.filter((f) => f.slug !== actual.slug);

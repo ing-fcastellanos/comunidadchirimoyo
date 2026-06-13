@@ -105,6 +105,7 @@ export async function getAllFichas(): Promise<FichaEspecie[]> {
         fuentes: data.fuentes,
         fotos: data.fotos,
         audios: data.audios,
+        distribucion: data.distribucion,
         simbologia: data.simbologia,
         pullQuote: data.pullQuote,
         medidas: data.medidas,

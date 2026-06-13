@@ -49,7 +49,9 @@ El `slug` (y el nombre de la carpeta) se deriva del **nombre científico** en ke
 | `fuentes` | string[] (≥1) | citas/referencias |
 | `fotos` | Foto[] (≥1) | la primera es la portada |
 
-**Opcionales:** `simbologia` (string, p. ej. `R-PC-SR-N`), `medidas` (`{ tamanoCm?: [min,max], pesoG?: [min,max], notas? }`), `habitat` (string[] de etiquetas), `temporada` (`{ meses?: number[] 1–12, notas? }`), `audios` (Audio[]).
+**Opcionales:** `simbologia` (string, p. ej. `R-PC-SR-N`), `medidas` (`{ tamanoCm?: [min,max], pesoG?: [min,max], notas? }`), `habitat` (string[] de etiquetas), `temporada` (`{ meses?: number[] 1–12, notas? }`), `audios` (Audio[]), `distribucion` (ver abajo).
+
+**Distribución** — `distribucion?: { cria?, invernada?, residente?, notas? }`. Cada zona es una **lista de códigos ISO 3166-1 alpha-2** (p. ej. `["US","CA"]` para cría, `["MX","GT","BZ"]` para invernada), que el mapa por especie rellena sobre la geografía real (Natural Earth, ver [ADR-0018](../docs/decisions/0018-mapa-distribucion-geografia-real.md)). **No** lleva geometría ni coordenadas; solo códigos de región. Es **opcional**: sin `distribucion`, el mapa muestra geografía + marcador de la laguna + una etiqueta derivada de `estatusMigratorio`, sin inventar un rango. `notas` es un string traducible. La granularidad es de país (sobredimensiona, p. ej. "todo MX"); se acepta como tradeoff escalable y libre de licencias.
 
 **Ficha de detalle (opcionales)** — alimentan el hero, los datos rápidos y la observación de la página de detalle:
 

@@ -7,7 +7,8 @@ import { Badge } from "@/components/ui/Badge";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { HABITAT_LABEL } from "@/lib/dictionary";
 import type { FichaEspecie } from "@/lib/fauna-schema";
-import type { BadgeVista, FotoVista, Secciones } from "@/lib/ficha";
+import type { BadgeVista, DistribucionVista, FotoVista, Secciones, TonoZona } from "@/lib/ficha";
+import { MAPA_BASE } from "@/lib/mapa-americas";
 import { FichaCarrusel } from "./FichaCarrusel";
 
 /** Renderiza prosa (uno o más párrafos separados por línea en blanco). */
@@ -121,47 +122,77 @@ export function DetailCards({ dieta, reproduccion }: { dieta?: string; reproducc
   );
 }
 
-const LAND =
-  "M40 120 C30 90 70 78 95 92 L120 86 C150 60 210 58 250 70 C300 80 360 75 372 110 " +
-  "C384 140 360 160 348 175 L352 200 C356 225 330 235 312 244 C300 252 296 262 300 275 " +
-  "C304 288 292 296 280 290 C270 285 268 272 262 268 L250 270 C240 285 245 305 238 322 " +
-  "C232 340 226 352 230 366 C236 384 248 392 256 402 C268 414 262 430 250 432 C240 434 236 424 234 416 " +
-  "C230 405 222 400 214 404 C206 408 204 420 196 422 C186 424 184 412 188 402 C192 392 186 384 178 380 " +
-  "C168 375 162 360 158 345 C152 322 160 300 150 282 C140 264 120 258 108 248 C92 236 78 226 72 210 " +
-  "C64 188 60 168 52 152 C46 140 36 134 40 120 Z";
+/** Tono de relleno por zona (tokens del sistema de diseño). */
+const TONO_FILL: Record<TonoZona, string> = {
+  forest: "var(--color-forest)",
+  mint: "var(--color-mint)",
+  teal: "var(--color-teal)",
+};
 
-function MapaEsquematico() {
+/** Mapa real (geografía precomputada de Natural Earth, ADR-0018). Geografía +
+    marcador de la laguna SIEMPRE; pinta las zonas curadas si las hay. SVG puro,
+    sin JS de cliente (export estático, ADR-0014). */
+function MapaDistribucion({ dist }: { dist: DistribucionVista }) {
+  const { viewBox, marker, outline, regions } = MAPA_BASE;
+  const [, , w, h] = viewBox.split(" ").map(Number);
+  const zonasTxt = dist.zonas.map((z) => z.label.toLowerCase()).join(", ");
+  const aria = dist.curada
+    ? `Mapa de las Américas: ${zonasTxt} de la especie, con la Laguna del Chirimoyo marcada en México.`
+    : `Mapa de las Américas con la Laguna del Chirimoyo marcada en México (${dist.etiquetaEstatus.toLowerCase()}).`;
   return (
-    <svg viewBox="0 0 420 470" className="h-auto w-full max-w-[440px]" role="img" aria-label="Mapa esquemático de Norteamérica con la Laguna del Chirimoyo marcada">
-      <defs><clipPath id="land-clip"><path d={LAND} /></clipPath></defs>
-      <rect x="0" y="0" width="420" height="470" fill="#dcebe4" rx="14" />
-      <g stroke="#c4ddd1" strokeWidth="1" opacity="0.8">
-        {[80, 160, 240, 320].map((y) => <line key={y} x1="0" x2="420" y1={y} y2={y} />)}
-        {[105, 210, 315].map((x) => <line key={x} y1="0" y2="470" x1={x} x2={x} />)}
+    <svg viewBox={viewBox} className="h-auto w-full max-w-[440px]" role="img" aria-label={aria}>
+      <rect x="0" y="0" width={w} height={h} fill="#dcebe4" rx="14" />
+      <g stroke="#c4ddd1" strokeWidth="1" opacity="0.7">
+        {[0.25, 0.5, 0.75].map((f) => <line key={`h${f}`} x1="0" x2={w} y1={h * f} y2={h * f} />)}
+        {[0.25, 0.5, 0.75].map((f) => <line key={`v${f}`} y1="0" y2={h} x1={w * f} x2={w * f} />)}
       </g>
-      <g clipPath="url(#land-clip)">
-        <rect x="0" y="0" width="420" height="470" fill="#eef5ef" />
-      </g>
-      <path d={LAND} fill="none" stroke="#0c5a36" strokeWidth="2" strokeOpacity="0.5" strokeLinejoin="round" />
+      {/* Tierra base (toda la geografía en vista). */}
+      <path d={outline} fill="var(--color-paper)" stroke="var(--color-forest-deep)" strokeWidth="0.6" strokeOpacity="0.35" strokeLinejoin="round" />
+      {/* Zonas curadas, pintadas por código ISO sobre la geografía. */}
+      {dist.zonas.map((z) =>
+        z.codes.map((c) =>
+          regions[c] ? <path key={`${z.tono}-${c}`} d={regions[c]} fill={TONO_FILL[z.tono]} fillOpacity="0.82" /> : null,
+        ),
+      )}
+      {/* Marcador fijo de la Laguna del Chirimoyo. */}
       <g>
-        <circle cx="222" cy="300" r="11" fill="none" stroke="#0c5a36" strokeWidth="1.5" opacity="0.5" />
-        <circle cx="222" cy="300" r="4.5" fill="#0c5a36" />
+        <circle cx={marker.x} cy={marker.y} r="11" fill="none" stroke="var(--color-forest-deep)" strokeWidth="1.5" opacity="0.55" />
+        <circle cx={marker.x} cy={marker.y} r="4.5" fill="var(--color-forest-deep)" />
       </g>
     </svg>
   );
 }
 
-export function DistribucionSec({ texto }: { texto?: string }) {
-  if (!texto) return null;
+export function DistribucionSec({ texto, dist }: { texto?: string; dist: DistribucionVista }) {
   return (
     <Section className="py-12 sm:py-16">
       <SectionTitle kicker="Rango" icon="Map">Distribución</SectionTitle>
       <div className="grid grid-cols-1 items-center gap-10 rounded-2xl bg-paper-card p-8 shadow-card ring-1 ring-forest/[0.07] sm:p-10 lg:grid-cols-[440px_1fr]">
         <div className="grid place-items-center">
-          <MapaEsquematico />
-          <p className="mt-3 text-center font-mono text-[11px] text-ink-soft/60">Mapa esquemático · ubicación de la laguna (geografía detallada por especie: pendiente)</p>
+          <MapaDistribucion dist={dist} />
+          {!dist.curada && (
+            <p className="mt-3 text-center font-mono text-[11px] text-ink-soft/60">Ubicación de la laguna · rango por especie pendiente de curar</p>
+          )}
         </div>
-        <div className="space-y-4 text-[16px] leading-relaxed text-ink/80"><Prosa texto={texto} /></div>
+        <div className="space-y-5">
+          {texto && <div className="space-y-4 text-[16px] leading-relaxed text-ink/80"><Prosa texto={texto} /></div>}
+          {/* Leyenda: estatus + zonas curadas + sitio local. */}
+          <ul className="space-y-3 text-[15px] text-ink/85">
+            <li className="flex items-center gap-3">
+              <span className="grid h-4 w-7 shrink-0 place-items-center">
+                <span className="h-2.5 w-2.5 rounded-full bg-forest-deep ring-2 ring-forest/30" />
+              </span>
+              <span><strong className="font-semibold text-forest-deep">Laguna del Chirimoyo</strong> — Orizaba, Veracruz · {dist.etiquetaEstatus}</span>
+            </li>
+            {dist.zonas.map((z) => (
+              <li key={z.tono} className="flex items-center gap-3">
+                <span className="h-4 w-7 shrink-0 rounded-full" style={{ backgroundColor: TONO_FILL[z.tono] }} />
+                <span><strong className="font-semibold text-forest-deep">{z.label}</strong></span>
+              </li>
+            ))}
+          </ul>
+          {dist.notas && <p className="text-[14px] leading-relaxed text-ink-soft/80">{dist.notas}</p>}
+        </div>
       </div>
     </Section>
   );
