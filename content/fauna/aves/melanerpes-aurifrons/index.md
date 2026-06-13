@@ -57,6 +57,14 @@ fotos:
     alt: "Carpintero Cheje (Melanerpes aurifrons)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC1072380.mp3"
+    credito: "Angel Castillo Cime"
+    tipo: llamado
+    fuenteId: "XC1072380"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1072380"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

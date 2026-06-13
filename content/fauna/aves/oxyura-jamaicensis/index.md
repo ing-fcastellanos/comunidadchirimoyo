@@ -54,6 +54,14 @@ fotos:
     alt: "Pato Tepalcate (Oxyura jamaicensis)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC423355.mp3"
+    credito: "Manuel Grosselet"
+    tipo: canto
+    fuenteId: "XC423355"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/423355"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

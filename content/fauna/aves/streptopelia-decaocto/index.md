@@ -51,6 +51,14 @@ fotos:
     alt: "Paloma Turca (Streptopelia decaocto)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC1142928.mp3"
+    credito: "Christian Bøggild"
+    tipo: canto
+    fuenteId: "XC1142928"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1142928"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

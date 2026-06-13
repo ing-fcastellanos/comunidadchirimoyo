@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { HABITAT_LABEL } from "@/lib/dictionary";
 import type { FichaEspecie } from "@/lib/fauna-schema";
-import type { BadgeVista, FotoVista, Secciones } from "@/lib/ficha";
+import type { AudioVista, BadgeVista, FotoVista, Secciones } from "@/lib/ficha";
 import { FichaCarrusel } from "./FichaCarrusel";
 
 /** Renderiza prosa (uno o más párrafos separados por línea en blanco). */
@@ -187,6 +187,90 @@ export function ObservacionSec({ comoIdentificarla, dondeObservarla }: { comoIde
         ))}
       </div>
     </Section>
+  );
+}
+
+const TIPO_VOZ_LABEL: Record<string, string> = { canto: "Canto", llamado: "Llamado" };
+
+/** Barras decorativas (estáticas, sin JS) que evocan una onda de sonido. Patrón
+    determinista del handoff de diseño; puramente ornamental (aria-hidden). */
+const ONDA_NBARS = 40;
+const ONDA_ALTURAS = Array.from({ length: ONDA_NBARS }, (_, i) =>
+  18 + Math.round(Math.abs(Math.sin(i * 0.7)) * 22 + (i % 3) * 4),
+);
+
+function OndaDecorativa() {
+  return (
+    <div aria-hidden className="mt-7 flex h-24 items-center gap-[3px] rounded-xl bg-black/20 px-4 py-3">
+      {ONDA_ALTURAS.map((h, i) => (
+        <span key={i} className="flex-1 rounded-full bg-mint" style={{ height: `${h}%`, opacity: 0.5 }} />
+      ))}
+    </div>
+  );
+}
+
+export function VocalizacionSec({ audios }: { audios: AudioVista[] }) {
+  if (!audios.length) return null;
+  const tipos = audios.map((a) => a.tipo).filter(Boolean);
+  const titulo =
+    tipos.includes("canto") ? "Su canto"
+    : tipos.length && tipos.every((t) => t === "llamado") ? "Su llamado"
+    : "Su voz";
+
+  return (
+    // Banda inmersiva a todo lo ancho (fondo verde profundo), portada del handoff
+    // de diseño v0.dev. Reemplaza el canto sintetizado por el audio real.
+    <section className="my-6 bg-pine-deep">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 py-16 sm:py-20 lg:grid-cols-[1fr_1.1fr]">
+        <div>
+          <div className="mb-3 flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.26em] text-mint">
+            <Icon name="AudioLines" className="h-4 w-4" />
+            Vocalización
+          </div>
+          <h2 className="font-serif text-[clamp(34px,5vw,52px)] font-semibold leading-[0.98] text-paper">{titulo}</h2>
+          <p className="mt-5 max-w-md text-[17px] leading-relaxed text-mint-soft/85">
+            Las aves usan la voz para cortejar, defender su territorio y mantenerse en
+            contacto. Esta es una grabación de campo compartida por la comunidad de
+            <span className="font-semibold text-paper"> xeno-canto</span>.
+          </p>
+        </div>
+
+        <div className="space-y-6">
+          {audios.map((a) => (
+            <article key={a.src} className="rounded-3xl bg-white/[0.04] p-7 ring-1 ring-white/10 sm:p-9">
+              {a.tipo && (
+                <div className="font-serif text-[22px] font-semibold leading-tight text-paper">{TIPO_VOZ_LABEL[a.tipo] ?? a.tipo}</div>
+              )}
+              {/* <audio> nativo: sin JS de cliente, compatible con el export estático (ADR-0014). */}
+              <audio controls preload="none" src={a.src} className="mt-4 w-full">
+                Tu navegador no puede reproducir este audio.
+              </audio>
+              <OndaDecorativa />
+              <p className="mt-5 flex items-start gap-2 text-[13px] leading-relaxed text-mint-soft/60">
+                <Icon name="Info" className="mt-0.5 h-4 w-4 shrink-0" />
+                <span>
+                  {a.creditoUrl ? (
+                    <a href={a.creditoUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-mint/30 underline-offset-2 hover:text-mint">{a.credito}</a>
+                  ) : (
+                    a.credito
+                  )}
+                  {a.licencia && (
+                    <>
+                      {" · "}
+                      {a.licenciaUrl ? (
+                        <a href={a.licenciaUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-mint/30 underline-offset-2 hover:text-mint">{a.licencia}</a>
+                      ) : (
+                        a.licencia
+                      )}
+                    </>
+                  )}
+                </span>
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

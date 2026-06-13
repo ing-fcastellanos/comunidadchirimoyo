@@ -40,6 +40,14 @@ fotos:
     alt: "Semillero de Collar (Sporophila morelleti)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC1035686.mp3"
+    credito: "Bobby Wilcox"
+    tipo: canto
+    fuenteId: "XC1035686"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1035686"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

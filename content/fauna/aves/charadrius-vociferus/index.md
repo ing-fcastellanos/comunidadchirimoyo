@@ -52,6 +52,14 @@ fotos:
     alt: "Chorlo Tildío (Charadrius vociferus)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC955105.mp3"
+    credito: "Étienne Leroy"
+    tipo: llamado
+    fuenteId: "XC955105"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/955105"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

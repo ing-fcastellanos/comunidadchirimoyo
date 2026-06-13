@@ -18,6 +18,12 @@ export function fotoUrl(slug: string, archivo: string, variante: VarianteImagen)
   return `${FAUNA_CDN_BASE}/${variante}/${slug}/${archivo}`;
 }
 
+/** Compone la URL pública de un audio: `${BASE}/audio/<slug>/<archivo>`. Mismo
+    mecanismo de portabilidad que `fotoUrl` (ver ADR-0016 / ADR-0017). */
+export function audioUrl(slug: string, archivo: string): string {
+  return `${FAUNA_CDN_BASE}/audio/${slug}/${archivo}`;
+}
+
 /** Filtro macro del catálogo. Las anfibios/reptiles llegan en Fase 2. */
 export type Grupo = "aves" | "anfibios-reptiles";
 
@@ -99,11 +105,23 @@ export interface Foto {
   licenciaUrl?: string;
 }
 
+/** Tipo de vocalización (xeno-canto distingue canto de llamado). */
+export type TipoVocalizacion = "canto" | "llamado";
+
 export interface Audio {
+  /** Nombre del archivo en el bucket; la URL se compone con `audioUrl(slug, archivo)`. */
   archivo: string;
   credito: string;
   descripcion?: string;
   licencia?: string;
+  /** Enlace a la grabación original (p. ej. la página en xeno-canto). */
+  creditoUrl?: string;
+  /** Enlace al texto legal de la licencia. */
+  licenciaUrl?: string;
+  /** Canto o llamado. */
+  tipo?: TipoVocalizacion;
+  /** Identificador de la grabación en la fuente (p. ej. `XC123456`). */
+  fuenteId?: string;
 }
 
 export interface FichaEspecie {

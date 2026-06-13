@@ -99,6 +99,14 @@ fotos:
     licencia: "CC BY-SA 4.0"
     creditoUrl: "https://www.inaturalist.org/photos/616989750"
     licenciaUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+audios:
+  - archivo: "XC169224.mp3"
+    credito: "Paul Driver"
+    tipo: llamado
+    fuenteId: "XC169224"
+    licencia: "CC BY-NC-SA 3.0"
+    creditoUrl: "https://xeno-canto.org/169224"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/3.0/"
 ---
 
 ## Descripción

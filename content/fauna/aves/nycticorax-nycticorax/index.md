@@ -69,6 +69,14 @@ fotos:
     alt: "Garza Corona Negra (Nycticorax nycticorax)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC1143362.mp3"
+    credito: "Valentin Toussaert"
+    tipo: llamado
+    fuenteId: "XC1143362"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1143362"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

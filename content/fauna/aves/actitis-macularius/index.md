@@ -234,6 +234,14 @@ fotos:
     alt: "Playero Alzacolita (Actitis macularius)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC613665.mp3"
+    credito: "Manuel Grosselet"
+    tipo: llamado
+    fuenteId: "XC613665"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/613665"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

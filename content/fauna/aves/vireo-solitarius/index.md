@@ -99,6 +99,14 @@ fotos:
     licencia: "CC BY-SA 4.0"
     creditoUrl: "https://www.inaturalist.org/photos/35705171"
     licenciaUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+audios:
+  - archivo: "XC1141320.mp3"
+    credito: "Scott Olmstead"
+    tipo: canto
+    fuenteId: "XC1141320"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1141320"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

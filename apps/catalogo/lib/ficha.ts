@@ -1,6 +1,6 @@
 /* ficha.ts — utilidades de la ficha de detalle: parseo de las secciones `##`
    del cuerpo, view-models (fotos, badges) y especies relacionadas. */
-import { fotoUrl, type FichaEspecie } from "./fauna-schema";
+import { fotoUrl, audioUrl, type FichaEspecie, type TipoVocalizacion } from "./fauna-schema";
 import {
   MIGRATORIO_LABEL,
   OCURRENCIA_LABEL,
@@ -81,6 +81,32 @@ export function fotosVista(f: FichaEspecie): FotoVista[] {
     creditoUrl: p.creditoUrl,
     licenciaUrl: p.licenciaUrl,
   }));
+}
+
+export interface AudioVista {
+  src: string;
+  tipo?: TipoVocalizacion;
+  /** Crédito compuesto: `"<credito>, <fuenteId>, xeno-canto.org"`. */
+  credito: string;
+  licencia?: string;
+  creditoUrl?: string;
+  licenciaUrl?: string;
+}
+
+/** Audios de la especie con la URL del bucket y el crédito compuesto desde los
+    campos (no se almacena la leyenda; i18n-ready, ADR-0011). */
+export function audiosVista(f: FichaEspecie): AudioVista[] {
+  return (f.audios ?? []).map((a) => {
+    const partes = [a.credito, a.fuenteId, "xeno-canto.org"].filter(Boolean);
+    return {
+      src: audioUrl(f.slug, a.archivo),
+      tipo: a.tipo,
+      credito: partes.join(", "),
+      licencia: a.licencia,
+      creditoUrl: a.creditoUrl,
+      licenciaUrl: a.licenciaUrl,
+    };
+  });
 }
 
 export interface BadgeVista {

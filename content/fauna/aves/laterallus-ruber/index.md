@@ -61,6 +61,14 @@ fotos:
     alt: "Polluela Rojiza (Laterallus ruber)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC351635.mp3"
+    credito: "Jim Holmes"
+    tipo: canto
+    fuenteId: "XC351635"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/351635"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

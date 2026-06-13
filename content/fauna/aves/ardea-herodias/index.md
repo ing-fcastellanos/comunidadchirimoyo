@@ -101,6 +101,14 @@ fotos:
     licencia: "CC BY-SA 4.0"
     creditoUrl: "https://www.inaturalist.org/photos/31916513"
     licenciaUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+audios:
+  - archivo: "XC1001206.mp3"
+    credito: "Barry Edmonston"
+    tipo: llamado
+    fuenteId: "XC1001206"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/1001206"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción

@@ -137,6 +137,14 @@ fotos:
     alt: "Tirano Tropical (Tyrannus melancholicus)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+audios:
+  - archivo: "XC993630.mp3"
+    credito: "Homero Bennet"
+    tipo: canto
+    fuenteId: "XC993630"
+    licencia: "CC BY-NC-SA 4.0"
+    creditoUrl: "https://xeno-canto.org/993630"
+    licenciaUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 ---
 
 ## Descripción
