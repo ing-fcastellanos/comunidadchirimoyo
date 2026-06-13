@@ -1,6 +1,7 @@
 /* Header.tsx — barra superior del catálogo. Portado del handoff v0.dev.
    Server Component. */
 import Link from "next/link";
+import { Icon } from "@/components/ui/Icon";
 
 export function Header() {
   return (
@@ -21,6 +22,24 @@ export function Header() {
               Guía de Aves · Orizaba, Veracruz
             </span>
           </span>
+        </Link>
+
+        {/* Escritorio: enlace de texto que se vuelve píldora forest suave al hover */}
+        <Link
+          href="/busqueda"
+          className="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-[14px] font-semibold text-forest-deep ring-1 ring-transparent transition-colors hover:bg-mint-wash hover:ring-forest/15 focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25 sm:inline-flex"
+        >
+          <Icon name="Search" className="h-[18px] w-[18px]" />
+          Buscar especies
+        </Link>
+
+        {/* Móvil: botón de icono compacto */}
+        <Link
+          href="/busqueda"
+          aria-label="Buscar especies"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-mint-wash text-forest-deep ring-1 ring-forest/15 transition-colors hover:bg-mint-soft focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25 sm:hidden"
+        >
+          <Icon name="Search" className="h-[18px] w-[18px]" />
         </Link>
       </div>
     </header>
