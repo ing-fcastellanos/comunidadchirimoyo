@@ -210,7 +210,23 @@ Edita `content/fauna/aves/<slug>/index.md`:
 - **Estatus**: confirma que `gradoOcurrencia`/`estatusMigratorio` reflejan el registro
   local real.
 
-## 7. Verificar y entregar
+## 7. Foto de portada (la misma que el PDF)
+
+La **primera** entrada de `fotos[]` es la **portada**: la foto que el sitio usa para la
+miniatura del buscador y el hero del detalle, y la que el landing puede mostrar como hero.
+Por convención del esquema, la portada SHALL ser la **foto curada** — la misma que
+selecciona la herramienta del PDF (`apps/catalogo/print/photo-selections.json`).
+
+- Si curaste la foto de esta especie con `npm run photo:tool` (queda en
+  `photo-selections.json`), alinea la portada del frontmatter corriendo:
+  ```bash
+  node scripts/aplicar-foto-principal.mjs            # aplica; --dry para solo reportar
+  ```
+  El script casa por *stem* (nombre sin extensión) y deja la foto curada al frente de
+  `fotos[]`. Es **idempotente** y solo reordena ese arreglo (revisa el `git diff`).
+- Si **no** hay selección curada, simplemente deja como primera la mejor foto a mano.
+
+## 8. Verificar y entregar
 
 ```bash
 cd apps/catalogo
@@ -239,6 +255,7 @@ git commit -m "feat(fauna): agregar <Nombre> (<Especie>)"
 - Pipeline de migración: [`scripts/migrar-fauna.py`](../../scripts/migrar-fauna.py) y
   el spec [`migracion-fauna`](../../openspec/specs/migracion-fauna/spec.md).
 - Descarga de fotos: [`scripts/descargar-imagenes-inaturalist.py`](../../scripts/descargar-imagenes-inaturalist.py).
+- Portada curada (alinear sitio con PDF): [`scripts/aplicar-foto-principal.mjs`](../../scripts/aplicar-foto-principal.mjs).
 - Decisiones: [ADR-0005](../decisions/0005-catalogo-estatico-anfibios-categoria.md)
   (catálogo estático), [ADR-0016](../decisions/0016-storage-imagenes-fauna-gcs.md)
   (imágenes en GCS), [ADR-0017](../decisions/0017-storage-audio-fauna-gcs.md)

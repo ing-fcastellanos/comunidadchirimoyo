@@ -2,13 +2,11 @@
    Portado del handoff v0.dev (components/home/Hero.jsx). Server Component. */
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
-import { fotoUrl } from "@/lib/fauna-schema";
 import { COMUNIDAD_URL } from "@/lib/links";
 
-/* Imagen del avetoro servida desde el bucket (ADR-0016), no desde public/. */
-const HERO_IMG = fotoUrl("botaurus-lentiginosus", "DSCN1632.webp", "web");
-
-export function Hero() {
+/* La imagen del hero es la portada curada de la especie representativa (avetoro),
+   derivada del contenido en page.tsx y servida desde el bucket (ADR-0016). */
+export function Hero({ img, alt }: { img: string | null; alt: string }) {
   return (
     <section className="relative overflow-hidden border-b border-forest/10">
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-14 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-24">
@@ -51,12 +49,14 @@ export function Hero() {
         {/* ---- Columna de imagen ---- */}
         <figure className="relative">
           <div className="overflow-hidden rounded-2xl bg-paper-deep shadow-card ring-1 ring-forest/10">
-            {/* eslint-disable-next-line @next/next/no-img-element -- export estático, imágenes servidas desde el bucket (ADR-0016) */}
-            <img
-              src={HERO_IMG}
-              alt="Avetoro Norteño mimetizado entre los pastos y cañas del humedal del Chirimoyo."
-              className="aspect-[4/5] w-full object-cover sm:aspect-square lg:aspect-[4/5]"
-            />
+            {img && (
+              /* eslint-disable-next-line @next/next/no-img-element -- export estático, imágenes servidas desde el bucket (ADR-0016) */
+              <img
+                src={img}
+                alt={alt}
+                className="aspect-[4/5] w-full object-cover sm:aspect-square lg:aspect-[4/5]"
+              />
+            )}
           </div>
           <figcaption className="absolute bottom-4 left-4 right-4 flex items-center gap-2 rounded-xl bg-pine-deep/70 px-4 py-2.5 font-mono text-[12px] tracking-wide text-paper/90 backdrop-blur">
             <Icon name="Camera" className="h-4 w-4" />
