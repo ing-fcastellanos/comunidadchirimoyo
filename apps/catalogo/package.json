@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build:pdf && next build",
+    "build:pdf:css": "tailwindcss -i ./print/print.css -o ./print/_print.generated.css --minify",
+    "build:pdf": "npm run build:pdf:css && tsx ./scripts/build-pdf.mts",
+    "photo:tool": "tsx ./scripts/build-photo-tool.mts",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
@@ -23,13 +26,19 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@tailwindcss/cli": "^4",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^15.0.0",
+    "playwright": "^1.49.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.33.5",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.19.0",
+    "typescript": "^5",
+    "@types/qrcode": "^1.5.5"
   }
 }

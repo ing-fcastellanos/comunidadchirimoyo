@@ -9,7 +9,8 @@ Next.js 15 (App Router) · TypeScript · Tailwind v4. **Catálogo 100% estático
 ```bash
 npm install
 npm run dev            # servidor de desarrollo (:3000)
-npm run build          # genera out/ (estático)
+npm run build          # build:pdf + next build → genera out/ (estático)
+npm run build:pdf      # solo el PDF del catálogo → public/catalogo-aves-chirimoyo.pdf
 npm run typecheck      # tsc --noEmit
 npm run lint           # eslint
 npm run sync:tokens    # regenera app/tokens.css desde docs/design-system/
@@ -17,6 +18,53 @@ npm run deploy_prod    # build + firebase deploy (hosting:prod)
 ```
 
 Para previsualizar el export: `npx serve out`.
+
+## PDF del catálogo (#14, ADR-0019)
+
+`npm run build:pdf` genera **un único PDF** con todas las especies a partir de `content/` y
+de la **copia local del banco de imágenes**, y lo escribe en
+`public/catalogo-aves-chirimoyo.pdf` (lo descarga el botón "Descargar guía en PDF" del
+catálogo). Se compone con plantillas de impresión en `print/templates/` (Tailwind v4
+precompilado offline) y se imprime con Chromium headless (Playwright). Ver
+[ADR-0019](../../docs/decisions/0019-pdf-catalogo-build-headless.md).
+
+**Prerequisito (una vez):** instalar el navegador de Playwright:
+
+```bash
+npx playwright install chromium
+```
+
+**Textos de la ficha.** Los cuatro bloques (Descripción · Cómo identificarla · ¿Sabías que? ·
+Dónde y cuándo observarla) usan los **resúmenes curados** (≤350c) del CSV de origen
+(`content/fauna/_origen/aves-especies.csv`, columnas `resumen_*`), que tienen prioridad. Si una
+especie no tiene resumen, se recurre a un extracto recortado del cuerpo Markdown.
+
+Variables de entorno opcionales:
+
+- `FAUNA_BANCO_DIR` — ruta del banco local de imágenes (default: `…/Img guia aves/Imagenes aves`).
+- `SITE_AVES_BASE` — base del sitio para los QR (default `https://aves.chirimoyo.org`).
+- `PHOTO_SELECTIONS` — ruta del JSON de selección/encuadre de fotos (default `print/photo-selections.json`).
+- `RESUMENES_CSV` — ruta del CSV con los resúmenes (default `content/fauna/_origen/aves-especies.csv`).
+- `PDF_OUT` — ruta de salida del PDF.
+
+Si falta la imagen de una especie, su ficha usa un placeholder y se registra un aviso (el
+build no se rompe).
+
+### Selección y encuadre de foto por especie
+
+Por defecto cada ficha usa la **primera** foto del banco. Para elegir otra y **encuadrarla** al
+recuadro del catálogo:
+
+```bash
+npm run photo:tool     # genera print/_photo-tool.html
+```
+
+Abre `print/_photo-tool.html` en el navegador: recorre las aves, elige una foto de la galería,
+ajusta el encuadre (arrastrar = mover, rueda/deslizador = zoom; el marco tiene el aspecto real
+del catálogo) y pulsa **Exportar JSON**. Guarda el archivo como
+`apps/catalogo/print/photo-selections.json`. En el siguiente `npm run build:pdf`, cada ave con
+selección usa esa foto recortada (sharp aplica el recorte normalizado a la imagen original).
+`photo-selections.json` **se versiona** (es curación); la herramienta `_photo-tool.html` no.
 
 ## Sistema de diseño
 

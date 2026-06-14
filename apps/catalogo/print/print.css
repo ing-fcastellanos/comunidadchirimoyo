@@ -1,0 +1,65 @@
+/* print.css — entrada de Tailwind v4 para las plantillas de impresión.
+   Reutiliza los TOKENS CANÓNICOS del proyecto (app/tokens.css) para no
+   duplicar la identidad visual. Se compila offline con @tailwindcss/cli
+   escaneando ./templates (sin CDN). */
+@import "tailwindcss";
+@import "../app/tokens.css";
+
+/* Escanea las plantillas para generar solo las utilidades usadas. */
+@source "./templates";
+
+/* Pesos tipográficos del diseño (font-300 … font-700). */
+@theme {
+  --font-weight-300: 300;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+}
+
+/* ===== Fuentes locales (sin depender de Google Fonts en build) ===== */
+@font-face {
+  font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400 700;
+  font-display: swap; src: url("./fonts/cormorant.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond"; font-style: italic; font-weight: 400 700;
+  font-display: swap; src: url("./fonts/cormorant-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Sans 3"; font-style: normal; font-weight: 300 700;
+  font-display: swap; src: url("./fonts/source-sans.woff2") format("woff2");
+}
+
+/* Mapea las variables de fuente que usan los tokens canónicos. */
+:root {
+  --font-cormorant: "Cormorant Garamond";
+  --font-source-sans: "Source Sans 3";
+}
+
+/* ===== Escenario de hojas A4 ===== */
+.stage { display: flex; flex-direction: column; align-items: center; }
+.a4 {
+  width: 210mm; height: 297mm; background: #ffffff;
+  position: relative; overflow: hidden;
+}
+.a4 * { box-sizing: border-box; }
+
+.mono { font-family: var(--font-mono); }
+.rule-soft { border-color: rgba(7, 61, 36, .14); }
+
+/* Placeholder de foto con rayas botánicas */
+.photo-ph {
+  background-color: #d6e7dc;
+  background-image: repeating-linear-gradient(135deg, rgba(7,61,36,.10) 0 2px, transparent 2px 13px);
+}
+.photo-ph-dark {
+  background-color: #0c5a36;
+  background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.10) 0 2px, transparent 2px 13px);
+}
+
+/* ===== Impresión: una hoja A4 por página, sin márgenes ===== */
+@page { size: A4; margin: 0; }
+html, body { background: #ffffff; margin: 0; }
+.a4 { page-break-after: always; break-after: page; }
+.a4:last-child { page-break-after: auto; break-after: auto; }

@@ -5,6 +5,14 @@
 /.next/
 /out/
 
+# pdf del catálogo (artefacto generado en build, ver #14)
+/public/catalogo-aves-chirimoyo.pdf
+/print/_print.generated.css
+/print/_render.html
+/print/_shots/
+/print/_photo-tool.html
+# nota: print/photo-selections.json SÍ se versiona (es curación, no artefacto)
+
 # next
 next-env.d.ts
 *.tsbuildinfo
