@@ -1,0 +1,578 @@
+{
+  "gallinago-delicata": {
+    "archivo": "DSCN3085.JPG",
+    "crop": {
+      "x": 0.14901477832512305,
+      "y": 0.13793103448275856,
+      "w": 0.8280958043145915,
+      "h": 0.8620689655172414
+    }
+  },
+  "rupornis-magnirostris": {
+    "archivo": "DSCN3129.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0.07407407407407411,
+      "w": 0.8894362342638203,
+      "h": 0.9259259259259258
+    }
+  },
+  "botaurus-lentiginosus": {
+    "archivo": "DSCN1923.JPG",
+    "crop": {
+      "x": 0.03940886699507396,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "himantopus-mexicanus": {
+    "archivo": "DSCN9156.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "melanerpes-aurifrons": {
+    "archivo": "DSCN6022.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "spatula-discors": {
+    "archivo": "DSCN2995.JPG",
+    "crop": {
+      "x": 0.03940886699507396,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "cyanocorax-morio": {
+    "archivo": "Cyanocorax_morio_03.jpg",
+    "crop": {
+      "x": 0.0557266009852217,
+      "y": 0,
+      "w": 0.8885467980295566,
+      "h": 0.9999999999999999
+    }
+  },
+  "setophaga-petechia": {
+    "archivo": "DSCN3102.JPG",
+    "crop": {
+      "x": 0.1431084749170604,
+      "y": 0.15818839851211428,
+      "w": 0.6534633557856641,
+      "h": 0.6802721088435375
+    }
+  },
+  "parkesia-noveboracensis": {
+    "archivo": "DSCN5999.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "cardellina-pusilla": {
+    "archivo": "DSCN8660.JPG",
+    "crop": {
+      "x": 0.03940886699507396,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "mniotilta-varia": {
+    "archivo": "DSCN0700_1.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "charadrius-vociferus": {
+    "archivo": "DSCN9068.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "saucerottia-beryllina": {
+    "archivo": "DSCN2778.JPG",
+    "crop": {
+      "x": 0.03940886699507396,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "nannopterum-brasilianum": {
+    "archivo": "DSCN8157.JPG",
+    "crop": {
+      "x": 0.03940886699507396,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "fulica-americana": {
+    "archivo": "DSCN1102.JPG",
+    "crop": {
+      "x": 0.03940886699507396,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "gallinula-galeata": {
+    "archivo": "Gallinula_galeata_08.jpeg",
+    "crop": {
+      "x": 0,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "porphyrio-martinicus": {
+    "archivo": "DSCN4832.JPG",
+    "crop": {
+      "x": 0.03940886699507396,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "butorides-virescens": {
+    "archivo": "DSCN0450_1.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "egretta-caerulea": {
+    "archivo": "DSCN0238.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0.2070971232753179,
+      "w": 1,
+      "h": 0.5858057534493643
+    }
+  },
+  "ardea-alba": {
+    "archivo": "DSCN5885_dup.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "nycticorax-nycticorax": {
+    "archivo": "DSCN8432.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "egretta-thula": {
+    "archivo": "DSCN5983.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "bubulcus-ibis": {
+    "archivo": "DSCN4728.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "ardea-herodias": {
+    "archivo": "Ardea_herodias_03.png",
+    "crop": {
+      "x": 0,
+      "y": 0.19720365314000565,
+      "w": 1,
+      "h": 0.6116184916674513
+    }
+  },
+  "stelgidopteryx-serripennis": {
+    "archivo": "DSCN9185.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "hirundo-rustica": {
+    "archivo": "Hirundo_rustica_05.jpeg",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "melospiza-georgiana": {
+    "archivo": "DSCN4755.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "falco-rufigularis": {
+    "archivo": "Falco_rufigularis_04.jpeg",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "eudocimus-albus": {
+    "archivo": "DSCN1612.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "plegadis-chihi": {
+    "archivo": "DSCN0192.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0.061367120569934167,
+      "w": 1,
+      "h": 0.5858057534493643
+    }
+  },
+  "pitangus-sulphuratus": {
+    "archivo": "DSCN5521.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "megaceryle-alcyon": {
+    "archivo": "DSCN4096.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0.10032464604563081,
+      "w": 1,
+      "h": 0.5858057534493643
+    }
+  },
+  "geothlypis-trichas": {
+    "archivo": "DSCN3181.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "turdus-grayi": {
+    "archivo": "DSCN3139.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "pyrocephalus-rubinus": {
+    "archivo": "DSCN5118.JPG",
+    "crop": {
+      "x": 0.021551724137931175,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "psarocolius-wagleri": {
+    "archivo": "Psarocolius_wagleri_06.jpg",
+    "crop": {
+      "x": 0,
+      "y": 0,
+      "w": 0.9025554187192117,
+      "h": 1
+    }
+  },
+  "psarocolius-montezuma": {
+    "archivo": "Psarocolius_montezuma_05.jpeg",
+    "crop": {
+      "x": 0.017857142857142995,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "streptopelia-decaocto": {
+    "archivo": "DSCN1552.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "sayornis-nigricans": {
+    "archivo": "DSCN4578.JPG",
+    "crop": {
+      "x": 0.3113716394626723,
+      "y": 0.20458203852355025,
+      "w": 0.5189774998910603,
+      "h": 0.5402688845019756
+    }
+  },
+  "setophaga-pitiayumi": {
+    "archivo": "DSCN4737.JPG",
+    "crop": {
+      "x": 0.29041293273630253,
+      "y": 0.2791018846617538,
+      "w": 0.5189774998910603,
+      "h": 0.5402688845019756
+    }
+  },
+  "aythya-affinis": {
+    "archivo": "Aythya_affinis_10.jpg",
+    "crop": {
+      "x": 0,
+      "y": 0.01767151767151767,
+      "w": 1,
+      "h": 0.9646569646569646
+    }
+  },
+  "aythya-americana": {
+    "archivo": "Aythya_americana_03.jpeg",
+    "crop": {
+      "x": 0.06473214285714288,
+      "y": 0,
+      "w": 0.8705357142857142,
+      "h": 1
+    }
+  },
+  "aythya-valisineria": {
+    "archivo": "Aythya_valisineria_01.jpeg",
+    "crop": {
+      "x": 0.21560590640107669,
+      "y": 0.1306746552451318,
+      "w": 0.6266310536925428,
+      "h": 0.7350298527964534
+    }
+  },
+  "spatula-clypeata": {
+    "archivo": "Spatula_clypeata_02.jpeg",
+    "crop": {
+      "x": 0.012501567329863081,
+      "y": 0.151965175119236,
+      "w": 0.7625482118174043,
+      "h": 0.7938322410201696
+    }
+  },
+  "oxyura-jamaicensis": {
+    "archivo": "DSCN2486.JPG",
+    "crop": {
+      "x": 0.2986095835268896,
+      "y": 0.1771544768677691,
+      "w": 0.605335355872933,
+      "h": 0.6301696268831045
+    }
+  },
+  "polioptila-caerulea": {
+    "archivo": "DSCN4687.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "dendrocygna-autumnalis": {
+    "archivo": "DSCN1613.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "actitis-macularius": {
+    "archivo": "DSCN7832.JPG",
+    "crop": {
+      "x": 0.12605808843569605,
+      "y": 0.06006833933611288,
+      "w": 0.7625482118174043,
+      "h": 0.7938322410201696
+    }
+  },
+  "laterallus-ruber": {
+    "archivo": "DSCN4960.JPG",
+    "crop": {
+      "x": 0.25554042984960457,
+      "y": 0.22859998742486737,
+      "w": 0.5188529652171655,
+      "h": 0.5401392407132543
+    }
+  },
+  "aramides-albiventris": {
+    "archivo": "DSCN8496.JPG",
+    "crop": {
+      "x": 0.14964276942140947,
+      "y": 0.26866876554025143,
+      "w": 0.6537621843427677,
+      "h": 0.680583197033753
+    }
+  },
+  "saltator-atriceps": {
+    "archivo": "Saltator_atriceps_06.jpg",
+    "crop": {
+      "x": 0,
+      "y": 0.19848557692307697,
+      "w": 1,
+      "h": 0.5514182692307693
+    }
+  },
+  "saltator-grandis": {
+    "archivo": "Saltator_grandis_07.jpg",
+    "crop": {
+      "x": 0,
+      "y": 0.2070971232753179,
+      "w": 1,
+      "h": 0.5858057534493643
+    }
+  },
+  "volatinia-jacarina": {
+    "archivo": "Volatinia_jacarina_01.jpg",
+    "crop": {
+      "x": 0,
+      "y": 0.025007312079555425,
+      "w": 1,
+      "h": 0.9499853758408892
+    }
+  },
+  "sporophila-morelleti": {
+    "archivo": "DSCN0648.JPG",
+    "crop": {
+      "x": 0,
+      "y": 0.2070971232753179,
+      "w": 1,
+      "h": 0.5858057534493643
+    }
+  },
+  "thraupis-abbas": {
+    "archivo": "DSCN9022.JPG",
+    "crop": {
+      "x": 0.2422668311725627,
+      "y": 0.13456370208532473,
+      "w": 0.6537621843427677,
+      "h": 0.680583197033753
+    }
+  },
+  "tyrannus-melancholicus": {
+    "archivo": "DSCN4711.JPG",
+    "crop": {
+      "x": 0.03940886699507396,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "columbina-inca": {
+    "archivo": "DSCN5130.JPG",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "chaetura-vauxi": {
+    "archivo": "Chaetura_vauxi_03.jpg",
+    "crop": {
+      "x": 0,
+      "y": 0.20672355769230766,
+      "w": 1,
+      "h": 0.5865528846153846
+    }
+  },
+  "vireo-solitarius": {
+    "archivo": "Vireo_solitarius_09.jpeg",
+    "crop": {
+      "x": 0.01970443349753698,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "tachybaptus-dominicus": {
+    "archivo": "DSCN5918.JPG",
+    "crop": {
+      "x": 0.17819813710697155,
+      "y": 0.17593511416116978,
+      "w": 0.7060631590901891,
+      "h": 0.7350298527964533
+    }
+  },
+  "podilymbus-podiceps": {
+    "archivo": "DSCN2218.JPG",
+    "crop": {
+      "x": 0.08450898715077337,
+      "y": 0.14515800209826407,
+      "w": 0.7060631590901891,
+      "h": 0.7350298527964533
+    }
+  },
+  "quiscalus-mexicanus": {
+    "archivo": "DSCN1152.JPG",
+    "crop": {
+      "x": 0.0012315270935960943,
+      "y": 0,
+      "w": 0.9605911330049262,
+      "h": 1
+    }
+  },
+  "cathartes-aura": {
+    "archivo": "DSCN8531.JPG",
+    "crop": {
+      "x": 0.06462418635292898,
+      "y": 0.18646732849658348,
+      "w": 0.605335355872933,
+      "h": 0.6301696268831045
+    }
+  },
+  "coragyps-atratus": {
+    "archivo": "Coragyps_atratus_02.jpg",
+    "crop": {
+      "x": 0,
+      "y": 0,
+      "w": 0.8545258620689655,
+      "h": 1
+    }
+  }
+}

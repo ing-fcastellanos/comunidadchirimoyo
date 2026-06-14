@@ -27,16 +27,26 @@ export function CierreCTA() {
           </h2>
         </div>
 
-        <Link
-          href="/busqueda"
-          className="group inline-flex shrink-0 items-center justify-center gap-2.5 rounded-xl bg-mint px-7 py-4 text-[17px] font-semibold text-pine-deep shadow-card transition-colors hover:bg-mint-deep hover:text-paper focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40"
-        >
-          Ir al catálogo
-          <Icon
-            name="ArrowRight"
-            className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
-          />
-        </Link>
+        <div className="flex shrink-0 flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+          <Link
+            href="/busqueda"
+            className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-mint px-7 py-4 text-[17px] font-semibold text-pine-deep shadow-card transition-colors hover:bg-mint-deep hover:text-paper focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40"
+          >
+            Ir al catálogo
+            <Icon
+              name="ArrowRight"
+              className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
+            />
+          </Link>
+          <a
+            href="/catalogo-aves-chirimoyo.pdf"
+            download
+            className="group inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-4 text-[17px] font-semibold text-mint ring-1 ring-mint/40 transition-colors hover:bg-mint/10 focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40"
+          >
+            Descargar guía en PDF
+            <Icon name="Download" className="h-5 w-5 transition-transform group-hover:translate-y-0.5" />
+          </a>
+        </div>
       </div>
     </section>
   );

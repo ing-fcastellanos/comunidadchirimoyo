@@ -22,6 +22,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0016 | Storage de imágenes de fauna en GCS, servidas por URL pública del bucket | Accepted | 1 | [0016-storage-imagenes-fauna-gcs.md](../decisions/0016-storage-imagenes-fauna-gcs.md) |
 | 0017 | Storage de audio de fauna en GCS (verbatim), servido por URL pública del bucket | Accepted | 1 | [0017-storage-audio-fauna-gcs.md](../decisions/0017-storage-audio-fauna-gcs.md) |
 | 0018 | Mapa de distribución: geografía real (Natural Earth) + zonas curadas por país | Accepted | 1 | [0018-mapa-distribucion-geografia-real.md](../decisions/0018-mapa-distribucion-geografia-real.md) |
+| 0019 | PDF del catálogo generado en build con navegador headless | Accepted | 1 | [0019-pdf-catalogo-build-headless.md](../decisions/0019-pdf-catalogo-build-headless.md) |
 
 ## Estados
 
