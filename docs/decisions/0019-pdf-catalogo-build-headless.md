@@ -24,8 +24,10 @@ Había que decidir: (a) **cuándo** se genera el PDF y (b) **con qué motor** se
    lee las fichas con el data layer del catálogo (`getAllFichas`), las maqueta y emite **un
    único PDF** en `public/catalogo-aves-chirimoyo.pdf`, que `next build` copia a `out/`. El
    "botón de descarga" del catálogo es un enlace a ese archivo. **No** hay generación on-demand
-   ni endpoint de API (respeta ADR-0006). El PDF se regenera en cada build (`build` ejecuta
-   `build:pdf` antes de `next build`).
+   ni endpoint de API (respeta ADR-0006). `build:pdf` se ejecuta en el **deploy**
+   (`deploy_prod` = `build:pdf` + `build` + firebase deploy), **no** dentro de `npm run build`:
+   el CI (ADR-0009) compila sin Chromium ni banco de imágenes, así que el PDF se genera en una
+   máquina con el banco local al publicar.
 
 2. **Render con Chromium headless (Playwright) sobre una plantilla de impresión dedicada.**
    Las cinco plantillas se portan a React (`apps/catalogo/print/templates/`), se renderizan con

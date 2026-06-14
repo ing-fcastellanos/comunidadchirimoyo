@@ -9,15 +9,19 @@ Next.js 15 (App Router) · TypeScript · Tailwind v4. **Catálogo 100% estático
 ```bash
 npm install
 npm run dev            # servidor de desarrollo (:3000)
-npm run build          # build:pdf + next build → genera out/ (estático)
-npm run build:pdf      # solo el PDF del catálogo → public/catalogo-aves-chirimoyo.pdf
+npm run build          # next build → genera out/ (estático). NO genera el PDF.
+npm run build:pdf      # genera el PDF del catálogo → public/catalogo-aves-chirimoyo.pdf
 npm run typecheck      # tsc --noEmit
 npm run lint           # eslint
 npm run sync:tokens    # regenera app/tokens.css desde docs/design-system/
-npm run deploy_prod    # build + firebase deploy (hosting:prod)
+npm run deploy_prod    # build:pdf + build + firebase deploy (hosting:prod)
 ```
 
 Para previsualizar el export: `npx serve out`.
+
+> **PDF y CI:** `build:pdf` **no** forma parte de `npm run build` (lo usa el CI, que no
+> tiene Chromium ni el banco de imágenes). El PDF se genera en el **deploy** (`deploy_prod`),
+> en una máquina con el banco local. Ver ADR-0019.
 
 ## PDF del catálogo (#14, ADR-0019)
 

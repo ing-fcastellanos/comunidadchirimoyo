@@ -11,7 +11,7 @@ generación SHALL ocurrir en build, NO en runtime, NO en cliente y NO mediante e
 quedar disponible como archivo estático del export en `out/catalogo-aves-chirimoyo.pdf`.
 
 #### Scenario: El build produce el PDF estático
-- **WHEN** se ejecuta el build del catálogo
+- **WHEN** se ejecuta la generación del PDF en build (`build:pdf`, parte del flujo de deploy) seguida de `next build`
 - **THEN** existe `out/catalogo-aves-chirimoyo.pdf` con una página por cada especie del catálogo, más las páginas de marca
 
 #### Scenario: Sin dependencia del API

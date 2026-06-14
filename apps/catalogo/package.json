@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run build:pdf && next build",
+    "build": "next build",
     "build:pdf:css": "tailwindcss -i ./print/print.css -o ./print/_print.generated.css --minify",
     "build:pdf": "npm run build:pdf:css && tsx ./scripts/build-pdf.mts",
     "photo:tool": "tsx ./scripts/build-photo-tool.mts",
@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "sync:tokens": "node ../../scripts/sync-design-tokens.mjs",
     "firebase:deploy:prod": "firebase deploy --only hosting:prod --project=chirimoyo",
-    "deploy_prod": "npm run build && npm run firebase:deploy:prod"
+    "deploy_prod": "npm run build:pdf && npm run build && npm run firebase:deploy:prod"
   },
   "dependencies": {
     "clsx": "^2.1.1",
