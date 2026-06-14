@@ -53,9 +53,9 @@ export const IntroLegend = ({ data }: { data: CatalogData }) => (
       <div className="grid grid-cols-[1.45fr_1fr] gap-6">
         <div>
           <p className="font-serif text-[17.5px] leading-[1.5] text-ink">
-            El humedal de <span className="italic text-forest-deep">Chirimoyo</span>, en las faldas del Pico de
-            Orizaba, es un mosaico de lagunas, canales y pastizales inundables que ofrece refugio, alimento y
-            sitios de descanso a decenas de aves residentes y migratorias.
+            El humedal de <span className="italic text-forest-deep">Chirimoyo</span>, es una laguna urbana al 
+            norte de Orizaba que filtra el agua, amortigua las inundaciones y da refugio a decenas de especies. 
+            Es una de las últimas zonas húmedas vivas de la ciudad.
           </p>
           <p className="mt-4 text-[13px] leading-[1.62] text-ink-soft">
             Esta guía reúne las especies que la comunidad ha observado y documentado. Cada ficha resume, en una
