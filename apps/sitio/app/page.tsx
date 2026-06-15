@@ -1,28 +1,73 @@
-import { Section } from "@/components/ui/Section";
-import { Badge } from "@/components/ui/Badge";
+/* page.tsx — landing de chirimoyo.org. Server Component que compone las secciones
+   consumiendo content/landing/ vía el data-layer (lib/landing.ts). Sin API.
 
-export default function Landing() {
+   NOTA: las secciones "Logros" (línea de tiempo) y "Linktree" están pendientes del
+   handoff de diseño v0.dev (CLAUDE.md; tareas 5.5 y 5.6 del change landing-chirimoyo-org).
+   Se insertan aquí, en su lugar, cuando lleguen los componentes portados. */
+import { Hero } from "@/components/landing/Hero";
+import { ElCaso } from "@/components/landing/ElCaso";
+import { QueHacemos } from "@/components/landing/QueHacemos";
+import { LineaTiempo } from "@/components/landing/LineaTiempo";
+import { GaleriaTeaser } from "@/components/landing/GaleriaTeaser";
+import { Linktree } from "@/components/landing/Linktree";
+import { Donaciones } from "@/components/landing/Donaciones";
+import { AliadosPreview } from "@/components/landing/AliadosPreview";
+import { CierreCTA } from "@/components/landing/CierreCTA";
+import {
+  getLucha,
+  getActividades,
+  getLogros,
+  getEnlaces,
+  getDonaciones,
+  getAliados,
+  getHeroSlides,
+  getGaleria,
+  getGaleriaFotos,
+  mediaUrl,
+} from "@/lib/landing";
+
+export default async function Landing() {
+  const [
+    lucha,
+    heroSlides,
+    actividades,
+    logros,
+    galeria,
+    galeriaFotos,
+    enlaces,
+    donaciones,
+    aliados,
+  ] = await Promise.all([
+    getLucha(),
+    getHeroSlides(),
+    getActividades(),
+    getLogros(),
+    getGaleria(),
+    getGaleriaFotos(),
+    getEnlaces(),
+    getDonaciones(),
+    getAliados(),
+  ]);
+
   return (
-    <Section className="py-16 sm:py-24">
-      <div className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
-        Andamiaje · chirimoyo.org
-      </div>
-      <h1 className="mt-3 font-serif text-[clamp(44px,8vw,80px)] font-semibold leading-[0.95] text-forest-deep">
-        Defendemos el humedal del Chirimoyo
-      </h1>
-      <p className="mt-5 max-w-xl text-[18px] leading-relaxed text-ink/80">
-        Landing de la Comunidad — introducción a la lucha, linktree y contacto.
-        Página placeholder del scaffold; confirma el sistema de diseño y el
-        ruteo por subdominio.
-      </p>
-      <div className="mt-7 flex flex-wrap gap-2.5">
-        <Badge tone="forest">Comunidad</Badge>
-        <Badge tone="teal">Voluntarios</Badge>
-        <Badge tone="ochre">Aves</Badge>
-      </div>
-      <p className="mt-10 text-[15px] text-ink-soft/80">
-        Contenido real (linktree, contacto) → Fase 3.
-      </p>
-    </Section>
+    <>
+      <Hero titulo={lucha.titulo} resumen={lucha.resumen} slides={heroSlides} />
+      <ElCaso
+        secciones={lucha.secciones}
+        fotoUrl={mediaUrl(lucha.casoFoto)}
+        fotoAlt={lucha.casoFotoAlt}
+      />
+      <QueHacemos data={actividades} />
+      <LineaTiempo data={logros} />
+      <GaleriaTeaser
+        titulo={galeria.titulo}
+        resumen={galeria.resumen}
+        fotos={galeriaFotos}
+      />
+      <Donaciones data={donaciones} />
+      <AliadosPreview data={aliados} />
+      <Linktree data={enlaces} />
+      <CierreCTA />
+    </>
   );
 }

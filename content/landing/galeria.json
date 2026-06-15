@@ -1,0 +1,55 @@
+{
+  "titulo": "El humedal y su gente",
+  "resumen": "Jornadas, fauna y vida comunitaria alrededor de la laguna del Chirimoyo.",
+  "_nota": "Manifiesto de fotos (ADR-0021). El orden de 'fotos' es el orden de la galería. 'hero: true' marca las que rotan en el carrusel del landing. 'archivo' es relativo a la base de medios (bucket comunidad-chirimoyo; ver NEXT_PUBLIC_COMUNIDAD_CDN_BASE). Las fotos actuales son una MUESTRA DE PRUEBA con nombres originales; se reemplazan/renombran con el set curado.",
+  "fotos": [
+    {
+      "slug": "jornada-limpieza-lirio",
+      "archivo": "galeria/comunidad/WhatsApp Image 2026-06-15 at 1.50.56 AM.jpeg",
+      "alt": "Personas dentro del agua sacando lirio acuático durante una jornada de limpieza del humedal, con la sierra al fondo.",
+      "pie": "Jornada de limpieza retirando lirio acuático.",
+      "orientacion": "horizontal",
+      "hero": true
+    },
+    {
+      "slug": "persona-recolecta-lirio",
+      "archivo": "galeria/comunidad/WhatsApp Image 2026-06-15 at 1.50.59 AM.jpeg",
+      "alt": "Una persona de pie en el agua entre lirios mira el humedal, con nubes y montañas al fondo.",
+      "pie": "El humedal al amanecer, durante una jornada.",
+      "orientacion": "vertical",
+      "hero": true
+    },
+    {
+      "slug": "humedal-lirio-panoramica",
+      "archivo": "galeria/comunidad/WhatsApp Image 2026-06-15 at 1.50.56 AM (3).jpeg",
+      "alt": "Panorámica del humedal del Chirimoyo cubierto de lirio acuático, con Orizaba y la sierra detrás.",
+      "pie": "La laguna cubierta de lirio acuático.",
+      "orientacion": "horizontal",
+      "hero": true
+    },
+    {
+      "slug": "malecon-familias",
+      "archivo": "galeria/comunidad/WhatsApp Image 2026-06-15 at 1.50.58 AM.jpeg",
+      "alt": "Familias y un niño asomados al barandal del malecón observando el humedal verde.",
+      "pie": "Vecinas y vecinos en el malecón del humedal.",
+      "orientacion": "vertical",
+      "hero": true
+    },
+    {
+      "slug": "mural-aves-comunidad",
+      "archivo": "galeria/comunidad/WhatsApp Image 2026-06-15 at 1.50.56 AM (6).jpeg",
+      "alt": "Mural urbano con aves del humedal pintadas en azul sobre la fachada de una calle.",
+      "pie": "Mural comunitario con las aves del Chirimoyo.",
+      "orientacion": "horizontal",
+      "hero": false
+    },
+    {
+      "slug": "reunion-comunidad",
+      "archivo": "galeria/comunidad/WhatsApp Image 2026-06-15 at 1.50.58 AM (3).jpeg",
+      "alt": "Grupo de personas reunidas al aire libre escuchando a alguien junto al humedal.",
+      "pie": "Encuentro de la comunidad junto a la laguna.",
+      "orientacion": "vertical",
+      "hero": false
+    }
+  ]
+}

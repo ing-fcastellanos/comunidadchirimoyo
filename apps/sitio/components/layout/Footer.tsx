@@ -13,6 +13,8 @@ export function Footer() {
           <a className="hover:text-forest-deep" href="/comunidad">Comunidad</a>
           <a className="hover:text-forest-deep" href="/voluntarios">Voluntarios</a>
           <a className="hover:text-forest-deep" href="https://aves.chirimoyo.org">Catálogo de aves</a>
+          <a className="hover:text-forest-deep" href="/galeria">Galería</a>
+          <a className="hover:text-forest-deep" href="/aliados">Proyectos aliados</a>
           <a className="hover:text-forest-deep" href="mailto:contacto@chirimoyo.org">Contacto</a>
         </div>
         <p className="mt-8 text-[13px] text-ink-soft/70">© Comunidad Chirimoyo</p>

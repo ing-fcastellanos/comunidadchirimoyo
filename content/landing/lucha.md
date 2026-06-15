@@ -3,6 +3,10 @@ titulo: "Defendemos el humedal del Chirimoyo"
 resumen: "Una laguna urbana viva en el norte de Orizaba que la comunidad protege para que sea reconocida y cuidada como el ecosistema que es."
 actualizado: "2026-06-15"
 estado: borrador
+# Foto de la sección "el caso" (ruta relativa a la base de medios; ver ADR-0021).
+# El hero ya no se define aquí: rota las fotos con hero:true de galeria.json.
+casoFoto: "galeria/comunidad/WhatsApp Image 2026-06-15 at 1.50.56 AM (3).jpeg"
+casoFotoAlt: "Panorámica del humedal del Chirimoyo cubierto de lirio acuático, con Orizaba y la sierra detrás."
 ---
 
 <!-- BORRADOR editable. Punto de partida para la reunión con la comunidad.
