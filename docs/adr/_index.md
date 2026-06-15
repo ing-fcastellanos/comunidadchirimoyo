@@ -24,6 +24,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0018 | Mapa de distribución: geografía real (Natural Earth) + zonas curadas por país | Accepted | 1 | [0018-mapa-distribucion-geografia-real.md](../decisions/0018-mapa-distribucion-geografia-real.md) |
 | 0019 | PDF del catálogo generado en build con navegador headless | Accepted | 1 | [0019-pdf-catalogo-build-headless.md](../decisions/0019-pdf-catalogo-build-headless.md) |
 | 0020 | Analítica web: Cloudflare Web Analytics (supersede 0010) | Accepted | 5 | [0020-analitica-cloudflare-web-analytics.md](../decisions/0020-analitica-cloudflare-web-analytics.md) |
+| 0021 | Storage de imágenes de comunidad en GCS, en bucket propio separado del de fauna | Accepted | 3 | [0021-storage-imagenes-comunidad-gcs.md](../decisions/0021-storage-imagenes-comunidad-gcs.md) |
 
 ## Estados
 
