@@ -142,15 +142,15 @@ export const SpeciesSheet = ({ data, logo }: { data: SpeciesVM; logo?: string | 
         {data.blocks.donde && <TextBlock icon="binoculars" title="Dónde y cuándo observarla">{data.blocks.donde}</TextBlock>}
       </div>
 
-      {/* franja inferior: registro + QR (empujada al fondo del cuerpo) */}
+      {/* franja inferior: mensaje + QR (empujada al fondo del cuerpo) */}
       <div className="mt-auto flex shrink-0 items-center justify-between gap-6 rounded-xl bg-paper-deep/55 px-5 py-3.5 ring-1 ring-forest/10">
         <div className="flex items-center gap-3">
           <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-forest-deep text-mint-soft">
-            <Icon name="pencil-line" className="h-[17px] w-[17px]" />
+            <Icon name="shield" className="h-[17px] w-[17px]" />
           </span>
           <div className="leading-tight">
-            <div className="text-[12.5px] font-700 text-forest-deep">¿La observaste? Regístrala.</div>
-            <p className="text-[11px] text-ink-soft">Anota fecha, hora y sitio en la laguna; tu registro alimenta el monitoreo comunitario.</p>
+            <div className="text-[12.5px] font-700 text-forest-deep">Conocer es proteger.</div>
+            <p className="text-[11px] text-ink-soft">Cada especie que aprendes a reconocer es una razón más para defender el humedal.</p>
           </div>
         </div>
         <div className="flex shrink-0 items-center gap-2.5">

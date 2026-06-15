@@ -95,7 +95,7 @@ export const Closing = ({ data }: { data: CatalogData }) => (
           <h3 className="mt-2.5 font-serif text-[30px] font-600 leading-tight text-white">Defiende el humedal de Chirimoyo</h3>
           <ul className="mt-4 grid grid-cols-1 gap-2.5">
             {([
-              ["binoculars", "Registra tus avistamientos y súbelos a la plataforma comunitaria."],
+              ["binoculars", "Aprende a reconocer las especies del humedal con esta guía y el catálogo en línea."],
               ["hand-heart", "Súmate a las jornadas de limpieza y reforestación de las orillas."],
               ["megaphone", "Reporta descargas, rellenos o caza al comité del humedal."],
             ] as const).map(([ic, tx]) => (

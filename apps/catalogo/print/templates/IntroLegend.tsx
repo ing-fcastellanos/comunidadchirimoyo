@@ -60,7 +60,7 @@ export const IntroLegend = ({ data }: { data: CatalogData }) => (
           <p className="mt-4 text-[13px] leading-[1.62] text-ink-soft">
             Esta guía reúne las especies que la comunidad ha observado y documentado. Cada ficha resume, en una
             sola página, lo esencial para reconocer un ave en el campo y entender su papel en el ecosistema.
-            Consérvala seca, anota tus avistamientos y compártelos: cada registro ayuda a defender el humedal.
+            Consérvala seca, llévala al campo y compártela: conocer estas especies es el primer paso para defender el humedal.
           </p>
         </div>
         <div className="rounded-xl bg-paper-deep/60 p-4 ring-1 ring-forest/10">
@@ -68,7 +68,7 @@ export const IntroLegend = ({ data }: { data: CatalogData }) => (
           <div className="space-y-3">
             <Step icon="search" title="Observa y compara">Fíjate en tamaño, color, pico y dónde está el ave.</Step>
             <Step icon="book-open" title="Lee la ficha">Las insignias resumen estatus, rareza y protección.</Step>
-            <Step icon="map-pin" title="Registra el sitio">Anota fecha, hora y lugar de tu avistamiento.</Step>
+            <Step icon="camera" title="Mira más en línea">Escanea el QR de cada ficha: más fotos, cantos y su mapa.</Step>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@ export const IntroLegend = ({ data }: { data: CatalogData }) => (
         <div>
           <Kicker light className="mb-1.5">Consulta en línea</Kicker>
           <p className="text-[13px] text-mint-soft/95 max-w-[78%] leading-snug">
-            Fichas ampliadas, cantos y mapas de cada especie, más formas de sumarte al monitoreo comunitario.
+            Fichas ampliadas, cantos y mapas de cada especie, y cómo sumarte a la defensa del humedal.
           </p>
         </div>
         <div className="shrink-0 -my-1">
