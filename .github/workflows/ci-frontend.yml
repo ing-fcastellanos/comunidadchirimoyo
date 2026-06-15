@@ -33,7 +33,9 @@ jobs:
       - uses: actions/setup-node@v4
         if: steps.exists.outputs.go == 'true'
         with:
-          node-version: 22
+          # Versión única del toolchain: .nvmrc (raíz). CI y local no pueden
+          # divergir; subir de versión = editar ese archivo. Ver ADR-0022.
+          node-version-file: .nvmrc
           cache: npm
           cache-dependency-path: apps/${{ matrix.app }}/package-lock.json
 

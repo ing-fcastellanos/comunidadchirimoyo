@@ -40,5 +40,17 @@
     "tsx": "^4.19.0",
     "typescript": "^5",
     "@types/qrcode": "^1.5.5"
+  },
+  "engines": {
+    "node": ">=24.0.0 <25.0.0"
+  },
+  "comments": {
+    "engines": "Toolchain fijo (Node 24, ver .nvmrc y ADR-0022); engine-strict en .npmrc lo hace obligatorio para que el lockfile sea reproducible entre máquinas y CI.",
+    "overrides": "Endurecimiento extra: fija las deps wasm opcionales/transitivas de @emnapi (fallback de eslint/tailwind/sharp, no usadas con bindings nativos), un punto conocido de no-determinismo en lockfiles npm."
+  },
+  "overrides": {
+    "@emnapi/core": "1.11.1",
+    "@emnapi/runtime": "1.11.1",
+    "@emnapi/wasi-threads": "1.2.2"
   }
 }
