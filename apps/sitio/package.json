@@ -34,5 +34,13 @@
     "eslint-config-next": "^15.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "comments": {
+    "overrides": "Fija las deps wasm opcionales y transitivas de @emnapi (fallback de eslint/tailwind, no usadas con bindings nativos) para que el lockfile sea determinista entre versiones de npm y plataformas; sin esto npm ci falla en CI."
+  },
+  "overrides": {
+    "@emnapi/core": "1.11.1",
+    "@emnapi/runtime": "1.11.1",
+    "@emnapi/wasi-threads": "1.2.2"
   }
 }
