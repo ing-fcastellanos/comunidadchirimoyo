@@ -31,6 +31,14 @@ npm run deploy_prod    # docker build/push → Cloud Run 'sitio' → firebase de
 
 > Orden de deploy: **Cloud Run primero** (verificar vivo), **luego** `firebase deploy` (rewrite), para no romper `chirimoyo.org` durante el cambio.
 
+## Analítica (Cloudflare Web Analytics)
+
+Analítica respetuosa de la privacidad ([ADR-0020](../../docs/decisions/0020-analitica-cloudflare-web-analytics.md), supersede ADR-0010): sin cookies, sin PII, sin banner. Seguimiento **por dominio** — `components/Analytics.tsx` resuelve el token del beacon de Cloudflare según el host. Config por entorno (ver [`.env.example`](.env.example)):
+
+- `NEXT_PUBLIC_CF_BEACON_TOKENS` — JSON host→token de los tres dominios (un "site" de Cloudflare por dominio).
+
+`sitio` corre en Cloud Run: define esta variable como **env var del servicio** (`gcloud run ... --set-env-vars` o en la consola) o inyéctala en el build de la imagen. Si falta, la analítica se desactiva sin romper la app. El componente es copia sincronizada con `apps/catalogo` (ADR-0013).
+
 ## Sistema de diseño
 
 Tokens en `app/tokens.css` (generado con `npm run sync:tokens`; no editar a mano — ADR-0013). Header/Footer **propios de sitio** en `components/layout/`. Primitivas en `components/ui/`.

@@ -13,7 +13,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0007 | Donaciones informativas (sin pasarela) | Accepted | 4 | [0007-donaciones-informativas.md](../decisions/0007-donaciones-informativas.md) |
 | 0008 | Multi-subdominio desde una sola app (Firebase rewrites) | Accepted | 0 | [0008-multisubdominio-una-app.md](../decisions/0008-multisubdominio-una-app.md) |
 | 0009 | CI de checks (GitHub Actions) + deploy manual | Accepted | 0 | [0009-ci-checks-deploy-manual.md](../decisions/0009-ci-checks-deploy-manual.md) |
-| 0010 | Analítica respetuosa de privacidad | Accepted | 0 | [0010-analitica-privada.md](../decisions/0010-analitica-privada.md) |
+| 0010 | Analítica respetuosa de privacidad | Superseded by ADR-0020 | 0 | [0010-analitica-privada.md](../decisions/0010-analitica-privada.md) |
 | 0011 | Sistema de diseño desde v0.dev; solo-ES i18n-ready | Accepted | 0 | [0011-diseno-i18n.md](../decisions/0011-diseno-i18n.md) |
 | 0012 | Privacidad de datos de voluntarios | Accepted | 4 | [0012-privacidad-datos-voluntarios.md](../decisions/0012-privacidad-datos-voluntarios.md) |
 | 0013 | Tokens de diseño compartidos por copia desde fuente canónica | Accepted | 0 | [0013-tokens-compartidos-por-copia.md](../decisions/0013-tokens-compartidos-por-copia.md) |
@@ -23,6 +23,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0017 | Storage de audio de fauna en GCS (verbatim), servido por URL pública del bucket | Accepted | 1 | [0017-storage-audio-fauna-gcs.md](../decisions/0017-storage-audio-fauna-gcs.md) |
 | 0018 | Mapa de distribución: geografía real (Natural Earth) + zonas curadas por país | Accepted | 1 | [0018-mapa-distribucion-geografia-real.md](../decisions/0018-mapa-distribucion-geografia-real.md) |
 | 0019 | PDF del catálogo generado en build con navegador headless | Accepted | 1 | [0019-pdf-catalogo-build-headless.md](../decisions/0019-pdf-catalogo-build-headless.md) |
+| 0020 | Analítica web: Cloudflare Web Analytics (supersede 0010) | Accepted | 5 | [0020-analitica-cloudflare-web-analytics.md](../decisions/0020-analitica-cloudflare-web-analytics.md) |
 
 ## Estados
 

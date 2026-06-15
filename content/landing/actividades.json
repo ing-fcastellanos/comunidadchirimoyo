@@ -1,0 +1,60 @@
+{
+  "titulo": "Qué hace la comunidad",
+  "resumen": "Cuidamos el humedal con trabajo colectivo, ciencia ciudadana y divulgación.",
+  "actividades": [
+    {
+      "slug": "jornadas-limpieza",
+      "titulo": "Jornadas de limpieza",
+      "descripcion": "Limpiezas comunitarias del humedal y su entorno, de forma periódica y abierta a quien quiera sumarse.",
+      "icono": "Trash2"
+    },
+    {
+      "slug": "observacion-aves",
+      "titulo": "Observación de aves",
+      "descripcion": "Salidas de avistamiento y registro de especies que alimentan el catálogo de fauna.",
+      "icono": "Binoculars"
+    },
+    {
+      "slug": "ollas-comunitarias",
+      "titulo": "Ollas comunitarias",
+      "descripcion": "Comida compartida que sostiene el trabajo en jornadas y teje comunidad.",
+      "icono": "Soup"
+    },
+    {
+      "slug": "concientizacion",
+      "titulo": "Campañas de concientización",
+      "descripcion": "Difusión sobre el valor del humedal y por qué debe protegerse como ecosistema vivo.",
+      "icono": "Megaphone"
+    },
+    {
+      "slug": "festivales",
+      "titulo": "Festivales de aves y anfibios",
+      "descripcion": "Encuentros de divulgación para acercar a la gente a la fauna del Chirimoyo.",
+      "icono": "PartyPopper"
+    },
+    {
+      "slug": "reforestacion",
+      "titulo": "Reforestación",
+      "descripcion": "Plantación de especies nativas para recuperar y proteger el entorno del humedal.",
+      "icono": "TreePine"
+    },
+    {
+      "slug": "jardin-polinizadores",
+      "titulo": "Jardín de polinizadores",
+      "descripcion": "Espacio con plantas que atraen y alimentan abejas, mariposas y otros polinizadores.",
+      "icono": "Flower2"
+    },
+    {
+      "slug": "composta",
+      "titulo": "Composta comunitaria",
+      "descripcion": "Manejo de residuos orgánicos que vuelven al suelo en lugar de a la laguna.",
+      "icono": "Recycle"
+    },
+    {
+      "slug": "club-lectura",
+      "titulo": "Club de lectura",
+      "descripcion": "Encuentros para leer y pensar juntos el territorio, la ecología y la comunidad.",
+      "icono": "BookOpen"
+    }
+  ]
+}

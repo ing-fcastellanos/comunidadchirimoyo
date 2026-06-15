@@ -1,0 +1,55 @@
+{
+  "sitios": [
+    {
+      "slug": "aves",
+      "titulo": "Catálogo de aves y anfibios",
+      "descripcion": "Fichas de la fauna documentada en el humedal. Búscala por forma, color o dónde la viste.",
+      "url": "https://aves.chirimoyo.org",
+      "icono": "Bird"
+    },
+    {
+      "slug": "comunidad",
+      "titulo": "La comunidad",
+      "descripcion": "Historia del lugar, acciones, misión y visión, y noticias.",
+      "url": "https://comunidad.chirimoyo.org",
+      "icono": "Users"
+    },
+    {
+      "slug": "voluntarios",
+      "titulo": "Voluntarios y jornadas",
+      "descripcion": "Súmate a las jornadas de limpieza y mantenimiento del humedal.",
+      "url": "https://voluntarios.chirimoyo.org",
+      "icono": "HeartHandshake"
+    }
+  ],
+  "redes": [
+    {
+      "red": "facebook",
+      "titulo": "Facebook",
+      "url": "https://www.facebook.com/humedal.chirimoyo",
+      "icono": "Facebook"
+    },
+    {
+      "red": "instagram",
+      "titulo": "Instagram",
+      "url": "https://www.instagram.com/humedal_chirimoyo/",
+      "icono": "Instagram"
+    }
+  ],
+  "contacto": {
+    "email": "comunidad.chirimoyo@gmail.com",
+    "telefono": "+522721148281",
+    "telefonoDisplay": "272 114 8281"
+  },
+  "jornadas": {
+    "titulo": "Registra tu asistencia a las jornadas",
+    "calendarioUrl": "https://calendar.app.google/AXBtojjGAgcCjcMz7"
+  },
+  "ubicacion": {
+    "nombre": "Humedal El Chirimoyo",
+    "ciudad": "Orizaba, Veracruz",
+    "mapsUrl": "https://maps.app.goo.gl/RrurdkzT2ypB8u996",
+    "lat": 18.87920583444372,
+    "lng": -97.10394085740967
+  }
+}
