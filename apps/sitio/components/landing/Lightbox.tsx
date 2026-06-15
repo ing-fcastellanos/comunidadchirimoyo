@@ -132,11 +132,20 @@ export function Lightbox({
           alt={foto.alt}
           className="max-h-[72vh] w-auto max-w-full rounded-2xl object-contain shadow-[0_24px_60px_-20px_rgba(0,0,0,.6)] ring-1 ring-paper/15"
         />
-        {foto.pie && (
+        {(foto.pie || foto.credito || foto.fecha || hayVarias) && (
           <figcaption className="max-w-xl text-center">
-            <span className="font-mono text-[12px] leading-relaxed text-paper/85 text-pretty">
-              {foto.pie}
-            </span>
+            {foto.pie && (
+              <span className="font-mono text-[12px] leading-relaxed text-paper/85 text-pretty">
+                {foto.pie}
+              </span>
+            )}
+            {(foto.credito || foto.fecha) && (
+              <span className="mt-1 block font-mono text-[11px] text-paper/60">
+                {[foto.credito && `© ${foto.credito}`, foto.fecha]
+                  .filter(Boolean)
+                  .join(" · ")}
+              </span>
+            )}
             {hayVarias && (
               <span className="mt-1 block font-mono text-[11px] text-mint">
                 {indice + 1} / {fotos.length}

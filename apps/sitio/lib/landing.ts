@@ -57,6 +57,9 @@ export interface FotoGaleria {
   pie: string;
   orientacion: "horizontal" | "vertical";
   hero: boolean;
+  /** Autoría y fecha (ISO) — opcionales; los carga la comunidad (#45/#50). */
+  credito?: string | null;
+  fecha?: string | null;
 }
 export interface Galeria {
   titulo: string;
@@ -79,6 +82,8 @@ export interface FotoResuelta {
   alt: string;
   pie: string;
   orientacion: "horizontal" | "vertical";
+  credito: string | null;
+  fecha: string | null;
 }
 
 export interface Actividad {
@@ -253,6 +258,8 @@ export async function getGaleriaFotos(): Promise<FotoResuelta[]> {
       alt: f.alt,
       pie: f.pie,
       orientacion: f.orientacion,
+      credito: f.credito ?? null,
+      fecha: f.fecha ?? null,
     }))
     .filter((f) => f.src);
 }
