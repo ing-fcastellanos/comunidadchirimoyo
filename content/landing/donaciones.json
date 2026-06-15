@@ -1,0 +1,37 @@
+{
+  "titulo": "Donaciones voluntarias",
+  "intro": "Tu apoyo es fundamental para el cuidado del humedal: herramientas, plantas nativas, materiales para jornadas y difusión.",
+  "metodos": [
+    {
+      "tipo": "transferencia",
+      "titulo": "Transferencia bancaria (SPEI)",
+      "descripcion": "Desde cualquier banco a la CLABE. Llega como transferencia SPEI normal.",
+      "clabe": "728969000163929043",
+      "clabeDisplay": "7289 6900 0163 929 043",
+      "beneficiario": "Diana Angeles Solares",
+      "banco": "Spin by OXXO",
+      "icono": "Landmark"
+    },
+    {
+      "tipo": "spin",
+      "titulo": "Spin by OXXO (QR / link)",
+      "descripcion": "Donación rápida desde la app Spin by OXXO o escaneando el QR.",
+      "url": "https://prod.info.spinbyoxxo.com.mx/main/sendMoney/sendMoneyToUserWithQR/DianaIselaA6993",
+      "icono": "QrCode"
+    },
+    {
+      "tipo": "especie",
+      "titulo": "Donación en especie",
+      "descripcion": "Herramientas, plantas nativas, materiales o tu tiempo. Escríbenos y coordinamos.",
+      "contactoEmail": "comunidad.chirimoyo@gmail.com",
+      "icono": "Gift"
+    }
+  ],
+  "_ideasFuturas": [
+    "PayPal o Mercado Pago: para donantes fuera de México o que no usan Spin.",
+    "Padrinos/madrinas del humedal: aporte mensual recurrente vía SPEI programado.",
+    "Punto de acopio físico en negocios aliados para donaciones en especie.",
+    "Donación de árboles/plantas nativas etiquetada para reforestación.",
+    "Recibo deducible: explorar alianza con una A.C. ya constituida (a futuro)."
+  ]
+}

@@ -1,6 +1,6 @@
 # ADR-0010 — Analítica respetuosa de la privacidad
 
-- **Estado:** Accepted
+- **Estado:** Superseded by ADR-0020
 - **Fecha:** 2026-06-07
 - **Decisores:** @ing-fcastellanos
 - **Issue:** _kickoff_

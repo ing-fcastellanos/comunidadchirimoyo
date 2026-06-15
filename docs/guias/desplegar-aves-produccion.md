@@ -74,6 +74,18 @@ Esto encadena, en orden:
 Al terminar, Firebase imprime la **Hosting URL**. El deploy reemplaza la página de
 *coming soon* que servía el dominio.
 
+### Analítica (Cloudflare Web Analytics) — variables de build
+
+El catálogo es export estático: las `NEXT_PUBLIC_*` se inyectan en **`next build`**, no en
+runtime. Para que la analítica ([ADR-0020](../decisions/0020-analitica-cloudflare-web-analytics.md))
+quede en el `out/` desplegado, define **antes** de `npm run deploy_prod` (en `.env.local` o en
+el entorno que ejecuta el comando):
+
+- `NEXT_PUBLIC_CF_BEACON_TOKENS` — JSON `{"aves.chirimoyo.org":"<token>"}` (token del "site" de Cloudflare).
+
+Ver [`apps/catalogo/.env.example`](../../apps/catalogo/.env.example). Si falta, el sitio
+despliega igual pero **sin analítica** (degradación segura, sin error).
+
 ## 3. Smoke test en producción
 
 Abrir `https://aves.chirimoyo.org` y verificar:
@@ -84,6 +96,7 @@ Abrir `https://aves.chirimoyo.org` y verificar:
 - [ ] **Mapa de distribución** se renderiza en el detalle.
 - [ ] **PDF**: el botón "Descargar guía en PDF" del cierre descarga `catalogo-aves-chirimoyo.pdf`.
 - [ ] **Favicons**: pestaña con ícono de Chirimoyo; `site.webmanifest` resuelve.
+- [ ] **Analítica**: en `aves.chirimoyo.org` llega un pageview al panel de Cloudflare Web Analytics; sin cookies de rastreo ni banner.
 - [ ] **SSL** válido (candado, certificado de Firebase) y **performance** razonable (carga rápida vía CDN).
 
 ## 4. Cierre

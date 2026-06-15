@@ -1,0 +1,42 @@
+{
+  "titulo": "Lo que hemos logrado juntos",
+  "resumen": "Una línea de tiempo de las acciones de la comunidad en defensa del humedal.",
+  "_nota": "PLACEHOLDER — fechas y eventos de ejemplo. Recopilar datos reales con la comunidad y completar/ordenar. tipo: jornada | reconocimiento | festival | reforestacion | divulgacion | ciencia | hito.",
+  "hitos": [
+    {
+      "fecha": "2023-01",
+      "titulo": "Nace la Comunidad Chirimoyo",
+      "descripcion": "Vecinas y vecinos se organizan para defender la laguna frente a su uso como simple vaso regulador.",
+      "tipo": "hito",
+      "foto": null
+    },
+    {
+      "fecha": "2023-06",
+      "titulo": "Primera jornada de limpieza",
+      "descripcion": "PLACEHOLDER — primera limpieza comunitaria del humedal. Confirmar fecha y asistencia.",
+      "tipo": "jornada",
+      "foto": null
+    },
+    {
+      "fecha": "2024-03",
+      "titulo": "Primer festival de aves y anfibios",
+      "descripcion": "PLACEHOLDER — festival de divulgación. Confirmar fecha y alcance.",
+      "tipo": "festival",
+      "foto": null
+    },
+    {
+      "fecha": "2025-01",
+      "titulo": "Catálogo de fauna en línea",
+      "descripcion": "Publicación del catálogo de aves y anfibios documentados en el humedal.",
+      "tipo": "ciencia",
+      "foto": null
+    },
+    {
+      "fecha": "2026-XX",
+      "titulo": "PLACEHOLDER — próximo hito",
+      "descripcion": "Agregar acciones, reconocimientos o avances con el gobierno local conforme ocurran.",
+      "tipo": "hito",
+      "foto": null
+    }
+  ]
+}

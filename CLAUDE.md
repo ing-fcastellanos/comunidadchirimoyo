@@ -26,7 +26,7 @@ El stack y las convenciones se heredan de **Sociedad Salvaje** (`C:\Users\Frank\
 | Frontend estilos | Tailwind v4 + shadcn/ui (tokens derivados de los diseños v0.dev de aves) |
 | Frontend hosting | Cloud Run + Firebase Hosting rewrites |
 | Contenido | Markdown/JSON en `content/` |
-| Analítica | Privada (Plausible/Umami) — sin cookies de rastreo |
+| Analítica | Privada (Cloudflare Web Analytics, ADR-0020) — sin cookies de rastreo |
 
 **No** hay PostgreSQL, **no** hay Nx/Turborepo/workspaces, **no** hay CMS, **no** hay auth de usuarios, **no** hay pasarela de pagos. Si ves restos de otra stack: márcalo y corrige.
 
