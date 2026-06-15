@@ -4,9 +4,24 @@ import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { COMUNIDAD_URL } from "@/lib/links";
 
-/* La imagen del hero es la portada curada de la especie representativa (avetoro),
-   derivada del contenido en page.tsx y servida desde el bucket (ADR-0016). */
-export function Hero({ img, alt }: { img: string | null; alt: string }) {
+export interface HeroSlide {
+  src: string;
+  alt: string;
+  nombre: string;
+}
+
+/* Las imágenes del hero son las portadas curadas (fotos[0]) de las especies
+   destacadas (derivadas en page.tsx, servidas desde el bucket — ADR-0016) y
+   rotan en un carrusel automático por CSS (crossfade, sin JS). El delay negativo
+   escalonado pone cada slide en fase para que el bucle empalme sin salto. */
+const CYCLE_S = 16; // 4 fotos × 4 s
+function delayFor(i: number, total: number): string {
+  // i=0 → 0s; i>0 → negativo para que el slide i quede activo en [i·4s, (i+1)·4s]
+  return `${i === 0 ? 0 : (i - total) * (CYCLE_S / total)}s`;
+}
+
+export function Hero({ slides }: { slides: HeroSlide[] }) {
+  const animated = slides.length > 1;
   return (
     <section className="relative overflow-hidden border-b border-forest/10">
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-14 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-24">
@@ -46,21 +61,34 @@ export function Hero({ img, alt }: { img: string | null; alt: string }) {
           </div>
         </div>
 
-        {/* ---- Columna de imagen ---- */}
+        {/* ---- Columna de imagen (carrusel automático por CSS) ---- */}
         <figure className="relative">
-          <div className="overflow-hidden rounded-2xl bg-paper-deep shadow-card ring-1 ring-forest/10">
-            {img && (
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-paper-deep shadow-card ring-1 ring-forest/10 sm:aspect-square lg:aspect-[4/5]">
+            {slides.map((s, i) => (
               /* eslint-disable-next-line @next/next/no-img-element -- export estático, imágenes servidas desde el bucket (ADR-0016) */
               <img
-                src={img}
-                alt={alt}
-                className="aspect-[4/5] w-full object-cover sm:aspect-square lg:aspect-[4/5]"
+                key={s.src}
+                src={s.src}
+                alt={s.alt}
+                loading={i === 0 ? "eager" : "lazy"}
+                fetchPriority={i === 0 ? "high" : "auto"}
+                className={`absolute inset-0 h-full w-full object-cover ${animated ? "hero-slide" : ""}`}
+                style={animated ? { animationDelay: delayFor(i, slides.length) } : undefined}
               />
-            )}
+            ))}
           </div>
-          <figcaption className="absolute bottom-4 left-4 right-4 flex items-center gap-2 rounded-xl bg-pine-deep/70 px-4 py-2.5 font-mono text-[12px] tracking-wide text-paper/90 backdrop-blur">
-            <Icon name="Camera" className="h-4 w-4" />
-            Avetoro Norteño · Laguna del Chirimoyo
+          {/* Pies apilados: rotan sincronizados con la imagen (mismo ciclo y delay) */}
+          <figcaption className="absolute bottom-4 left-4 right-4 grid">
+            {slides.map((s, i) => (
+              <span
+                key={s.nombre}
+                className={`col-start-1 row-start-1 flex items-center gap-2 rounded-xl bg-pine-deep/70 px-4 py-2.5 font-mono text-[12px] tracking-wide text-paper/90 backdrop-blur ${animated ? "hero-cap" : ""}`}
+                style={animated ? { animationDelay: delayFor(i, slides.length) } : undefined}
+              >
+                <Icon name="Camera" className="h-4 w-4" />
+                {s.nombre} · Laguna del Chirimoyo
+              </span>
+            ))}
           </figcaption>
         </figure>
       </div>
