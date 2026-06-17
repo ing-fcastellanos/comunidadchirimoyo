@@ -11,7 +11,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0005 | Catálogo de fauna estático; anfibios como categoría | Accepted | 1 | [0005-catalogo-estatico-anfibios-categoria.md](../decisions/0005-catalogo-estatico-anfibios-categoria.md) |
 | 0006 | API mínima: inscripciones + contacto | Accepted | 0 | [0006-api-minima.md](../decisions/0006-api-minima.md) |
 | 0007 | Donaciones informativas (sin pasarela) | Accepted | 4 | [0007-donaciones-informativas.md](../decisions/0007-donaciones-informativas.md) |
-| 0008 | Multi-subdominio desde una sola app (Firebase rewrites) | Accepted | 0 | [0008-multisubdominio-una-app.md](../decisions/0008-multisubdominio-una-app.md) |
+| 0008 | Multi-subdominio desde una sola app (Firebase rewrites) | Superseded by ADR-0023 | 0 | [0008-multisubdominio-una-app.md](../decisions/0008-multisubdominio-una-app.md) |
 | 0009 | CI de checks (GitHub Actions) + deploy manual | Accepted | 0 | [0009-ci-checks-deploy-manual.md](../decisions/0009-ci-checks-deploy-manual.md) |
 | 0010 | Analítica respetuosa de privacidad | Superseded by ADR-0020 | 0 | [0010-analitica-privada.md](../decisions/0010-analitica-privada.md) |
 | 0011 | Sistema de diseño desde v0.dev; solo-ES i18n-ready | Accepted | 0 | [0011-diseno-i18n.md](../decisions/0011-diseno-i18n.md) |
@@ -26,6 +26,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0020 | Analítica web: Cloudflare Web Analytics (supersede 0010) | Accepted | 5 | [0020-analitica-cloudflare-web-analytics.md](../decisions/0020-analitica-cloudflare-web-analytics.md) |
 | 0021 | Storage de imágenes de comunidad en GCS, en bucket propio separado del de fauna | Accepted | 3 | [0021-storage-imagenes-comunidad-gcs.md](../decisions/0021-storage-imagenes-comunidad-gcs.md) |
 | 0022 | Toolchain de Node fijo y compartido (CI = local) para lockfiles reproducibles | Accepted | 0 | [0022-toolchain-node-fijo.md](../decisions/0022-toolchain-node-fijo.md) |
+| 0023 | Fusión de secciones en `chirimoyo.org` por paths, con redirects vanity (supersede 0008) | Accepted | 3 | [0023-fusion-secciones-paths-vanity-redirects.md](../decisions/0023-fusion-secciones-paths-vanity-redirects.md) |
 
 ## Estados
 
