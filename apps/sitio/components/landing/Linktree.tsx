@@ -2,6 +2,7 @@
    handoff v0.dev (components/Linktree.jsx). Server Component. Distinto de la nav
    del header: tarjetas grandes tocables + banda destacada (pine-deep) con redes,
    contacto y ubicación. Consume enlaces.json. */
+import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
@@ -99,10 +100,19 @@ export function Linktree({ data }: { data: Enlaces }) {
               Escríbenos
             </div>
             <div className="mt-4 flex flex-col gap-3">
+              {/* Acción primaria: el formulario de contacto (/contacto). El email
+                  queda como alternativa directa. */}
+              <Link
+                href="/contacto"
+                className={`inline-flex items-center gap-3 rounded-xl bg-mint px-4 py-3 text-[15px] font-semibold text-pine-deep transition hover:bg-mint-deep hover:text-paper ${focoClaro}`}
+              >
+                <Icon name="Send" className="h-5 w-5 shrink-0" />
+                <span className="min-w-0">Enviar un mensaje</span>
+              </Link>
               {email && (
                 <a
                   href={`mailto:${email}`}
-                  className={`inline-flex items-center gap-3 rounded-xl bg-mint px-4 py-3 text-[15px] font-semibold text-pine-deep transition hover:bg-mint-deep hover:text-paper ${focoClaro}`}
+                  className={`inline-flex items-center gap-3 rounded-xl bg-paper/10 px-4 py-3 text-[15px] font-semibold text-paper ring-1 ring-inset ring-paper/20 transition hover:bg-paper/20 ${focoClaro}`}
                 >
                   <Icon name="Mail" className="h-5 w-5 shrink-0" />
                   <span className="min-w-0 truncate">{email}</span>
