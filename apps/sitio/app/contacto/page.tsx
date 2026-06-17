@@ -8,6 +8,7 @@ export const metadata = {
   title: "Contacto",
   description:
     "Escríbenos: preguntas, voluntariado, prensa o alianzas para la defensa del humedal del Chirimoyo.",
+  alternates: { canonical: "/contacto" },
 };
 
 export default function ContactoPage() {

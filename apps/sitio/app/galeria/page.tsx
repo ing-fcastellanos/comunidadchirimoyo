@@ -4,7 +4,10 @@ import { Section } from "@/components/ui/Section";
 import { Galeria } from "@/components/landing/Galeria";
 import { getGaleria, getGaleriaFotos } from "@/lib/landing";
 
-export const metadata = { title: "Galería" };
+export const metadata = {
+  title: "Galería",
+  alternates: { canonical: "/galeria" },
+};
 
 export default async function GaleriaPage() {
   const [meta, fotos] = await Promise.all([getGaleria(), getGaleriaFotos()]);

@@ -1,7 +1,10 @@
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 
-export const metadata = { title: "Voluntarios" };
+export const metadata = {
+  title: "Voluntarios",
+  alternates: { canonical: "/voluntarios" },
+};
 
 export default function Voluntarios() {
   return (

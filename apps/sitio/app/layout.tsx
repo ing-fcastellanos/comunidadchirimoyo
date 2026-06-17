@@ -37,6 +37,16 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: {
+      default: "Comunidad Chirimoyo",
+      template: "%s | Comunidad Chirimoyo",
+    },
+    description:
+      "Vecinos y ecologistas en defensa del humedal de Chirimoyo, Orizaba, Veracruz.",
+    images: ["/og-default.jpg"],
+  },
 };
 
 export default function RootLayout({

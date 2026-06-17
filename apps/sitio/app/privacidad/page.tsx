@@ -12,6 +12,7 @@ export const metadata = {
   title: "Aviso de privacidad",
   description:
     "Cómo Comunidad Chirimoyo trata los datos personales que le compartes y los derechos que tienes sobre ellos.",
+  alternates: { canonical: "/privacidad" },
 };
 
 /** Convierte texto con **negritas** de markdown en nodos React, sin HTML crudo. */
