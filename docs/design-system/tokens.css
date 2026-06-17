@@ -32,6 +32,8 @@
 
   --color-ochre: #b08a2e;
   --color-terra: #b5543a;
+  --color-terra-wash: #f6e1da; /* fondo suave para badges de error */
+  --color-terra-deep: #8f3c25; /* texto sobre terra-wash (contraste AA) */
   --color-teal: #2f8d77;
 
   /* ===== Tipografía =====
