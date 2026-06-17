@@ -50,6 +50,16 @@ export interface Lucha {
   secciones: { titulo: string; cuerpo: string }[];
 }
 
+export interface Aviso {
+  titulo: string;
+  resumen: string;
+  actualizado: string | null;
+  /** Si es "borrador", la página avisa que el texto está pendiente de revisión. */
+  estado: string | null;
+  /** Secciones del cuerpo (## Encabezado → párrafos), en orden. */
+  secciones: { titulo: string; cuerpo: string }[];
+}
+
 export interface FotoGaleria {
   slug: string;
   archivo: string;
@@ -177,12 +187,13 @@ async function readJson<T>(file: string): Promise<T> {
   return JSON.parse(raw) as T;
 }
 
-/** Lee lucha.md: frontmatter tipado + cuerpo partido en secciones `## ...`.
-    Las líneas de comentario HTML (<!-- ... -->) se ignoran. */
-export async function getLucha(): Promise<Lucha> {
-  const raw = await readFile(path.join(LANDING_DIR, "lucha.md"), "utf8");
-  const { data, content } = matter(raw);
+/** Normaliza a string no vacío o null (campos opcionales de frontmatter). */
+const str = (v: unknown) =>
+  typeof v === "string" && v.trim().length > 0 ? (v as string) : null;
 
+/** Parte el cuerpo de un .md en secciones `## Encabezado → párrafos`, en orden.
+    Las líneas de comentario HTML (<!-- ... -->) se ignoran. */
+function splitSecciones(content: string): { titulo: string; cuerpo: string }[] {
   const cuerpo = content.replace(/<!--[\s\S]*?-->/g, "").trim();
   const secciones: { titulo: string; cuerpo: string }[] = [];
   const re = /^##\s+(.+?)\s*$/gm;
@@ -194,12 +205,18 @@ export async function getLucha(): Promise<Lucha> {
   heads.forEach((h, i) => {
     const bodyStart = h.end;
     const bodyEnd = i + 1 < heads.length ? heads[i + 1].start : cuerpo.length;
-    const body = cuerpo.slice(bodyStart, bodyEnd).replace(/\s+\n/g, "\n").trim();
+    // Recorta espacios/tabs al final de cada línea SIN colapsar líneas en
+    // blanco (los saltos de párrafo se conservan para el render).
+    const body = cuerpo.slice(bodyStart, bodyEnd).replace(/[ \t]+\n/g, "\n").trim();
     secciones.push({ titulo: h.titulo, cuerpo: body });
   });
+  return secciones;
+}
 
-  const str = (v: unknown) =>
-    typeof v === "string" && v.trim().length > 0 ? (v as string) : null;
+/** Lee lucha.md: frontmatter tipado + cuerpo partido en secciones `## ...`. */
+export async function getLucha(): Promise<Lucha> {
+  const raw = await readFile(path.join(LANDING_DIR, "lucha.md"), "utf8");
+  const { data, content } = matter(raw);
 
   return {
     titulo: str(data.titulo) ?? "",
@@ -208,7 +225,22 @@ export async function getLucha(): Promise<Lucha> {
     estado: str(data.estado),
     casoFoto: str(data.casoFoto),
     casoFotoAlt: str(data.casoFotoAlt),
-    secciones,
+    secciones: splitSecciones(content),
+  };
+}
+
+/** Lee privacidad.md: aviso de privacidad (frontmatter + secciones `## ...`).
+    Única fuente de verdad del aviso, servido a /privacidad (ver ADR-0012). */
+export async function getAviso(): Promise<Aviso> {
+  const raw = await readFile(path.join(LANDING_DIR, "privacidad.md"), "utf8");
+  const { data, content } = matter(raw);
+
+  return {
+    titulo: str(data.titulo) ?? "",
+    resumen: str(data.resumen) ?? "",
+    actualizado: str(data.actualizado),
+    estado: str(data.estado),
+    secciones: splitSecciones(content),
   };
 }
 
