@@ -1,6 +1,7 @@
 /* Footer.tsx — pie del ecosistema "Comunidad Chirimoyo", compartido por los 3
    subdominios. Server Component (async): deriva enlaces de content/landing/enlaces.json
    (getEnlaces). Portado del handoff v0.dev (FooterEcosistema.jsx). */
+import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { getEnlaces } from "@/lib/landing";
 
@@ -92,6 +93,15 @@ export async function Footer() {
           <div>
             <Kicker>Contacto</Kicker>
             <ul className="flex flex-col gap-3 text-[15px]">
+              <li>
+                <Link
+                  href="/contacto"
+                  className={`inline-flex items-center gap-2.5 font-semibold text-forest transition-colors hover:text-forest-deep ${FOCO}`}
+                >
+                  <Icon name="Send" className="h-[18px] w-[18px] shrink-0 text-forest/60" />
+                  Escríbenos
+                </Link>
+              </li>
               {email && (
                 <li>
                   <a
