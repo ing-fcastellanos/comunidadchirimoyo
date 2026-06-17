@@ -1,6 +1,6 @@
 # ADR-0008 — Multi-subdominio desde una sola app (`apps/sitio`)
 
-- **Estado:** Accepted
+- **Estado:** Superseded by ADR-0023
 - **Fecha:** 2026-06-07
 - **Decisores:** @ing-fcastellanos
 - **Issue:** _kickoff_
