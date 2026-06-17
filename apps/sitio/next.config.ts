@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Cloud Run (ADR-0008): servidor para el ruteo por host (middleware).
+  // Cloud Run (ADR-0015): standalone porque la app necesita servidor para las
+  // Server Actions del formulario de contacto (ya no por ruteo por host — ADR-0023).
   output: "standalone",
   images: {
     // Permite optimizar (next/image) las fotos del bucket de comunidad (ADR-0021).

@@ -6,7 +6,7 @@ Guía para Claude (y otros agentes IA) trabajando en este repositorio.
 
 **Comunidad Chirimoyo** es un monorepo de sitios de difusión para la defensa del **humedal de Chirimoyo** (norte de Orizaba, Veracruz). Es un proyecto comunitario y ecologista — la mayoría es **contenido**, no transacción.
 
-- `apps/sitio` — Next.js 15 (App Router). Sirve **chirimoyo.org** (landing + linktree + contacto), **comunidad.chirimoyo.org** (historia, acciones, misión/visión, noticias) y **voluntarios.chirimoyo.org** (jornadas, calendario, inscripción, donaciones).
+- `apps/sitio` — Next.js 15 (App Router). Sirve **chirimoyo.org** en un solo dominio, con las secciones por path: landing + linktree + contacto (`/`), **`/comunidad`** (historia, acciones, misión/visión, noticias) y **`/voluntarios`** (jornadas, calendario, inscripción, donaciones). Los subdominios `comunidad.*` y `voluntarios.*` son solo redirects vanity 301 (ADR-0023).
 - `apps/catalogo` — Next.js 15 (App Router). Sirve **aves.chirimoyo.org**: catálogo de aves **y** anfibios/reptiles (como categoría, no sitio aparte). Buscador y detalle **estáticos**.
 - `services/api` — Python 3.12 + Flask + Firestore, en Cloud Run. **Mínimo**: solo inscripciones de voluntarios y formulario de contacto.
 

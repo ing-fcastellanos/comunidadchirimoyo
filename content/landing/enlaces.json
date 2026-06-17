@@ -11,14 +11,14 @@
       "slug": "comunidad",
       "titulo": "La comunidad",
       "descripcion": "Historia del lugar, acciones, misión y visión, y noticias.",
-      "url": "https://comunidad.chirimoyo.org",
+      "url": "/comunidad",
       "icono": "Users"
     },
     {
       "slug": "voluntarios",
       "titulo": "Voluntarios y jornadas",
       "descripcion": "Súmate a las jornadas de limpieza y mantenimiento del humedal.",
-      "url": "https://voluntarios.chirimoyo.org",
+      "url": "/voluntarios",
       "icono": "HeartHandshake"
     }
   ],

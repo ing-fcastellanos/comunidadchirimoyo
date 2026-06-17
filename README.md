@@ -4,13 +4,15 @@ Sitios web de la **Comunidad Chirimoyo** — un grupo de vecinos y ecologistas q
 
 ## Sitios
 
-| Subdominio | Qué es | App |
+| URL | Qué es | App |
 |---|---|---|
 | `chirimoyo.org` | Landing principal: introducción a la lucha, linktree, contacto | `apps/sitio` |
-| `comunidad.chirimoyo.org` | Historia, acciones, visión/misión y noticias | `apps/sitio` |
-| `voluntarios.chirimoyo.org` | Jornadas de limpieza, calendario, inscripción y donaciones | `apps/sitio` |
+| `chirimoyo.org/comunidad` | Historia, acciones, visión/misión y noticias | `apps/sitio` |
+| `chirimoyo.org/voluntarios` | Jornadas de limpieza, calendario, inscripción y donaciones | `apps/sitio` |
 | `aves.chirimoyo.org` | Catálogo de aves (y anfibios/reptiles): buscador, detalle y PDF | `apps/catalogo` |
 | `api.chirimoyo.org` | Servicio mínimo: inscripciones de voluntarios y contacto | `services/api` |
+
+`comunidad.chirimoyo.org` y `voluntarios.chirimoyo.org` se conservan solo como **redirects vanity 301** hacia su path equivalente (ADR-0023).
 
 ## Stack
 
