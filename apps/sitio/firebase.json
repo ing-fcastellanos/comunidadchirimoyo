@@ -16,7 +16,6 @@
       "**/next.config.ts",
       "**/postcss.config.mjs",
       "**/eslint.config.mjs",
-      "**/middleware.ts",
       "**/README.md"
     ],
     "rewrites": [

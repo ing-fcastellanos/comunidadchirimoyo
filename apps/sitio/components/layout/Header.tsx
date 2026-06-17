@@ -5,7 +5,8 @@ import Link from "next/link";
 import { MobileNav, type NavLink } from "./MobileNav";
 import { COMUNIDAD_URL, VOLUNTARIOS_URL, AVES_URL } from "@/lib/links";
 
-/* Nav del ecosistema: URLs absolutas de subdominio (ADR-0008), coherente con el
+/* Nav del ecosistema: Comunidad y Voluntarios son rutas relativas del mismo
+   dominio (ADR-0023); Aves es URL absoluta (app/deploy propio). Coherente con el
    linktree y los CTAs del landing. */
 const NAV: NavLink[] = [
   { titulo: "Comunidad", url: COMUNIDAD_URL },

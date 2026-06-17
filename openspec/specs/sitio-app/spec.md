@@ -5,7 +5,10 @@ TBD - created by archiving change scaffold-sitio-app. Update Purpose after archi
 ## Requirements
 ### Requirement: App de sitio en Cloud Run
 
-`apps/sitio` SHALL ser una app Next.js 15 (App Router, TypeScript) con `output: "standalone"`, empaquetada en un Dockerfile y desplegable a Cloud Run en `northamerica-south1`. A diferencia del catálogo, NO SHALL usar export estático (necesita un servidor para el ruteo por host).
+`apps/sitio` SHALL ser una app Next.js 15 (App Router, TypeScript) con `output: "standalone"`,
+empaquetada en un Dockerfile y desplegable a Cloud Run en `northamerica-south1`. A diferencia
+del catálogo, NO SHALL usar export estático: requiere un servidor para las Server Actions del
+formulario de contacto (no por ruteo por host, que se elimina con ADR-0023).
 
 #### Scenario: Build standalone
 - **WHEN** se ejecuta `npm run build`
@@ -14,22 +17,6 @@ TBD - created by archiving change scaffold-sitio-app. Update Purpose after archi
 #### Scenario: Servicio en Cloud Run
 - **WHEN** se despliega
 - **THEN** existe un servicio Cloud Run `sitio` en `northamerica-south1` que responde en el puerto 8080
-
-### Requirement: Ruteo multi-subdominio por host
-
-La app SHALL incluir un `middleware.ts` que enrute según el header `Host`: `chirimoyo.org` (y `www`) a la landing (`/`); `comunidad.chirimoyo.org` a `/comunidad`; `voluntarios.chirimoyo.org` a `/voluntarios`. El middleware NO SHALL interceptar `/_next`, archivos estáticos ni `/api`.
-
-#### Scenario: Enrutado por host
-- **WHEN** llega una petición con `Host: comunidad.chirimoyo.org` a `/`
-- **THEN** la app renderiza la sección de comunidad (rewrite interno a `/comunidad`)
-
-#### Scenario: Landing por defecto
-- **WHEN** llega una petición con `Host: chirimoyo.org` a `/`
-- **THEN** la app renderiza la landing sin rewrite
-
-#### Scenario: Estáticos no interceptados
-- **WHEN** se solicita un asset bajo `/_next/...`
-- **THEN** el middleware no lo reescribe y el asset se sirve normalmente
 
 ### Requirement: Hosting por rewrite a Cloud Run
 
@@ -74,18 +61,24 @@ La app SHALL incluir `lib/content.ts` que resuelva `content/` desde la raíz del
 ### Requirement: Header del ecosistema con navegación cross-subdominio y menú móvil
 
 El `Header` compartido de `apps/sitio` SHALL ofrecer navegación al ecosistema (Comunidad,
-Voluntarios, Aves) mediante **URLs absolutas de subdominio** (de `lib/links.ts`), no rutas
-relativas, de modo coherente con el resto del sitio (ADR-0008). El logo SHALL enlazar al inicio
-del sitio actual (`/`). En viewports de escritorio los enlaces SHALL mostrarse en línea; en
-móvil SHALL ofrecerse un **botón hamburguesa** que abre un menú (drawer) accesible. El menú
-móvil SHALL: exponer `aria-expanded`/`aria-controls` en el botón; cerrarse con la tecla Escape,
-con clic fuera (backdrop) y al elegir un enlace; atrapar el foco mientras está abierto y
-devolverlo al botón al cerrar; y bloquear el scroll del fondo. El estado del menú es lo único
-que SHALL vivir en cliente.
+Voluntarios, Aves) mediante `lib/links.ts`. Los enlaces a **Comunidad** y **Voluntarios** SHALL
+usar **rutas relativas** (`/comunidad`, `/voluntarios`), por ser secciones del mismo dominio
+`chirimoyo.org` (ADR-0023). El enlace a **Aves** SHALL usar la **URL absoluta** de su subdominio
+(`aves.chirimoyo.org`), por ser app/deploy independiente. El logo SHALL enlazar al inicio del
+sitio actual (`/`). En viewports de escritorio los enlaces SHALL mostrarse en línea; en móvil
+SHALL ofrecerse un **botón hamburguesa** que abre un menú (drawer) accesible. El menú móvil
+SHALL: exponer `aria-expanded`/`aria-controls` en el botón; cerrarse con la tecla Escape, con
+clic fuera (backdrop) y al elegir un enlace; atrapar el foco mientras está abierto y devolverlo
+al botón al cerrar; y bloquear el scroll del fondo. El estado del menú es lo único que SHALL
+vivir en cliente.
 
-#### Scenario: Navegación a subdominios absolutos
-- **WHEN** el usuario activa "Comunidad", "Voluntarios" o "Aves" en el Header
-- **THEN** navega a la URL absoluta del subdominio correspondiente (no a una ruta relativa bajo el host actual)
+#### Scenario: Navegación a secciones por path y a aves por subdominio
+- **WHEN** el usuario activa "Comunidad" o "Voluntarios" en el Header
+- **THEN** navega a la ruta relativa (`/comunidad`, `/voluntarios`) bajo `chirimoyo.org`
+
+#### Scenario: Aves sigue siendo absoluta
+- **WHEN** el usuario activa "Aves" en el Header
+- **THEN** navega a la URL absoluta de `aves.chirimoyo.org`
 
 #### Scenario: Menú móvil accesible
 - **WHEN** en un viewport móvil se abre el menú hamburguesa
@@ -117,4 +110,24 @@ provienen del contenido.
 #### Scenario: Contacto accionable
 - **WHEN** el usuario activa el email o el teléfono del Footer
 - **THEN** se abren `mailto:` y `tel:` respectivamente con los datos de `enlaces.json`
+
+### Requirement: Ruteo de secciones por paths sin host-rewrite
+
+`apps/sitio` SHALL servir todas sus secciones (`landing`, `comunidad`, `voluntarios` y demás
+páginas) como **paths del mismo dominio** mediante el ruteo nativo del App Router, sin
+middleware de reescritura por host. La app NO SHALL incluir un `middleware.ts` que enrute según
+el header `Host`. Los enlaces internos entre secciones SHALL ser **rutas relativas**; las URLs
+absolutas SHALL reservarse para destinos de otro origen (p. ej. `aves.chirimoyo.org`).
+
+#### Scenario: Sección servida por path
+- **WHEN** se visita `https://chirimoyo.org/comunidad` o `https://chirimoyo.org/voluntarios`
+- **THEN** la app renderiza la sección directamente desde su ruta del App Router, sin reescritura por host
+
+#### Scenario: Sin middleware de host
+- **WHEN** se revisa `apps/sitio`
+- **THEN** no existe `middleware.ts` de ruteo por host
+
+#### Scenario: Enlaces internos relativos
+- **WHEN** se inspeccionan los enlaces a Comunidad y Voluntarios en Header, Footer y CTAs del landing
+- **THEN** usan rutas relativas (`/comunidad`, `/voluntarios`), no URLs absolutas de subdominio
 

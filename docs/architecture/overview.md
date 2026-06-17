@@ -33,10 +33,10 @@ Componentes del sistema a alto nivel. Para decisiones concretas de stack ver los
 
 ### apps/sitio
 
-- Sirve tres subdominios: `chirimoyo.org`, `comunidad.chirimoyo.org`, `voluntarios.chirimoyo.org`.
+- Sirve un único dominio, `chirimoyo.org`, con las secciones por **path**: landing (`/`), `/comunidad` y `/voluntarios`.
 - Contenido (historia, misión, noticias, jornadas) leído de `content/` en build (SSG/ISR).
 - Únicas partes dinámicas: el **formulario de inscripción** de voluntarios y el **formulario de contacto**, que hacen POST al `api`.
-- Estrategia multi-subdominio: Firebase Hosting + rewrites a un mismo backend Cloud Run. Ver [ADR-0008](../decisions/0008-multisubdominio-una-app.md).
+- Ruteo por paths con el App Router (sin middleware de host). Los subdominios `comunidad.*` y `voluntarios.*` se conservan como **redirects vanity 301**. Ver [ADR-0023](../decisions/0023-fusion-secciones-paths-vanity-redirects.md) (supersede [ADR-0008](../decisions/0008-multisubdominio-una-app.md)).
 
 ### apps/catalogo
 
