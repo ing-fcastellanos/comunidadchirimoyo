@@ -10,9 +10,9 @@ export function Header() {
         <Link href="/" className="flex items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/logo-chirimoyo.jpeg"
+            src="/logo-chirimoyo.png"
             alt="Logotipo de la Comunidad del Chirimoyo"
-            className="h-12 w-12 rounded-full object-cover ring-1 ring-forest/15"
+            className="h-12 w-12 shrink-0 object-contain"
           />
           <span className="leading-tight">
             <span className="block font-serif text-[20px] font-semibold text-forest-deep">

@@ -28,6 +28,14 @@ export const metadata: Metadata = {
       "Vecinos y ecologistas en defensa del humedal de Chirimoyo, Orizaba, Veracruz.",
     locale: "es_MX",
     type: "website",
+    images: [
+      {
+        url: "/og-default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Humedal de Chirimoyo, Orizaba, Veracruz.",
+      },
+    ],
   },
 };
 

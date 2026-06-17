@@ -20,9 +20,9 @@ export function Footer() {
             <div className="flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logo-chirimoyo.jpeg"
+                src="/logo-chirimoyo.png"
                 alt="Logotipo de la Comunidad del Chirimoyo"
-                className="h-14 w-14 rounded-full object-cover ring-1 ring-forest/15"
+                className="h-14 w-14 shrink-0 object-contain"
               />
               <div className="font-serif text-[24px] font-semibold leading-tight text-forest-deep">
                 Comunidad del Chirimoyo
