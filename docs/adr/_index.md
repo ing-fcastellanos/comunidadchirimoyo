@@ -8,7 +8,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0002 | Stack heredado de Sociedad Salvaje | Accepted | 0 | [0002-stack-heredado.md](../decisions/0002-stack-heredado.md) |
 | 0003 | Hosting, DB, storage y ambientes (GCP nuevo) | Accepted | 0 | [0003-hosting-db-ambientes.md](../decisions/0003-hosting-db-ambientes.md) |
 | 0004 | Contenido en repo (Markdown/JSON) en vez de CMS | Accepted | 0 | [0004-contenido-en-repo.md](../decisions/0004-contenido-en-repo.md) |
-| 0005 | Catálogo de fauna estático; anfibios como categoría | Accepted | 1 | [0005-catalogo-estatico-anfibios-categoria.md](../decisions/0005-catalogo-estatico-anfibios-categoria.md) |
+| 0005 | Catálogo de fauna estático; anfibios como categoría | Accepted · refinado por 0024/0025 | 1 | [0005-catalogo-estatico-anfibios-categoria.md](../decisions/0005-catalogo-estatico-anfibios-categoria.md) |
 | 0006 | API mínima: inscripciones + contacto | Accepted | 0 | [0006-api-minima.md](../decisions/0006-api-minima.md) |
 | 0007 | Donaciones informativas (sin pasarela) | Accepted | 4 | [0007-donaciones-informativas.md](../decisions/0007-donaciones-informativas.md) |
 | 0008 | Multi-subdominio desde una sola app (Firebase rewrites) | Superseded by ADR-0023 | 0 | [0008-multisubdominio-una-app.md](../decisions/0008-multisubdominio-una-app.md) |
@@ -27,6 +27,8 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0021 | Storage de imágenes de comunidad en GCS, en bucket propio separado del de fauna | Accepted | 3 | [0021-storage-imagenes-comunidad-gcs.md](../decisions/0021-storage-imagenes-comunidad-gcs.md) |
 | 0022 | Toolchain de Node fijo y compartido (CI = local) para lockfiles reproducibles | Accepted | 0 | [0022-toolchain-node-fijo.md](../decisions/0022-toolchain-node-fijo.md) |
 | 0023 | Fusión de secciones en `chirimoyo.org` por paths, con redirects vanity (supersede 0008) | Accepted | 3 | [0023-fusion-secciones-paths-vanity-redirects.md](../decisions/0023-fusion-secciones-paths-vanity-redirects.md) |
+| 0024 | Catálogo de fauna en dominio único `fauna.chirimoyo.org`, grupos por path (refina 0005) | Accepted | 2 | [0024-catalogo-fauna-dominio-unico-grupos-por-path.md](../decisions/0024-catalogo-fauna-dominio-unico-grupos-por-path.md) |
+| 0025 | Esquema de ficha de fauna group-aware (común + bloques por grupo) | Accepted | 2 | [0025-esquema-ficha-fauna-group-aware.md](../decisions/0025-esquema-ficha-fauna-group-aware.md) |
 
 ## Estados
 
