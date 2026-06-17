@@ -4,7 +4,10 @@ import { Section } from "@/components/ui/Section";
 import { AliadosGrid } from "@/components/landing/AliadosGrid";
 import { getAliados } from "@/lib/landing";
 
-export const metadata = { title: "Proyectos aliados" };
+export const metadata = {
+  title: "Proyectos aliados",
+  alternates: { canonical: "/aliados" },
+};
 
 export default async function AliadosPage() {
   const data = await getAliados();

@@ -26,6 +26,18 @@ import {
   mediaUrl,
 } from "@/lib/landing";
 
+/* Metadata propia del landing (no hereda solo el default del layout). Título
+   absoluto para que el home no lleve el sufijo del template, y canónico al
+   dominio único (ADR-0023). */
+export const metadata = {
+  title: {
+    absolute: "Comunidad Chirimoyo — En defensa del humedal de Chirimoyo",
+  },
+  description:
+    "Vecinos y ecologistas en defensa del humedal de Chirimoyo, en el norte de Orizaba, Veracruz. Conoce la lucha, súmate a las jornadas y explora la fauna del humedal.",
+  alternates: { canonical: "/" },
+};
+
 export default async function Landing() {
   const [
     lucha,
@@ -49,8 +61,23 @@ export default async function Landing() {
     getAliados(),
   ]);
 
+  /* Datos estructurados Organization (JSON-LD). Estático en build; las redes
+     salen de enlaces.json para no duplicar la fuente de verdad. */
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Comunidad Chirimoyo",
+    url: "https://chirimoyo.org",
+    logo: "https://chirimoyo.org/logo-chirimoyo.png",
+    sameAs: enlaces.redes.map((red) => red.url),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
       <Hero titulo={lucha.titulo} resumen={lucha.resumen} slides={heroSlides} />
       <ElCaso
         secciones={lucha.secciones}
