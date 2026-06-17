@@ -29,6 +29,7 @@ def create_app() -> Flask:
     env = Config.APP_CONFIG["ENV"]
     _configure_logging(env)
     _set_cors(app)
+    _init_mail(app)
     _register_blueprints(app)
 
     @app.after_request
@@ -39,6 +40,14 @@ def create_app() -> Flask:
 
     logging.getLogger("chirimoyo.api").info("API Chirimoyo iniciada", extra={"env": env})
     return app
+
+
+def _init_mail(app: Flask) -> None:
+    # Flask-Mail para las notificaciones de contacto (best-effort). Lee MAIL_*
+    # de Config. Reutilizable por voluntarios más adelante.
+    from app.services.email_service import init_mail
+
+    init_mail(app)
 
 
 def _set_cors(app: Flask) -> Flask:
