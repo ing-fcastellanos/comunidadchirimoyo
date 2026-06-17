@@ -5,7 +5,7 @@ SERVICE := api
 IMAGE   := $(REGION)-docker.pkg.dev/$(PROJECT)/$(REPO)/$(SERVICE):latest
 SA      := chirimoyo-api@$(PROJECT).iam.gserviceaccount.com
 
-.PHONY: install run compile docker_build docker_push deploy_prod
+.PHONY: install run compile docker_build docker_push deploy_prod deploy_rules
 
 install:
 	python -m venv .venv && . .venv/Scripts/activate && pip install -r requirements.txt
@@ -34,3 +34,8 @@ deploy_prod: docker_build docker_push
 	  --allow-unauthenticated \
 	  --min-instances=0 \
 	  --port=8080
+
+# Despliega las reglas de seguridad de Firestore (deny-all al cliente; el
+# backend usa la SA y bypasea las reglas). Ver ADR-0012. Requiere firebase-tools.
+deploy_rules:
+	firebase deploy --only firestore:rules --project $(PROJECT)

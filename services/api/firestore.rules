@@ -1,0 +1,24 @@
+rules_version = '2';
+
+// Reglas de seguridad de Firestore para el proyecto chirimoyo.
+//
+// Postura: DENY-ALL al acceso de cliente. Ningún front del proyecto usa el
+// client SDK de Firestore — el catálogo es estático (ADR-0005) y los
+// formularios (contacto, voluntarios) pasan por services/api. El único acceso
+// legítimo es el backend con credenciales de servidor (service account
+// chirimoyo-api vía ADC), que BYPASEA estas reglas por diseño.
+//
+// Esto cierra la superficie pública (client SDK / REST de Firestore) sobre los
+// datos personales en contacto_mensajes y (futuras) inscripciones de
+// voluntarios. Ver ADR-0012 (privacidad/PII).
+//
+// El acceso del equipo organizador para leer los mensajes se gobierna por IAM
+// (roles/datastore.viewer a sus cuentas), no por estas reglas.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
