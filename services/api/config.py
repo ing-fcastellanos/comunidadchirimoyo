@@ -25,8 +25,9 @@ class Config:
         "DB_NAME": os.getenv("DB_NAME", "(default)"),
     }
 
-    # SMTP — placeholders. El envío de confirmaciones se implementa en Fase 4;
-    # el secreto real (MAIL_PASSWORD) NO va en el repo.
+    # SMTP (Flask-Mail). El secreto real (MAIL_PASSWORD) NUNCA va en el repo:
+    # se inyecta como variable/secret en Cloud Run. En local, sin credenciales,
+    # el envío falla suave y la persistencia sigue funcionando (best-effort).
     MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     MAIL_PORT = int(os.getenv("MAIL_PORT", "587"))
     MAIL_USE_TLS = True
@@ -34,3 +35,6 @@ class Config:
     MAIL_USERNAME = os.getenv("MAIL_USERNAME")
     MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
     MAIL_DEFAULT_SENDER = os.getenv("MAIL_DEFAULT_SENDER")
+
+    # Buzón interno que recibe el aviso de cada mensaje de contacto.
+    CONTACTO_INBOX = os.getenv("CONTACTO_INBOX", "contacto@chirimoyo.org")
