@@ -37,9 +37,9 @@ export async function Footer() {
             <div className="flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element -- logo pequeño desde public/ */}
               <img
-                src="/logo-chirimoyo.jpeg"
+                src="/logo-chirimoyo.png"
                 alt="Comunidad Chirimoyo"
-                className="h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-forest/15"
+                className="h-12 w-12 shrink-0 object-contain"
               />
               <span className="font-serif text-[24px] font-semibold leading-none text-forest-deep">
                 Comunidad Chirimoyo

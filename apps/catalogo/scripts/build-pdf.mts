@@ -283,7 +283,7 @@ async function logoDataUri(): Promise<string | null> {
   // logo del proyecto (si existe en el banco/handoff); opcional.
   for (const p of [
     path.join(BANCO_DIR, "..", "logo-comunidad-chirimoyo.jpeg"),
-    path.join(APP, "public", "logo-chirimoyo.jpeg"),
+    path.join(APP, "public", "logo-chirimoyo.png"),
   ]) {
     try {
       const buf = await sharp(await readFile(p)).resize({ width: 120 }).png().toBuffer();
