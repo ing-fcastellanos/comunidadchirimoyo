@@ -12,7 +12,8 @@ content/
 │   ├── aves/
 │   │   ├── _ejemplo.md            ficha de referencia (no es una especie)
 │   │   └── <slug>/index.md        una carpeta por especie (+ sus fotos/audio)
-│   ├── anfibios-reptiles/         (Fase 2)
+│   ├── anfibios/                  (Fase 2) un grupo taxonómico por carpeta
+│   ├── reptiles/                  (Fase 2)
 │   └── _origen/                   datos de migración (CSV) — no es la ficha final
 ├── noticias/             posts de comunidad.chirimoyo.org
 ├── comunidad/            historia, misión, visión, acciones
@@ -24,7 +25,7 @@ content/
 
 ## Esquema de la ficha de fauna
 
-Cada especie es **un archivo Markdown con frontmatter YAML** en `content/fauna/<grupo>/<slug>/index.md`, donde `<grupo>` es `aves` o `anfibios-reptiles`. Las fotos y audios de la especie viven en esa misma carpeta. Contrato congelado en la issue #9 (change `definir-esquema-ficha-fauna`); los tipos están en [`apps/catalogo/lib/content.ts`](../apps/catalogo/lib/content.ts).
+Cada especie es **un archivo Markdown con frontmatter YAML** en `content/fauna/<grupo>/<slug>/index.md`, donde `<grupo>` es `aves`, `anfibios` o `reptiles` (un grupo taxonómico por carpeta, [ADR-0024](../docs/decisions/0024-catalogo-fauna-dominio-unico-grupos-por-path.md)). Las fotos y audios de la especie viven en esa misma carpeta. Contrato congelado en la issue #9 (change `definir-esquema-ficha-fauna`), generalizado a *group-aware* en #87 ([ADR-0025](../docs/decisions/0025-esquema-ficha-fauna-group-aware.md)); los tipos están en [`apps/catalogo/lib/content.ts`](../apps/catalogo/lib/content.ts).
 
 Regla de oro: **el frontmatter lleva solo datos atómicos; la prosa va en el cuerpo Markdown.**
 
@@ -39,8 +40,8 @@ El `slug` (y el nombre de la carpeta) se deriva del **nombre científico** en ke
 | Campo | Tipo / valores | Notas |
 |---|---|---|
 | `slug` | string | = nombre de la carpeta |
-| `grupo` | `aves` \| `anfibios-reptiles` | filtro macro |
-| `categoria` | string | **gremio ecológico**: Vadeadoras, Nadadoras, Playeras, Voladoras, Rapaces y Carroñeras, Terrestres |
+| `grupo` | `aves` \| `anfibios` \| `reptiles` | filtro macro (1 grupo taxonómico por carpeta/path) |
+| `categoria` | string (**group-aware**) | sub-filtro; vocabulario según el grupo: **aves** = gremio ecológico (Vadeadoras, Nadadoras, Playeras, Voladoras, Rapaces y Carroñeras, Terrestres); **anfibios** = Anuros, Salamandras; **reptiles** = Lagartijas, Serpientes, Tortugas |
 | `nombreComun` | string | |
 | `nombreCientifico` | string | binomio |
 | `orden` · `familia` · `genero` | string | taxonomía |
@@ -51,7 +52,7 @@ El `slug` (y el nombre de la carpeta) se deriva del **nombre científico** en ke
 | `fuentes` | string[] (≥1) | citas/referencias |
 | `fotos` | Foto[] (≥1) | la primera es la portada |
 
-**Opcionales:** `simbologia` (string, p. ej. `R-PC-SR-N`), `medidas` (`{ tamanoCm?: [min,max], pesoG?: [min,max], notas? }`), `habitat` (string[] de etiquetas), `temporada` (`{ meses?: number[] 1–12, notas? }`), `audios` (Audio[]), `distribucion` (ver abajo).
+**Opcionales:** `simbologia` (string, p. ej. `R-PC-SR-N`), `medidas` (`{ tamanoCm?: [min,max], pesoG?: [min,max], criterio?, notas? }`), `habitat` (string[] de etiquetas), `temporada` (`{ meses?: number[] 1–12, notas? }`), `audios` (Audio[]), `distribucion` (ver abajo). `medidas.criterio` es la **métrica de la talla** (p. ej. `"LHC (hocico-cloaca)"` en herpetofauna); la ficha de detalle la usa como rótulo del tamaño cuando existe (vs. `envergadura` en aves).
 
 **Distribución** — `distribucion?: { cria?, invernada?, residente?, notas? }`. Cada zona es una **lista de códigos ISO 3166-1 alpha-2** (p. ej. `["US","CA"]` para cría, `["MX","GT","BZ"]` para invernada), que el mapa por especie rellena sobre la geografía real (Natural Earth, ver [ADR-0018](../docs/decisions/0018-mapa-distribucion-geografia-real.md)). **No** lleva geometría ni coordenadas; solo códigos de región. Es **opcional**: sin `distribucion`, el mapa muestra geografía + marcador de la laguna + una etiqueta derivada de `estatusMigratorio`, sin inventar un rango. `notas` es un string traducible. La granularidad es de país (sobredimensiona, p. ej. "todo MX"); se acepta como tradeoff escalable y libre de licencias.
 
@@ -79,6 +80,8 @@ El `slug` (y el nombre de la carpeta) se deriva del **nombre científico** en ke
 | `featured` | booleano | `true` / `false` |
 
 Las etiquetas, iconos y colores de cada valor viven en `apps/catalogo/lib/dictionary.ts` (vocabulario de UI). En el CSV de origen son las columnas `forma`, `tamano`, `colores` (separadas por `;`), `donde`, `featured`.
+
+> **Nota (herpetofauna):** `forma` y `donde` tienen vocabulario orientado a aves. En Fase 2 las fichas de anfibios/reptiles **omiten** estos dos campos (se filtran por texto + tamaño + color); un vocabulario por grupo se evaluará cuando lleguen insectos/mamíferos. `tamano`, `colores` y `featured` sí aplican a todos los grupos.
 
 **Conservación** — `nom059` (NOM-059-SEMARNAT, primaria): `pr` (protección especial) · `a` (amenazada) · `p` (en peligro) · `e` (probablemente extinta) · `ninguno`. `iucn` (código IUCN, p. ej. `LC`, `VU`) y `notas` opcionales.
 
