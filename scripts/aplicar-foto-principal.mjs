@@ -16,15 +16,25 @@
      node scripts/aplicar-foto-principal.mjs          # aplica y reporta
      node scripts/aplicar-foto-principal.mjs --dry     # solo reporta
    ===================================================================== */
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
 const SELECTIONS = path.join(ROOT, "apps", "catalogo", "print", "photo-selections.json");
-const AVES_DIR = path.join(ROOT, "content", "fauna", "aves");
+const FAUNA_DIR = path.join(ROOT, "content", "fauna");
+const GRUPOS = ["aves", "anfibios", "reptiles"];
 const DRY = process.argv.includes("--dry");
+
+/** Ruta del index.md de un slug, buscando en cada grupo (el slug es único global). */
+async function fichaPath(slug) {
+  for (const g of GRUPOS) {
+    const p = path.join(FAUNA_DIR, g, slug, "index.md");
+    try { await stat(p); return p; } catch { /* siguiente grupo */ }
+  }
+  return null;
+}
 
 /** stem case-insensitive: "DSCN3085.JPG" -> "dscn3085" (igual que build-pdf). */
 const stem = (archivo) => path.parse(archivo).name.toLowerCase();
@@ -108,23 +118,24 @@ async function main() {
   for (const slug of slugs) {
     const archivo = sels[slug]?.archivo;
     if (!archivo) { rep["sin-coincidencia"].push(`${slug} (selección sin archivo)`); continue; }
-    const file = path.join(AVES_DIR, slug, "index.md");
-    let raw;
-    try { raw = await readFile(file, "utf8"); }
-    catch { rep["sin-ficha"].push(slug); continue; }
+    const file = await fichaPath(slug);
+    if (!file) { rep["sin-ficha"].push(slug); continue; }
+    const raw = await readFile(file, "utf8");
 
     const { texto, estado } = reorderFotos(raw, stem(archivo));
     rep[estado].push(slug);
     if (estado === "reordenada" && !DRY) await writeFile(file, texto, "utf8");
   }
 
-  // fichas sin selección (cobertura): aves con ficha pero sin entrada en el JSON
-  const todas = (await import("node:fs/promises")).readdir(AVES_DIR);
-  let sinSeleccion = [];
-  try {
-    const dirs = await todas;
-    sinSeleccion = dirs.filter((d) => !slugs.includes(d));
-  } catch { /* noop */ }
+  // fichas sin selección (cobertura): especies con ficha pero sin entrada en el JSON
+  const fs = await import("node:fs/promises");
+  const sinSeleccion = [];
+  for (const g of GRUPOS) {
+    try {
+      const dirs = await fs.readdir(path.join(FAUNA_DIR, g));
+      sinSeleccion.push(...dirs.filter((d) => !d.startsWith("_") && !slugs.includes(d)));
+    } catch { /* grupo inexistente en disco */ }
+  }
 
   const line = (k, arr) => `  ${k.padEnd(18)} ${arr.length}${arr.length ? "  " + arr.join(", ") : ""}`;
   console.log(`\n→ aplicar-foto-principal ${DRY ? "(dry-run)" : ""}`);
