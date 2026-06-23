@@ -51,14 +51,20 @@ export const HABITAT_LABEL: Record<string, string> = {
   aire: "Aire",
 };
 
-/** Gremio ecológico (categoría), en minúsculas como id de filtro. */
+/** Categoría (sub-filtro) en minúsculas como id de filtro. Vocabulario group-aware:
+    aves = gremio ecológico; anfibios/reptiles = clase taxonómica. */
 export type CategoriaId =
   | "vadeadoras"
   | "nadadoras"
   | "playeras"
   | "voladoras"
   | "rapaces"
-  | "terrestres";
+  | "terrestres"
+  | "anuros"
+  | "salamandras"
+  | "lagartijas"
+  | "serpientes"
+  | "tortugas";
 
 /** Presencia derivada para la búsqueda (ver lib/search.ts). */
 export type Presencia = "Residente" | "Migratoria" | "Introducida";
@@ -74,6 +80,13 @@ export const CATS: Record<CategoriaId, { label: string; chip: string }> = {
   voladoras: { label: "Voladoras", chip: "bg-[#e6dcef] text-[#6a4d86] ring-[#cdbce0]" },
   rapaces: { label: "Rapaces y Carroñeras", chip: "bg-[#f6e1da] text-[#8f3c25] ring-[#e8c3b6]" },
   terrestres: { label: "Terrestres", chip: "bg-[#e3e9cf] text-[#5e6b22] ring-[#cdd7a8]" },
+  // Anfibios
+  anuros: { label: "Anuros", chip: "bg-[#dce8d4] text-[#456a2e] ring-[#bcd2a6]" },
+  salamandras: { label: "Salamandras", chip: "bg-[#d6e8e2] text-[#2f6b5a] ring-[#aacdc1]" },
+  // Reptiles
+  lagartijas: { label: "Lagartijas", chip: "bg-[#e8e2cf] text-[#7a6a2f] ring-[#d4c8a4]" },
+  serpientes: { label: "Serpientes", chip: "bg-[#e6dccf] text-[#6a533b] ring-[#cdbca4]" },
+  tortugas: { label: "Tortugas", chip: "bg-[#d8e0ea] text-[#3b537a] ring-[#aac0de]" },
 };
 
 /* "Introducida" reemplaza a "Invasora" del handoff (nuestros datos usan

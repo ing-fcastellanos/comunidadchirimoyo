@@ -1,11 +1,13 @@
 /* search.ts — view-model de búsqueda. Convierte FichaEspecie (esquema #9) en el
    registro `Bird` que consumen los componentes del buscador, y contiene el
    filtrado + orden en cliente (portado del handoff searchapp.jsx). */
-import { fotoUrl, type FichaEspecie, type Forma, type Tamano, type Color, type Donde } from "./fauna-schema";
+import { fotoUrl, type FichaEspecie, type Grupo, type Forma, type Tamano, type Color, type Donde } from "./fauna-schema";
 import type { CategoriaId, Presencia, Observacion, Conservacion } from "./dictionary";
 
 export interface Bird {
   id: string;
+  /** Grupo taxonómico (aves | anfibios | reptiles); base del filtro por grupo (#85). */
+  group: Grupo;
   common: string;
   sci: string;
   orden: string;
@@ -26,12 +28,19 @@ export interface Bird {
 }
 
 const CATEGORIA_ID: Record<string, CategoriaId> = {
+  // aves (gremio ecológico)
   Vadeadoras: "vadeadoras",
   Nadadoras: "nadadoras",
   Playeras: "playeras",
   Voladoras: "voladoras",
   "Rapaces y Carroñeras": "rapaces",
   Terrestres: "terrestres",
+  // anfibios / reptiles (clase taxonómica)
+  Anuros: "anuros",
+  Salamandras: "salamandras",
+  Lagartijas: "lagartijas",
+  Serpientes: "serpientes",
+  Tortugas: "tortugas",
 };
 const OBS: Record<FichaEspecie["gradoOcurrencia"], Observacion> = {
   comun: "Común",
@@ -55,6 +64,7 @@ function resumen(cuerpo: string): string {
 export function fichaToBird(f: FichaEspecie): Bird {
   return {
     id: f.slug,
+    group: f.grupo,
     common: f.nombreComun,
     sci: f.nombreCientifico,
     orden: f.orden,

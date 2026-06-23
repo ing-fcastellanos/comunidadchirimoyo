@@ -24,8 +24,8 @@ export function audioUrl(slug: string, archivo: string): string {
   return `${FAUNA_CDN_BASE}/audio/${slug}/${archivo}`;
 }
 
-/** Filtro macro del catálogo y path público (un grupo = un path, ADR-0024).
-    Anfibios y reptiles son grupos separados (su contenido llega en #88). */
+/** Filtro macro del catálogo: un grupo taxonómico por path/carpeta (ADR-0024).
+    Insectos/mamíferos se sumarán como nuevos valores cuando lleguen. */
 export type Grupo = "aves" | "anfibios" | "reptiles";
 
 /** Etiqueta legible de cada grupo (i18n-ready: string aislado, ADR-0011). */
@@ -35,7 +35,10 @@ export const GRUPO_LABEL: Record<Grupo, string> = {
   reptiles: "Reptiles",
 };
 
-/** Gremio ecológico (sub-filtro). Lista abierta; valores conocidos de la fuente. */
+/** Sub-filtro cuyo vocabulario depende del `grupo` (group-aware): aves = gremio
+    ecológico (Vadeadoras…); anfibios = Anuros · Salamandras; reptiles = Lagartijas ·
+    Serpientes · Tortugas. Lista abierta (string); las etiquetas/chips por grupo viven
+    en lib/dictionary.ts. */
 export type Categoria =
   | "Vadeadoras"
   | "Nadadoras"
@@ -43,8 +46,16 @@ export type Categoria =
   | "Voladoras"
   | "Rapaces y Carroñeras"
   | "Terrestres"
+  | "Anuros"
+  | "Salamandras"
+  | "Lagartijas"
+  | "Serpientes"
+  | "Tortugas"
   | (string & {});
 
+/** Eje de presencia de la especie. Pese al nombre (heredado de aves), modela la
+    presencia en general; la herpetofauna residente usa `residente`. No se renombra
+    para no tocar las 64 fichas de aves ni el código consumidor (eje de presencia). */
 export type EstatusMigratorio =
   | "residente"
   | "migratoria-invierno"
@@ -93,6 +104,9 @@ export interface Conservacion {
 export interface Medidas {
   tamanoCm?: [number, number];
   pesoG?: [number, number];
+  /** Métrica de la talla, p. ej. "LHC (hocico-cloaca)" en herpetofauna. La ficha de
+      detalle la usa como rótulo del tamaño cuando existe (vs. "envergadura" en aves). */
+  criterio?: string;
   notas?: string;
 }
 
