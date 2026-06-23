@@ -19,7 +19,7 @@ export function Header() {
               Comunidad del Chirimoyo
             </span>
             <span className="block text-[11px] font-bold uppercase tracking-[0.2em] text-forest/70">
-              Guía de Aves · Orizaba, Veracruz
+              Guía de Fauna · Orizaba, Veracruz
             </span>
           </span>
         </Link>

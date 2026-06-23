@@ -1,8 +1,9 @@
-/* Hero.tsx — sección principal del inicio: comprensión en 10 segundos.
-   Portado del handoff v0.dev (components/home/Hero.jsx). Server Component. */
+/* Hero.tsx — sección principal con carrusel automático por CSS (crossfade, sin
+   JS). Portado del handoff v0.dev (components/home/Hero.jsx). Server Component.
+   El texto y los CTAs llegan por `content` para que lo reusen tanto el landing
+   de aves (/aves) como el hub de fauna (/). */
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
-import { COMUNIDAD_URL } from "@/lib/links";
 
 export interface HeroSlide {
   src: string;
@@ -10,8 +11,18 @@ export interface HeroSlide {
   nombre: string;
 }
 
+export interface HeroContent {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  /** CTA primario, navegación interna. */
+  primary: { href: string; label: string };
+  /** CTA secundario opcional, normalmente externo (comunidad). */
+  secondary?: { href: string; label: string };
+}
+
 /* Las imágenes del hero son las portadas curadas (fotos[0]) de las especies
-   destacadas (derivadas en page.tsx, servidas desde el bucket — ADR-0016) y
+   destacadas (derivadas en la página, servidas desde el bucket — ADR-0016) y
    rotan en un carrusel automático por CSS (crossfade, sin JS). El delay negativo
    escalonado pone cada slide en fase para que el bucle empalme sin salto. */
 const CYCLE_S = 16; // 4 fotos × 4 s
@@ -20,7 +31,7 @@ function delayFor(i: number, total: number): string {
   return `${i === 0 ? 0 : (i - total) * (CYCLE_S / total)}s`;
 }
 
-export function Hero({ slides }: { slides: HeroSlide[] }) {
+export function Hero({ slides, content }: { slides: HeroSlide[]; content: HeroContent }) {
   const animated = slides.length > 1;
   return (
     <section className="relative overflow-hidden border-b border-forest/10">
@@ -29,35 +40,36 @@ export function Hero({ slides }: { slides: HeroSlide[] }) {
         <div className="max-w-xl">
           <div className="mb-5 inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
             <Icon name="MapPin" className="h-4 w-4" />
-            Humedal del Chirimoyo · Orizaba, Veracruz
+            {content.eyebrow}
           </div>
 
           <h1 className="font-serif text-[clamp(40px,7vw,64px)] font-semibold leading-[1.05] text-forest-deep text-balance">
-            Las aves del humedal del Chirimoyo
+            {content.title}
           </h1>
 
           <p className="mt-5 max-w-[36rem] text-[18px] leading-relaxed text-ink/80 text-pretty">
-            Un catálogo vivo de la fauna que habita la laguna que defendemos:
-            búscala por forma, color o dónde la viste.
+            {content.lead}
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
-              href="/busqueda"
+              href={content.primary.href}
               className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-forest px-6 py-3.5 text-[16px] font-semibold text-paper-card shadow-card transition-colors hover:bg-forest-deep focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25"
             >
-              Explorar el catálogo
+              {content.primary.label}
               <Icon
                 name="ArrowRight"
                 className="h-[18px] w-[18px] transition-transform group-hover:translate-x-0.5"
               />
             </Link>
-            <a
-              href={COMUNIDAD_URL}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-forest/25 bg-paper-card/60 px-6 py-3.5 text-[16px] font-semibold text-forest-deep transition-colors hover:border-forest/40 hover:bg-paper-card focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25"
-            >
-              Conocer la comunidad
-            </a>
+            {content.secondary && (
+              <a
+                href={content.secondary.href}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-forest/25 bg-paper-card/60 px-6 py-3.5 text-[16px] font-semibold text-forest-deep transition-colors hover:border-forest/40 hover:bg-paper-card focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25"
+              >
+                {content.secondary.label}
+              </a>
+            )}
           </div>
         </div>
 

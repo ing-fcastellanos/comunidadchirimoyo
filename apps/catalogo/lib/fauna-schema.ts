@@ -24,8 +24,16 @@ export function audioUrl(slug: string, archivo: string): string {
   return `${FAUNA_CDN_BASE}/audio/${slug}/${archivo}`;
 }
 
-/** Filtro macro del catálogo. Las anfibios/reptiles llegan en Fase 2. */
-export type Grupo = "aves" | "anfibios-reptiles";
+/** Filtro macro del catálogo y path público (un grupo = un path, ADR-0024).
+    Anfibios y reptiles son grupos separados (su contenido llega en #88). */
+export type Grupo = "aves" | "anfibios" | "reptiles";
+
+/** Etiqueta legible de cada grupo (i18n-ready: string aislado, ADR-0011). */
+export const GRUPO_LABEL: Record<Grupo, string> = {
+  aves: "Aves",
+  anfibios: "Anfibios",
+  reptiles: "Reptiles",
+};
 
 /** Gremio ecológico (sub-filtro). Lista abierta; valores conocidos de la fuente. */
 export type Categoria =

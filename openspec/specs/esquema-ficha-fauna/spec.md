@@ -5,7 +5,7 @@ TBD - created by archiving change definir-esquema-ficha-fauna. Update Purpose af
 ## Requirements
 ### Requirement: Formato y ubicación de la ficha de especie
 
-Cada especie del catálogo SHALL guardarse como un archivo Markdown con frontmatter YAML en `content/fauna/<grupo>/<slug>/index.md`, donde `<grupo>` es `aves` o `anfibios-reptiles` y `<slug>` es el identificador de la especie. El frontmatter YAML SHALL contener únicamente datos atómicos/estructurados; toda la prosa SHALL vivir en el cuerpo Markdown. NO SHALL existir un archivo monolítico con todas las especies ni un endpoint que las sirva (el catálogo es estático, ADR-0005).
+Cada especie del catálogo SHALL guardarse como un archivo Markdown con frontmatter YAML en `content/fauna/<grupo>/<slug>/index.md`, donde `<grupo>` es `aves`, `anfibios` o `reptiles` y `<slug>` es el identificador de la especie. El frontmatter YAML SHALL contener únicamente datos atómicos/estructurados; toda la prosa SHALL vivir en el cuerpo Markdown. NO SHALL existir un archivo monolítico con todas las especies ni un endpoint que las sirva (el catálogo es estático, ADR-0005).
 
 #### Scenario: Una ficha por especie
 - **WHEN** se añade la especie *Ardea alba*
@@ -45,18 +45,22 @@ El `slug` de una especie SHALL derivarse de su nombre científico (binomio) norm
 
 ### Requirement: Campos obligatorios de la ficha
 
-El frontmatter de cada ficha SHALL incluir los campos obligatorios: `slug`, `grupo` (`aves` | `anfibios-reptiles`), `categoria` (gremio ecológico, p. ej. `Vadeadoras`, `Nadadoras`, `Playeras`, `Voladoras`, `Rapaces y Carroñeras`, `Terrestres`), `nombreComun`, `nombreCientifico`, `orden`, `familia`, `genero`, `estatusMigratorio` (`residente` | `migratoria-invierno` | `migratoria-verano` | `transitoria`), `gradoOcurrencia` (`comun` | `poco-comun` | `rara`), `estatusDistribucion` (`nativa` | `introducida`), `conservacion`, `fuentes` (≥1) y al menos una entrada en `fotos`. `grupo` es el filtro macro (aves vs. anfibios/reptiles); `categoria` es un gremio ecológico para sub-filtrado. La distinción anfibios/reptiles de Fase 2 se modela vía `grupo`, no vía `categoria`.
+El frontmatter de cada ficha SHALL incluir los campos obligatorios: `slug`, `grupo` (`aves` | `anfibios` | `reptiles`), `categoria` (gremio ecológico, p. ej. `Vadeadoras`, `Nadadoras`, `Playeras`, `Voladoras`, `Rapaces y Carroñeras`, `Terrestres`), `nombreComun`, `nombreCientifico`, `orden`, `familia`, `genero`, `estatusMigratorio` (`residente` | `migratoria-invierno` | `migratoria-verano` | `transitoria`), `gradoOcurrencia` (`comun` | `poco-comun` | `rara`), `estatusDistribucion` (`nativa` | `introducida`), `conservacion`, `fuentes` (≥1) y al menos una entrada en `fotos`. `grupo` es el filtro macro y la sección de IA por path: **anfibios y reptiles son grupos separados** (un grupo = un path), no un único `anfibios-reptiles`. `categoria` es un gremio ecológico para sub-filtrado. La generalización de los campos por grupo (presencia residente, criterio de talla, sonido, etc.) es trabajo posterior (#88); aquí solo cambia el enum de `grupo`.
 
 #### Scenario: Ficha mínima válida
 - **WHEN** una ficha declara todos los campos obligatorios, una fuente y una foto
 - **THEN** es una ficha válida según el esquema
 
+#### Scenario: Grupo separa anfibios de reptiles
+- **WHEN** una ficha declara `grupo: reptiles`
+- **THEN** es válida y se ubica en `content/fauna/reptiles/<slug>/`, distinta de `grupo: anfibios`
+
 #### Scenario: Falta un campo obligatorio
 - **WHEN** una ficha omite `nombreCientifico`, `genero`, `fuentes` o no tiene ninguna foto
 - **THEN** es inválida según el esquema
 
-#### Scenario: Valor fuera del enum
-- **WHEN** `estatusMigratorio` toma un valor distinto de los permitidos
+#### Scenario: Valor de grupo fuera del enum
+- **WHEN** `grupo` toma un valor distinto de `aves` | `anfibios` | `reptiles` (p. ej. el antiguo `anfibios-reptiles`)
 - **THEN** es inválida según el esquema
 
 ### Requirement: Conservación con NOM-059 e IUCN
@@ -121,15 +125,15 @@ El campo `fotos` SHALL ser un arreglo de objetos `{ archivo, credito, alt, licen
 
 ### Requirement: Tipos del esquema en el loader del catálogo
 
-`apps/catalogo/lib/content.ts` SHALL exportar los tipos TypeScript que reflejan este esquema (incluidos `genero`, `categoria` como gremio, `fuentes`, `simbologia`, `medidas`, `habitat`, `temporada`, `fotos` y `audios`), extendiendo los tipos ya presentes en el stub sin cambiar la firma de `getAllFichas` (que permanece como stub hasta #10/#11). El tipo `Audio` SHALL incluir los campos opcionales `creditoUrl`, `licenciaUrl`, `tipo` y `fuenteId` de forma aditiva (sin romper fichas existentes). El proyecto SHALL pasar `npm run typecheck` en `apps/catalogo`.
+`apps/catalogo/lib/content.ts` (y el módulo puro `lib/fauna-schema.ts`) SHALL exportar los tipos TypeScript que reflejan este esquema (incluidos `genero`, `categoria` como gremio, `fuentes`, `simbologia`, `medidas`, `habitat`, `temporada`, `fotos` y `audios`). El tipo `Grupo` SHALL ser `"aves" | "anfibios" | "reptiles"` y el descubrimiento de carpetas del loader (`GRUPOS`) SHALL recorrer esos tres grupos, tolerando los grupos cuya carpeta aún no exista (sin romper el build). El tipo `Audio` SHALL incluir los campos opcionales `creditoUrl`, `licenciaUrl`, `tipo` y `fuenteId` de forma aditiva. El proyecto SHALL pasar `npm run typecheck` en `apps/catalogo`.
 
-#### Scenario: Tipos completos disponibles
-- **WHEN** un módulo importa `FichaEspecie` desde `lib/content.ts`
-- **THEN** el tipo incluye los campos obligatorios (incl. `genero`, `fuentes`) y los opcionales (`medidas`, `habitat`, `temporada`, `simbologia`, `audios`) y `fotos` con su crédito
+#### Scenario: Tipo Grupo con tres grupos
+- **WHEN** un módulo importa `Grupo` desde `lib/fauna-schema.ts`
+- **THEN** el tipo admite `"aves"`, `"anfibios"` y `"reptiles"` (no `"anfibios-reptiles"`)
 
-#### Scenario: Tipo Audio extendido y compatible
-- **WHEN** una ficha declara un audio con solo `archivo` y `credito`
-- **THEN** es válida según el tipo `Audio` (los campos `creditoUrl`/`licenciaUrl`/`tipo`/`fuenteId` son opcionales)
+#### Scenario: Loader tolera grupos sin contenido
+- **WHEN** se ejecuta `getAllFichas()` con `content/fauna/aves/` presente pero sin carpetas de `anfibios`/`reptiles`
+- **THEN** devuelve las fichas de aves sin error, ignorando los grupos sin carpeta
 
 #### Scenario: Typecheck pasa
 - **WHEN** se ejecuta `npm run typecheck` en `apps/catalogo`

@@ -29,7 +29,7 @@ export function CierreCTA() {
 
         <div className="flex shrink-0 flex-col items-stretch gap-3 sm:flex-row sm:items-center">
           <Link
-            href="/busqueda"
+            href="/aves/buscador"
             className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-mint px-7 py-4 text-[17px] font-semibold text-pine-deep shadow-card transition-colors hover:bg-mint-deep hover:text-paper focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40"
           >
             Ir al catálogo

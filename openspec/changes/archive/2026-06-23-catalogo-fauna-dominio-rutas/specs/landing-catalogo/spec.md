@@ -1,8 +1,5 @@
-# landing-catalogo Specification
+## MODIFIED Requirements
 
-## Purpose
-TBD - created by archiving change landing-catalogo. Update Purpose after archive.
-## Requirements
 ### Requirement: Página de inicio del catálogo (landing estático)
 
 La app del catálogo SHALL servir, en la ruta **`/aves`** (índice del grupo aves), un landing estático cuyo propósito es que el visitante comprenda en los primeros segundos **qué** es (la guía de las aves del humedal), **por qué** existe (una comunidad que defiende el humedal del Chirimoyo) y **qué hacer** (explorar el buscador de aves). El landing SHALL ser un Server Component que NO llama a ningún API; cualquier dato dinámico (p. ej. conteos) SHALL resolverse en build con `getAllFichas()`. El landing NO SHALL contener el buscador ni sus filtros (esos viven en `/aves/buscador`, capacidad `catalogo-busqueda`). La home (`/`) ya NO sirve este landing: ahora sirve el hub de fauna (capacidad `catalogo-hub-fauna`).
@@ -43,22 +40,6 @@ El landing SHALL abrir con una sección **hero** que contenga: un *eyebrow* con 
 - **WHEN** se inspecciona el landing
 - **THEN** existe exactamente un `<h1>` y los CTAs tienen estados de foco visibles
 
-### Requirement: Sección "Qué hay aquí" con conteo dinámico
-
-El landing SHALL incluir una sección de tres tarjetas escaneables que resuman el contenido del catálogo: (1) el **número de especies de aves**, (2) anfibios y reptiles como categoría, y (3) fichas con fuentes verificadas. El conteo de aves SHALL derivarse en build de `getAllFichas()` y NO SHALL estar hardcodeado.
-
-#### Scenario: El conteo refleja el contenido real
-- **WHEN** se agrega o elimina una ficha de ave en `content/` y se reconstruye
-- **THEN** el número mostrado en la tarjeta de aves cambia en consecuencia, sin editar el componente
-
-### Requirement: Sección "El humedal" breve con enlace a la comunidad
-
-El landing SHALL incluir una sección breve sobre el humedal (un par de frases, no el relato completo) que enlace al sitio de la comunidad para profundizar. Esta sección NO SHALL duplicar el contenido extenso de comunidad.chirimoyo.org.
-
-#### Scenario: Enlace a la comunidad
-- **WHEN** el usuario activa el enlace "Conoce la lucha de la comunidad"
-- **THEN** navega al sitio de la comunidad
-
 ### Requirement: Sección de cierre con CTA al catálogo
 
 El landing SHALL cerrar con una banda destacada que repita la llamada a la acción principal con un botón "Ir al catálogo" que enlaza a `/aves/buscador`.
@@ -66,4 +47,3 @@ El landing SHALL cerrar con una banda destacada que repita la llamada a la acci�
 #### Scenario: CTA de cierre lleva al buscador de aves
 - **WHEN** el usuario activa "Ir al catálogo" en la banda de cierre
 - **THEN** navega a `/aves/buscador`
-

@@ -1,4 +1,4 @@
-/* not-found.tsx — pantalla 404 de la guía de aves (aves.chirimoyo.org) con
+/* not-found.tsx — pantalla 404 de la guía de fauna (fauna.chirimoyo.org) con
    identidad del proyecto. Server Component. Mismo diseño genérico que sitio;
    los enlaces se adaptan: "inicio" = home del catálogo, búsqueda interna y la
    comunidad (única URL externa en lib/links.ts). */
@@ -35,7 +35,7 @@ export default function NotFound() {
       </div>
 
       <div className="mt-6 flex flex-col items-center gap-x-6 gap-y-2 sm:flex-row">
-        <EnlaceTexto href="/busqueda">Buscar aves</EnlaceTexto>
+        <EnlaceTexto href="/aves/buscador">Buscar aves</EnlaceTexto>
         <span aria-hidden="true" className="hidden h-1 w-1 rounded-full bg-ink-soft/30 sm:block" />
         <EnlaceTexto href={COMUNIDAD_URL}>Conocer a la comunidad</EnlaceTexto>
       </div>
