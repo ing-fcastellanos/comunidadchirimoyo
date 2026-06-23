@@ -34,7 +34,9 @@ from pathlib import Path
 # Rutas por defecto (relativas a la raíz del repo, dos niveles arriba de scripts/).
 REPO = Path(__file__).resolve().parents[1]
 DEFAULT_CSV = REPO / "content" / "fauna" / "_origen" / "aves-especies.csv"
-DEFAULT_OUT = REPO / "content" / "fauna" / "aves"
+# Raíz de fauna: cada ficha se escribe en <out>/<grupo>/<slug>/index.md (el grupo
+# se deriva por fila; ver grupo_de). Para aves esto da content/fauna/aves/<slug>.
+DEFAULT_OUT = REPO / "content" / "fauna"
 DEFAULT_BANCO = Path(r"C:\Users\Frank\Downloads\Img guia aves\Imagenes aves")
 DEFAULT_CREDITOS = Path(r"C:\Users\Frank\Downloads\Img guia aves\creditos_imagenes.json")
 DEFAULT_BUCKET = "catalogo-aves-chirimoyo"
@@ -84,6 +86,35 @@ MIGRATORIO = {
 }
 OCURRENCIA = {"comun": "comun", "poco comun": "poco-comun", "rara": "rara"}
 DISTRIBUCION = {"nativa": "nativa", "introducida": "introducida"}
+
+# Columna `grupo` del CSV → grupo/carpeta del esquema (ADR-0024). El CSV de aves no
+# trae esta columna; en ese caso se usa --grupo-default.
+GRUPO_FOLDER = {
+    "ave": "aves", "aves": "aves",
+    "anfibio": "anfibios", "anfibios": "anfibios",
+    "reptil": "reptiles", "reptiles": "reptiles",
+}
+
+# Remap group-aware de `categoria` para herpetofauna: el CSV trae la forma/tipo
+# ("Sapo", "Lagarto") y el esquema (#87) usa la clase taxonómica.
+CATEGORIA_HERP = {
+    "sapo": "Anuros", "rana": "Anuros",
+    "salamandra": "Salamandras",
+    "lagarto": "Lagartijas", "lagartija": "Lagartijas",
+    "serpiente": "Serpientes", "culebra": "Serpientes",
+    "tortuga": "Tortugas",
+}
+
+
+def grupo_de(row: dict, default: str) -> str:
+    """Grupo/carpeta de una fila desde la columna `grupo` (o `default` si falta)."""
+    raw = (row.get("grupo") or "").strip()
+    if not raw:
+        return default
+    g = GRUPO_FOLDER.get(nkey(raw))
+    if g is None:
+        raise ValueError(f"grupo no reconocido: {raw!r}")
+    return g
 
 NOM059 = {
     "sin categoria de riesgo": "ninguno",
@@ -179,17 +210,30 @@ def licencia_url(nombre: str) -> str | None:
     return f"https://creativecommons.org/licenses/{codigo}/{version}/"
 
 
+def audio_ext(url: str) -> str:
+    """Extensión real del audio derivada de la URL (sin query). iNaturalist sirve
+    .mp3/.m4a/.mpga mezclados; xeno-canto sirve .mp3. Default .mp3 si no se infiere."""
+    from urllib.parse import urlparse
+
+    path = urlparse(url).path
+    m = re.search(r"\.(mp3|m4a|mpga|mpeg|wav|ogg|oga)$", path, re.IGNORECASE)
+    return f".{m.group(1).lower()}" if m else ".mp3"
+
+
 def audio_de(row: dict) -> dict | None:
     """Construye el objeto Audio desde las columnas sonido_* del CSV. Devuelve
     None si la especie no tiene grabación. NO incluye calidad/país (fuera del
     esquema de la ficha; quedan solo en el CSV). No inventa atribución faltante."""
     sonido_id = row.get("sonido_id", "").strip()
-    if not sonido_id or not row.get("sonido_url", "").strip():
+    url = row.get("sonido_url", "").strip()
+    # Sin grabación: vacío o marcador de faltante ("[no aplica]") en id o url.
+    if not sonido_id or not url or FALTANTE.search(sonido_id) or FALTANTE.search(url):
         return None
-    # xeno-canto sirve mp3 en /<id>/download; el nombre del archivo se deriva del
-    # id. Si la descarga revela otro formato, --upload lo reporta (ver main()).
+    # El nombre del archivo se deriva del id, conservando la extensión real de la URL
+    # (iNaturalist: .m4a/.mpga/.mp3). Si la descarga revela otro formato, --upload
+    # lo reporta (ver main()).
     audio = {
-        "archivo": f"{sonido_id}.mp3",
+        "archivo": f"{sonido_id}{audio_ext(url)}",
         "credito": row.get("sonido_autor", "").strip(),
         "creditoUrl": row.get("sonido_pagina", "").strip(),
         "licencia": row.get("sonido_licencia", "").strip(),
@@ -254,6 +298,28 @@ TAMANOS = {"muy-chica", "chica", "mediana", "grande", "muy-grande"}
 COLORES = {"blanco", "negro", "cafe", "gris", "azul", "verde", "amarillo", "rojo", "naranja", "iridiscente"}
 DONDES = {"nadando", "orilla", "volando", "arbol", "suelo", "poste"}
 
+# Sinónimos de color del origen → vocabulario cerrado del esquema (sin acentos).
+COLOR_SINONIMOS = {"dorado": "amarillo", "crema": "blanco", "beige": "cafe", "ocre": "naranja"}
+
+# Meses por nombre (es) → número; el CSV de herps mezcla nombres y números en
+# temporada_meses (p. ej. "junio; julio" vs "5;6;7").
+MESES = {
+    "enero": 1, "febrero": 2, "marzo": 3, "abril": 4, "mayo": 5, "junio": 6,
+    "julio": 7, "agosto": 8, "septiembre": 9, "setiembre": 9, "octubre": 10,
+    "noviembre": 11, "diciembre": 12,
+}
+
+
+def parse_mes(tok: str) -> int:
+    """Mes a número, aceptando número ('6') o nombre ('junio'/'Junio')."""
+    t = nkey(tok)
+    if t in MESES:
+        return MESES[t]
+    try:
+        return int(float(tok))
+    except ValueError:
+        raise ValueError(f"temporada_meses: mes no reconocido: {tok!r}")
+
 
 def _one(val: str, vocab: set[str], campo: str) -> str | None:
     """Valida un valor único contra su vocabulario (o None si vacío)."""
@@ -265,24 +331,34 @@ def _one(val: str, vocab: set[str], campo: str) -> str | None:
     return v
 
 
-def search_fields_yaml(row: dict) -> list[str]:
-    """Líneas YAML de los 5 campos de búsqueda visual (valida vocabularios)."""
+def search_fields_yaml(row: dict, grupo: str) -> list[str]:
+    """Líneas YAML de los campos de búsqueda visual (valida vocabularios). En
+    herpetofauna se OMITEN `forma` y `donde` (su vocabulario cerrado está orientado a
+    aves; decisión C de #87); `tamano`, `colores` y `featured` aplican a todos."""
     out: list[str] = []
-    forma = _one(row.get("forma", ""), FORMAS, "forma")
-    if forma:
-        out.append(f"forma: {forma}")
+    if grupo == "aves":
+        forma = _one(row.get("forma", ""), FORMAS, "forma")
+        if forma:
+            out.append(f"forma: {forma}")
     tamano = _one(row.get("tamano", ""), TAMANOS, "tamano")
     if tamano:
         out.append(f"tamano: {tamano}")
-    colores = [c.strip().lower() for c in (row.get("colores", "") or "").split(";") if c.strip()]
-    for c in colores:
+    # El CSV mezcla separadores (`;` y `,`) y trae acentos/sinónimos; se normaliza.
+    colores: list[str] = []
+    for raw in re.split(r"[;,]", row.get("colores", "") or ""):
+        c = strip_accents(raw).strip().lower()
+        if not c:
+            continue
+        c = COLOR_SINONIMOS.get(c, c)
         if c not in COLORES:
             raise ValueError(f"colores: valor fuera del vocabulario: {c!r}")
+        colores.append(c)
     if colores:
         out.append("colores: [" + ", ".join(colores) + "]")
-    donde = _one(row.get("donde", ""), DONDES, "donde")
-    if donde:
-        out.append(f"donde: {donde}")
+    if grupo == "aves":
+        donde = _one(row.get("donde", ""), DONDES, "donde")
+        if donde:
+            out.append(f"donde: {donde}")
     feat = (row.get("featured", "") or "").strip().lower()
     if feat in ("true", "sí", "si", "1", "x"):
         out.append("featured: true")
@@ -291,8 +367,9 @@ def search_fields_yaml(row: dict) -> list[str]:
     return out
 
 
-# Marcadores de "dato faltante" que el experto usa en celdas sin valor.
-FALTANTE = re.compile(r"dato\s*faltante|^n/?a$|^-+$|^pendiente$|^sin\s*dato$", re.I)
+# Marcadores de "dato faltante" que el experto usa en celdas sin valor
+# (incluye "[no aplica]", p. ej. especies sin canto).
+FALTANTE = re.compile(r"dato\s*faltante|^n/?a$|^-+$|^pendiente$|^sin\s*dato$|no\s*aplica", re.I)
 
 
 def _val(row: dict, col: str) -> str:
@@ -329,12 +406,15 @@ def detalle_fields_yaml(row: dict) -> list[str]:
     if (pq := _val(row, "pull_quote")):
         out.append(f"pullQuote: {yaml_q(pq)}")
     tam, pes = _rango(_val(row, "tamano_cm")), _rango(_val(row, "peso_g"))
+    criterio = _val(row, "talla_criterio")
     if tam or pes:
         out.append("medidas:")
         if tam:
             out.append(f"  tamanoCm: [{tam[0]}, {tam[1]}]")
         if pes:
             out.append(f"  pesoG: [{pes[0]}, {pes[1]}]")
+        if criterio:
+            out.append(f"  criterio: {yaml_q(criterio)}")
     hab = [x.strip() for x in _val(row, "habitat").split(";") if x.strip()]
     if hab:
         out.append("habitat:")
@@ -344,28 +424,43 @@ def detalle_fields_yaml(row: dict) -> list[str]:
     if meses or notas:
         out.append("temporada:")
         if meses:
-            out.append("  meses: [" + ", ".join(str(int(float(m))) for m in meses) + "]")
+            out.append("  meses: [" + ", ".join(str(parse_mes(m)) for m in meses) + "]")
         if notas:
             out.append(f"  notas: {yaml_q(notas)}")
     return out
 
 
-def emit_ficha(slug: str, row: dict, fotos: list[dict]) -> str:
+def emit_ficha(slug: str, grupo: str, row: dict, fotos: list[dict]) -> str:
     nom059, iucn = parse_conservacion(row["estatus_conservacion_detallado"])
     fuentes = [f.strip() for f in row["fuentes"].split(";") if f.strip()]
     nombre_comun = row["nombre_comun"].strip()
     nombre_cientifico = row["nombre_cientifico"].strip()
+    # Categoría group-aware: aves conserva el gremio ecológico; herpetofauna remapea
+    # la forma/tipo del CSV a la clase taxonómica (#87).
+    categoria = row["categoria"].strip()
+    if grupo != "aves":
+        cat = CATEGORIA_HERP.get(nkey(categoria))
+        if cat is None:
+            raise ValueError(f"categoria de herpetofauna no reconocida: {categoria!r}")
+        categoria = cat
+    # Eje de presencia: aves usa `estatus_migratorio`; herpetofauna usa `presencia`.
+    presencia = row.get("estatus_migratorio", "").strip() or row.get("presencia", "").strip()
+    # Una especie introducida residente puede traer un término de distribución
+    # ("Introducida"/"Nativa") filtrado en la columna `presencia`; se trata como
+    # residente (el eje de distribución lo captura `estatus_distribucion`).
+    if nkey(presencia) in DISTRIBUCION:
+        presencia = "residente"
 
     L: list[str] = ["---"]
     L.append(f"slug: {slug}")
-    L.append("grupo: aves")
-    L.append(f"categoria: {yaml_q(row['categoria'].strip())}")
+    L.append(f"grupo: {grupo}")
+    L.append(f"categoria: {yaml_q(categoria)}")
     L.append(f"nombreComun: {yaml_q(nombre_comun)}")
     L.append(f"nombreCientifico: {yaml_q(nombre_cientifico)}")
     L.append(f"orden: {yaml_q(row['orden'].strip())}")
     L.append(f"familia: {yaml_q(row['familia'].strip())}")
     L.append(f"genero: {yaml_q(row['genero'].strip())}")
-    L.append(f"estatusMigratorio: {map_enum(MIGRATORIO, row['estatus_migratorio'], 'estatusMigratorio')}")
+    L.append(f"estatusMigratorio: {map_enum(MIGRATORIO, presencia, 'estatusMigratorio')}")
     L.append(f"gradoOcurrencia: {map_enum(OCURRENCIA, row['grado_ocurrencia'], 'gradoOcurrencia')}")
     L.append(f"estatusDistribucion: {map_enum(DISTRIBUCION, row['estatus_distribucion'], 'estatusDistribucion')}")
     L.append("conservacion:")
@@ -374,7 +469,7 @@ def emit_ficha(slug: str, row: dict, fotos: list[dict]) -> str:
         L.append(f"  iucn: {iucn}")
     if row.get("simbologia_recomendada", "").strip():
         L.append(f"simbologia: {yaml_q(row['simbologia_recomendada'].strip())}")
-    L.extend(search_fields_yaml(row))
+    L.extend(search_fields_yaml(row, grupo))
     L.extend(detalle_fields_yaml(row))
     L.append("fuentes:")
     for f in fuentes:
@@ -506,7 +601,10 @@ def main() -> int:
     ap.add_argument("--csv", type=Path, default=DEFAULT_CSV)
     ap.add_argument("--banco", type=Path, default=DEFAULT_BANCO)
     ap.add_argument("--creditos", type=Path, default=DEFAULT_CREDITOS)
-    ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    ap.add_argument("--out", type=Path, default=DEFAULT_OUT,
+                    help="Raíz de fauna; cada ficha va a <out>/<grupo>/<slug>/.")
+    ap.add_argument("--grupo-default", default="aves",
+                    help="Grupo cuando el CSV no trae columna `grupo` (p. ej. aves).")
     ap.add_argument("--bucket", default=DEFAULT_BUCKET,
                     help="Bucket público para web/ y thumb/.")
     ap.add_argument("--raw-bucket", default=DEFAULT_BUCKET + "-raw",
@@ -560,6 +658,12 @@ def main() -> int:
             )
             continue
         slugs_vistos[slug] = sci
+
+        try:
+            grupo = grupo_de(row, args.grupo_default)
+        except ValueError as exc:
+            errores.append(f"{sci} ({slug}): {exc}")
+            continue
 
         # --- Imágenes / fotos[] ---
         fotos: list[dict] = []
@@ -620,10 +724,10 @@ def main() -> int:
                 else:
                     try:
                         data, ctype = descargar_audio(row["sonido_url"].strip())
-                        if "mpeg" not in ctype and "mp3" not in ctype:
+                        if not ctype.startswith("audio/"):
                             audio_errores.append(
-                                f"{sci} ({slug}): content-type inesperado {ctype!r} "
-                                f"para {audio['archivo']} (la ficha asume .mp3)"
+                                f"{sci} ({slug}): content-type no-audio {ctype!r} "
+                                f"para {audio['archivo']}"
                             )
                         if uploader.put_audio(key_pub, data, ctype or "audio/mpeg"):
                             audios_subidos += 1
@@ -648,15 +752,18 @@ def main() -> int:
             continue
 
         # --- Emitir ficha ---
-        ficha_dir = args.out / slug
+        ficha_dir = args.out / grupo / slug
         ficha_path = ficha_dir / "index.md"
         if ficha_path.exists() and not args.force:
             fichas_saltadas += 1
         else:
             try:
-                md = emit_ficha(slug, row, fotos)
-                import yaml  # auto-verificación: re-parsear el frontmatter emitido
-                yaml.safe_load(md.split("---", 2)[1])
+                md = emit_ficha(slug, grupo, row, fotos)
+                try:  # auto-verificación opcional: re-parsear el frontmatter emitido
+                    import yaml
+                    yaml.safe_load(md.split("---", 2)[1])
+                except ImportError:
+                    pass  # PyYAML no instalado: se omite la auto-verificación
             except Exception as exc:
                 errores.append(f"{sci} ({slug}): {exc}")
                 continue

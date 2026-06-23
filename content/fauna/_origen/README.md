@@ -44,6 +44,25 @@ Cada entrada se **indexa por** `(nombre_cientifico, basename(archivo))` y mapea 
 
 Si un archivo del banco no figura en el manifiesto, el script marca su `credito` como pendiente y **no inventa** atribución. El emparejamiento banco↔manifiesto↔CSV debe ser exacto (reconciliación 63/63 especies, 503/503 archivos).
 
+## `anfibios-reptiles-especies.csv`
+
+Origen de las 12 especies de herpetofauna (8 anfibios + 4 reptiles, issue #88), migradas con el **mismo** `migrar-fauna.py` ya group-aware. Diferencias respecto al CSV de aves y cómo las trata el script:
+
+| Columna / caso | Tratamiento |
+|---|---|
+| `grupo` (`Anfibio`/`Reptil`) | rutea la ficha a `content/fauna/anfibios/` o `reptiles/` (el de aves no trae esta columna → `--grupo-default aves`) |
+| `presencia` (en vez de `estatus_migratorio`) | alimenta `estatusMigratorio`; `Residente`→`residente` |
+| `categoria` (`Sapo`/`Rana`/`Salamandra`/`Lagarto`/`Serpiente`/`Tortuga`) | **remap** a clase: Anuros / Salamandras / Lagartijas / Serpientes / Tortugas |
+| `forma`, `donde` | **se omiten** (vocabulario orientado a aves, decisión C de #87) |
+| `talla_criterio` (`LHC (hocico-cloaca)`, …) | → `medidas.criterio` |
+| `temporada_meses` con nombres (`junio; julio`) | se mapean a número (1–12) |
+| `colores` con acentos / coma / sinónimos | se normaliza: `café`→`cafe`, split por `;` y `,`, `dorado`→`amarillo`, `crema`→`blanco` |
+| `presencia: "Introducida"` (Iguana) | término de distribución filtrado al eje de presencia → se trata como `residente` (la distribución la captura `estatus_distribucion`) |
+| `actividad` (`Nocturna`) | se **descarta** (redundante con `mejor_hora`, fuera del esquema) |
+| `sonido_url` de iNaturalist (`.m4a`/`.mpga`/`.mp3`) | la extensión del `archivo` de audio se deriva de la URL (no se asume `.mp3`) |
+
+El manifiesto `creditos_imagenes.json` de herps conserva la misma forma (incluye además entradas viejas de aves, inertes). El banco `fotos/<nombre científico>/` ya está curado; `fotos/_por_confirmar/` se excluye solo (carpeta sin especie en el CSV) — su resolución es la issue #90.
+
 ## Script de migración
 
 `scripts/migrar-fauna.py` (issue #10). Genera las fichas y, con `--upload`, sube las imágenes al bucket GCS (ver [ADR-0016](../../../docs/decisions/0016-storage-imagenes-fauna-gcs.md)). Es **idempotente**: por defecto no pisa fichas existentes (`--force` regenera). Ejemplos:
