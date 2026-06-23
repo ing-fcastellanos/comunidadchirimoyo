@@ -163,9 +163,9 @@ export function distribucionVista(f: FichaEspecie): DistribucionVista {
   };
 }
 
-/** Especies relacionadas: misma familia primero, luego misma categoría. */
+/** Especies relacionadas del mismo grupo: misma familia primero, luego misma categoría. */
 export function relacionadas(actual: FichaEspecie, todas: FichaEspecie[], n = 6): FichaEspecie[] {
-  const otras = todas.filter((f) => f.slug !== actual.slug);
+  const otras = todas.filter((f) => f.slug !== actual.slug && f.grupo === actual.grupo);
   const familia = otras.filter((f) => f.familia === actual.familia);
   const categoria = otras.filter((f) => f.familia !== actual.familia && f.categoria === actual.categoria);
   return [...familia, ...categoria].slice(0, n);

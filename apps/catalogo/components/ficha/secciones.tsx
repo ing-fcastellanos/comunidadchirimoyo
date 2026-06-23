@@ -56,7 +56,7 @@ export function HeroFicha({ ficha, fotos, badges, resumen }: { ficha: FichaEspec
 
 export function QuickFacts({ ficha }: { ficha: FichaEspecie }) {
   const facts: { icon: IconName; label: string; value: string }[] = [];
-  if (ficha.medidas?.tamanoCm) facts.push({ icon: "Ruler", label: "Tamaño", value: `${ficha.medidas.tamanoCm[0]}–${ficha.medidas.tamanoCm[1]} cm` });
+  if (ficha.medidas?.tamanoCm) facts.push({ icon: "Ruler", label: ficha.medidas.criterio ?? "Tamaño", value: `${ficha.medidas.tamanoCm[0]}–${ficha.medidas.tamanoCm[1]} cm` });
   if (ficha.envergadura) facts.push({ icon: "MoveHorizontal", label: "Envergadura", value: ficha.envergadura });
   facts.push({ icon: "ListTree", label: "Orden", value: ficha.orden });
   facts.push({ icon: "Feather", label: "Familia", value: ficha.familia });

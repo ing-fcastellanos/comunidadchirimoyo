@@ -16,8 +16,9 @@ export const CONTENT_ROOT =
 
 export const FAUNA_DIR = path.join(CONTENT_ROOT, "fauna");
 
-/** Grupos válidos del catálogo (las carpetas con prefijo `_` se excluyen). */
-const GRUPOS: Grupo[] = ["aves", "anfibios-reptiles"];
+/** Grupos válidos del catálogo (las carpetas con prefijo `_` se excluyen). Un grupo
+    taxonómico por carpeta (ADR-0024); insectos/mamíferos se sumarán a futuro. */
+const GRUPOS: Grupo[] = ["aves", "anfibios", "reptiles"];
 
 /** Núcleo estricto del esquema (#9): si falta algo de esto, el build falla. */
 function camposNucleoFaltantes(
@@ -62,7 +63,7 @@ export async function getAllFichas(): Promise<FichaEspecie[]> {
     try {
       entradas = await readdir(grupoDir, { withFileTypes: true });
     } catch {
-      continue; // el grupo aún no existe (p. ej. anfibios-reptiles en Fase 1)
+      continue; // el grupo aún no existe en disco (p. ej. anfibios/reptiles hasta #88)
     }
 
     for (const entrada of entradas) {
