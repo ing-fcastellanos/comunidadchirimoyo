@@ -16,8 +16,9 @@ export const CONTENT_ROOT =
 
 export const FAUNA_DIR = path.join(CONTENT_ROOT, "fauna");
 
-/** Grupos válidos del catálogo (las carpetas con prefijo `_` se excluyen). Un grupo
-    taxonómico por carpeta (ADR-0024); insectos/mamíferos se sumarán a futuro. */
+/** Grupos válidos del catálogo, un grupo = un path (ADR-0024). El loader tolera
+    los grupos cuya carpeta aún no exista; las carpetas con prefijo `_` se excluyen.
+    Insectos/mamíferos se sumarán como nuevos valores cuando lleguen. */
 const GRUPOS: Grupo[] = ["aves", "anfibios", "reptiles"];
 
 /** Núcleo estricto del esquema (#9): si falta algo de esto, el build falla. */

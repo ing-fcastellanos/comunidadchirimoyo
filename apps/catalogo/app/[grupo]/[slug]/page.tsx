@@ -15,24 +15,24 @@ import {
   RelacionadasNav,
 } from "@/components/ficha/secciones";
 
-type Params = { params: Promise<{ slug: string }> };
+type Params = { params: Promise<{ grupo: string; slug: string }> };
 
 /** Solo se generan las rutas de las especies existentes (export estático). */
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const fichas = await getAllFichas();
-  return fichas.map((f) => ({ slug: f.slug }));
+  return fichas.map((f) => ({ grupo: f.grupo, slug: f.slug }));
 }
 
-async function cargar(slug: string) {
+async function cargar(grupo: string, slug: string) {
   const todas = await getAllFichas();
-  return { ficha: todas.find((f) => f.slug === slug), todas };
+  return { ficha: todas.find((f) => f.grupo === grupo && f.slug === slug), todas };
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const { slug } = await params;
-  const { ficha } = await cargar(slug);
+  const { grupo, slug } = await params;
+  const { ficha } = await cargar(grupo, slug);
   if (!ficha) return {};
   const desc =
     resumenDescripcion(parseSecciones(ficha.cuerpo)) ||
@@ -48,8 +48,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 export default async function FichaPage({ params }: Params) {
-  const { slug } = await params;
-  const { ficha, todas } = await cargar(slug);
+  const { grupo, slug } = await params;
+  const { ficha, todas } = await cargar(grupo, slug);
   if (!ficha) notFound();
 
   const sec = parseSecciones(ficha.cuerpo);

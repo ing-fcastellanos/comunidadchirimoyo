@@ -28,6 +28,13 @@ export function audioUrl(slug: string, archivo: string): string {
     Insectos/mamíferos se sumarán como nuevos valores cuando lleguen. */
 export type Grupo = "aves" | "anfibios" | "reptiles";
 
+/** Etiqueta legible de cada grupo (i18n-ready: string aislado, ADR-0011). */
+export const GRUPO_LABEL: Record<Grupo, string> = {
+  aves: "Aves",
+  anfibios: "Anfibios",
+  reptiles: "Reptiles",
+};
+
 /** Sub-filtro cuyo vocabulario depende del `grupo` (group-aware): aves = gremio
     ecológico (Vadeadoras…); anfibios = Anuros · Salamandras; reptiles = Lagartijas ·
     Serpientes · Tortugas. Lista abierta (string); las etiquetas/chips por grupo viven

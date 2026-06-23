@@ -55,12 +55,16 @@ El frontmatter de cada ficha SHALL incluir los campos obligatorios: `slug`, `gru
 - **WHEN** una ficha declara todos los campos obligatorios, una fuente y una foto
 - **THEN** es una ficha válida según el esquema
 
+#### Scenario: Grupo separa anfibios de reptiles
+- **WHEN** una ficha declara `grupo: reptiles`
+- **THEN** es válida y se ubica en `content/fauna/reptiles/<slug>/`, distinta de `grupo: anfibios`
+
 #### Scenario: Falta un campo obligatorio
 - **WHEN** una ficha omite `nombreCientifico`, `genero`, `fuentes` o no tiene ninguna foto
 - **THEN** es inválida según el esquema
 
-#### Scenario: Valor fuera del enum
-- **WHEN** `estatusMigratorio` toma un valor distinto de los permitidos
+#### Scenario: Valor de grupo fuera del enum
+- **WHEN** `grupo` toma un valor distinto de `aves` | `anfibios` | `reptiles` (p. ej. el antiguo `anfibios-reptiles`)
 - **THEN** es inválida según el esquema
 
 #### Scenario: Categoría según el grupo

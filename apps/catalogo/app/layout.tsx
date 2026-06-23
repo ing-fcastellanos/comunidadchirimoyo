@@ -6,13 +6,13 @@ import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aves.chirimoyo.org"),
+  metadataBase: new URL("https://fauna.chirimoyo.org"),
   title: {
-    default: "Guía de Aves del Chirimoyo",
-    template: "%s | Guía de Aves del Chirimoyo",
+    default: "Guía de Fauna del Chirimoyo",
+    template: "%s | Guía de Fauna del Chirimoyo",
   },
   description:
-    "Catálogo de aves y anfibios del humedal de Chirimoyo, Orizaba, Veracruz.",
+    "Catálogo de la fauna (aves, anfibios y reptiles) del humedal de Chirimoyo, Orizaba, Veracruz.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    siteName: "Guía de Aves del Chirimoyo",
+    siteName: "Guía de Fauna del Chirimoyo",
     description:
-      "Catálogo de aves y anfibios del humedal de Chirimoyo, Orizaba, Veracruz.",
+      "Catálogo de la fauna (aves, anfibios y reptiles) del humedal de Chirimoyo, Orizaba, Veracruz.",
     locale: "es_MX",
     type: "website",
     images: [

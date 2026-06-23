@@ -377,14 +377,14 @@ export function TaxonomiaSec({ ficha }: { ficha: FichaEspecie }) {
   );
 }
 
-export function RelacionadasNav({ relacionadas }: { relacionadas: { slug: string; nombreComun: string; nombreCientifico: string }[] }) {
+export function RelacionadasNav({ relacionadas }: { relacionadas: { grupo: string; slug: string; nombreComun: string; nombreCientifico: string }[] }) {
   if (!relacionadas.length) return null;
   return (
     <Section className="py-12 sm:py-16">
       <SectionTitle kicker="Sigue explorando" icon="Bird">Especies relacionadas</SectionTitle>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {relacionadas.map((r) => (
-          <Link key={r.slug} href={`/aves/${r.slug}`} className="group flex items-center justify-between gap-3 rounded-2xl bg-paper-card p-5 shadow-soft ring-1 ring-forest/[0.08] transition-all hover:-translate-y-0.5 hover:ring-forest/25 hover:shadow-card">
+          <Link key={r.slug} href={`/${r.grupo}/${r.slug}`} className="group flex items-center justify-between gap-3 rounded-2xl bg-paper-card p-5 shadow-soft ring-1 ring-forest/[0.08] transition-all hover:-translate-y-0.5 hover:ring-forest/25 hover:shadow-card">
             <span className="min-w-0">
               <span className="block truncate font-serif text-[20px] font-semibold text-forest-deep">{r.nombreComun}</span>
               <span className="block truncate font-serif text-[14px] italic text-ink-soft/75">{r.nombreCientifico}</span>

@@ -5,7 +5,7 @@
   "targets": {
     "chirimoyo": {
       "hosting": {
-        "prod": ["aves-chirimoyo"]
+        "prod": ["fauna-chirimoyo"]
       }
     }
   }
