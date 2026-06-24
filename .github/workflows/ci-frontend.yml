@@ -51,6 +51,12 @@ jobs:
         if: steps.exists.outputs.go == 'true'
         run: npx tsc --noEmit
 
+      # Valida todas las fichas de fauna contra el esquema (solo catalogo).
+      # Un `error` en cualquier ficha rompe el check; warnings solo informan. Ver #91.
+      - name: Validar fichas
+        if: matrix.app == 'catalogo' && steps.exists.outputs.go == 'true'
+        run: npm run validate:fichas
+
       - name: Build
         if: steps.exists.outputs.go == 'true'
         run: npm run build

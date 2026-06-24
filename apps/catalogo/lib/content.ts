@@ -6,6 +6,7 @@ import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
 import type { FichaEspecie, Grupo } from "./fauna-schema";
+import { validarFicha } from "./fauna-validate";
 
 export * from "./fauna-schema";
 
@@ -21,42 +22,13 @@ export const FAUNA_DIR = path.join(CONTENT_ROOT, "fauna");
     Insectos/mamíferos se sumarán como nuevos valores cuando lleguen. */
 const GRUPOS: Grupo[] = ["aves", "anfibios", "reptiles"];
 
-/** Núcleo estricto del esquema (#9): si falta algo de esto, el build falla. */
-function camposNucleoFaltantes(
-  data: Record<string, unknown>,
-  cuerpo: string,
-): string[] {
-  const faltan: string[] = [];
-  const req = (cond: boolean, campo: string) => {
-    if (!cond) faltan.push(campo);
-  };
-  const str = (v: unknown) => typeof v === "string" && v.trim().length > 0;
-
-  req(str(data.nombreComun), "nombreComun");
-  req(str(data.nombreCientifico), "nombreCientifico");
-  req(str(data.categoria), "categoria");
-  req(str(data.orden), "orden");
-  req(str(data.familia), "familia");
-  req(str(data.estatusMigratorio), "estatusMigratorio");
-  req(str(data.gradoOcurrencia), "gradoOcurrencia");
-  req(str(data.estatusDistribucion), "estatusDistribucion");
-  req(
-    typeof data.conservacion === "object" &&
-      data.conservacion !== null &&
-      str((data.conservacion as Record<string, unknown>).nom059),
-    "conservacion.nom059",
-  );
-  req(Array.isArray(data.fuentes) && data.fuentes.length >= 1, "fuentes");
-  req(Array.isArray(data.fotos) && data.fotos.length >= 1, "fotos");
-  req(/^##\s+Descripci[oó]n\s*$/im.test(cuerpo), "## Descripción");
-
-  return faltan;
-}
-
-/** Lee y valida todas las fichas de FAUNA_DIR. Lanza si una ficha tiene el
-    núcleo incompleto (build falla). Los campos opcionales/⊙ ausentes se toleran. */
+/** Lee y valida todas las fichas de FAUNA_DIR. La lógica de validación vive en
+    lib/fauna-validate.ts (fuente única, compartida con scripts/validar-fichas.mts);
+    aquí solo filtramos los problemas de severidad "error" y lanzamos (el build
+    falla). Los warnings y los campos opcionales ausentes se toleran. */
 export async function getAllFichas(): Promise<FichaEspecie[]> {
   const fichas: FichaEspecie[] = [];
+  const slugsVistos = new Set<string>();
 
   for (const grupo of GRUPOS) {
     const grupoDir = path.join(FAUNA_DIR, grupo);
@@ -82,12 +54,14 @@ export async function getAllFichas(): Promise<FichaEspecie[]> {
       const { data, content } = matter(raw);
       const cuerpo = content.trim();
 
-      const faltan = camposNucleoFaltantes(data, cuerpo);
-      if (faltan.length > 0) {
+      const errores = validarFicha(data, cuerpo, { slugCarpeta, grupo, slugsVistos })
+        .filter((p) => p.severidad === "error");
+      if (errores.length > 0) {
         throw new Error(
-          `Ficha inválida ${grupo}/${slugCarpeta}: faltan campos del núcleo: ${faltan.join(", ")}`,
+          `Ficha inválida ${grupo}/${slugCarpeta}: ${errores.map((p) => `${p.campo} (${p.mensaje})`).join(", ")}`,
         );
       }
+      slugsVistos.add(typeof data.slug === "string" && data.slug.trim() ? data.slug : slugCarpeta);
 
       fichas.push({
         slug: typeof data.slug === "string" ? data.slug : slugCarpeta,
@@ -99,7 +73,7 @@ export async function getAllFichas(): Promise<FichaEspecie[]> {
         otrosNombres: data.otrosNombres,
         orden: data.orden,
         familia: data.familia,
-        genero: data.genero ?? "",
+        genero: data.genero,
         estatusMigratorio: data.estatusMigratorio,
         gradoOcurrencia: data.gradoOcurrencia,
         estatusDistribucion: data.estatusDistribucion,
