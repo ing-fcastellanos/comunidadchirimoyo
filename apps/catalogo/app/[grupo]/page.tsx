@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllFichas } from "@/lib/content";
 import { GRUPO_LABEL, type Grupo } from "@/lib/fauna-schema";
+import { fichaToEspecie } from "@/lib/search";
 import { buildHeroSlides } from "@/lib/hero";
 import { COMUNIDAD_URL } from "@/lib/links";
 import { Hero } from "@/components/home/Hero";
 import { QueHayAqui } from "@/components/home/QueHayAqui";
 import { ElHumedal } from "@/components/home/ElHumedal";
 import { CierreCTA } from "@/components/home/CierreCTA";
+import { IndiceGrupo } from "@/components/grupo/IndiceGrupo";
 import { Proximamente } from "@/components/grupo/Proximamente";
 
 /* Página índice por grupo. Una sola jerarquía dinámica sirve a todos los grupos
@@ -33,6 +35,11 @@ export default async function GrupoPage({ params }: { params: Promise<{ grupo: s
   const { grupo } = await params;
   if (grupo === "aves") return <LandingAves />;
   if (grupo === "anfibios" || grupo === "reptiles") {
+    const especies = (await getAllFichas())
+      .filter((f) => f.grupo === grupo)
+      .map(fichaToEspecie);
+    // Con fichas: índice-grilla. Sin fichas todavía: placeholder «Próximamente».
+    if (especies.length > 0) return <IndiceGrupo grupo={grupo} especies={especies} />;
     return (
       <Proximamente
         eyebrow={`Catálogo de fauna · ${GRUPO_LABEL[grupo]}`}

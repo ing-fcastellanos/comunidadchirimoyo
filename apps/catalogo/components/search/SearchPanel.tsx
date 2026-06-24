@@ -5,13 +5,13 @@
 import { useRef, useState, type ReactNode } from "react";
 import { Ico, ShapeIcon } from "./Icons";
 import { CATS, SHAPES, SIZES, COLORS, WHERES, QUICKS } from "@/lib/dictionary";
-import type { Bird, Filters } from "@/lib/search";
+import type { Especie, Filters } from "@/lib/search";
 
 type Section = "detailed" | "quick" | null;
 
 interface Props {
   filters: Filters;
-  birds: Bird[];
+  especies: Especie[];
   setText: (v: string) => void;
   toggleVal: (key: keyof Filters, val: string) => void;
   setOne: (key: keyof Filters, val: string) => void;
@@ -41,12 +41,12 @@ function BlockLabel({ children }: { children: ReactNode }) {
   return <h4 className="mb-3 text-[12px] font-bold uppercase tracking-[0.18em] text-forest/70">{children}</h4>;
 }
 
-function Autocomplete({ filters, setText, birds }: { filters: Filters; setText: (v: string) => void; birds: Bird[] }) {
+function Autocomplete({ filters, setText, especies }: { filters: Filters; setText: (v: string) => void; especies: Especie[] }) {
   const [focused, setFocused] = useState(false);
   const blurT = useRef<ReturnType<typeof setTimeout> | null>(null);
   const q = filters.text.trim().toLowerCase();
   const sugg = q
-    ? birds.filter((b) => (b.common + " " + b.sci + " " + b.familia + " " + b.keywords).toLowerCase().includes(q)).slice(0, 6)
+    ? especies.filter((b) => (b.common + " " + b.sci + " " + b.familia + " " + b.keywords).toLowerCase().includes(q)).slice(0, 6)
     : [];
 
   return (
@@ -102,10 +102,10 @@ function Autocomplete({ filters, setText, birds }: { filters: Filters; setText: 
   );
 }
 
-function AdvancedFilters({ filters, setOne, birds }: { filters: Filters; setOne: Props["setOne"]; birds: Bird[] }) {
+function AdvancedFilters({ filters, setOne, especies }: { filters: Filters; setOne: Props["setOne"]; especies: Especie[] }) {
   const [open, setOpen] = useState(false);
-  const ordenes = [...new Set(birds.map((b) => b.orden))].sort();
-  const familias = [...new Set(birds.map((b) => b.familia))].sort();
+  const ordenes = [...new Set(especies.map((b) => b.orden))].sort();
+  const familias = [...new Set(especies.map((b) => b.familia))].sort();
   const selects: { key: keyof Filters; label: string; options: [string, string][] }[] = [
     { key: "categorias", label: "Categoría", options: (Object.keys(CATS) as (keyof typeof CATS)[]).map((k) => [k, CATS[k].label]) },
     { key: "ordenes", label: "Orden", options: ordenes.map((o) => [o, o]) },
@@ -144,10 +144,10 @@ function AdvancedFilters({ filters, setOne, birds }: { filters: Filters; setOne:
   );
 }
 
-function DetailedSearch({ filters, birds, setText, toggleVal, setOne, count, clearAll }: Props) {
+function DetailedSearch({ filters, especies, setText, toggleVal, setOne, count, clearAll }: Props) {
   return (
     <div className="space-y-8 px-5 py-7 sm:px-8 sm:py-8">
-      <Autocomplete filters={filters} setText={setText} birds={birds} />
+      <Autocomplete filters={filters} setText={setText} especies={especies} />
 
       <div>
         <BlockLabel>Por forma</BlockLabel>
@@ -209,7 +209,7 @@ function DetailedSearch({ filters, birds, setText, toggleVal, setOne, count, cle
         </div>
       </div>
 
-      <AdvancedFilters filters={filters} setOne={setOne} birds={birds} />
+      <AdvancedFilters filters={filters} setOne={setOne} especies={especies} />
 
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-forest/10 pt-5">
         <span className="text-[15px] text-ink/80"><strong className="font-bold text-forest-deep">{count}</strong> {count === 1 ? "ave coincide" : "aves coinciden"}</span>

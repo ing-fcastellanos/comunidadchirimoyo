@@ -1,9 +1,9 @@
-/* BirdCard.tsx — tarjeta de resultado (vistas grid y lista). Portada del handoff
-   docs/design/buscar-aves/.../BirdCard.jsx. */
+/* EspecieCard.tsx — tarjeta de resultado (vistas grid y lista). Portada del handoff
+   docs/design/buscar-aves/.../EspecieCard.jsx. */
 import type { ReactNode } from "react";
 import { Ico } from "./Icons";
 import { CATS, PRESENCE, OBSERVATION, SIZES, COLORS, WHERES } from "@/lib/dictionary";
-import type { Bird } from "@/lib/search";
+import type { Especie } from "@/lib/search";
 
 function Trait({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -16,7 +16,7 @@ function Trait({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-function CategoryChip({ cat }: { cat: Bird["category"] }) {
+function CategoryChip({ cat }: { cat: Especie["category"] }) {
   const meta = CATS[cat];
   return (
     <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.08em] ring-1 ring-inset backdrop-blur-sm ${meta.chip}`}>
@@ -25,7 +25,7 @@ function CategoryChip({ cat }: { cat: Bird["category"] }) {
   );
 }
 
-function Pills({ bird }: { bird: Bird }) {
+function Pills({ bird }: { bird: Especie }) {
   const pres = PRESENCE[bird.presence];
   const obs = OBSERVATION[bird.observation];
   const protect = bird.conservation === "NOM-059";
@@ -46,7 +46,7 @@ function Pills({ bird }: { bird: Bird }) {
   );
 }
 
-function TraitRow({ bird }: { bird: Bird }) {
+function TraitRow({ bird }: { bird: Especie }) {
   const size = SIZES.find((s) => s.id === bird.size);
   const where = WHERES.find((w) => w.id === bird.where);
   const colorMetas = bird.colors.map((c) => COLORS.find((x) => x.id === c)).filter(Boolean) as typeof COLORS;
@@ -79,7 +79,7 @@ function TraitRow({ bird }: { bird: Bird }) {
   );
 }
 
-function Figure({ bird, ratioClass }: { bird: Bird; ratioClass: string }) {
+function Figure({ bird, ratioClass }: { bird: Especie; ratioClass: string }) {
   return (
     <figure className={`relative overflow-hidden bg-paper-deep ${ratioClass}`}>
       {bird.img ? (
@@ -95,7 +95,7 @@ function Figure({ bird, ratioClass }: { bird: Bird; ratioClass: string }) {
   );
 }
 
-export function BirdCard({ bird, view }: { bird: Bird; view: "grid" | "list" }) {
+export function EspecieCard({ bird, view }: { bird: Especie; view: "grid" | "list" }) {
   if (view === "list") {
     return (
       <article className="group flex flex-col overflow-hidden rounded-2xl bg-paper-card shadow-card ring-1 ring-forest/[0.07] transition-all duration-200 hover:-translate-y-0.5 sm:flex-row">
