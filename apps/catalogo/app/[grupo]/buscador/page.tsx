@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllFichas } from "@/lib/content";
-import { fichaToBird } from "@/lib/search";
+import { fichaToEspecie } from "@/lib/search";
 import { BuscadorAves } from "@/components/search/BuscadorAves";
 
 /* Buscador especializado por grupo. Por ahora solo aves tiene buscador; el
@@ -20,7 +20,7 @@ export default async function BuscadorGrupo({ params }: { params: Promise<{ grup
   if (grupo !== "aves") notFound();
 
   const fichas = await getAllFichas();
-  const birds = fichas.filter((f) => f.grupo === "aves").map(fichaToBird);
+  const especies = fichas.filter((f) => f.grupo === "aves").map(fichaToEspecie);
 
   return (
     <div className="mx-auto max-w-6xl px-6 pb-20">
@@ -33,12 +33,12 @@ export default async function BuscadorGrupo({ params }: { params: Promise<{ grup
         </h1>
         <p className="mt-3 max-w-xl text-[16px] leading-relaxed text-ink/75">
           Busca entre{" "}
-          <strong className="font-semibold text-forest">{birds.length} especies</strong>{" "}
+          <strong className="font-semibold text-forest">{especies.length} especies</strong>{" "}
           registradas en la laguna por forma, tamaño, color o dónde la viste.
         </p>
       </div>
 
-      <BuscadorAves birds={birds} />
+      <BuscadorAves especies={especies} />
     </div>
   );
 }

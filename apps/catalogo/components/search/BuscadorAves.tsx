@@ -5,10 +5,10 @@
 import { useMemo, useState } from "react";
 import { Ico } from "./Icons";
 import { SearchPanel } from "./SearchPanel";
-import { BirdCard } from "./BirdCard";
+import { EspecieCard } from "./EspecieCard";
 import { CATS, SHAPES, SIZES, COLORS, WHERES } from "@/lib/dictionary";
 import type { CategoriaId } from "@/lib/dictionary";
-import { EMPTY_FILTERS, filterAndSort, type Bird, type Filters, type SortKey } from "@/lib/search";
+import { EMPTY_FILTERS, filterAndSort, type Especie, type Filters, type SortKey } from "@/lib/search";
 
 const catLabel = (id: CategoriaId) => CATS[id].label;
 
@@ -76,7 +76,7 @@ function EmptyState({ clearAll }: { clearAll: () => void }) {
   );
 }
 
-export function BuscadorAves({ birds }: { birds: Bird[] }) {
+export function BuscadorAves({ especies }: { especies: Especie[] }) {
   const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
   const [openSection, setOpenSection] = useState<"detailed" | "quick" | null>("detailed");
   const [sort, setSort] = useState<SortKey>("relevancia");
@@ -95,7 +95,7 @@ export function BuscadorAves({ birds }: { birds: Bird[] }) {
     setOpenSection("detailed");
   };
 
-  const results = useMemo(() => filterAndSort(birds, filters, sort, catLabel), [birds, filters, sort]);
+  const results = useMemo(() => filterAndSort(especies, filters, sort, catLabel), [especies, filters, sort]);
 
   const pills: { k: string; group?: string; label: string; remove: () => void }[] = [];
   if (filters.text.trim()) pills.push({ k: "text", label: `"${filters.text.trim()}"`, remove: () => setText("") });
@@ -110,7 +110,7 @@ export function BuscadorAves({ birds }: { birds: Bird[] }) {
     <>
       <div className="py-7 sm:py-9">
         <SearchPanel
-          filters={filters} birds={birds} setText={setText} toggleVal={toggleVal} setOne={setOne}
+          filters={filters} especies={especies} setText={setText} toggleVal={toggleVal} setOne={setOne}
           count={results.length} clearAll={clearAll} applyQuick={applyQuick}
           openSection={openSection} setOpenSection={setOpenSection}
         />
@@ -135,7 +135,7 @@ export function BuscadorAves({ birds }: { birds: Bird[] }) {
         <EmptyState clearAll={clearAll} />
       ) : (
         <div className={view === "grid" ? "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" : "flex flex-col gap-4"}>
-          {results.map((b) => <BirdCard key={b.id} bird={b} view={view} />)}
+          {results.map((b) => <EspecieCard key={b.id} bird={b} view={view} />)}
         </div>
       )}
     </>

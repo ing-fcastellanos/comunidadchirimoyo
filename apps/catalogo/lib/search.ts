@@ -1,10 +1,10 @@
 /* search.ts — view-model de búsqueda. Convierte FichaEspecie (esquema #9) en el
-   registro `Bird` que consumen los componentes del buscador, y contiene el
+   registro `Especie` que consumen los componentes del buscador, y contiene el
    filtrado + orden en cliente (portado del handoff searchapp.jsx). */
 import { fotoUrl, type FichaEspecie, type Grupo, type Forma, type Tamano, type Color, type Donde } from "./fauna-schema";
 import type { CategoriaId, Presencia, Observacion, Conservacion } from "./dictionary";
 
-export interface Bird {
+export interface Especie {
   id: string;
   /** Grupo taxonómico (aves | anfibios | reptiles); base del filtro por grupo (#85). */
   group: Grupo;
@@ -61,7 +61,7 @@ function resumen(cuerpo: string): string {
   return fin > 0 ? parrafo.slice(0, fin + 1) : parrafo;
 }
 
-export function fichaToBird(f: FichaEspecie): Bird {
+export function fichaToEspecie(f: FichaEspecie): Especie {
   return {
     id: f.slug,
     group: f.grupo,
@@ -113,14 +113,14 @@ const OBS_ORDER: Record<Observacion, number> = { Común: 0, "Poco Común": 1, Ra
 
 /** Filtra y ordena el catálogo según los filtros activos (en cliente). */
 export function filterAndSort(
-  birds: Bird[],
+  especies: Especie[],
   f: Filters,
   sort: SortKey,
   catLabel: (id: CategoriaId) => string,
-): Bird[] {
+): Especie[] {
   const q = f.text.trim().toLowerCase();
   const arrOk = (arr: string[], val?: string) => arr.length === 0 || (val != null && arr.includes(val));
-  let list = birds.filter((b) => {
+  let list = especies.filter((b) => {
     if (q && !(b.common + " " + b.sci + " " + b.familia + " " + b.orden + " " + b.keywords).toLowerCase().includes(q)) return false;
     if (!arrOk(f.shapes, b.shape)) return false;
     if (!arrOk(f.sizes, b.size)) return false;
@@ -136,7 +136,7 @@ export function filterAndSort(
     return true;
   });
 
-  const cmp: Record<string, (a: Bird, b: Bird) => number> = {
+  const cmp: Record<string, (a: Especie, b: Especie) => number> = {
     alfabetico: (a, b) => a.common.localeCompare(b.common, "es"),
     categoria: (a, b) => catLabel(a.category).localeCompare(catLabel(b.category), "es") || a.common.localeCompare(b.common, "es"),
     "comun-rara": (a, b) => OBS_ORDER[a.observation] - OBS_ORDER[b.observation] || a.common.localeCompare(b.common, "es"),
