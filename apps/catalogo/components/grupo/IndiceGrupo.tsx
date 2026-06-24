@@ -5,6 +5,7 @@
 import { GRUPO_LABEL, type Grupo } from "@/lib/fauna-schema";
 import type { Especie } from "@/lib/search";
 import { EspecieCard } from "@/components/search/EspecieCard";
+import { Icon } from "@/components/ui/Icon";
 
 /** Intro breve por grupo (i18n-ready: string aislado). Fallback genérico para
     grupos futuros sin copy propio. */
@@ -14,8 +15,15 @@ const INTRO: Partial<Record<Grupo, string>> = {
 };
 const INTRO_FALLBACK = "Especies de este grupo documentadas en el humedal del Chirimoyo.";
 
+/** Guía PDF por grupo: anfibios y reptiles comparten el catálogo de herpetología. */
+const PDF_GUIA: Partial<Record<Grupo, { href: string; label: string }>> = {
+  anfibios: { href: "/catalogo-herpetofauna-chirimoyo.pdf", label: "Descargar guía de herpetofauna (PDF)" },
+  reptiles: { href: "/catalogo-herpetofauna-chirimoyo.pdf", label: "Descargar guía de herpetofauna (PDF)" },
+};
+
 export function IndiceGrupo({ grupo, especies }: { grupo: Grupo; especies: Especie[] }) {
   const label = GRUPO_LABEL[grupo];
+  const guia = PDF_GUIA[grupo];
   return (
     <div className="mx-auto max-w-6xl px-6 pb-20">
       <header className="pt-8 sm:pt-10">
@@ -30,6 +38,15 @@ export function IndiceGrupo({ grupo, especies }: { grupo: Grupo; especies: Espec
           {" — "}
           {INTRO[grupo] ?? INTRO_FALLBACK}
         </p>
+        {guia && (
+          <a
+            href={guia.href}
+            download
+            className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-[14px] font-semibold text-forest-deep ring-1 ring-forest/20 transition-colors hover:bg-mint-wash focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25"
+          >
+            <Icon name="Download" className="h-[18px] w-[18px]" /> {guia.label}
+          </a>
+        )}
       </header>
 
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

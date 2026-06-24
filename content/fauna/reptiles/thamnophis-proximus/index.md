@@ -2,7 +2,7 @@
 slug: thamnophis-proximus
 grupo: reptiles
 categoria: "Serpientes"
-nombreComun: "Culebra Listonada / Jarretera"
+nombreComun: "Culebra Listonada"
 nombreCientifico: "Thamnophis proximus"
 orden: "Squamata"
 familia: "Colubridae"
@@ -18,12 +18,13 @@ tamano: mediana
 colores: [cafe, negro, amarillo]
 autoridad: "(Say, 1823)"
 otrosNombres:
-  - "Culebra listonada, jarretera, culebra acuática centroamericana, western ribbon snake"
+  - "Jarretera"
+  - "Culebra acuática centroamericana"
 mejorHora: "Mañana y media tarde, durante el forrajeo diurno cerca del agua."
 pullQuote: "Tres líneas claras al borde del agua: inofensiva guardiana del humedal."
 medidas:
   tamanoCm: [50, 120]
-  criterio: "longitud total (hocico-extremo de la cola)"
+  criterio: "Longitud total (hocico-cola)"
 habitat:
   - "Vegetación de orillas, charcas, canales y márgenes del humedal"
   - "especie estrictamente ligada al agua."

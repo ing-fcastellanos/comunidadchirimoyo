@@ -18,7 +18,9 @@ tamano: mediana
 colores: [verde, cafe, negro]
 autoridad: "(Baird, 1859)"
 otrosNombres:
-  - "Rana leopardo del Río Grande, Rana leopardo del Río Bravo, Lixut, Rio Grande Leopard Frog (citada en la guía local como 'Rana berlandieri')"
+  - "Rana leopardo del Río Grande"
+  - "Rana leopardo del Río Bravo"
+  - "Lixut"
 mejorHora: "Noche, en las orillas y dentro de los cuerpos de agua"
 pullQuote: "Manchas de leopardo y salto al agua: anfibio protegido (Pr)."
 medidas:

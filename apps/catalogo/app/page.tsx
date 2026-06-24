@@ -4,6 +4,7 @@ import { COMUNIDAD_URL } from "@/lib/links";
 import { Hero } from "@/components/home/Hero";
 import { GruposFauna } from "@/components/home/GruposFauna";
 import { ElHumedal } from "@/components/home/ElHumedal";
+import { CierreCTA } from "@/components/home/CierreCTA";
 
 /* Hub de fauna (ADR-0024): la home presenta el catálogo como guía de la fauna
    del humedal —no solo aves— y encamina a cada grupo o a la búsqueda. El carrusel
@@ -35,6 +36,7 @@ export default async function Inicio() {
       />
       <GruposFauna counts={counts} />
       <ElHumedal />
+      <CierreCTA />
     </>
   );
 }

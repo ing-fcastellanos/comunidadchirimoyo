@@ -1,8 +1,27 @@
-# catalogo-pdf Specification
+## ADDED Requirements
 
-## Purpose
-TBD - created by archiving change generar-pdf-catalogo. Update Purpose after archive.
-## Requirements
+### Requirement: Catálogos por disciplina generados en build
+
+El catálogo SHALL generar, durante el build, **dos archivos PDF por disciplina** a partir de los datos de `content/fauna/` (la misma fuente de verdad del sitio): un catálogo de **ornitología** con las especies de `aves` (`out/catalogo-aves-chirimoyo.pdf`) y un catálogo de **herpetología** con las especies de `anfibios` y `reptiles` (`out/catalogo-herpetofauna-chirimoyo.pdf`). La generación SHALL ocurrir en build, NO en runtime, NO en cliente y NO mediante el API. Ambos PDFs SHALL producirse con un único generador parametrizado por **configuración de disciplina** (grupos incluidos, copy de marca, orden y tonos de categoría, CSV de resúmenes, archivo de salida), sin duplicar la lógica de maquetación.
+
+#### Scenario: El build produce los dos PDFs
+- **WHEN** se ejecuta `build:pdf` (parte del flujo de deploy) seguido de `next build`
+- **THEN** existen `out/catalogo-aves-chirimoyo.pdf` (aves) y `out/catalogo-herpetofauna-chirimoyo.pdf` (anfibios + reptiles), cada uno con una página por especie de su disciplina más las páginas de marca
+
+#### Scenario: Sin dependencia del API
+- **WHEN** se generan los PDFs
+- **THEN** el proceso NO realiza ninguna llamada al API ni expone ningún endpoint de generación
+
+#### Scenario: Regeneración determinista al cambiar los datos
+- **WHEN** cambia una ficha en `content/` y se vuelve a ejecutar el build
+- **THEN** el PDF de su disciplina se regenera reflejando el cambio, y un mismo `content/` produce PDFs equivalentes
+
+#### Scenario: Herpetología agrupa anfibios y reptiles
+- **WHEN** se abre `catalogo-herpetofauna-chirimoyo.pdf`
+- **THEN** contiene las fichas de anfibios y reptiles, y ninguna de aves
+
+## MODIFIED Requirements
+
 ### Requirement: Estructura del documento fiel al diseño
 
 Cada PDF de disciplina SHALL constar de páginas A4 verticales que reproducen el diseño entregado: **portada**, **introducción + leyenda** del sistema de insignias, **índice por categoría**, una **ficha por especie** (una especie por hoja) y una página de **cierre** con créditos, fuentes y licencias. El documento SHALL usar la identidad visual del proyecto (tokens canónicos de color/tipografía: paleta forest/pine/mint/paper/ink con acentos ochre/terra/teal; Cormorant Garamond + Source Sans 3).
@@ -55,59 +74,6 @@ Cada PDF SHALL incluir un índice que agrupe las especies por **categoría** (`c
 - **WHEN** se consulta el índice de herpetología
 - **THEN** las categorías aparecen agrupadas por grupo (anfibios: Anuros, Salamandras; reptiles: Lagartijas, Serpientes, Tortugas)
 
-### Requirement: Imágenes desde la copia local con degradado controlado
-
-La generación SHALL incorporar la foto principal de cada especie desde una copia local del banco
-de imágenes, resolviendo el nombre de archivo de la ficha. La ubicación del banco SHALL ser
-configurable. Cuando una imagen no se encuentre, la ficha SHALL usar un placeholder y la
-generación SHALL registrar un aviso, sin abortar el build.
-
-#### Scenario: Foto resuelta desde el banco local
-- **WHEN** existe el archivo de imagen de una especie en la ubicación configurada
-- **THEN** la ficha incrusta esa foto, recomprimida a un ancho de impresión razonable
-
-#### Scenario: Imagen faltante no rompe el build
-- **WHEN** falta el archivo de imagen de una especie
-- **THEN** la ficha muestra un placeholder, se registra un aviso identificando la especie, y el build continúa
-
-### Requirement: Textos de ficha con resúmenes curados
-
-Los cuatro bloques de texto de la ficha SHALL usar, cuando existan, los **resúmenes curados**
-(acotados, p. ej. ≤350 caracteres) del CSV de origen (columnas `resumen_descripcion`,
-`resumen_como_identificarla`, `resumen_sabias_que`, `resumen_donde_cuando`), casados por nombre
-científico. Estos resúmenes SHALL tener prioridad sobre el extracto automático del cuerpo. Si una
-especie carece de un resumen, la generación SHALL recurrir a un extracto recortado del cuerpo
-Markdown, sin romper la maqueta.
-
-#### Scenario: Resumen curado disponible
-- **WHEN** una especie tiene resúmenes en el CSV
-- **THEN** la ficha muestra esos textos en lugar de los extractos del cuerpo
-
-#### Scenario: Sin resumen
-- **WHEN** una especie no tiene un resumen para un bloque
-- **THEN** ese bloque usa un extracto recortado del cuerpo Markdown
-
-### Requirement: Selección y encuadre de foto por especie
-
-El proyecto SHALL proveer una herramienta para elegir, por especie, **cuál** de las fotos
-disponibles del banco se usa en el PDF y **cómo se encuadra** en el recuadro del catálogo. La
-herramienta SHALL exportar las selecciones como un archivo JSON con, por especie, el nombre de la
-foto y un recorte **normalizado** (0..1) respecto a la imagen original. La generación del PDF
-SHALL, cuando exista ese archivo, usar la foto elegida y aplicar el recorte a la imagen original;
-en su ausencia SHALL recurrir a la primera foto (recorte centrado por defecto).
-
-#### Scenario: Elegir foto distinta de la primera
-- **WHEN** la selección de una especie indica una foto distinta de la primera del banco
-- **THEN** la ficha de esa especie en el PDF usa la foto indicada
-
-#### Scenario: Aplicar el encuadre
-- **WHEN** la selección incluye un recorte normalizado
-- **THEN** el PDF recorta la imagen original según ese rectángulo antes de incrustarla
-
-#### Scenario: Sin selección
-- **WHEN** no existe el archivo de selecciones, o una especie no aparece en él
-- **THEN** la ficha usa la primera foto del banco con recorte centrado, sin romper el build
-
 ### Requirement: Códigos QR reales
 
 El PDF SHALL incluir códigos QR escaneables y válidos. Cada ficha SHALL incluir un QR que enlace a
@@ -138,23 +104,9 @@ el de herpetología.
 - **WHEN** una persona está en `/anfibios` o `/reptiles`
 - **THEN** el enlace de descarga apunta al PDF de herpetología
 
-### Requirement: Catálogos por disciplina generados en build
+## REMOVED Requirements
 
-El catálogo SHALL generar, durante el build, **dos archivos PDF por disciplina** a partir de los datos de `content/fauna/` (la misma fuente de verdad del sitio): un catálogo de **ornitología** con las especies de `aves` (`out/catalogo-aves-chirimoyo.pdf`) y un catálogo de **herpetología** con las especies de `anfibios` y `reptiles` (`out/catalogo-herpetofauna-chirimoyo.pdf`). La generación SHALL ocurrir en build, NO en runtime, NO en cliente y NO mediante el API. Ambos PDFs SHALL producirse con un único generador parametrizado por **configuración de disciplina** (grupos incluidos, copy de marca, orden y tonos de categoría, CSV de resúmenes, archivo de salida), sin duplicar la lógica de maquetación.
+### Requirement: PDF único del catálogo generado en build
 
-#### Scenario: El build produce los dos PDFs
-- **WHEN** se ejecuta `build:pdf` (parte del flujo de deploy) seguido de `next build`
-- **THEN** existen `out/catalogo-aves-chirimoyo.pdf` (aves) y `out/catalogo-herpetofauna-chirimoyo.pdf` (anfibios + reptiles), cada uno con una página por especie de su disciplina más las páginas de marca
-
-#### Scenario: Sin dependencia del API
-- **WHEN** se generan los PDFs
-- **THEN** el proceso NO realiza ninguna llamada al API ni expone ningún endpoint de generación
-
-#### Scenario: Regeneración determinista al cambiar los datos
-- **WHEN** cambia una ficha en `content/` y se vuelve a ejecutar el build
-- **THEN** el PDF de su disciplina se regenera reflejando el cambio, y un mismo `content/` produce PDFs equivalentes
-
-#### Scenario: Herpetología agrupa anfibios y reptiles
-- **WHEN** se abre `catalogo-herpetofauna-chirimoyo.pdf`
-- **THEN** contiene las fichas de anfibios y reptiles, y ninguna de aves
-
+**Reason**: El catálogo deja de ser un único PDF de aves y pasa a **dos PDFs por disciplina** (ornitología y herpetología); ver el nuevo requisito *Catálogos por disciplina generados en build*.
+**Migration**: La generación ahora corre un generador parametrizado dos veces (`build:pdf`), produciendo `out/catalogo-aves-chirimoyo.pdf` y `out/catalogo-herpetofauna-chirimoyo.pdf`. Quien dependía del PDF único de aves sigue encontrándolo en la misma ruta; el de herpetología es adicional.

@@ -2,7 +2,7 @@
 slug: sceloporus-grammicus
 grupo: reptiles
 categoria: "Lagartijas"
-nombreComun: "Lagartija espinosa del mezquite"
+nombreComun: "Lagartija escamosa"
 nombreCientifico: "Sceloporus grammicus"
 orden: "Squamata"
 familia: "Phrynosomatidae"
@@ -18,17 +18,15 @@ tamano: chica
 colores: [cafe, gris, negro]
 autoridad: "Sceloporus grammicus Wiegmann, 1828"
 otrosNombres:
+  - "Lagartija espinosa del mezquite"
   - "Lagartija escamosa de mezquite"
-  - "Lagartija escamosa"
   - "Chintete de mezquite"
   - "Lagartija espinosa del mezquital"
-  - "Graphic Spiny Lizard"
-  - "Mesquite Lizard"
 mejorHora: "Media mañana y media tarde, durante las horas soleadas"
 pullQuote: "Trepadora de muros con escamas de papel de lija"
 medidas:
   tamanoCm: [10, 17.5]
-  criterio: "Longitud total (LT), del hocico a la punta de la cola, en adultos"
+  criterio: "Longitud total (hocico-cola)"
 habitat:
   - "Muros, rocas y troncos soleados en bordes de humedal y zonas montañosas"
 distribucion:

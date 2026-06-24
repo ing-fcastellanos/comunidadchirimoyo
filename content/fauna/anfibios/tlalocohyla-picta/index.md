@@ -18,7 +18,10 @@ tamano: muy-chica
 colores: [verde, amarillo, blanco]
 autoridad: "(Günther, 1901)"
 otrosNombres:
-  - "Rana de árbol pintada, Ranita pintada, Ranita arborícola, X-túuts', Painted Tree Frog"
+  - "Rana de árbol pintada"
+  - "Ranita pintada" 
+  - "Ranita arborícola" 
+  - "X-túuts"
 mejorHora: "Noche, tras la puesta del sol, en especial durante o después de la lluvia"
 pullQuote: "Su canto de grillo delata a la rana más pequeña del humedal."
 medidas:
