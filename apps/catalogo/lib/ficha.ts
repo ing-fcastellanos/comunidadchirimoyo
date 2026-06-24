@@ -86,22 +86,49 @@ export function fotosVista(f: FichaEspecie): FotoVista[] {
 export interface AudioVista {
   src: string;
   tipo?: TipoVocalizacion;
-  /** Crédito compuesto: `"<credito>, <fuenteId>, xeno-canto.org"`. */
+  /** Crédito compuesto: `"<credito>, <fuenteId>, <fuente>"` (fuente derivada del dato). */
   credito: string;
+  /** Nombre legible de la fuente de la grabación (p. ej. "xeno-canto", "iNaturalist"). */
+  fuenteNombre?: string;
   licencia?: string;
   creditoUrl?: string;
   licenciaUrl?: string;
 }
 
+/** Fuente de una grabación, derivada del dato (no hardcodeada). El prefijo del
+    `fuenteId` es la señal primaria; si no se reconoce, se cae al host de
+    `creditoUrl`; si tampoco, queda indefinida (sin inventar atribución). */
+export function fuenteAudio(
+  fuenteId?: string,
+  creditoUrl?: string,
+): { nombre: string; dominio: string } | undefined {
+  if (fuenteId) {
+    if (/^XC/i.test(fuenteId)) return { nombre: "xeno-canto", dominio: "xeno-canto.org" };
+    if (/^iNat/i.test(fuenteId)) return { nombre: "iNaturalist", dominio: "iNaturalist" };
+  }
+  if (creditoUrl) {
+    try {
+      const host = new URL(creditoUrl).hostname.replace(/^www\./, "");
+      if (host) return { nombre: host, dominio: host };
+    } catch {
+      /* creditoUrl no parseable: sin fuente */
+    }
+  }
+  return undefined;
+}
+
 /** Audios de la especie con la URL del bucket y el crédito compuesto desde los
-    campos (no se almacena la leyenda; i18n-ready, ADR-0011). */
+    campos (no se almacena la leyenda; i18n-ready, ADR-0011). La fuente se deriva
+    del dato (xeno-canto / iNaturalist / host de creditoUrl), no se hardcodea. */
 export function audiosVista(f: FichaEspecie): AudioVista[] {
   return (f.audios ?? []).map((a) => {
-    const partes = [a.credito, a.fuenteId, "xeno-canto.org"].filter(Boolean);
+    const fuente = fuenteAudio(a.fuenteId, a.creditoUrl);
+    const partes = [a.credito, a.fuenteId, fuente?.dominio].filter(Boolean);
     return {
       src: audioUrl(f.slug, a.archivo),
       tipo: a.tipo,
       credito: partes.join(", "),
+      fuenteNombre: fuente?.nombre,
       licencia: a.licencia,
       creditoUrl: a.creditoUrl,
       licenciaUrl: a.licenciaUrl,

@@ -67,10 +67,10 @@ export default async function FichaPage({ params }: Params) {
       <DetailCards dieta={sec.dietaEcologia} reproduccion={sec.reproduccion} />
       <DistribucionSec texto={sec.distribucion} dist={distribucionVista(ficha)} />
       <ObservacionSec comoIdentificarla={sec.comoIdentificarla} dondeObservarla={sec.dondeObservarla} />
-      <VocalizacionSec audios={audios} />
+      <VocalizacionSec audios={audios} grupo={ficha.grupo} />
       <ConservacionSec ficha={ficha} sabiasQue={sec.sabiasQue} />
       <TaxonomiaSec ficha={ficha} />
-      <RelacionadasNav relacionadas={rel} />
+      <RelacionadasNav relacionadas={rel} grupo={ficha.grupo} />
     </article>
   );
 }

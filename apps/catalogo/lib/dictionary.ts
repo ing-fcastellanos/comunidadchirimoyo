@@ -11,7 +11,9 @@ import type {
   GradoOcurrencia,
   EstatusDistribucion,
   Nom059,
+  Grupo,
 } from "./fauna-schema";
+import type { IconName } from "@/components/ui/Icon";
 
 /** Etiquetas legibles de los enums de estatus, para la ficha de detalle. */
 export const MIGRATORIO_LABEL: Record<EstatusMigratorio, string> = {
@@ -35,6 +37,23 @@ export const NOM059_LABEL: Record<Nom059, string> = {
   p: "En Peligro",
   e: "Probablemente Extinta",
   ninguno: "",
+};
+
+/** Clase taxonómica (latín) por grupo, para la tabla de Taxonomía del detalle.
+    Reemplaza el literal "Aves" que servía solo cuando el catálogo era de aves. */
+export const CLASE_LABEL: Record<Grupo, string> = {
+  aves: "Aves",
+  anfibios: "Amphibia",
+  reptiles: "Reptilia",
+};
+
+/** Ícono (lucide) representativo de cada grupo, para el kicker del hero y la
+    navegación a especies relacionadas. lucide no tiene rana: `Droplet` evoca el
+    hábitat húmedo de los anfibios; `Turtle` es lo más cercano para reptiles. */
+export const GRUPO_ICON: Record<Grupo, IconName> = {
+  aves: "Bird",
+  anfibios: "Droplet",
+  reptiles: "Turtle",
 };
 
 /** Etiquetas legibles del vocabulario semilla de `habitat` (kebab → texto). */

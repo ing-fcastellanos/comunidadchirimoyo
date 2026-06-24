@@ -5,8 +5,8 @@ import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Badge } from "@/components/ui/Badge";
 import { Icon, type IconName } from "@/components/ui/Icon";
-import { HABITAT_LABEL } from "@/lib/dictionary";
-import type { FichaEspecie } from "@/lib/fauna-schema";
+import { HABITAT_LABEL, CLASE_LABEL, GRUPO_ICON } from "@/lib/dictionary";
+import type { FichaEspecie, Grupo } from "@/lib/fauna-schema";
 import type { AudioVista, BadgeVista, DistribucionVista, FotoVista, Secciones, TonoZona } from "@/lib/ficha";
 import { MAPA_BASE } from "@/lib/mapa-americas";
 import { FichaCarrusel } from "./FichaCarrusel";
@@ -30,7 +30,7 @@ export function HeroFicha({ ficha, fotos, badges, resumen }: { ficha: FichaEspec
         <div className="flex flex-col justify-center gap-6 bg-paper px-6 py-12 sm:px-12 lg:py-16">
           <div>
             <div className="mb-3 flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
-              <Icon name="Bird" className="h-4 w-4" />
+              <Icon name={GRUPO_ICON[ficha.grupo]} className="h-4 w-4" />
               Ficha de especie · {ficha.categoria}
             </div>
             <h1 className="font-serif text-[clamp(40px,7vw,82px)] font-semibold leading-[0.95] text-forest-deep">{ficha.nombreComun}</h1>
@@ -240,13 +240,23 @@ function OndaDecorativa() {
   );
 }
 
-export function VocalizacionSec({ audios }: { audios: AudioVista[] }) {
+/** Encuadre descriptivo de la vocalización según el grupo (la prosa autoritativa
+    vive en el cuerpo; esto es el copy de la banda). Genérico para grupos sin texto propio. */
+const VOZ_INTRO: Partial<Record<Grupo, string>> = {
+  aves: "Las aves usan la voz para cortejar, defender su territorio y mantenerse en contacto.",
+  anfibios: "Las ranas y los sapos cantan sobre todo para atraer pareja y delimitar su territorio, especialmente tras la lluvia.",
+};
+const VOZ_INTRO_FALLBACK = "Muchas especies usan la voz para comunicarse, cortejar y marcar territorio.";
+
+export function VocalizacionSec({ audios, grupo }: { audios: AudioVista[]; grupo: Grupo }) {
   if (!audios.length) return null;
   const tipos = audios.map((a) => a.tipo).filter(Boolean);
   const titulo =
     tipos.includes("canto") ? "Su canto"
     : tipos.length && tipos.every((t) => t === "llamado") ? "Su llamado"
     : "Su voz";
+  const intro = VOZ_INTRO[grupo] ?? VOZ_INTRO_FALLBACK;
+  const fuente = audios.find((a) => a.fuenteNombre)?.fuenteNombre;
 
   return (
     // Banda inmersiva a todo lo ancho (fondo verde profundo), portada del handoff
@@ -260,9 +270,13 @@ export function VocalizacionSec({ audios }: { audios: AudioVista[] }) {
           </div>
           <h2 className="font-serif text-[clamp(34px,5vw,52px)] font-semibold leading-[0.98] text-paper">{titulo}</h2>
           <p className="mt-5 max-w-md text-[17px] leading-relaxed text-mint-soft/85">
-            Las aves usan la voz para cortejar, defender su territorio y mantenerse en
-            contacto. Esta es una grabación de campo compartida por la comunidad de
-            <span className="font-semibold text-paper"> xeno-canto</span>.
+            {intro}
+            {fuente && (
+              <>
+                {" "}Esta es una grabación de campo compartida por la comunidad de
+                <span className="font-semibold text-paper"> {fuente}</span>.
+              </>
+            )}
           </p>
         </div>
 
@@ -347,7 +361,7 @@ export function TaxonomiaSec({ ficha }: { ficha: FichaEspecie }) {
   const filas: [string, string][] = [
     ["Reino", "Animalia"],
     ["Filo", "Chordata"],
-    ["Clase", "Aves"],
+    ["Clase", CLASE_LABEL[ficha.grupo]],
     ["Orden", ficha.orden],
     ["Familia", ficha.familia],
     ["Género", ficha.genero],
@@ -377,11 +391,11 @@ export function TaxonomiaSec({ ficha }: { ficha: FichaEspecie }) {
   );
 }
 
-export function RelacionadasNav({ relacionadas }: { relacionadas: { grupo: string; slug: string; nombreComun: string; nombreCientifico: string }[] }) {
+export function RelacionadasNav({ relacionadas, grupo }: { relacionadas: { grupo: string; slug: string; nombreComun: string; nombreCientifico: string }[]; grupo: Grupo }) {
   if (!relacionadas.length) return null;
   return (
     <Section className="py-12 sm:py-16">
-      <SectionTitle kicker="Sigue explorando" icon="Bird">Especies relacionadas</SectionTitle>
+      <SectionTitle kicker="Sigue explorando" icon={GRUPO_ICON[grupo]}>Especies relacionadas</SectionTitle>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {relacionadas.map((r) => (
           <Link key={r.slug} href={`/${r.grupo}/${r.slug}`} className="group flex items-center justify-between gap-3 rounded-2xl bg-paper-card p-5 shadow-soft ring-1 ring-forest/[0.08] transition-all hover:-translate-y-0.5 hover:ring-forest/25 hover:shadow-card">
