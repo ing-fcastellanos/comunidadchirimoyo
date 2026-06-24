@@ -1,31 +1,4 @@
-# catalogo-hub-fauna Specification
-
-## Purpose
-TBD - created by archiving change catalogo-fauna-dominio-rutas. Update Purpose after archive.
-## Requirements
-### Requirement: Hub de fauna en la home
-
-La app del catálogo SHALL servir, como **página índice** (`/`), un **hub de fauna** estático cuyo propósito es presentar el catálogo como una guía de la **fauna** del humedal (no solo aves) y encaminar al visitante a cada grupo o a la búsqueda. El hub SHALL ser un Server Component que NO llama a ningún API; cualquier dato dinámico (p. ej. conteos) SHALL resolverse en build con `getAllFichas()`. La home NO SHALL servir el landing de aves (que ahora vive en `/aves`, capacidad `landing-catalogo`) ni el buscador.
-
-#### Scenario: La home es el hub de fauna
-- **WHEN** se abre `/` del catálogo
-- **THEN** se muestra el hub de fauna (carrusel, tarjetas de grupo y acceso a búsqueda), no el landing de aves ni la pantalla de búsqueda
-
-#### Scenario: Hub estático sin API
-- **WHEN** se ejecuta `npm run build` en `apps/catalogo`
-- **THEN** `out/index.html` contiene el hub renderizado, sin requerir un servidor en runtime ni llamadas de red a un API
-
-### Requirement: Carrusel del hub
-
-El hub SHALL abrir con una sección hero que incluya un carrusel de imágenes representativas de la fauna del humedal. Por ahora SHALL usar **portadas curadas (`fotos[0]`) de especies de aves**, obtenidas vía el data-layer del catálogo, sin hardcodear archivos de imagen específicos en el componente. El carrusel SHALL respetar `prefers-reduced-motion: reduce` mostrando la primera foto de forma fija. Cada imagen SHALL tener texto alternativo descriptivo.
-
-#### Scenario: Carrusel con portadas curadas
-- **WHEN** se recura la portada (`fotos[0]`) de alguna especie del carrusel y se reconstruye
-- **THEN** el carrusel muestra la nueva portada sin editar el componente
-
-#### Scenario: Respeta prefers-reduced-motion
-- **WHEN** el usuario tiene activada la preferencia de movimiento reducido
-- **THEN** el carrusel no autoanima y muestra la primera foto de forma fija
+## MODIFIED Requirements
 
 ### Requirement: Tarjetas de grupo con estado
 
@@ -62,4 +35,3 @@ La app SHALL servir una página estática placeholder «próximamente» para un 
 #### Scenario: Superficies reales ya no son placeholder
 - **WHEN** se abren `/anfibios`, `/reptiles` o `/busqueda`
 - **THEN** sirven contenido real (grilla del grupo o buscador general), no un placeholder «próximamente»
-

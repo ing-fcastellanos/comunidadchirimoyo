@@ -1,20 +1,19 @@
 "use client";
-/* BuscadorAves.tsx — buscador ESPECIALIZADO de aves: estado de filtros + panel
-   aviar (forma/talla/color/dónde/gremios), resultados y grid/lista. Las piezas
-   transversales (ResultsBar, EmptyState, filtros activos) viven en ./shared. */
+/* BuscadorGeneral.tsx — buscador GENERAL de /busqueda: sobre los 3 grupos, con
+   el panel del núcleo común (PanelGeneral). Reusa la maquinaria transversal de
+   ./shared (filtros activos, barra de resultados, estado vacío) y la card. No
+   toca el buscador especializado de aves. Ver #85. */
 import { useMemo, useState } from "react";
-import { SearchPanel } from "./SearchPanel";
+import { PanelGeneral } from "./PanelGeneral";
 import { EspecieCard } from "./EspecieCard";
 import { ResultsBar, EmptyState, ActiveFilters, GROUP_NAME, labelFor, catLabel, type Pill } from "./shared";
 import { EMPTY_FILTERS, filterAndSort, type Especie, type Filters, type SortKey } from "@/lib/search";
 
-const PILL_KEYS: (keyof Filters)[] = [
-  "shapes", "sizes", "colors", "wheres", "categorias", "ordenes", "familias", "presencias", "observaciones", "conservaciones",
-];
+/** Solo las facetas del núcleo común se muestran como pills. */
+const PILL_KEYS: (keyof Filters)[] = ["grupos", "ordenes", "familias", "presencias", "conservaciones", "observaciones"];
 
-export function BuscadorAves({ especies }: { especies: Especie[] }) {
+export function BuscadorGeneral({ especies }: { especies: Especie[] }) {
   const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
-  const [openSection, setOpenSection] = useState<"detailed" | "quick" | null>("detailed");
   const [sort, setSort] = useState<SortKey>("relevancia");
   const [view, setView] = useState<"grid" | "list">("grid");
 
@@ -25,11 +24,8 @@ export function BuscadorAves({ especies }: { especies: Especie[] }) {
       return { ...f, [key]: arr.includes(val) ? arr.filter((x) => x !== val) : [...arr, val] };
     });
   const setOne = (key: keyof Filters, val: string) => setFilters((f) => ({ ...f, [key]: val ? [val] : [] }));
+  const setMany = (key: keyof Filters, vals: string[]) => setFilters((f) => ({ ...f, [key]: vals }));
   const clearAll = () => setFilters(EMPTY_FILTERS);
-  const applyQuick = (patch: Record<string, unknown>) => {
-    setFilters((f) => ({ ...f, ...patch }));
-    setOpenSection("detailed");
-  };
 
   const results = useMemo(() => filterAndSort(especies, filters, sort, catLabel), [especies, filters, sort]);
 
@@ -40,24 +36,19 @@ export function BuscadorAves({ especies }: { especies: Especie[] }) {
       pills.push({ k: key + val, group: GROUP_NAME[key], label: labelFor(key, val), remove: () => toggleVal(key, val) }),
     );
   });
-  if (filters.featured) pills.push({ k: "featured", label: "Destacadas del autor", remove: () => setFilters((f) => ({ ...f, featured: false })) });
 
   return (
     <>
       <div className="py-7 sm:py-9">
-        <SearchPanel
-          filters={filters} especies={especies} setText={setText} toggleVal={toggleVal} setOne={setOne}
-          count={results.length} clearAll={clearAll} applyQuick={applyQuick}
-          openSection={openSection} setOpenSection={setOpenSection}
-        />
+        <PanelGeneral filters={filters} especies={especies} setText={setText} toggleVal={toggleVal} setOne={setOne} setMany={setMany} />
       </div>
 
-      <ResultsBar found={results.length} noun={{ one: "ave encontrada", many: "aves encontradas" }} sort={sort} setSort={setSort} view={view} setView={setView} />
+      <ResultsBar found={results.length} noun={{ one: "especie encontrada", many: "especies encontradas" }} sort={sort} setSort={setSort} view={view} setView={setView} />
 
       <ActiveFilters pills={pills} clearAll={clearAll} />
 
       {results.length === 0 ? (
-        <EmptyState title="No encontramos aves con esos rasgos" subtitle="Prueba quitando un filtro o ampliando el color y el tamaño." clearAll={clearAll} />
+        <EmptyState title="No encontramos especies con esos filtros" subtitle="Prueba quitando un filtro o ampliando la búsqueda." clearAll={clearAll} />
       ) : (
         <div className={view === "grid" ? "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" : "flex flex-col gap-4"}>
           {results.map((b) => <EspecieCard key={b.id} bird={b} view={view} />)}
