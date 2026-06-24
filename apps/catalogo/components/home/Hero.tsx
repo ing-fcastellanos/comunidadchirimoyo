@@ -11,14 +11,37 @@ export interface HeroSlide {
   nombre: string;
 }
 
+export interface HeroCta {
+  href: string;
+  label: string;
+  /** `primary` = relleno verde con flecha; `secondary` = contorno blanco. Default `primary`. */
+  variant?: "primary" | "secondary";
+}
+
 export interface HeroContent {
   eyebrow: string;
   title: string;
   lead: string;
-  /** CTA primario, navegación interna. */
-  primary: { href: string; label: string };
-  /** CTA secundario opcional, normalmente externo (comunidad). */
-  secondary?: { href: string; label: string };
+  /** CTAs del hero, en orden. Los `href` internos (que empiezan con `/`) usan
+      `Link`; los externos (p. ej. comunidad) usan `<a>`. */
+  ctas: HeroCta[];
+}
+
+/** Un CTA del hero: estilo según `variant`, `Link` si es interno y `<a>` si es externo. */
+function CtaButton({ cta }: { cta: HeroCta }) {
+  const primary = (cta.variant ?? "primary") === "primary";
+  const className = primary
+    ? "group inline-flex items-center justify-center gap-2.5 rounded-xl bg-forest px-6 py-3.5 text-[16px] font-semibold text-paper-card shadow-card transition-colors hover:bg-forest-deep focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25"
+    : "inline-flex items-center justify-center gap-2 rounded-xl border border-forest/25 bg-paper-card/60 px-6 py-3.5 text-[16px] font-semibold text-forest-deep transition-colors hover:border-forest/40 hover:bg-paper-card focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25";
+  const inner = (
+    <>
+      {cta.label}
+      {primary && <Icon name="ArrowRight" className="h-[18px] w-[18px] transition-transform group-hover:translate-x-0.5" />}
+    </>
+  );
+  return cta.href.startsWith("/")
+    ? <Link href={cta.href} className={className}>{inner}</Link>
+    : <a href={cta.href} className={className}>{inner}</a>;
 }
 
 /* Las imágenes del hero son las portadas curadas (fotos[0]) de las especies
@@ -51,25 +74,10 @@ export function Hero({ slides, content }: { slides: HeroSlide[]; content: HeroCo
             {content.lead}
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href={content.primary.href}
-              className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-forest px-6 py-3.5 text-[16px] font-semibold text-paper-card shadow-card transition-colors hover:bg-forest-deep focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25"
-            >
-              {content.primary.label}
-              <Icon
-                name="ArrowRight"
-                className="h-[18px] w-[18px] transition-transform group-hover:translate-x-0.5"
-              />
-            </Link>
-            {content.secondary && (
-              <a
-                href={content.secondary.href}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-forest/25 bg-paper-card/60 px-6 py-3.5 text-[16px] font-semibold text-forest-deep transition-colors hover:border-forest/40 hover:bg-paper-card focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25"
-              >
-                {content.secondary.label}
-              </a>
-            )}
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            {content.ctas.map((cta) => (
+              <CtaButton key={cta.href} cta={cta} />
+            ))}
           </div>
         </div>
 

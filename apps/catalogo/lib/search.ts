@@ -89,6 +89,8 @@ export function fichaToEspecie(f: FichaEspecie): Especie {
 
 export interface Filters {
   text: string;
+  /** Filtro por grupo taxonómico (lo usa el buscador general; el de aves no). */
+  grupos: string[];
   shapes: string[];
   sizes: string[];
   colors: string[];
@@ -103,7 +105,7 @@ export interface Filters {
 }
 
 export const EMPTY_FILTERS: Filters = {
-  text: "", shapes: [], sizes: [], colors: [], wheres: [],
+  text: "", grupos: [], shapes: [], sizes: [], colors: [], wheres: [],
   categorias: [], ordenes: [], familias: [], presencias: [], observaciones: [], conservaciones: [],
   featured: false,
 };
@@ -122,6 +124,7 @@ export function filterAndSort(
   const arrOk = (arr: string[], val?: string) => arr.length === 0 || (val != null && arr.includes(val));
   let list = especies.filter((b) => {
     if (q && !(b.common + " " + b.sci + " " + b.familia + " " + b.orden + " " + b.keywords).toLowerCase().includes(q)) return false;
+    if (!arrOk(f.grupos, b.group)) return false;
     if (!arrOk(f.shapes, b.shape)) return false;
     if (!arrOk(f.sizes, b.size)) return false;
     if (f.colors.length && !f.colors.some((c) => b.colors.includes(c as Color))) return false;

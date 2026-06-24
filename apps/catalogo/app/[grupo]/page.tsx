@@ -64,8 +64,10 @@ async function LandingAves() {
           eyebrow: "Humedal del Chirimoyo · Orizaba, Veracruz",
           title: "Las aves del humedal del Chirimoyo",
           lead: "Un catálogo vivo de las aves que habitan la laguna que defendemos: búscalas por forma, color o dónde la viste.",
-          primary: { href: "/aves/buscador", label: "Explorar el catálogo" },
-          secondary: { href: COMUNIDAD_URL, label: "Conocer la comunidad" },
+          ctas: [
+            { href: "/aves/buscador", label: "Explorar el catálogo", variant: "primary" },
+            { href: COMUNIDAD_URL, label: "Conocer la comunidad", variant: "secondary" },
+          ],
         }}
       />
       <QueHayAqui avesCount={avesCount} />

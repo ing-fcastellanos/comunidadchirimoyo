@@ -22,7 +22,7 @@ interface Props {
   setOpenSection: (s: Section) => void;
 }
 
-function Chip({ active, onClick, className = "", children }: { active: boolean; onClick: () => void; className?: string; children: ReactNode }) {
+export function Chip({ active, onClick, className = "", children }: { active: boolean; onClick: () => void; className?: string; children: ReactNode }) {
   return (
     <button
       type="button"
@@ -41,7 +41,7 @@ function BlockLabel({ children }: { children: ReactNode }) {
   return <h4 className="mb-3 text-[12px] font-bold uppercase tracking-[0.18em] text-forest/70">{children}</h4>;
 }
 
-function Autocomplete({ filters, setText, especies }: { filters: Filters; setText: (v: string) => void; especies: Especie[] }) {
+export function Autocomplete({ filters, setText, especies, ariaLabel = "Buscar aves", placeholder = "Buscar por nombre, familia o palabra clave..." }: { filters: Filters; setText: (v: string) => void; especies: Especie[]; ariaLabel?: string; placeholder?: string }) {
   const [focused, setFocused] = useState(false);
   const blurT = useRef<ReturnType<typeof setTimeout> | null>(null);
   const q = filters.text.trim().toLowerCase();
@@ -59,8 +59,8 @@ function Autocomplete({ filters, setText, especies }: { filters: Filters; setTex
           onChange={(e) => setText(e.target.value)}
           onFocus={() => setFocused(true)}
           onBlur={() => { blurT.current = setTimeout(() => setFocused(false), 150); }}
-          placeholder="Buscar por nombre, familia o palabra clave..."
-          aria-label="Buscar aves"
+          placeholder={placeholder}
+          aria-label={ariaLabel}
           className="w-full rounded-2xl border-0 bg-paper-card py-4 pl-12 pr-11 text-[16px] text-ink shadow-soft ring-1 ring-inset ring-forest/15 transition-shadow placeholder:text-ink-soft/55 focus:outline-none focus:ring-2 focus:ring-forest"
         />
         {filters.text && (

@@ -7,12 +7,15 @@ import { ElHumedal } from "@/components/home/ElHumedal";
 
 /* Hub de fauna (ADR-0024): la home presenta el catálogo como guía de la fauna
    del humedal —no solo aves— y encamina a cada grupo o a la búsqueda. El carrusel
-   usa portadas curadas de aves por ahora; las tarjetas marcan aves como activa y
-   anfibios/reptiles como «próximamente». */
+   usa portadas curadas de aves por ahora; las tarjetas se activan por grupo según
+   su conteo de fichas. */
 
 export default async function Inicio() {
   const fichas = await getAllFichas();
-  const avesCount = fichas.filter((f) => f.grupo === "aves").length;
+  const counts = fichas.reduce<Record<string, number>>((acc, f) => {
+    acc[f.grupo] = (acc[f.grupo] ?? 0) + 1;
+    return acc;
+  }, {});
   const slides = buildHeroSlides(fichas);
 
   return (
@@ -22,12 +25,15 @@ export default async function Inicio() {
         content={{
           eyebrow: "Humedal del Chirimoyo · Orizaba, Veracruz",
           title: "La fauna del humedal del Chirimoyo",
-          lead: "Un catálogo vivo de las especies que habitan la laguna que defendemos. Empieza por las aves; pronto, anfibios y reptiles.",
-          primary: { href: "/busqueda", label: "Buscar especies" },
-          secondary: { href: COMUNIDAD_URL, label: "Conocer la comunidad" },
+          lead: "Un catálogo vivo de las especies que habitan la laguna que defendemos: aves, anfibios y reptiles del humedal.",
+          ctas: [
+            { href: "/aves/buscador", label: "Buscar aves", variant: "primary" },
+            { href: "/busqueda", label: "Búsqueda general de especies", variant: "primary" },
+            { href: COMUNIDAD_URL, label: "Conoce la comunidad", variant: "secondary" },
+          ],
         }}
       />
-      <GruposFauna avesCount={avesCount} />
+      <GruposFauna counts={counts} />
       <ElHumedal />
     </>
   );
