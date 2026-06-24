@@ -27,6 +27,9 @@ medidas:
 habitat:
   - "Lagunas, ríos lentos y humedales con vegetación acuática y sitios de asoleo"
   - "en este sitio montañoso su presencia es marginal y requiere confirmación."
+distribucion:
+  residente: ["MX", "BZ", "GT", "HN", "SV", "NI", "CR", "PA", "CO"]
+  notas: "Del sureste de México, por Centroamérica, hasta el noroeste de Colombia."
 fuentes:
   - "The Reptile Database - Trachemys venusta (Gray, 1856): https://reptile-database.reptarium.cz/species?genus=Trachemys&species=venusta"
   - "iNaturalist - Trachemys venusta (Mesoamerican Slider): https://www.inaturalist.org/taxa/39783-Trachemys-venusta"

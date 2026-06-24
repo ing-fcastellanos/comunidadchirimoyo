@@ -32,6 +32,9 @@ habitat:
   - "Asentamientos humanos, cuerpos de agua, pastizales y cultivos."
 temporada:
   meses: [5, 6, 7, 8, 9, 10]
+distribucion:
+  residente: ["US", "MX", "BZ", "GT", "SV", "HN", "NI", "CR", "PA", "CO", "VE", "EC", "PE"]
+  notas: "Es el sapo más norteño del complejo del sapo de caña: del extremo sur de Texas, por Mesoamérica y al oeste de los Andes hasta Ecuador y Perú. Su rango invasor en otras regiones del mundo (Australia, el Pacífico) no se representa aquí."
 fuentes:
   - "Enciclovida-CONABIO (Rhinella horribilis)"
   - "Amphibian Species of the World (AMNH)"

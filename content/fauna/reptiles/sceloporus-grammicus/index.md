@@ -31,6 +31,9 @@ medidas:
   criterio: "Longitud total (LT), del hocico a la punta de la cola, en adultos"
 habitat:
   - "Muros, rocas y troncos soleados en bordes de humedal y zonas montañosas"
+distribucion:
+  residente: ["US", "MX"]
+  notas: "Del sur de Texas y gran parte del altiplano y las vertientes de México."
 fuentes:
   - "CONABIO, EncicloVida. Sceloporus grammicus (Lagartija espinosa del mezquite). https://enciclovida.mx/especies/26751-sceloporus-grammicus"
   - "Uetz, P. et al. The Reptile Database: Sceloporus grammicus Wiegmann, 1828. https://reptile-database.reptarium.cz/species?genus=Sceloporus&species=grammicus"

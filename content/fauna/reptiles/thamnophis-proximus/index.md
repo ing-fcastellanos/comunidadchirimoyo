@@ -29,6 +29,9 @@ habitat:
   - "especie estrictamente ligada al agua."
 temporada:
   meses: [6, 7, 8, 9]
+distribucion:
+  residente: ["US", "MX", "BZ", "GT", "SV", "HN", "NI", "CR"]
+  notas: "Del centro y sur de Estados Unidos, por el este de México y toda Centroamérica, hasta el centro de Costa Rica."
 fuentes:
   - "Enciclovida (CONABIO) - Thamnophis proximus: https://enciclovida.mx/especies/27098"
   - "NOM-059-SEMARNAT-2010, Anexo Normativo III (Amenazada, A): https://www.profepa.gob.mx/innovaportal/file/435/1/nom_059_semarnat_2010.pdf"
