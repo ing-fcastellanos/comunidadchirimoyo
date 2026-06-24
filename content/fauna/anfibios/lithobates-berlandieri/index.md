@@ -28,6 +28,9 @@ habitat:
   - "Cuerpos de agua (lagunas, ríos, arroyos, charcas), acahuales, pastizales y asentamientos humanos cercanos al agua"
 temporada:
   meses: [6, 7, 8, 9]
+distribucion:
+  residente: ["US", "MX"]
+  notas: "Del sur de Nuevo México y Texas, por la vertiente del Golfo hasta Hidalgo y Veracruz. Las poblaciones del suroeste de Estados Unidos (Arizona, California) son introducidas y no se representan."
 fuentes:
   - "Enciclovida/CONABIO – Rana leopardo (Lithobates berlandieri): https://enciclovida.mx/especies/35400-lithobates-berlandieri"
   - "NOM-059-SEMARNAT-2010, Anexo Normativo III (Sujeta a protección especial, Pr): https://www.profepa.gob.mx/innovaportal/file/3552/1/nom-059-semarnat-2010__30-dic-2010.pdf"

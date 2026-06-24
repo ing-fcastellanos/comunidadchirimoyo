@@ -28,6 +28,9 @@ habitat:
   - "Bosque de niebla, cuerpos de agua, humedales, charcas y vegetación ribereña"
 temporada:
   meses: [6, 7, 8, 9]
+distribucion:
+  residente: ["MX", "GT", "BZ"]
+  notas: "Tierras bajas del Golfo y el Caribe, del sureste de México a Guatemala y Belice. No es endémica de México."
 fuentes:
   - "Enciclovida/CONABIO – Ranita grillo (Tlalocohyla picta): https://enciclovida.mx/especies/35353"
   - "AmphibiaWeb – Tlalocohyla picta: https://amphibiaweb.org/species/909"

@@ -30,6 +30,9 @@ habitat:
   - "Asentamientos humanos, cuerpos de agua, pastizales y cultivos."
 temporada:
   meses: [4, 5, 6, 7, 8, 9, 10]
+distribucion:
+  residente: ["MX", "BZ", "GT", "HN", "SV", "NI", "CR"]
+  notas: "Vertiente del Golfo y el Caribe, del este y sureste de México hasta Costa Rica. No alcanza Estados Unidos: las poblaciones de Texas corresponden a Incilius nebulifer tras la división taxonómica."
 fuentes:
   - "Enciclovida-CONABIO (Incilius valliceps)"
   - "Amphibian Species of the World (AMNH)"

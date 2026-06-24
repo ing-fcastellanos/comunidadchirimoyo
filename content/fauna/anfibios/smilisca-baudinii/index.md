@@ -32,6 +32,9 @@ habitat:
   - "vegetación arbustiva y arbórea cercana al agua."
 temporada:
   meses: [6, 7, 8, 9]
+distribucion:
+  residente: ["US", "MX", "BZ", "GT", "SV", "HN", "NI", "CR"]
+  notas: "Del extremo sur de Texas, por gran parte de México y Centroamérica, hasta el sur de Costa Rica. En Texas es nativa pero escasa y de poblaciones parcheadas."
 fuentes:
   - "EncicloVida (CONABIO) - Smilisca baudinii: https://enciclovida.mx/especies/35018-smilisca-baudinii"
   - "AmphibiaWeb / Wikipedia - Common Mexican tree frog: https://en.wikipedia.org/wiki/Common_Mexican_tree_frog"
