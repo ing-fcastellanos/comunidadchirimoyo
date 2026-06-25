@@ -96,6 +96,11 @@ fotos:
     alt: "Sapo Costero (Incilius valliceps)"
     licencia: "CC0"
     licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+  - archivo: "incilius-valliceps_loc01.webp"
+    credito: "Diana Isela Angeles Solares"
+    alt: "Sapo Costero (Incilius valliceps)"
+    licencia: "CC0"
+    licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
 audios:
   - archivo: "iNat1999482.m4a"
     credito: "(c) Juan Cruzado Cortés, some rights reserved (CC BY)"
