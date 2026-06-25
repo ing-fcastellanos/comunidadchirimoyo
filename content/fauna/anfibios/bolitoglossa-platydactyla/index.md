@@ -37,6 +37,11 @@ fuentes:
   - "Amphibian Species of the World (AMNH)"
   - "NOM-059-SEMARNAT-2010, Anexo Normativo III (Pr)"
 fotos:
+  - archivo: "bolitoglossa-platydactyla_loc01.webp"
+    credito: "Francisco Castellanos"
+    alt: "Tlaconete (Bolitoglossa platydactyla)"
+    licencia: "CC0"
+    licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
   - archivo: "web_Bolitoglossa_platydactyla_416912186.webp"
     credito: "(c) Efraín Octavio Aguilar Pérez, some rights reserved (CC BY-NC)"
     alt: "Tlaconete (Bolitoglossa platydactyla)"

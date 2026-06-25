@@ -96,6 +96,16 @@ fotos:
     licencia: "CC BY-NC 4.0"
     creditoUrl: "https://www.inaturalist.org/photos/356000299"
     licenciaUrl: "https://creativecommons.org/licenses/by-nc/4.0/"
+  - archivo: "trachemys-venusta_loc01.webp"
+    credito: "Any Isabel Pérez Santiago"
+    alt: "Tortuga / Jicotea (Trachemys venusta)"
+    licencia: "CC0"
+    licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+  - archivo: "trachemys-venusta_loc02.webp"
+    credito: "Any Isabel Pérez Santiago"
+    alt: "Tortuga / Jicotea (Trachemys venusta)"
+    licencia: "CC0"
+    licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
 ---
 
 ## Descripción

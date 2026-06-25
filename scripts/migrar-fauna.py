@@ -615,6 +615,9 @@ def main() -> int:
                     help="Escribe las variantes web/thumb localmente para revisión.")
     ap.add_argument("--upload", action="store_true", help="Sube raw/web/thumb a GCS.")
     ap.add_argument("--no-images", action="store_true", help="Solo genera fichas (omite imágenes).")
+    ap.add_argument("--solo-fotos", action="store_true",
+                    help="Procesa/sube imágenes y NO escribe fichas (ingesta incremental; "
+                         "preserva las ediciones del MD, p. ej. distribucion).")
     ap.add_argument("--no-audio", action="store_true",
                     help="Omite la descarga/subida de audio (las fichas igual emiten audios:).")
     ap.add_argument("--force", action="store_true",
@@ -751,7 +754,11 @@ def main() -> int:
             errores.append(f"{sci} ({slug}): núcleo incompleto: {', '.join(faltan)}")
             continue
 
-        # --- Emitir ficha ---
+        # --- Emitir ficha (omitida con --solo-fotos: ingesta incremental que
+        #     NO regenera la ficha, para preservar campos MD-only como
+        #     distribucion.residente; ver #90/#93) ---
+        if args.solo_fotos:
+            continue
         ficha_dir = args.out / grupo / slug
         ficha_path = ficha_dir / "index.md"
         if ficha_path.exists() and not args.force:
