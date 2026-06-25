@@ -1,9 +1,11 @@
 import { getAllFichas } from "@/lib/content";
 import { buildHeroSlides } from "@/lib/hero";
+import { fichaToEspecie } from "@/lib/search";
 import { COMUNIDAD_URL } from "@/lib/links";
 import { Hero } from "@/components/home/Hero";
 import { GruposFauna } from "@/components/home/GruposFauna";
 import { ElHumedal } from "@/components/home/ElHumedal";
+import { DestacadasFauna } from "@/components/home/DestacadasFauna";
 import { CierreCTA } from "@/components/home/CierreCTA";
 
 /* Hub de fauna (ADR-0024): la home presenta el catálogo como guía de la fauna
@@ -18,6 +20,7 @@ export default async function Inicio() {
     return acc;
   }, {});
   const slides = buildHeroSlides(fichas);
+  const destacadas = fichas.map(fichaToEspecie).filter((e) => e.featured);
 
   return (
     <>
@@ -36,6 +39,7 @@ export default async function Inicio() {
       />
       <GruposFauna counts={counts} />
       <ElHumedal />
+      <DestacadasFauna especies={destacadas} />
       <CierreCTA />
     </>
   );

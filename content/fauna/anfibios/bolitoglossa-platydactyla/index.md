@@ -14,6 +14,7 @@ conservacion:
   nom059: pr
   iucn: LC
 simbologia: "A-Ra-Pr-N"
+featured: true
 tamano: mediana
 colores: [negro, cafe, amarillo]
 autoridad: "(Gray, 1831)"

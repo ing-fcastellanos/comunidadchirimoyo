@@ -14,6 +14,7 @@ conservacion:
   nom059: a
   iucn: LC
 simbologia: "R-PC-A-N"
+featured: true
 tamano: mediana
 colores: [cafe, negro, amarillo]
 autoridad: "(Say, 1823)"
