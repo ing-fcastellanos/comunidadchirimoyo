@@ -103,7 +103,7 @@ export const SpeciesSheet = ({ data, logo }: { data: SpeciesVM; logo?: string | 
       </div>
 
       {/* banda a todo el ancho: medidas + hábitat (aprovecha el espacio bajo la foto) */}
-      <div className="mt-[6mm] grid shrink-0 grid-cols-[auto_1fr] gap-5 rounded-xl bg-paper-card px-5 py-3.5"
+      <div className="mt-[3mm] grid shrink-0 grid-cols-[auto_1fr] gap-5 rounded-xl bg-paper-card px-5 py-3.5"
         style={{ boxShadow: "var(--shadow-card)" }}>
         <div>
           <div className="mb-2 flex items-center gap-2">
@@ -156,7 +156,7 @@ export const SpeciesSheet = ({ data, logo }: { data: SpeciesVM; logo?: string | 
         <div className="flex shrink-0 items-center gap-2.5">
           <div className="text-right leading-tight">
             <div className="mono text-[9.5px] font-600 uppercase tracking-[.12em] text-forest-deep">Ficha completa</div>
-            <div className="mono text-[9px] text-ink-soft/75">en línea · aves.chirimoyo.org</div>
+            <div className="mono text-[9px] text-ink-soft/75">en línea · fauna.chirimoyo.org</div>
           </div>
           <QR src={data.qr} size={62} />
         </div>

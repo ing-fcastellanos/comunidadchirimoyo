@@ -3,7 +3,7 @@
    Portado de print/IndexPage.jsx. */
 import React from "react";
 import { Kicker } from "./shared";
-import type { IndexPageVM, IndexItem } from "./types";
+import type { IndexPageVM, IndexItem, CatalogMeta } from "./types";
 
 const GuildHead = ({ it }: { it: Extract<IndexItem, { kind: "guild" }> }) => (
   <div className="break-inside-avoid mt-7 first:mt-0">
@@ -35,7 +35,7 @@ const Column = ({ items }: { items: IndexItem[] }) => (
   </div>
 );
 
-export const IndexPage = ({ page, total }: { page: IndexPageVM; total: number }) => (
+export const IndexPage = ({ page, total, meta }: { page: IndexPageVM; total: number; meta: CatalogMeta }) => (
   <article className="a4 relative bg-paper text-ink">
     {page.showHeader ? (
       <header className="px-[16mm] pt-[15mm] pb-[7mm]">
@@ -43,7 +43,7 @@ export const IndexPage = ({ page, total }: { page: IndexPageVM; total: number })
           <div>
             <Kicker>Cómo navegar la guía</Kicker>
             <h2 className="mt-3 font-serif text-[48px] font-500 leading-none text-forest-deep">Índice de especies</h2>
-            <p className="mt-3 text-[15px] text-ink-soft">{total} aves del humedal, agrupadas por gremio</p>
+            <p className="mt-3 text-[15px] text-ink-soft">{total} {meta.indiceSubtitulo}</p>
           </div>
           <div className="flex shrink-0 items-stretch gap-5 text-right">
             <div className="leading-none">
@@ -53,7 +53,7 @@ export const IndexPage = ({ page, total }: { page: IndexPageVM; total: number })
             <div className="w-px bg-forest/15"></div>
             <div className="leading-none">
               <div className="font-serif text-[40px] font-600 text-forest-deep">{page.totalGuilds}</div>
-              <div className="mt-1 text-[10px] font-700 uppercase tracking-[.16em] text-forest/80">gremios</div>
+              <div className="mt-1 text-[10px] font-700 uppercase tracking-[.16em] text-forest/80">{meta.categoriaPlural}</div>
             </div>
           </div>
         </div>

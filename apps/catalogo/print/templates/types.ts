@@ -43,10 +43,25 @@ export interface IndexPageVM {
 
 export interface CreditVM { name: string; count: number; license?: string }
 
+/* Copy de marca específico de la disciplina (ornitología vs herpetología).
+   Lo construye el orquestador desde la config y lo consumen las plantillas
+   Cover/IntroLegend/Closing, en vez de cadenas «aves» hardcodeadas. */
+export interface CatalogMeta {
+  coverTituloLineas: string[]; // líneas del h1 de portada antes de «Chirimoyo»
+  introTitulo: string;         // h2 de la introducción
+  introParrafo: string;        // 2º párrafo de la introducción
+  observaPista: string;        // texto del paso «Observa y compara»
+  sitioLabel: string;          // etiqueta del QR del sitio (p. ej. fauna.chirimoyo.org)
+  footerTitulo: string;        // título del pie de la página de cierre
+  indiceSubtitulo: string;     // subtítulo del índice (p. ej. «… agrupadas por gremio/clase»)
+  categoriaPlural: string;     // rótulo del conteo de categorías («gremios» | «clases»)
+}
+
 export interface CatalogData {
   total: number;             // nº de especies
   totalPages: number;        // nº total de páginas del PDF
   edicion: string;
+  meta: CatalogMeta;         // copy de marca por disciplina
   cover: { photo: string | null; sci: string; logo: string | null };
   species: SpeciesVM[];
   indexPages: IndexPageVM[];

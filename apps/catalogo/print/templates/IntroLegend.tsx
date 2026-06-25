@@ -41,7 +41,7 @@ export const IntroLegend = ({ data }: { data: CatalogData }) => (
       style={{ background: "linear-gradient(110deg, #073d24, #0c5a36)" }}>
       <div>
         <Kicker light>Introducción</Kicker>
-        <h2 className="mt-3 font-serif text-[44px] font-500 leading-none">Un humedal vivo, ave por ave</h2>
+        <h2 className="mt-3 font-serif text-[44px] font-500 leading-none">{data.meta.introTitulo}</h2>
       </div>
       {data.logoBlanco && (
         <img src={data.logoBlanco} alt="" className="shrink-0 object-contain"
@@ -57,16 +57,12 @@ export const IntroLegend = ({ data }: { data: CatalogData }) => (
             norte de Orizaba que filtra el agua, amortigua las inundaciones y da refugio a decenas de especies. 
             Es una de las últimas zonas húmedas vivas de la ciudad.
           </p>
-          <p className="mt-4 text-[13px] leading-[1.62] text-ink-soft">
-            Esta guía reúne las especies que la comunidad ha observado y documentado. Cada ficha resume, en una
-            sola página, lo esencial para reconocer un ave en el campo y entender su papel en el ecosistema.
-            Consérvala seca, llévala al campo y compártela: conocer estas especies es el primer paso para defender el humedal.
-          </p>
+          <p className="mt-4 text-[13px] leading-[1.62] text-ink-soft">{data.meta.introParrafo}</p>
         </div>
         <div className="rounded-xl bg-paper-deep/60 p-4 ring-1 ring-forest/10">
           <Kicker className="mb-3">Cómo usar esta guía</Kicker>
           <div className="space-y-3">
-            <Step icon="search" title="Observa y compara">Fíjate en tamaño, color, pico y dónde está el ave.</Step>
+            <Step icon="search" title="Observa y compara">{data.meta.observaPista}</Step>
             <Step icon="book-open" title="Lee la ficha">Las insignias resumen estatus, rareza y protección.</Step>
             <Step icon="camera" title="Mira más en línea">Escanea el QR de cada ficha: más fotos, cantos y su mapa.</Step>
           </div>
@@ -126,7 +122,7 @@ export const IntroLegend = ({ data }: { data: CatalogData }) => (
           </p>
         </div>
         <div className="shrink-0 -my-1">
-          <QR src={data.qrSitio} size={92} label="aves.chirimoyo.org" sub="Visita el sitio" light />
+          <QR src={data.qrSitio} size={92} label={data.meta.sitioLabel} sub="Visita el sitio" light />
         </div>
       </div>
     </div>

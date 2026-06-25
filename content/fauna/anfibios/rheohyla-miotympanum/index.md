@@ -20,8 +20,6 @@ autoridad: "(Cope, 1863)"
 otrosNombres:
   - "Rana de orejas chicas"
   - "Calate"
-  - "Small-eared treefrog"
-  - "antes Hyla miotympanum / Ecnomiohyla miotympanum"
 mejorHora: "Noche, durante el coro de cantos"
 pullQuote: "Rana endémica y protegida, verde como el follaje que habita."
 medidas:

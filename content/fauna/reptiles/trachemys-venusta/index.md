@@ -9,7 +9,7 @@ familia: "Emydidae"
 genero: "Trachemys"
 estatusMigratorio: residente
 gradoOcurrencia: rara
-estatusDistribucion: nativa
+estatusDistribucion: introducida
 conservacion:
   nom059: ninguno
   iucn: NE
@@ -18,12 +18,12 @@ tamano: grande
 colores: [verde, cafe, amarillo]
 autoridad: "(Gray, 1856)"
 otrosNombres:
-  - "Jicotea, tortuga resbaladora mesoamericana, Mesoamerican slider, tortuga de monte (regional)"
+  - "Jicotea, tortuga resbaladora mesoamericana, tortuga de monte (regional)"
 mejorHora: "Media mañana, durante el asoleo sobre troncos y orillas."
 pullQuote: "Jicotea rayada de oro: un solo registro y muchas preguntas."
 medidas:
   tamanoCm: [19, 35]
-  criterio: "largo del caparazón (longitud recta del espaldar)"
+  criterio: "Largo del caparazón"
 habitat:
   - "Lagunas, ríos lentos y humedales con vegetación acuática y sitios de asoleo"
   - "en este sitio montañoso su presencia es marginal y requiere confirmación."

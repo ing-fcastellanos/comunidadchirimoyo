@@ -12,7 +12,7 @@ export const Document = ({ data }: { data: CatalogData }) => (
   <div className="stage">
     <Cover data={data} />
     <IntroLegend data={data} />
-    {data.indexPages.map((p, i) => <IndexPage key={`ix${i}`} page={p} total={data.total} />)}
+    {data.indexPages.map((p, i) => <IndexPage key={`ix${i}`} page={p} total={data.total} meta={data.meta} />)}
     {data.species.map((s) => <SpeciesSheet key={s.slug} data={s} logo={data.logoBlanco} />)}
     <Closing data={data} />
   </div>

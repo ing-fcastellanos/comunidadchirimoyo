@@ -109,12 +109,12 @@ export const Closing = ({ data }: { data: CatalogData }) => (
           </ul>
         </div>
         <div className="flex flex-col items-center justify-center border-l border-mint/25 pl-6">
-          <QR src={data.qrSitio} size={104} label="aves.chirimoyo.org" sub="Únete al proyecto" light />
+          <QR src={data.qrSitio} size={104} label={data.meta.sitioLabel} sub="Únete al proyecto" light />
         </div>
       </div>
 
       <footer className="mt-6 flex items-center justify-between text-[10.5px] text-mint-soft/65">
-        <span className="mono uppercase tracking-[.2em]">Catálogo de aves del humedal de Chirimoyo · v.{data.edicion}</span>
+        <span className="mono uppercase tracking-[.2em]">{data.meta.footerTitulo} · v.{data.edicion}</span>
         <span className="flex items-center gap-2">
           <Icon name="feather" className="h-[13px] w-[13px]" />
           Comunidad Chirimoyo · Orizaba, Veracruz

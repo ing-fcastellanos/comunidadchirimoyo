@@ -27,7 +27,7 @@ export function CierreCTA() {
           </h2>
         </div>
 
-        <div className="flex shrink-0 flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+        <div className="flex shrink-0 flex-col items-stretch gap-3">
           <Link
             href="/aves/buscador"
             className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-mint px-7 py-4 text-[17px] font-semibold text-pine-deep shadow-card transition-colors hover:bg-mint-deep hover:text-paper focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40"
@@ -38,14 +38,23 @@ export function CierreCTA() {
               className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
             />
           </Link>
-          <a
-            href="/catalogo-aves-chirimoyo.pdf"
-            download
-            className="group inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-4 text-[17px] font-semibold text-mint ring-1 ring-mint/40 transition-colors hover:bg-mint/10 focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40"
-          >
-            Descargar guía en PDF
-            <Icon name="Download" className="h-5 w-5 transition-transform group-hover:translate-y-0.5" />
-          </a>
+          {/* Dos guías en PDF: ornitología (aves) y herpetología (anfibios + reptiles). */}
+          <div className="flex flex-col items-stretch gap-2 sm:flex-row">
+            <a
+              href="/catalogo-aves-chirimoyo.pdf"
+              download
+              className="group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-[15px] font-semibold text-mint ring-1 ring-mint/40 transition-colors hover:bg-mint/10 focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40"
+            >
+              <Icon name="Download" className="h-[18px] w-[18px]" /> Guía de aves
+            </a>
+            <a
+              href="/catalogo-herpetofauna-chirimoyo.pdf"
+              download
+              className="group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-[15px] font-semibold text-mint ring-1 ring-mint/40 transition-colors hover:bg-mint/10 focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40"
+            >
+              <Icon name="Download" className="h-[18px] w-[18px]" /> Guía de herpetofauna
+            </a>
+          </div>
         </div>
       </div>
     </section>

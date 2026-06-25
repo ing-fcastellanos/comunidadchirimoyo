@@ -20,8 +20,6 @@ autoridad: "(Cope, 1877)"
 otrosNombres:
   - "Ranita chirriadora del Río Bravo"
   - "Rana chirriadora del Río Grande"
-  - "Mexican chirping frog"
-  - "Rio Grande chirping frog"
 mejorHora: "Noche, tras la puesta del sol"
 pullQuote: "El anfibio más pequeño del humedal, delatado por su chirrido."
 medidas:

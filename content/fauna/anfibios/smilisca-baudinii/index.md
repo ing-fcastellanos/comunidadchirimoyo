@@ -21,7 +21,6 @@ otrosNombres:
   - "Rana arborícola mexicana"
   - "Rana arbórea de Baudin"
   - "Rana trepadora"
-  - "Common Mexican treefrog"
 mejorHora: "Noche, especialmente tras lluvias"
 pullQuote: "Trepadora robusta de coro potente y dedos con ventosas."
 medidas:

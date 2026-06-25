@@ -20,7 +20,7 @@ export const Cover = ({ data }: { data: CatalogData }) => (
       <div className="mt-[14mm]">
         <Kicker light>Humedal de agua dulce · Veracruz, México</Kicker>
         <h1 className="mt-5 font-serif font-500 text-white" style={{ fontSize: "74px", lineHeight: ".96", letterSpacing: "-.01em" }}>
-          Catálogo de aves<br />del humedal de<br />
+          {data.meta.coverTituloLineas.map((linea) => <React.Fragment key={linea}>{linea}<br /></React.Fragment>)}
           <span className="italic font-600 text-mint">Chirimoyo</span>
         </h1>
         <p className="mt-6 flex items-center gap-3 text-[16px] text-mint-soft/95">
