@@ -14,6 +14,7 @@ conservacion:
   nom059: pr
   iucn: LC
 simbologia: "R-C-Pr-N"
+featured: true
 forma: pajaro
 tamano: grande
 colores: [negro, cafe, amarillo]

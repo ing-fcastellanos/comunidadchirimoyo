@@ -14,6 +14,7 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-PC-SR-N"
+featured: true
 forma: buceador
 tamano: muy-grande
 colores: [negro]

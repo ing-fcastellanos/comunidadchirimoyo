@@ -14,6 +14,7 @@ conservacion:
   nom059: pr
   iucn: LC
 simbologia: "A-C-Pr-N"
+featured: true
 tamano: mediana
 colores: [verde, cafe, negro]
 autoridad: "(Baird, 1859)"

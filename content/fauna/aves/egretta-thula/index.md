@@ -14,6 +14,7 @@ conservacion:
   nom059: ninguno
   iucn: LC
 simbologia: "R-C-SR-N"
+featured: true
 forma: garza
 tamano: grande
 colores: [blanco]
