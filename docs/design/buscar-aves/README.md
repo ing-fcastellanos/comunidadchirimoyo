@@ -1,5 +1,10 @@
 # CODING AGENTS: READ THIS FIRST
 
+> **Estado (histórico):** este handoff es de **Fase 1** y diseñó el buscador de **aves**. Ya está
+> implementado. Hoy el catálogo es multi-grupo (`fauna.chirimoyo.org`, ADR-0024): además del
+> buscador de aves (`/aves/buscador`) existe un **buscador general** agnóstico al grupo en
+> `/busqueda`. Usa este bundle como referencia visual, no como descripción del estado actual.
+
 This is a **handoff bundle** from Claude Design (claude.ai/design).
 
 A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.

@@ -1,10 +1,10 @@
 {
   "sitios": [
     {
-      "slug": "aves",
-      "titulo": "Catálogo de aves y anfibios",
-      "descripcion": "Fichas de la fauna documentada en el humedal. Búscala por forma, color o dónde la viste.",
-      "url": "https://aves.chirimoyo.org",
+      "slug": "fauna",
+      "titulo": "Catálogo de fauna",
+      "descripcion": "Fichas de las aves, anfibios y reptiles documentados en el humedal. Búscalos por forma, color o dónde los viste.",
+      "url": "https://fauna.chirimoyo.org",
       "icono": "Bird"
     },
     {

@@ -40,9 +40,10 @@ Componentes del sistema a alto nivel. Para decisiones concretas de stack ver los
 
 ### apps/catalogo
 
-- Sirve `aves.chirimoyo.org`: catálogo de **aves y anfibios/reptiles** (anfibios es una categoría, no un sitio).
-- Listado, buscador/filtros y página de detalle **100% estáticos**: datos en `content/`, búsqueda en cliente.
-- Genera el **PDF del catálogo** a partir de los mismos datos.
+- Sirve `fauna.chirimoyo.org`: catálogo de **fauna** con grupos por path (`/aves`, `/anfibios`, `/reptiles`; un grupo = un path, ADR-0024). `aves.chirimoyo.org` es un vanity 301 → `/aves`.
+- Hub (`/`) con grupos + especies destacadas + acceso a búsqueda; buscador general en `/busqueda`; detalle en `/<grupo>/<slug>`.
+- Hub, listado, buscador/filtros y detalle **100% estáticos**: datos en `content/`, búsqueda en cliente.
+- Genera **dos PDFs** (aves + herpetofauna) a partir de los mismos datos.
 - No consume el API.
 
 ### services/api

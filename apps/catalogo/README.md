@@ -1,8 +1,15 @@
 # apps/catalogo
 
-Catálogo de fauna del humedal de Chirimoyo → **aves.chirimoyo.org** (aves + anfibios/reptiles como categoría).
+Catálogo de fauna del humedal de Chirimoyo → **fauna.chirimoyo.org** (aves, anfibios y reptiles). `aves.chirimoyo.org` es un **vanity 301** hacia `fauna.chirimoyo.org/aves` (ADR-0024).
 
 Next.js 15 (App Router) · TypeScript · Tailwind v4. **Catálogo 100% estático** (ADR-0005): export estático servido directo por Firebase Hosting, **sin Cloud Run ni Docker** (ADR-0014).
+
+## Rutas
+
+- `/` — **hub** de fauna: hero, tarjetas por grupo (conteos derivados), **especies destacadas** y acceso a la búsqueda.
+- `/aves`, `/anfibios`, `/reptiles` — índice por grupo (un grupo = un path, ADR-0024).
+- `/busqueda` — buscador general multi-grupo (en cliente).
+- `/<grupo>/<slug>` — detalle de especie (p. ej. `/aves/psarocolius-montezuma`).
 
 ## Comandos
 
@@ -10,7 +17,7 @@ Next.js 15 (App Router) · TypeScript · Tailwind v4. **Catálogo 100% estático
 npm install
 npm run dev            # servidor de desarrollo (:3000)
 npm run build          # next build → genera out/ (estático). NO genera el PDF.
-npm run build:pdf      # genera el PDF del catálogo → public/catalogo-aves-chirimoyo.pdf
+npm run build:pdf      # genera los 2 PDFs → public/catalogo-{aves,herpetofauna}-chirimoyo.pdf
 npm run typecheck      # tsc --noEmit
 npm run lint           # eslint
 npm run sync:tokens    # regenera app/tokens.css desde docs/design-system/
@@ -33,12 +40,15 @@ Para previsualizar el export: `npx serve out`.
 
 ## PDF del catálogo (#14, ADR-0019)
 
-`npm run build:pdf` genera **un único PDF** con todas las especies a partir de `content/` y
-de la **copia local del banco de imágenes**, y lo escribe en
-`public/catalogo-aves-chirimoyo.pdf` (lo descarga el botón "Descargar guía en PDF" del
-catálogo). Se compone con plantillas de impresión en `print/templates/` (Tailwind v4
-precompilado offline) y se imprime con Chromium headless (Playwright). Ver
-[ADR-0019](../../docs/decisions/0019-pdf-catalogo-build-headless.md).
+`npm run build:pdf` genera **dos PDFs** (uno por disciplina) con todas las especies a partir de
+`content/` y de la **copia local del banco de imágenes**, y los escribe en:
+
+- `public/catalogo-aves-chirimoyo.pdf` — ornitología (aves).
+- `public/catalogo-herpetofauna-chirimoyo.pdf` — herpetología (anfibios + reptiles).
+
+Los descargan los botones "Descargar guía en PDF" del catálogo. Se componen con plantillas de
+impresión en `print/templates/` (Tailwind v4 precompilado offline) y se imprimen con Chromium
+headless (Playwright). Ver [ADR-0019](../../docs/decisions/0019-pdf-catalogo-build-headless.md).
 
 **Prerequisito (una vez):** instalar el navegador de Playwright:
 
@@ -47,17 +57,18 @@ npx playwright install chromium
 ```
 
 **Textos de la ficha.** Los cuatro bloques (Descripción · Cómo identificarla · ¿Sabías que? ·
-Dónde y cuándo observarla) usan los **resúmenes curados** (≤350c) del CSV de origen
-(`content/fauna/_origen/aves-especies.csv`, columnas `resumen_*`), que tienen prioridad. Si una
-especie no tiene resumen, se recurre a un extracto recortado del cuerpo Markdown.
+Dónde y cuándo observarla) usan los **resúmenes curados** (columnas `resumen_*`) del CSV de
+origen por disciplina (`content/fauna/_origen/aves-especies.csv` y
+`anfibios-reptiles-especies.csv`), que tienen prioridad. Si una especie no tiene resumen, se
+recurre a un extracto recortado del cuerpo Markdown.
 
 Variables de entorno opcionales:
 
-- `FAUNA_BANCO_DIR` — ruta del banco local de imágenes (default: `…/Img guia aves/Imagenes aves`).
-- `SITE_AVES_BASE` — base del sitio para los QR (default `https://aves.chirimoyo.org`).
+- `FAUNA_BANCO_DIR` — ruta del banco local de imágenes de **aves** (default: `…/Img guia aves/Imagenes aves`).
+- `FAUNA_BANCO_HERPS_DIR` — ruta del banco local de imágenes de **herpetofauna** (default: `…/guia aves Roldan/anfibios-reptiles/fotos`).
+- `SITE_BASE` — base del sitio para los QR (default `https://fauna.chirimoyo.org`).
 - `PHOTO_SELECTIONS` — ruta del JSON de selección/encuadre de fotos (default `print/photo-selections.json`).
-- `RESUMENES_CSV` — ruta del CSV con los resúmenes (default `content/fauna/_origen/aves-especies.csv`).
-- `PDF_OUT` — ruta de salida del PDF.
+- `PDF_OUT` — ruta de salida del PDF (sobrescribe el destino por disciplina).
 
 Si falta la imagen de una especie, su ficha usa un placeholder y se registra un aviso (el
 build no se rompe).
@@ -84,12 +95,14 @@ Los tokens viven en `app/tokens.css`, **generado** desde la fuente canónica `do
 
 ## Contenido
 
-`lib/content.ts` lee `content/fauna/` desde la raíz del repo en build (override con `CONTENT_DIR`). Hoy es un stub tipado; el parseo real llega en #10/#11 según el esquema de #9.
+`lib/content.ts` lee `content/fauna/<grupo>/<slug>/index.md` desde la raíz del repo en build
+(override con `CONTENT_DIR`), valida contra el esquema group-aware (`lib/fauna-validate.ts`,
+ADR-0025) y expone las fichas a la app. La búsqueda y el detalle se resuelven 100% en cliente
+sobre esos datos (sin API). Las imágenes y el audio se sirven desde GCS (ADR-0016, ADR-0017).
 
 ## Hosting
 
-`firebase.json` publica `out/` directo (target `prod`). El site `aves-chirimoyo` en `.firebaserc` es provisional — se fija al conectar el dominio `aves.chirimoyo.org` (#3). Deploy a producción en #15.
-
-## Pendiente (otros issues)
-
-Listado (#11) · buscador/filtros (#12) · detalle por especie (#13) · PDF (#14) · migrar datos+imágenes (#10) · deploy (#15).
+`firebase.json` publica `out/` directo (target `prod` → site **`fauna-chirimoyo`**, conectado a
+`fauna.chirimoyo.org`). `aves.chirimoyo.org` es un vanity 301 hacia `fauna.chirimoyo.org/aves`
+(ADR-0024; configurado fuera del repo vía URL forwarding del registrador). El smoke test
+verifica el 301 con `SMOKE_VANITY=1`.

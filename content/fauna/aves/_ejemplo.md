@@ -38,17 +38,23 @@ forma: garza
 tamano: grande
 colores: [blanco]
 donde: orilla
+# featured: booleano opcional — destaca la especie en el hub del catálogo (sección "Especies destacadas")
 featured: true
 fuentes:
   - eBird
   - Audubon
   - Enciclovida
 fotos:
-  - archivo: foto-1.jpg
-    credito: "Foto: pendiente de migrar desde el banco de Google Drive (#10)"
+  # archivo: nombre del archivo en el bucket GCS (sin URL). credito: obligatorio.
+  # opcionales: alt, licencia, creditoUrl, licenciaUrl. La primera foto es la portada.
+  - archivo: ardea-alba_01.webp
+    credito: "Any Isabel Pérez Santiago"
     alt: Garza blanca vadeando en aguas someras de la laguna
-    licencia: "© autor, uso autorizado"
-# audios: opcional, mismo patrón que fotos (archivo, credito, descripcion?, licencia?)
+    licencia: "CC0"
+    licenciaUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+# audios: opcional, mismo patrón que fotos:
+#   archivo (obligatorio), credito (obligatorio), descripcion?, tipo? ("canto"|"llamado"),
+#   licencia?, creditoUrl? (p. ej. grabación en xeno-canto), licenciaUrl?, fuenteId? (p. ej. "XC636492")
 ---
 
 ## Descripción
