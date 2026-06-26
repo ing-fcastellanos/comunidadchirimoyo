@@ -14,8 +14,16 @@ npm run build:pdf      # genera el PDF del catálogo → public/catalogo-aves-ch
 npm run typecheck      # tsc --noEmit
 npm run lint           # eslint
 npm run sync:tokens    # regenera app/tokens.css desde docs/design-system/
-npm run deploy_prod    # build:pdf + build + firebase deploy (hosting:prod)
+npm run smoke          # smoke test e2e sobre out/ (rutas, enlaces, PDFs, sin API, vanity)
+npm run deploy_prod    # build:pdf + build + smoke + firebase deploy (hosting:prod)
 ```
+
+> **Smoke test (#95):** `npm run smoke` afirma sobre el `out/` ya construido —rutas marco
+> + un detalle por grupo, enlaces internos `/<grupo>/<slug>`, PDFs íntegros (`%PDF`) y
+> ausencia de fugas al API— y termina ≠ 0 si algo falla. Va dentro de `deploy_prod` tras el
+> build, como puerta previa al deploy. El check del **vanity** `aves.* → 301 fauna/aves` es
+> opt-in: `SMOKE_VANITY=1 npm run smoke` (verifícalo cuando el redirect esté configurado;
+> por defecto hace SKIP).
 
 Para previsualizar el export: `npx serve out`.
 
