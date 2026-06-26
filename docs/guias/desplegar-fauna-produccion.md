@@ -1,7 +1,8 @@
-# Desplegar aves.chirimoyo.org a producción
+# Desplegar fauna.chirimoyo.org a producción
 
-Runbook para publicar el catálogo de fauna (`apps/catalogo` → `aves.chirimoyo.org`).
-Cubre el issue [#15](https://github.com/ing-fcastellanos/comunidadchirimoyo/issues/15).
+Runbook para publicar el catálogo de fauna (`apps/catalogo` → `fauna.chirimoyo.org`).
+`aves.chirimoyo.org` es un vanity 301 hacia `fauna.chirimoyo.org/aves` (ADR-0024), configurado
+fuera del repo. Cubre el issue [#15](https://github.com/ing-fcastellanos/comunidadchirimoyo/issues/15).
 
 > El catálogo es un **export estático servido por Firebase Hosting** — **no** usa
 > Cloud Run ni Docker (ver [ADR-0014](../decisions/0014-catalogo-export-estatico.md),
@@ -13,9 +14,9 @@ Cubre el issue [#15](https://github.com/ing-fcastellanos/comunidadchirimoyo/issu
 
 ```
 1. PREREQUISITOS   firebase login · deps instaladas · banco local de fotos · Chromium
-2. DEPLOY          npm run deploy_prod   (build:pdf → next build → firebase deploy)
-3. SMOKE TEST      listado · buscador · detalle · mapa · PDF · favicons · SSL
-4. CIERRE          verificar dominio, marcar checklist del issue
+2. DEPLOY          npm run deploy_prod   (build:pdf → next build → smoke → firebase deploy)
+3. SMOKE TEST      automático (npm run smoke) + verificación manual en producción
+4. CIERRE          verificar dominio + vanity 301, marcar checklist del issue
 ```
 
 Una sola máquina, un solo comando. No hay CI/CD de deploy automático
@@ -27,9 +28,10 @@ Una sola máquina, un solo comando. No hay CI/CD de deploy automático
    apps/catalogo                         Firebase Hosting (proyecto: chirimoyo)
    ┌────────────────────────┐            ┌─────────────────────────────────┐
    │ npm run deploy_prod     │            │ target "prod" → site            │
-   │  ├ build:pdf  → PDF      │  out/ ───▶ │ "aves-chirimoyo"                │
-   │  ├ next build → out/     │            │  → aves.chirimoyo.org (CDN+SSL) │
-   │  └ firebase deploy       │            └─────────────────────────────────┘
+   │  ├ build:pdf  → PDF      │  out/ ───▶ │ "fauna-chirimoyo"               │
+   │  ├ next build → out/     │            │  → fauna.chirimoyo.org (CDN+SSL)│
+   │  ├ smoke (verifica out/) │            └─────────────────────────────────┘
+   │  └ firebase deploy       │
    └────────────────────────┘
             │                              Google Cloud Storage (público)
             │ las fotos NO van en out/ ──▶ storage.googleapis.com/
@@ -65,11 +67,13 @@ npm run deploy_prod
 
 Esto encadena, en orden:
 
-1. **`build:pdf`** — compila el CSS de impresión y genera
-   `public/catalogo-aves-chirimoyo.pdf` con Chromium.
-2. **`next build`** — emite `out/` (export estático), incluyendo el PDF y los favicons.
-3. **`firebase deploy --only hosting:prod --project=chirimoyo`** — sube `out/` al
-   site `aves-chirimoyo` (target `prod` en `.firebaserc`).
+1. **`build:pdf`** — compila el CSS de impresión y genera los dos PDFs
+   (`public/catalogo-aves-chirimoyo.pdf` y `catalogo-herpetofauna-chirimoyo.pdf`) con Chromium.
+2. **`next build`** — emite `out/` (export estático), incluyendo los PDFs y los favicons.
+3. **`smoke`** — verifica el `out/` (rutas, enlaces internos, PDFs íntegros, sin API); aborta el
+   deploy si algo falla. Ver [smoke-fauna.mts](../../apps/catalogo/scripts/smoke-fauna.mts).
+4. **`firebase deploy --only hosting:prod --project=chirimoyo`** — sube `out/` al
+   site `fauna-chirimoyo` (target `prod` en `.firebaserc`).
 
 Al terminar, Firebase imprime la **Hosting URL**. El deploy reemplaza la página de
 *coming soon* que servía el dominio.
@@ -81,22 +85,25 @@ runtime. Para que la analítica ([ADR-0020](../decisions/0020-analitica-cloudfla
 quede en el `out/` desplegado, define **antes** de `npm run deploy_prod` (en `.env.local` o en
 el entorno que ejecuta el comando):
 
-- `NEXT_PUBLIC_CF_BEACON_TOKENS` — JSON `{"aves.chirimoyo.org":"<token>"}` (token del "site" de Cloudflare).
+- `NEXT_PUBLIC_CF_BEACON_TOKENS` — JSON `{"fauna.chirimoyo.org":"<token>"}` (token del "site" de Cloudflare).
 
 Ver [`apps/catalogo/.env.example`](../../apps/catalogo/.env.example). Si falta, el sitio
 despliega igual pero **sin analítica** (degradación segura, sin error).
 
 ## 3. Smoke test en producción
 
-Abrir `https://aves.chirimoyo.org` y verificar:
+El `deploy_prod` ya corrió `npm run smoke` sobre el `out/` (rutas, enlaces, PDFs, sin API).
+Tras el deploy, abrir `https://fauna.chirimoyo.org` y verificar en vivo:
 
-- [ ] **Landing** carga (Hero, secciones, sin errores en consola).
-- [ ] **Buscador** (`/busqueda`): filtra por forma/color/lugar; los resultados muestran foto.
+- [ ] **Hub** (`/`) carga (hero, tarjetas de grupo con conteos, destacadas, sin errores en consola).
+- [ ] **Índices** `/aves`, `/anfibios`, `/reptiles` listan sus especies.
+- [ ] **Buscador** (`/busqueda`): filtra por grupo/forma/color/lugar; los resultados muestran foto.
 - [ ] **Detalle** de una especie (`/aves/psarocolius-montezuma`): ficha completa, fotos del bucket cargan.
 - [ ] **Mapa de distribución** se renderiza en el detalle.
-- [ ] **PDF**: el botón "Descargar guía en PDF" del cierre descarga `catalogo-aves-chirimoyo.pdf`.
+- [ ] **PDFs**: los botones de descarga sirven `catalogo-aves-chirimoyo.pdf` y `catalogo-herpetofauna-chirimoyo.pdf`.
+- [ ] **Vanity**: `aves.chirimoyo.org` responde 301 → `fauna.chirimoyo.org/aves` (`SMOKE_VANITY=1 npm run smoke` o `curl -I`).
 - [ ] **Favicons**: pestaña con ícono de Chirimoyo; `site.webmanifest` resuelve.
-- [ ] **Analítica**: en `aves.chirimoyo.org` llega un pageview al panel de Cloudflare Web Analytics; sin cookies de rastreo ni banner.
+- [ ] **Analítica**: en `fauna.chirimoyo.org` llega un pageview al panel de Cloudflare Web Analytics; sin cookies de rastreo ni banner.
 - [ ] **SSL** válido (candado, certificado de Firebase) y **performance** razonable (carga rápida vía CDN).
 
 ## 4. Cierre
@@ -109,7 +116,7 @@ Abrir `https://aves.chirimoyo.org` y verificar:
 ## Rollback
 
 Firebase Hosting guarda versiones anteriores. Para volver a una versión previa sin
-re-build: consola de Firebase → Hosting → site `aves-chirimoyo` → historial de
+re-build: consola de Firebase → Hosting → site `fauna-chirimoyo` → historial de
 versiones → **Rollback**. (O re-desplegar desde un commit anterior con `deploy_prod`.)
 
 ## Notas

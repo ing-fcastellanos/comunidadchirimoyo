@@ -1,14 +1,15 @@
-# Agregar una ave al catálogo
+# Agregar una especie al catálogo de fauna
 
-Guía paso a paso para incorporar **una especie nueva** al catálogo de aves
-(`apps/catalogo` → `aves.chirimoyo.org`), reutilizando el pipeline de contenido.
-Ejemplo de referencia: la **Oropéndola de Moctezuma** (*Psarocolius montezuma*),
+Guía paso a paso para incorporar **una especie nueva** al catálogo de fauna
+(`apps/catalogo` → `fauna.chirimoyo.org`), reutilizando el pipeline de contenido. El mismo
+proceso aplica a **aves, anfibios y reptiles** (y futuros grupos): cambia solo el `grupo` en la
+ruta. Ejemplo de referencia: la **Oropéndola de Moctezuma** (*Psarocolius montezuma*, un ave),
 agregada con este mismo proceso.
 
 > El catálogo es **estático**: cada especie es un archivo Markdown
-> (`content/fauna/aves/<slug>/index.md`) que el build lee y valida. Las fotos y el
-> audio viven en Google Cloud Storage, no en el repo. No hay base de datos ni API
-> de búsqueda (ver [ADR-0005](../decisions/0005-catalogo-estatico-anfibios-categoria.md)).
+> (`content/fauna/<grupo>/<slug>/index.md`, con `grupo` ∈ {aves, anfibios, reptiles}) que el
+> build lee y valida. Las fotos y el audio viven en Google Cloud Storage, no en el repo. No hay
+> base de datos ni API de búsqueda (ver [ADR-0005](../decisions/0005-catalogo-estatico-anfibios-categoria.md)).
 
 ## Panorama
 

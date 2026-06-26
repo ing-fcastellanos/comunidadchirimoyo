@@ -9,10 +9,10 @@ Sitios web de la **Comunidad Chirimoyo** — un grupo de vecinos y ecologistas q
 | `chirimoyo.org` | Landing principal: introducción a la lucha, linktree, contacto | `apps/sitio` |
 | `chirimoyo.org/comunidad` | Historia, acciones, visión/misión y noticias | `apps/sitio` |
 | `chirimoyo.org/voluntarios` | Jornadas de limpieza, calendario, inscripción y donaciones | `apps/sitio` |
-| `aves.chirimoyo.org` | Catálogo de aves (y anfibios/reptiles): buscador, detalle y PDF | `apps/catalogo` |
+| `fauna.chirimoyo.org` | Catálogo de fauna (aves, anfibios y reptiles): hub, índices por grupo, buscador, detalle y PDFs | `apps/catalogo` |
 | `api.chirimoyo.org` | Servicio mínimo: inscripciones de voluntarios y contacto | `services/api` |
 
-`comunidad.chirimoyo.org` y `voluntarios.chirimoyo.org` se conservan solo como **redirects vanity 301** hacia su path equivalente (ADR-0023).
+`comunidad.chirimoyo.org` y `voluntarios.chirimoyo.org` se conservan solo como **redirects vanity 301** hacia su path equivalente (ADR-0023). `aves.chirimoyo.org` es un **vanity 301** hacia `fauna.chirimoyo.org/aves` (ADR-0024).
 
 ## Stack
 
@@ -27,10 +27,10 @@ Sitios web de la **Comunidad Chirimoyo** — un grupo de vecinos y ecologistas q
 comunidadchirimoyo/
 ├── apps/
 │   ├── sitio/        Next 15 → landing + comunidad + voluntarios
-│   └── catalogo/     Next 15 → aves (incl. anfibios)
+│   └── catalogo/     Next 15 → fauna (aves, anfibios, reptiles)
 ├── services/
 │   └── api/          Flask + Firestore (inscripciones + contacto)
-├── content/          Markdown/JSON: historia, misión, noticias, fichas, jornadas
+├── content/          Markdown/JSON: fauna (aves, anfibios, reptiles), landing, noticias, historia, jornadas
 ├── docs/             documentación del monorepo (arquitectura, ADRs, gestión)
 ├── scripts/          setup-*.sh (labels, milestones, project, issues)
 └── openspec/         specs + changes (contrato de comportamiento)

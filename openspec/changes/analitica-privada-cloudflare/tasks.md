@@ -25,7 +25,7 @@
 - [x] 4.2 Crear/actualizar `.env.example` en ambas apps documentando la variable (sin valores reales)
 - [x] 4.3 (MANUAL, deploy) Inyectar la variable en el build de `catalogo` (export estático) — documentado en la guía
 - [ ] 4.4 (MANUAL, deploy) Inyectar la variable en el entorno de Cloud Run de `sitio` — documentado en el README
-- [x] 4.5 Documentar la variable en los README/guías de despliegue (`docs/guias/desplegar-aves-produccion.md` y el de `sitio`)
+- [x] 4.5 Documentar la variable en los README/guías de despliegue (`docs/guias/desplegar-fauna-produccion.md` y el de `sitio`)
 
 ## 5. Transparencia en privacidad — DIFERIDA a #44
 

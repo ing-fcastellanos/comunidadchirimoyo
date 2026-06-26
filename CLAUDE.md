@@ -7,7 +7,7 @@ Guía para Claude (y otros agentes IA) trabajando en este repositorio.
 **Comunidad Chirimoyo** es un monorepo de sitios de difusión para la defensa del **humedal de Chirimoyo** (norte de Orizaba, Veracruz). Es un proyecto comunitario y ecologista — la mayoría es **contenido**, no transacción.
 
 - `apps/sitio` — Next.js 15 (App Router). Sirve **chirimoyo.org** en un solo dominio, con las secciones por path: landing + linktree + contacto (`/`), **`/comunidad`** (historia, acciones, misión/visión, noticias) y **`/voluntarios`** (jornadas, calendario, inscripción, donaciones). Los subdominios `comunidad.*` y `voluntarios.*` son solo redirects vanity 301 (ADR-0023).
-- `apps/catalogo` — Next.js 15 (App Router). Sirve **aves.chirimoyo.org**: catálogo de aves **y** anfibios/reptiles (como categoría, no sitio aparte). Buscador y detalle **estáticos**.
+- `apps/catalogo` — Next.js 15 (App Router). Sirve **fauna.chirimoyo.org**: catálogo de fauna con **hub** (`/`: grupos + destacadas + acceso a búsqueda), **paths por grupo** (`/aves`, `/anfibios`, `/reptiles`), **buscador general** en cliente (`/busqueda`), **detalle** (`/<grupo>/<slug>`) y **PDFs** por disciplina (aves + herpetofauna) — todo **estático**. `aves.chirimoyo.org` es solo un redirect vanity 301 a `fauna.chirimoyo.org/aves` (ADR-0024).
 - `services/api` — Python 3.12 + Flask + Firestore, en Cloud Run. **Mínimo**: solo inscripciones de voluntarios y formulario de contacto.
 
 El stack y las convenciones se heredan de **Sociedad Salvaje** (`C:\Users\Frank\source_code\sociedadsalvaje`). Lee [README.md](README.md) y [docs/architecture/overview.md](docs/architecture/overview.md) antes de cambios cross-cutting.
@@ -61,7 +61,7 @@ No introduzcas Nx, Turborepo ni workspaces sin ADR. Cada app/servicio se constru
 comunidadchirimoyo/
 ├── apps/<sitio>/      cada front es deployable independiente
 ├── services/<nombre>/ cada backend es deployable independiente
-├── content/           Markdown/JSON: fichas de aves, noticias, historia, jornadas
+├── content/           Markdown/JSON: fichas de fauna (aves, anfibios, reptiles), landing, noticias, historia, jornadas
 ├── docs/              documentación cross-cutting
 │   ├── decisions/     ADRs numerados monotónicamente
 │   ├── adr/           _template.md + _index.md
@@ -114,7 +114,7 @@ Decisiones no triviales (nuevo servicio, cambio de stack, romper convenciones) �
 Para que ningún agente las invente:
 
 - No hay CI/CD de deploy automático (solo CI de checks en PR; deploys manuales).
-- No hay tests automatizados sistemáticos aún.
+- No hay suite de tests unitarios/integración con framework (Jest/Vitest) aún. Sí existen **scripts de validación** ad-hoc del catálogo: `npm run validate:fichas` (esquema de fichas) y `npm run smoke` (smoke test e2e sobre el `out/`), enganchados en `deploy_prod`.
 - No hay infraestructura como código.
 - No hay monitoreo/alertas más allá de Cloud Logging.
 

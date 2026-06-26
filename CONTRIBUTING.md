@@ -1,6 +1,6 @@
 # Contribuir
 
-Gracias por tu interés en apoyar a la Comunidad Chirimoyo. Este es un proyecto comunitario y abierto; tanto código como contenido (fichas de aves, fotos, textos) son bienvenidos.
+Gracias por tu interés en apoyar a la Comunidad Chirimoyo. Este es un proyecto comunitario y abierto; tanto código como contenido (fichas de fauna —aves, anfibios, reptiles—, fotos, textos) son bienvenidos.
 
 ## Antes de empezar
 
@@ -28,11 +28,11 @@ Para contribuciones externas sin acceso a ese tooling, basta con:
 - **Commits**: estilo conventional commits (`feat:`, `fix:`, `docs:`, `chore:`, etc.).
 - **Branches**: nacen de `main` y se mantienen actualizadas.
 - **Secretos**: jamás commitear `.env`, service accounts ni datos personales.
-- **Contenido**: las fichas de aves y textos viven en `content/` como Markdown/JSON. Respeta el esquema existente.
+- **Contenido**: las fichas de fauna (aves, anfibios, reptiles) y textos viven en `content/` como Markdown/JSON. Respeta el esquema existente.
 
 ## Aportar contenido sin programar
 
-Si quieres aportar una ficha de ave, una foto o corregir un texto y no programas, abre una issue con el material adjunto o escríbenos al correo de contacto. Nosotros lo integramos.
+Si quieres aportar una ficha de fauna (ave, anfibio o reptil), una foto o corregir un texto y no programas, abre una issue con el material adjunto o escríbenos al correo de contacto. Nosotros lo integramos.
 
 ## Código de conducta
 
