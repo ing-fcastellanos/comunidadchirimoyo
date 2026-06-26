@@ -38,3 +38,6 @@ class Config:
 
     # Buzón interno que recibe el aviso de cada mensaje de contacto.
     CONTACTO_INBOX = os.getenv("CONTACTO_INBOX", "contacto@chirimoyo.org")
+
+    # Buzón interno que recibe el aviso de cada inscripción de voluntario.
+    VOLUNTARIOS_INBOX = os.getenv("VOLUNTARIOS_INBOX", "voluntarios@chirimoyo.org")

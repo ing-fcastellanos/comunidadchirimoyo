@@ -37,11 +37,11 @@ El servicio SHALL conectarse a Firestore con `firestore.Client(database="(defaul
 
 ### Requirement: Endpoints de voluntarios y contacto como stub
 
-El servicio SHALL registrar los blueprints `voluntarios` (`/api/voluntarios`) y `contacto` (`/api/contacto`). El handler de `voluntarios` SHALL responder `501 Not Implemented` indicando que su lógica se implementa más adelante; su lógica real (validación, escritura en Firestore, email, privacidad) NO SHALL implementarse en este alcance. El handler de `contacto` SHALL implementar su comportamiento real, definido en la capability `contacto` (recepción, validación, persistencia y notificación), y por tanto NO SHALL responder `501`.
+El servicio SHALL registrar los blueprints `voluntarios` (`/api/voluntarios`) y `contacto` (`/api/contacto`). Ambos handlers SHALL implementar su comportamiento real y por tanto NO SHALL responder `501`: `contacto` según la capability `contacto` (recepción, validación, persistencia y notificación) y `voluntarios` según la capability `inscripcion-voluntarios` (inscripción de voluntarios a jornadas). El nombre histórico de este requisito ("como stub") se conserva por trazabilidad, pero ya ningún endpoint del servicio es un stub.
 
-#### Scenario: Stub de voluntarios visible
-- **WHEN** se hace una petición a `/api/voluntarios`
-- **THEN** responde `501` con un mensaje que indica que está pendiente
+#### Scenario: Voluntarios ya no es stub
+- **WHEN** se hace `POST /api/voluntarios` con un payload válido
+- **THEN** NO responde `501`; procesa la inscripción según la capability `inscripcion-voluntarios`
 
 #### Scenario: Contacto ya no es stub
 - **WHEN** se hace `POST /api/contacto` con un payload válido
