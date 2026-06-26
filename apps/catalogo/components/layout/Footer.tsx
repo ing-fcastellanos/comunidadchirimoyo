@@ -1,4 +1,5 @@
 /* Footer.tsx — créditos y fuentes. Portado del handoff v0.dev. Server Component. */
+import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 
 const SOURCES = [
@@ -46,6 +47,22 @@ export function Footer() {
                   {s}
                 </li>
               ))}
+            </ul>
+          </div>
+          <div>
+            <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-forest">
+              El proyecto
+            </div>
+            <ul className="mt-3 space-y-1.5 text-[15px] text-ink/75">
+              <li>
+                <Link
+                  href="/colaboradores"
+                  className="inline-flex items-center gap-2 transition-colors hover:text-forest-deep focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25 rounded-md"
+                >
+                  <Icon name="Users" className="h-4 w-4 text-mint-deep" />
+                  Colaboradores
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

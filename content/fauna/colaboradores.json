@@ -1,0 +1,49 @@
+{
+  "grupos": [
+    {
+      "rol": "Biólogos e identificación",
+      "icono": "Microscope",
+      "personas": [
+        {
+          "nombre": "Juan Manuel Díaz García",
+          "aporte": "Doctor en Ciencias Biológicas",
+          "enlace": "https://web.facebook.com/juandiazgarcia"
+        },
+        {
+          "nombre": "Angel Ivan Contreras Calvario",
+          "aporte": "Maestro en Ciencias en Conservación y Aprovechamiento de Recursos Naturales",
+          "enlace": "https://web.facebook.com/angelivan.contreras"
+        },
+        {
+          "nombre": "Ángel Hernández Ramírez",
+          "aporte": "Licenciado en Biología",
+          "enlace": "https://web.facebook.com/angel.hernandez.906714"
+        }
+      ]
+    },
+    {
+      "rol": "Fotografía",
+      "icono": "Camera",
+      "personas": [
+        {
+          "nombre": "Any Isabel Pérez Santiago",
+          "aporte": "Registro fotográfico de la fauna del humedal"
+        },
+        {
+          "nombre": "Diana Isela Angeles Solares",
+          "aporte": "Registro fotográfico de la fauna del humedal"
+        }
+      ]
+    },
+    {
+      "rol": "Desarrollo",
+      "icono": "Code",
+      "personas": [
+        {
+          "nombre": "Francisco Castellanos",
+          "aporte": "Diseño y desarrollo del catálogo"
+        }
+      ]
+    }
+  ]
+}
