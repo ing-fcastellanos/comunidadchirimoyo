@@ -103,6 +103,31 @@ Lista semilla, **extensible** (etiquetas en kebab-case): `espejo-de-agua`, `vege
 
 El catálogo inicial de aves se migra (issue #10) desde [`fauna/_origen/aves-especies.csv`](fauna/_origen/aves-especies.csv); el mapeo columna→ficha y el parseo de conservación están en [`fauna/_origen/README.md`](fauna/_origen/README.md). Ver [`fauna/aves/_ejemplo.md`](fauna/aves/_ejemplo.md) como ficha de referencia.
 
+## Colaboradores del catálogo
+
+[`fauna/colaboradores.json`](fauna/colaboradores.json) es un archivo **curado** que alimenta la página `/colaboradores` del catálogo (#77): reconoce al equipo del proyecto, **no** se auto-agrega de los créditos de las fichas. Estructura:
+
+```jsonc
+{
+  "grupos": [                       // en orden de presentación
+    {
+      "rol": "Biólogos e identificación",   // título del grupo
+      "icono": "Microscope",                 // nombre de ícono lucide (PascalCase), opcional
+      "personas": [
+        {
+          "nombre": "Nombre Apellido",       // requerido
+          "aporte": "Grado o contribución breve",  // requerido
+          "enlace": "https://...",           // perfil/redes, opcional
+          "foto": "archivo.webp"             // opcional, reservado a futuro (no usado aún)
+        }
+      ]
+    }
+  ]
+}
+```
+
+Las **atribuciones CC externas** (iNaturalist) y los **grabadores de audio** (xeno-canto) NO son colaboradores del proyecto: su autoría se acredita por ficha, no en este archivo. La categoría comunidad/voluntarios se reconoce en la sección `/comunidad` del sitio, no aquí.
+
 ## Aportar contenido sin programar
 
 Si quieres aportar una ficha, foto o texto y no usas git, abre una issue con el material o escribe al correo de contacto. El equipo lo integra. Ver [CONTRIBUTING.md](../CONTRIBUTING.md).
