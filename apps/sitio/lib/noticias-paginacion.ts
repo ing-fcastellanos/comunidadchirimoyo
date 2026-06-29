@@ -6,6 +6,21 @@ import type { NoticiaMeta } from "./noticias";
 /** Tamaño de página del listado (grilla 3×3 en desktop). */
 export const NOTICIAS_POR_PAGINA = 9;
 
+/** Notas vecinas de `slug` en la lista (ordenada desc): `siguiente` es la más
+    reciente contigua, `anterior` la más antigua contigua; null en los extremos.
+    Para la navegación anterior/siguiente del detalle (#72). */
+export function vecinos(
+  notas: NoticiaMeta[],
+  slug: string,
+): { siguiente: NoticiaMeta | null; anterior: NoticiaMeta | null } {
+  const i = notas.findIndex((n) => n.slug === slug);
+  if (i === -1) return { siguiente: null, anterior: null };
+  return {
+    siguiente: i > 0 ? notas[i - 1] : null,
+    anterior: i < notas.length - 1 ? notas[i + 1] : null,
+  };
+}
+
 /** Total de páginas para un número de notas (mínimo 1, aunque esté vacío). */
 export function totalPaginas(total: number): number {
   return Math.max(1, Math.ceil(total / NOTICIAS_POR_PAGINA));
