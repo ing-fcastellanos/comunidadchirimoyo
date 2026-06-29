@@ -244,11 +244,20 @@ export async function getAviso(): Promise<Aviso> {
   };
 }
 
+/** Misión, visión y valores de la comunidad (content/landing/mision-vision.json).
+    Arranca como placeholder hasta que la comunidad redacte el texto definitivo. */
+export interface MisionVision {
+  mision: { titulo: string; texto: string };
+  vision: { titulo: string; texto: string };
+  valores?: { titulo: string; descripcion: string; icono?: IconName }[];
+}
+
 export const getActividades = () => readJson<Actividades>("actividades.json");
 export const getEnlaces = () => readJson<Enlaces>("enlaces.json");
 export const getDonaciones = () => readJson<Donaciones>("donaciones.json");
 export const getAliados = () => readJson<Aliados>("aliados.json");
 export const getGaleria = () => readJson<Galeria>("galeria.json");
+export const getMisionVision = () => readJson<MisionVision>("mision-vision.json");
 
 /** Slides del hero: las fotos de la galería marcadas con `hero: true`, en orden,
     con la URL ya resuelta. Si ninguna lo está, cae a la primera foto. */

@@ -1,0 +1,28 @@
+{
+  "_nota": "PLACEHOLDER — redactar la misión, visión y valores con la comunidad. Sustituir los textos provisionales por el texto institucional definitivo.",
+  "mision": {
+    "titulo": "Misión",
+    "texto": "PLACEHOLDER — Defender y dar a conocer el humedal del Chirimoyo como un ecosistema vivo, organizando a la comunidad para cuidarlo, documentar su fauna y lograr que se reconozca y proteja. (Texto provisional — pendiente de redacción con la comunidad.)"
+  },
+  "vision": {
+    "titulo": "Visión",
+    "texto": "PLACEHOLDER — Un Chirimoyo reconocido oficialmente como humedal protegido, limpio y vivo, integrado a la ciudad como un espacio natural que la comunidad cuida y disfruta por generaciones. (Texto provisional — pendiente de redacción con la comunidad.)"
+  },
+  "valores": [
+    {
+      "titulo": "PLACEHOLDER — Comunidad",
+      "descripcion": "Texto provisional. Trabajo colectivo y abierto a quien quiera sumarse.",
+      "icono": "Users"
+    },
+    {
+      "titulo": "PLACEHOLDER — Ciencia ciudadana",
+      "descripcion": "Texto provisional. Documentar la fauna y el humedal con rigor y de forma abierta.",
+      "icono": "Microscope"
+    },
+    {
+      "titulo": "PLACEHOLDER — Cuidado del territorio",
+      "descripcion": "Texto provisional. Proteger el ecosistema con acciones concretas y sostenidas.",
+      "icono": "Sprout"
+    }
+  ]
+}

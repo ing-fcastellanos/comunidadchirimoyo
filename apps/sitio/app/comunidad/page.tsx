@@ -3,11 +3,12 @@ import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Icon } from "@/components/ui/Icon";
 import { ElCaso } from "@/components/landing/ElCaso";
+import { MisionVision } from "@/components/comunidad/MisionVision";
 import { QueHacemos } from "@/components/comunidad/QueHacemos";
 import { LineaTiempo } from "@/components/comunidad/LineaTiempo";
 import { NoticiaCard } from "@/components/comunidad/NoticiaCard";
 import { getAllNoticias } from "@/lib/noticias";
-import { getLucha, getActividades, getLogros, mediaUrl } from "@/lib/landing";
+import { getLucha, getActividades, getLogros, getMisionVision, mediaUrl } from "@/lib/landing";
 
 export const metadata = {
   title: "Comunidad",
@@ -15,8 +16,9 @@ export const metadata = {
 };
 
 export default async function Comunidad() {
-  const [lucha, actividades, logros, noticias] = await Promise.all([
+  const [lucha, misionVision, actividades, logros, noticias] = await Promise.all([
     getLucha(),
+    getMisionVision(),
     getActividades(),
     getLogros(),
     getAllNoticias(),
@@ -43,6 +45,8 @@ export default async function Comunidad() {
         fotoUrl={mediaUrl(lucha.casoFoto)}
         fotoAlt={lucha.casoFotoAlt}
       />
+
+      <MisionVision data={misionVision} />
 
       <QueHacemos data={actividades} />
 

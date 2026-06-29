@@ -19,6 +19,7 @@ las páginas (que se diseñan vía v0.dev → handoff) los consumen, no los dupl
 | `enlaces.json` | Linktree: subdominios, redes, contacto, ubicación | Datos reales |
 | `donaciones.json` | Métodos de donación | Datos reales + ideas futuras |
 | `aliados.json` | Proyectos aliados (≥8) → alimenta `/aliados` | Placeholders — completar |
+| `mision-vision.json` | Sección "Misión y visión" de `/comunidad`: `mision`/`vision` (`titulo`+`texto`) y `valores[]` opcionales (`titulo`, `descripcion`, `icono` lucide) | Placeholder — redactar con la comunidad |
 | `privacidad.md` | Aviso de privacidad → alimenta `/privacidad` | Borrador — revisar legalmente |
 
 ## Convenciones
