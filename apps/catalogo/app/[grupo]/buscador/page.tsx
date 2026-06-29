@@ -13,7 +13,13 @@ export function generateStaticParams() {
   return [{ grupo: "aves" }];
 }
 
-export const metadata: Metadata = { title: "Buscar aves" };
+export const metadata: Metadata = {
+  title: "Buscar aves",
+  openGraph: {
+    images: [{ url: "/og-aves.jpg", width: 1200, height: 630, alt: "Guía de aves del humedal de Chirimoyo." }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og-aves.jpg"] },
+};
 
 export default async function BuscadorGrupo({ params }: { params: Promise<{ grupo: string }> }) {
   const { grupo } = await params;

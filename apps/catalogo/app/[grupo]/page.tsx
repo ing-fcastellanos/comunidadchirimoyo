@@ -18,6 +18,15 @@ import { Proximamente } from "@/components/grupo/Proximamente";
 
 const GRUPOS_VALIDOS: Grupo[] = ["aves", "anfibios", "reptiles"];
 
+/* Imagen OpenGraph por grupo (assets estáticos en public/). Aves usa su propia
+   imagen; anfibios y reptiles comparten la de herpetofauna. El default de fauna
+   general (layout.tsx) cubre el hub y la búsqueda general. Ver catalogo-og. */
+const OG_POR_GRUPO: Record<Grupo, { url: string; alt: string }> = {
+  aves: { url: "/og-aves.jpg", alt: "Guía de aves del humedal de Chirimoyo." },
+  anfibios: { url: "/og-herpetofauna.jpg", alt: "Guía de anfibios y reptiles del humedal de Chirimoyo." },
+  reptiles: { url: "/og-herpetofauna.jpg", alt: "Guía de anfibios y reptiles del humedal de Chirimoyo." },
+};
+
 /** Solo se generan los grupos válidos (export estático). */
 export const dynamicParams = false;
 
@@ -28,7 +37,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ grupo: string }> }): Promise<Metadata> {
   const { grupo } = await params;
   if (!GRUPOS_VALIDOS.includes(grupo as Grupo)) return {};
-  return { title: GRUPO_LABEL[grupo as Grupo] };
+  const og = OG_POR_GRUPO[grupo as Grupo];
+  return {
+    title: GRUPO_LABEL[grupo as Grupo],
+    openGraph: { images: [{ url: og.url, width: 1200, height: 630, alt: og.alt }] },
+    twitter: { card: "summary_large_image", images: [og.url] },
+  };
 }
 
 export default async function GrupoPage({ params }: { params: Promise<{ grupo: string }> }) {
