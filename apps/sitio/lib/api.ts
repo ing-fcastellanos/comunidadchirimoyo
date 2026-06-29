@@ -12,3 +12,8 @@ function apiBase(): string {
 export function contactoEndpoint(): string {
   return `${apiBase()}/api/contacto`;
 }
+
+/** Endpoint de inscripción de voluntarios: `${API_URL}/api/voluntarios`. */
+export function voluntariosEndpoint(): string {
+  return `${apiBase()}/api/voluntarios`;
+}
