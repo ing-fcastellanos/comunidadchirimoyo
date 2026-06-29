@@ -1,13 +1,13 @@
 /* page.tsx — landing de chirimoyo.org. Server Component que compone las secciones
    consumiendo content/landing/ vía el data-layer (lib/landing.ts). Sin API.
 
-   NOTA: las secciones "Logros" (línea de tiempo) y "Linktree" están pendientes del
-   handoff de diseño v0.dev (CLAUDE.md; tareas 5.5 y 5.6 del change landing-chirimoyo-org).
-   Se insertan aquí, en su lugar, cuando lleguen los componentes portados. */
+   "Qué hacemos" y la "Línea de tiempo de logros" viven ahora en /comunidad
+   (reorganizar-comunidad, #19a); aquí queda un enlace teaser hacia esa página. */
+import Link from "next/link";
 import { Hero } from "@/components/landing/Hero";
 import { ElCaso } from "@/components/landing/ElCaso";
-import { QueHacemos } from "@/components/landing/QueHacemos";
-import { LineaTiempo } from "@/components/landing/LineaTiempo";
+import { Section } from "@/components/ui/Section";
+import { Icon } from "@/components/ui/Icon";
 import { GaleriaTeaser } from "@/components/landing/GaleriaTeaser";
 import { Linktree } from "@/components/landing/Linktree";
 import { Donaciones } from "@/components/landing/Donaciones";
@@ -15,8 +15,6 @@ import { AliadosPreview } from "@/components/landing/AliadosPreview";
 import { CierreCTA } from "@/components/landing/CierreCTA";
 import {
   getLucha,
-  getActividades,
-  getLogros,
   getEnlaces,
   getDonaciones,
   getAliados,
@@ -42,8 +40,6 @@ export default async function Landing() {
   const [
     lucha,
     heroSlides,
-    actividades,
-    logros,
     galeria,
     galeriaFotos,
     enlaces,
@@ -52,8 +48,6 @@ export default async function Landing() {
   ] = await Promise.all([
     getLucha(),
     getHeroSlides(),
-    getActividades(),
-    getLogros(),
     getGaleria(),
     getGaleriaFotos(),
     getEnlaces(),
@@ -84,8 +78,25 @@ export default async function Landing() {
         fotoUrl={mediaUrl(lucha.casoFoto)}
         fotoAlt={lucha.casoFotoAlt}
       />
-      <QueHacemos data={actividades} />
-      <LineaTiempo data={logros} />
+      <Section className="py-14 sm:py-16">
+        <Link
+          href="/comunidad"
+          className="group flex flex-col gap-4 rounded-2xl bg-paper-card p-7 shadow-card ring-1 ring-forest/[0.07] transition-all hover:-translate-y-0.5 hover:ring-forest/25 focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25 sm:flex-row sm:items-center sm:justify-between sm:p-8"
+        >
+          <div className="max-w-2xl">
+            <div className="text-[12px] font-bold uppercase tracking-[0.22em] text-forest">
+              Conoce a la comunidad
+            </div>
+            <p className="mt-2 font-serif text-[22px] font-semibold leading-tight text-forest-deep text-balance sm:text-[26px]">
+              Qué hacemos, nuestra historia y lo que hemos logrado juntos
+            </p>
+          </div>
+          <span className="inline-flex shrink-0 items-center gap-2 text-[16px] font-semibold text-forest-deep">
+            Ir a la comunidad
+            <Icon name="ArrowRight" className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </Link>
+      </Section>
       <GaleriaTeaser
         titulo={galeria.titulo}
         resumen={galeria.resumen}

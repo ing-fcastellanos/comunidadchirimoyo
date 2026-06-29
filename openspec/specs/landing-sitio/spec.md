@@ -2,7 +2,6 @@
 
 ## Purpose
 Definir el landing estático de `chirimoyo.org` servido por la app de sitio: una página sin API, derivada en build desde `content/landing/`, que comunica qué es el proyecto, por qué importa el humedal del Chirimoyo y qué puede hacer el visitante (conocer la lucha, sumarse, apoyar). Cubre el hero, la sección "El caso", "Qué hacemos", la línea de tiempo de logros, el linktree, las donaciones informativas, el preview de aliados con su página `/aliados` y la banda de cierre con llamada a la acción.
-
 ## Requirements
 ### Requirement: Landing de chirimoyo.org (estático, sin API)
 
@@ -43,26 +42,6 @@ El landing SHALL incluir una sección que presente el caso del humedal a partir 
 #### Scenario: El caso desde lucha.md
 - **WHEN** se actualiza el cuerpo de `lucha.md` y se reconstruye
 - **THEN** la sección "El caso" muestra el contenido actualizado
-
-### Requirement: Sección "Qué hacemos"
-
-El landing SHALL incluir una sección con las actividades de la comunidad, una tarjeta por cada entrada de `actividades.json`, mostrando su título, descripción e icono. El icono SHALL resolverse por nombre desde el set de `Icon` (lucide). El número y contenido de tarjetas SHALL derivarse de `actividades.json`, no hardcodearse.
-
-#### Scenario: Tarjetas derivadas de actividades.json
-- **WHEN** se agrega o quita una actividad en `actividades.json` y se reconstruye
-- **THEN** la sección muestra la lista actualizada sin editar el componente
-
-### Requirement: Línea de tiempo de logros
-
-El landing SHALL incluir una sección de **línea de tiempo** que muestre los hitos de `logros.json` en orden cronológico, cada uno con su fecha (formato ISO `YYYY-MM[-DD]`), título y descripción, y una foto opcional. El componente SHALL tolerar entradas marcadas como `PLACEHOLDER` y campos `foto: null` sin romper el render. Este patrón SHALL pasar por el flujo de diseño v0.dev antes de portarse.
-
-#### Scenario: Hitos ordenados por fecha
-- **WHEN** se renderiza la línea de tiempo
-- **THEN** los hitos aparecen en orden cronológico según su fecha
-
-#### Scenario: Tolerancia a contenido incompleto
-- **WHEN** un hito tiene `foto: null` o texto `PLACEHOLDER`
-- **THEN** la línea de tiempo renderiza sin error y sin mostrar una imagen rota
 
 ### Requirement: Linktree
 
@@ -127,3 +106,12 @@ válido, la tarjeta NO SHALL mostrar una insignia vacía.
 #### Scenario: Aliado sin tipo
 - **WHEN** un aliado no tiene un `tipo` válido
 - **THEN** la tarjeta se renderiza sin insignia de tipo, sin romperse
+
+### Requirement: Enlace a la comunidad desde el landing
+
+El landing SHALL incluir, tras la sección "El caso", un **enlace a `/comunidad`** que invite a conocer a la comunidad (qué hace, su historia y sus logros), de modo que el contenido movido a `/comunidad` siga siendo alcanzable desde la portada en ≤1 clic.
+
+#### Scenario: El landing dirige a la comunidad
+- **WHEN** se observa el landing tras la sección "El caso"
+- **THEN** existe un enlace que lleva a `/comunidad`
+
