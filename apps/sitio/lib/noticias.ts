@@ -45,6 +45,13 @@ function esProd(): boolean {
   return process.env.NODE_ENV === "production";
 }
 
+/** Normaliza `fecha` a ISO `YYYY-MM-DD`. YAML parsea una fecha sin comillas
+    (`fecha: 2026-05-18`) como `Date`, no como string; aquí toleramos ambos. */
+function fechaIso(v: unknown): string {
+  if (v instanceof Date && !Number.isNaN(v.getTime())) return v.toISOString().slice(0, 10);
+  return str(v) ?? "";
+}
+
 function aMeta(data: Record<string, unknown>, slugArchivo: string): NoticiaMeta {
   const estado: EstadoNota = data.estado === "publicado" ? "publicado" : "borrador";
   const tags = Array.isArray(data.tags)
@@ -53,7 +60,7 @@ function aMeta(data: Record<string, unknown>, slugArchivo: string): NoticiaMeta 
   return {
     titulo: str(data.titulo) ?? "(sin título)",
     slug: str(data.slug) ?? slugArchivo,
-    fecha: str(data.fecha) ?? "",
+    fecha: fechaIso(data.fecha),
     resumen: str(data.resumen) ?? "",
     autor: str(data.autor),
     portada: mediaUrl(str(data.portada)),
