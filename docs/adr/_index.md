@@ -29,6 +29,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0023 | Fusión de secciones en `chirimoyo.org` por paths, con redirects vanity (supersede 0008) | Accepted | 3 | [0023-fusion-secciones-paths-vanity-redirects.md](../decisions/0023-fusion-secciones-paths-vanity-redirects.md) |
 | 0024 | Catálogo de fauna en dominio único `fauna.chirimoyo.org`, grupos por path (refina 0005) | Accepted | 2 | [0024-catalogo-fauna-dominio-unico-grupos-por-path.md](../decisions/0024-catalogo-fauna-dominio-unico-grupos-por-path.md) |
 | 0025 | Esquema de ficha de fauna group-aware (común + bloques por grupo) | Accepted | 2 | [0025-esquema-ficha-fauna-group-aware.md](../decisions/0025-esquema-ficha-fauna-group-aware.md) |
+| 0026 | Renderizador de markdown editorial (`react-markdown`) | Accepted | 3 | [0026-renderizador-markdown.md](../decisions/0026-renderizador-markdown.md) |
 
 ## Estados
 

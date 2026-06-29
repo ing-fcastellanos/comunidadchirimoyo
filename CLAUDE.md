@@ -91,6 +91,7 @@ comunidadchirimoyo/
 
 - Fichas, noticias y jornadas en `content/` como Markdown/JSON. Respeta el esquema definido en su issue/spec.
 - Imágenes optimizadas; nombres en kebab-case.
+- **Markdown editorial** (cuerpos de notas de comunidad): se renderiza con `react-markdown` + `remark-gfm` vía `apps/sitio/components/ui/Markdown.tsx`, **sin HTML crudo** ([ADR-0026](docs/decisions/0026-renderizador-markdown.md)). El *layout estructurado* (landing, fichas) sigue usando los parsers caseros `splitSecciones`/`parseSecciones` — no son markdown libre. Ya no es cierto el "cero dependencias de markdown".
 
 ### OpenSpec
 
