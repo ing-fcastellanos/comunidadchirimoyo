@@ -30,12 +30,16 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-default.jpg",
+        url: "/og-fauna.jpg",
         width: 1200,
         height: 630,
-        alt: "Humedal de Chirimoyo, Orizaba, Veracruz.",
+        alt: "Guía de la fauna del humedal de Chirimoyo, Orizaba, Veracruz.",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-fauna.jpg"],
   },
 };
 

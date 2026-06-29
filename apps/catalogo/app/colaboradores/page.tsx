@@ -19,7 +19,9 @@ export const metadata: Metadata = {
     description:
       "Las personas que hicieron posible la guía de fauna del humedal del Chirimoyo.",
     type: "website",
+    images: [{ url: "/og-fauna.jpg", width: 1200, height: 630, alt: "Guía de la fauna del humedal de Chirimoyo." }],
   },
+  twitter: { card: "summary_large_image", images: ["/og-fauna.jpg"] },
 };
 
 export default async function ColaboradoresPage() {
