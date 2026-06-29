@@ -11,6 +11,7 @@ const FOCO = "focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/
 /* Enlaces legales/internos (no vienen del contenido). /privacidad aún no existe
    (se crea en #56); el enlace queda sembrado y cae en 404 hasta entonces. */
 const LEGALES = [
+  { label: "Noticias", href: "/comunidad/noticias" },
   { label: "Aviso de privacidad", href: "/privacidad" },
   { label: "Proyectos aliados", href: "/aliados" },
   { label: "Galería", href: "/galeria" },
