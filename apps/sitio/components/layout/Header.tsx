@@ -10,6 +10,7 @@ import { COMUNIDAD_URL, VOLUNTARIOS_URL, AVES_URL } from "@/lib/links";
    linktree y los CTAs del landing. */
 const NAV: NavLink[] = [
   { titulo: "Comunidad", url: COMUNIDAD_URL },
+  { titulo: "Noticias", url: "/comunidad/noticias" },
   { titulo: "Voluntarios", url: VOLUNTARIOS_URL },
   { titulo: "Aves", url: AVES_URL },
 ];
