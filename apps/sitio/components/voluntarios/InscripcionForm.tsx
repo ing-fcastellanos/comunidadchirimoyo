@@ -117,7 +117,7 @@ function Campo({ id, etiqueta, valor, onChange, error, requerido, disabled, tipo
   );
 }
 
-export function InscripcionForm() {
+export function InscripcionForm({ jornadas }: { jornadas?: { value: string; label: string }[] }) {
   const [valores, setValores] = useState<CamposInscripcion>(VALORES_VACIOS);
   const [errores, setErrores] = useState<ErroresInscripcion>({});
   const [estado, setEstado] = useState<Estado>("idle");
@@ -126,10 +126,13 @@ export function InscripcionForm() {
 
   const enviando = estado === "submitting";
 
+  const hayJornadas = !!jornadas && jornadas.length > 0;
+
   const set =
     (campo: keyof CamposInscripcion) =>
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const val = campo === "consent" ? e.target.checked : e.target.value;
+    (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const val =
+        campo === "consent" ? (e.target as HTMLInputElement).checked : e.target.value;
       setValores((v) => ({ ...v, [campo]: val }));
       if (campo !== "website" && errores[campo as CampoConError]) {
         setErrores((er) => ({ ...er, [campo]: undefined }));
@@ -213,8 +216,33 @@ export function InscripcionForm() {
           error={errores.correo} requerido disabled={enviando} autoComplete="email" placeholder="tucorreo@ejemplo.org" />
         <Campo id="telefono" etiqueta="Teléfono" tipo="tel" valor={valores.telefono} onChange={set("telefono")}
           error={errores.telefono} disabled={enviando} autoComplete="tel" placeholder="Para coordinar la jornada" />
-        <Campo id="jornada" etiqueta="Jornada o fecha" valor={valores.jornada} onChange={set("jornada")}
-          error={errores.jornada} disabled={enviando} placeholder="p. ej. la próxima jornada o una fecha" />
+        {hayJornadas ? (
+          <div>
+            <label htmlFor="jornada" className="mb-1.5 block text-[14px] font-semibold text-ink">
+              Jornada <span className="font-normal text-ink-soft/70">(opcional)</span>
+            </label>
+            <select
+              id="jornada"
+              name="jornada"
+              value={valores.jornada}
+              onChange={set("jornada")}
+              disabled={enviando}
+              className={cn(
+                "h-[52px] w-full rounded-xl border border-forest/15 bg-paper-card px-4 text-[16px] text-ink transition-colors hover:border-forest/30",
+                FOCO,
+                enviando && "cursor-not-allowed opacity-60",
+              )}
+            >
+              <option value="">Otra / disponibilidad general</option>
+              {jornadas!.map((j) => (
+                <option key={j.value} value={j.value}>{j.label}</option>
+              ))}
+            </select>
+          </div>
+        ) : (
+          <Campo id="jornada" etiqueta="Jornada o fecha" valor={valores.jornada} onChange={set("jornada")}
+            error={errores.jornada} disabled={enviando} placeholder="p. ej. la próxima jornada o una fecha" />
+        )}
         <Campo id="acompanantes" etiqueta="Acompañantes" tipo="number" min={0} max={20} valor={valores.acompanantes}
           onChange={set("acompanantes")} error={errores.acompanantes} disabled={enviando}
           ayuda="¿Cuántas personas vienen contigo? (0 si vienes solo)" />

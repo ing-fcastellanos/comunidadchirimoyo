@@ -2,15 +2,29 @@ import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Icon } from "@/components/ui/Icon";
 import { InscripcionForm } from "@/components/voluntarios/InscripcionForm";
+import { ProximasJornadas } from "@/components/voluntarios/ProximasJornadas";
 import { getEnlaces } from "@/lib/landing";
+import { getJornadas, proximasJornadas, etiquetaOcurrencia } from "@/lib/jornadas";
 
 export const metadata = {
   title: "Voluntarios",
   alternates: { canonical: "/voluntarios" },
 };
 
+// Las próximas jornadas se calculan relativas a "hoy"; revalida a diario para
+// que las fechas avancen sin reconstruir (ISR).
+export const revalidate = 86400;
+
 export default async function Voluntarios() {
-  const { jornadas } = await getEnlaces();
+  const [{ jornadas: calendario }, jornadasData] = await Promise.all([
+    getEnlaces(),
+    getJornadas(),
+  ]);
+  const proximas = proximasJornadas(jornadasData);
+  const opcionesJornada = proximas.map((o) => {
+    const etq = etiquetaOcurrencia(o);
+    return { value: etq, label: etq };
+  });
 
   return (
     <>
@@ -27,18 +41,20 @@ export default async function Voluntarios() {
           calendario e inscríbete para que te avisemos de la próxima.
         </p>
 
-        {jornadas?.calendarioUrl && (
+        {calendario?.calendarioUrl && (
           <a
-            href={jornadas.calendarioUrl}
+            href={calendario.calendarioUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-7 inline-flex items-center gap-2 rounded-xl bg-mint-wash px-5 py-3 text-[15px] font-semibold text-forest-deep ring-1 ring-forest/15 transition-colors hover:bg-mint-soft focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25"
           >
             <Icon name="CalendarDays" className="h-[18px] w-[18px]" />
-            Ver el calendario de jornadas
+            Ver el calendario completo
           </a>
         )}
       </Section>
+
+      <ProximasJornadas ocurrencias={proximas} />
 
       <Section className="py-14 sm:py-20">
         <SectionTitle kicker="Inscripción" icon="HeartHandshake">
@@ -49,7 +65,7 @@ export default async function Voluntarios() {
           Solo usamos esta información para organizar las jornadas.
         </p>
         <div className="max-w-[640px]">
-          <InscripcionForm />
+          <InscripcionForm jornadas={opcionesJornada} />
         </div>
       </Section>
     </>
