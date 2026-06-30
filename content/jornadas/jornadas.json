@@ -1,0 +1,37 @@
+{
+  "_nota": "Jornadas de voluntariado (contenido en repo, ADR-0004/0006; NO viven en el API). `recurrentes` define reglas que el sitio expande a próximas fechas; `eventos` son puntuales con fecha. Editar aquí (git/PR). Días en español (lunes…domingo); ordinales = posición del día en el mes (1=primer, 3=tercer).",
+  "recurrentes": [
+    {
+      "slug": "limpieza",
+      "titulo": "Jornada de limpieza",
+      "tipo": "limpieza",
+      "hora": "16:30",
+      "lugar": "Humedal del Chirimoyo",
+      "inscripcion": true,
+      "descripcion": "Limpieza comunitaria del humedal y su entorno. Abierta a quien quiera sumarse.",
+      "recurrencia": { "tipo": "semanal", "dia": "jueves" }
+    },
+    {
+      "slug": "pajareada",
+      "titulo": "Pajareada (observación de aves)",
+      "tipo": "pajareada",
+      "hora": "10:00",
+      "lugar": "Humedal del Chirimoyo",
+      "inscripcion": true,
+      "descripcion": "Salida de observación y registro de aves del humedal.",
+      "recurrencia": { "tipo": "mensual-ordinal", "dia": "sabado", "ordinales": [1, 3] }
+    }
+  ],
+  "eventos": [
+    {
+      "slug": "chirimoyo-itinerante",
+      "titulo": "Chirimoyo Itinerante",
+      "tipo": "evento",
+      "fecha": "2026-07-11",
+      "hora": "",
+      "lugar": "",
+      "inscripcion": true,
+      "descripcion": "PLACEHOLDER — completar los detalles del evento."
+    }
+  ]
+}
