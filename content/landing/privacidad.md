@@ -1,7 +1,7 @@
 ---
 titulo: "Aviso de privacidad"
 resumen: "Cómo tratamos los datos personales que nos compartes y los derechos que tienes sobre ellos."
-actualizado: "2026-06-17"
+actualizado: "2026-06-30"
 estado: borrador
 ---
 
@@ -43,6 +43,15 @@ Tu información se guarda con **acceso restringido**: solo el equipo organizador
 la comunidad puede consultarla. **Tus datos personales nunca se registran en los
 logs** del sistema. El sitio **no usa cookies de rastreo** ni te perfila: nuestra
 analítica es privada y anónima.
+
+## Cuánto tiempo conservamos tus datos
+
+Conservamos tus datos **solo mientras nos son útiles** para el fin que motivó que
+nos los compartieras: responder tu mensaje o coordinar tu participación en las
+jornadas. Las inscripciones de voluntariado se **eliminan pasado un tiempo
+razonable** —alrededor de un año después de la jornada—, cuando ya no hacen falta
+para organizarnos. Si quieres que borremos tus datos antes, basta con pedírnoslo
+(ver tus derechos abajo).
 
 ## Tus derechos (ARCO)
 
