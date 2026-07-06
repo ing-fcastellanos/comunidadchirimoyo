@@ -50,18 +50,37 @@ make deploy_prod
 
 URL `run.app` del servicio: _(se anota tras el primer deploy)_. El mapeo de `api.chirimoyo.org` queda para después (Firebase rewrite o domain mapping).
 
-## Retención de datos de voluntarios (ADR-0012)
+## Retención de datos de voluntarios (ADR-0012 / ADR-0027)
 
-Las inscripciones (`voluntarios_inscripciones`) contienen datos personales y se conservan **solo mientras son útiles para organizar las jornadas**. Política: se borran **pasados 12 meses** desde su creación (umbral ajustable). El borrado es por ahora **manual**, con el script versionado:
+Las inscripciones (`voluntarios_inscripciones`) contienen datos personales y se conservan **solo mientras son útiles para organizar las jornadas**. Política: se borran **pasados 12 meses** desde su creación. El umbral vive en una sola constante, `RETENCION_MESES` en [`app/config.py`](app/config.py), compartida por el modelo y el script.
+
+### Borrado automático — Firestore TTL (principal)
+
+Cada inscripción sella un campo `expira_en` = fecha de creación + `RETENCION_MESES` (`app/models/inscripcion.py`). Una **política TTL de Firestore** sobre ese campo borra los documentos vencidos **sin intervención humana**. El borrado es **best-effort**: Firestore elimina dentro de las 24 h posteriores al vencimiento, típicamente hasta 72 h.
+
+La política TTL **no** se gestiona con código (no hay IaC — ADR-0006/ADR-0027); se activa **una vez** por configuración:
+
+```bash
+# activar la política TTL sobre expira_en (gcloud; también se puede en la consola de Firestore)
+gcloud firestore fields ttls update expira_en \
+  --collection-group=voluntarios_inscripciones \
+  --enable-ttl
+```
+
+**Validación post-deploy** (una vez, tras activar la política): crear un documento de prueba en `voluntarios_inscripciones` con `expira_en` en el pasado y confirmar que Firestore lo elimina dentro de la ventana best-effort; luego limpiar. El borrado automático no es verificable en el PR por esa latencia.
+
+### Script de respaldo (manual)
+
+El script versionado se conserva como **respaldo**: cubre los documentos escritos **antes** de introducir `expira_en` (que el TTL ignora) y la latencia best-effort del TTL. Filtra por `creado_en`, así que no depende de `expira_en`.
 
 ```bash
 # desde services/api/, con ADC del proyecto disponible
 python -m scripts.purgar_inscripciones --dry-run     # lista las vencidas, no borra
-python -m scripts.purgar_inscripciones               # borra (umbral 12 meses)
+python -m scripts.purgar_inscripciones               # borra (umbral RETENCION_MESES)
 python -m scripts.purgar_inscripciones --meses 6     # otro umbral
 ```
 
-El script no imprime PII (solo IDs y conteos). La **automatización** del borrado (Firestore TTL) es una mejora futura con su propio issue.
+El script no imprime PII (solo IDs y conteos).
 
 ## Convenciones
 
