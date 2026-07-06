@@ -80,8 +80,36 @@ export default async function NotaPage({
   const notas = await getAllNoticias();
   const { anterior, siguiente } = vecinos(notas, slug);
 
+  /* Datos estructurados NewsArticle (JSON-LD). Estático en el servidor, sin
+     costo en cliente (espejo del Organization del landing). Los campos
+     opcionales se omiten si el dato no existe, para no emitir claves vacías.
+     `nota.portada` ya viene como URL absoluta del bucket (ADR-0021). */
+  const url = `https://chirimoyo.org/comunidad/noticias/${nota.slug}`;
+  const newsArticleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: nota.titulo,
+    ...(nota.resumen ? { description: nota.resumen } : {}),
+    ...(nota.fecha ? { datePublished: nota.fecha } : {}),
+    ...(nota.autor ? { author: { "@type": "Person", name: nota.autor } } : {}),
+    ...(nota.portada ? { image: nota.portada } : {}),
+    publisher: {
+      "@type": "Organization",
+      name: "Comunidad Chirimoyo",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://chirimoyo.org/logo-chirimoyo.png",
+      },
+    },
+    mainEntityOfPage: url,
+  };
+
   return (
     <article className="pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleJsonLd) }}
+      />
       <Section className="pt-10 sm:pt-14">
         <Link
           href="/comunidad/noticias"
