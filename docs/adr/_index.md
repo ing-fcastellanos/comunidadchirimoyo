@@ -30,6 +30,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0024 | Catálogo de fauna en dominio único `fauna.chirimoyo.org`, grupos por path (refina 0005) | Accepted | 2 | [0024-catalogo-fauna-dominio-unico-grupos-por-path.md](../decisions/0024-catalogo-fauna-dominio-unico-grupos-por-path.md) |
 | 0025 | Esquema de ficha de fauna group-aware (común + bloques por grupo) | Accepted | 2 | [0025-esquema-ficha-fauna-group-aware.md](../decisions/0025-esquema-ficha-fauna-group-aware.md) |
 | 0026 | Renderizador de markdown editorial (`react-markdown`) | Accepted | 3 | [0026-renderizador-markdown.md](../decisions/0026-renderizador-markdown.md) |
+| 0027 | Retención automática de inscripciones con Firestore TTL (refuerza 0012) | Accepted | 4 | [0027-retencion-inscripciones-firestore-ttl.md](../decisions/0027-retencion-inscripciones-firestore-ttl.md) |
 
 ## Estados
 

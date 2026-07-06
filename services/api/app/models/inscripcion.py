@@ -1,6 +1,9 @@
 from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
 
 from google.cloud import firestore
+
+from app.config import RETENCION_MESES
 
 
 @dataclass(frozen=True)
@@ -20,7 +23,14 @@ class Inscripcion:
     def to_firestore(self) -> dict:
         """Documento para la colección `voluntarios_inscripciones`.
         `consentimiento_ts` y `creado_en` se sellan en el servidor (momento de
-        la inscripción)."""
+        la inscripción). `expira_en` es la fecha de borrado por retención
+        (ADR-0027): la política TTL de Firestore elimina el documento cuando ese
+        timestamp queda en el pasado. Se calcula en el cliente porque
+        `SERVER_TIMESTAMP` es una sentinela sin valor hasta el commit y no admite
+        aritmética; la diferencia con el `creado_en` real es de milisegundos,
+        irrelevante para una retención de 12 meses. Misma convención de
+        30 días/mes que el script de respaldo, para que ambos coincidan."""
+        expira_en = datetime.now(timezone.utc) + timedelta(days=30 * RETENCION_MESES)
         return {
             "nombre": self.nombre,
             "correo": self.correo,
@@ -30,5 +40,6 @@ class Inscripcion:
             "consentimiento": self.consentimiento,
             "consentimiento_ts": firestore.SERVER_TIMESTAMP,
             "creado_en": firestore.SERVER_TIMESTAMP,
+            "expira_en": expira_en,
             "origen": self.origen,
         }

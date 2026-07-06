@@ -2,9 +2,14 @@
 """Purga de inscripciones de voluntarios vencidas (politica de retencion, ADR-0012).
 
 Borra de la coleccion `voluntarios_inscripciones` los documentos cuyo `creado_en`
-supere el umbral de retencion. Por defecto conserva 12 meses tras la creacion.
-La automatizacion (Firestore TTL) es una mejora futura; este script es el medio
-de borrado manual mientras tanto.
+supere el umbral de retencion. Por defecto conserva RETENCION_MESES meses tras la
+creacion (config.py, fuente unica del umbral).
+
+El borrado principal ahora es AUTOMATICO via la politica TTL de Firestore sobre el
+campo `expira_en` (ADR-0027). Este script queda como RESPALDO: cubre (a) los
+documentos escritos antes de introducir `expira_en`, que el TTL ignora, y (b) la
+latencia best-effort del TTL (borra "dentro de 24 h, tipicamente hasta 72 h").
+Filtra por `creado_en`, asi que no depende de que exista `expira_en`.
 
 Uso (desde services/api/, con ADC del proyecto disponible):
     python -m scripts.purgar_inscripciones --dry-run      # lista, no borra
@@ -20,10 +25,9 @@ from datetime import datetime, timedelta, timezone
 
 from google.cloud.firestore_v1 import FieldFilter
 
-from app.config import getDbClient
+from app.config import RETENCION_MESES, getDbClient
 
 _COLECCION = "voluntarios_inscripciones"
-_MESES_DEFAULT = 12
 
 
 def _cutoff(meses: int) -> datetime:
@@ -56,8 +60,8 @@ def purgar(meses: int, dry_run: bool) -> int:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="Purga inscripciones de voluntarios vencidas.")
-    ap.add_argument("--meses", type=int, default=_MESES_DEFAULT,
-                    help=f"Meses de retencion desde la creacion (default {_MESES_DEFAULT}).")
+    ap.add_argument("--meses", type=int, default=RETENCION_MESES,
+                    help=f"Meses de retencion desde la creacion (default {RETENCION_MESES}).")
     ap.add_argument("--dry-run", action="store_true",
                     help="Lista las inscripciones vencidas sin borrarlas.")
     args = ap.parse_args()
