@@ -3,7 +3,8 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Icon } from "@/components/ui/Icon";
 import { InscripcionForm } from "@/components/voluntarios/InscripcionForm";
 import { ProximasJornadas } from "@/components/voluntarios/ProximasJornadas";
-import { getEnlaces } from "@/lib/landing";
+import { Donaciones } from "@/components/landing/Donaciones";
+import { getEnlaces, getDonaciones } from "@/lib/landing";
 import { getJornadas, proximasJornadas, etiquetaOcurrencia } from "@/lib/jornadas";
 
 export const metadata = {
@@ -16,9 +17,10 @@ export const metadata = {
 export const revalidate = 86400;
 
 export default async function Voluntarios() {
-  const [{ jornadas: calendario }, jornadasData] = await Promise.all([
+  const [{ jornadas: calendario }, jornadasData, donaciones] = await Promise.all([
     getEnlaces(),
     getJornadas(),
+    getDonaciones(),
   ]);
   const proximas = proximasJornadas(jornadasData);
   const opcionesJornada = proximas.map((o) => {
@@ -68,6 +70,8 @@ export default async function Voluntarios() {
           <InscripcionForm jornadas={opcionesJornada} />
         </div>
       </Section>
+
+      <Donaciones data={donaciones} />
     </>
   );
 }
