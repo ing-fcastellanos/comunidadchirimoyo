@@ -1,10 +1,12 @@
 import logging
 import sys
 
-from flask import Flask
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from pythonjsonlogger import jsonlogger
+from werkzeug.exceptions import HTTPException
 
+from app.logging_utils import log_event
 from config import Config
 
 
@@ -31,6 +33,7 @@ def create_app() -> Flask:
     _set_cors(app)
     _init_mail(app)
     _register_blueprints(app)
+    _register_error_handler(app)
 
     @app.after_request
     def _security_headers(response):
@@ -65,4 +68,19 @@ def _register_blueprints(app: Flask) -> Flask:
     app.register_blueprint(health_ctl.bp)  # /health (sin prefijo)
     app.register_blueprint(voluntarios_ctl.bp, url_prefix="/api/voluntarios")
     app.register_blueprint(contacto_ctl.bp, url_prefix="/api/contacto")
+    return app
+
+
+def _register_error_handler(app: Flask) -> Flask:
+    # Red de seguridad para excepciones no capturadas por los try/except locales
+    # de los controladores (ruta futura, bug en after_request, etc). Deja pasar
+    # las HTTPException (404, 405...) sin modificar: Flask ya las maneja bien y
+    # este handler NO SHALL cambiar su contrato (#26).
+    @app.errorhandler(Exception)
+    def _manejar_excepcion(exc: Exception):
+        if isinstance(exc, HTTPException):
+            return exc
+        log_event("error_no_manejado", exception_type=type(exc).__name__, path=request.path)
+        return jsonify({"error": "Ocurrió un error inesperado"}), 500
+
     return app

@@ -1,6 +1,9 @@
 "use client";
 /* error.tsx — pantalla de error inesperado de chirimoyo.org. Client Component
-   (requisito de Next: usa el callback reset()). Hereda Header/Footer del layout. */
+   (requisito de Next: usa el callback reset()). Hereda Header/Footer del layout.
+   Registra el error con console.error (#26): único rastro de observabilidad de
+   errores de cliente sin introducir un servicio de error tracking. */
+import { useEffect } from "react";
 import {
   BadgeEstado,
   BloqueError,
@@ -10,7 +13,17 @@ import {
   IlustracionHumedal,
 } from "@/components/error/PantallasError";
 
-export default function Error({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
   return (
     <BloqueError aria-label="Ocurrió un error inesperado">
       <IlustracionHumedal acento="var(--color-terra)" variante="enredada" />

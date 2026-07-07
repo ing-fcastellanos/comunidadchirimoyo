@@ -2,7 +2,6 @@
 
 ## Purpose
 Definir el comportamiento de las pantallas de error de las apps del frontend (`apps/sitio` y `apps/catalogo`): la página de "no encontrado" (404) y la página de error inesperado, ambas con la identidad visual del proyecto en lugar de las pantallas por defecto de Next.js. Cubre la navegación de regreso al ecosistema, la coherencia con el sistema de diseño (tokens y tipografía), la accesibilidad y responsividad, y el criterio de implementación genérica duplicada por app sin introducir un paquete de UI compartido ni tooling de monorepo.
-
 ## Requirements
 ### Requirement: Página 404 con identidad del proyecto
 
@@ -22,19 +21,34 @@ Cada app del frontend (`apps/sitio` y `apps/catalogo`) SHALL servir una página 
 
 ### Requirement: Página de error inesperado con identidad del proyecto
 
-Cada app del frontend SHALL servir una página de error inesperado con identidad de marca implementada como `app/error.tsx` con la directiva `"use client"`, que recibe el callback `reset()` de Next.
+Cada app del frontend SHALL servir una página de error inesperado con identidad de marca
+implementada como `app/error.tsx` con la directiva `"use client"`, que recibe el callback
+`reset()` y el objeto `error` de Next. El componente SHALL registrar el `error` recibido con
+`console.error` para dejar rastro en las herramientas de desarrollador, ya que es el único
+mecanismo de observabilidad de errores de cliente disponible sin introducir un servicio de
+error tracking de terceros. Cada app SHALL además implementar `app/global-error.tsx` como
+boundary del root layout (para errores que ocurren en el propio `layout.tsx`, que `error.tsx`
+no puede capturar), con el mismo tratamiento de log y una UI mínima autocontenida (no puede
+heredar Header/Footer del layout, porque lo reemplaza).
 
 #### Scenario: Ocurre un error en el render de una ruta
 
 - **WHEN** una ruta lanza un error inesperado durante el render
 - **THEN** se muestra la página de error de marca con la ilustración en acento terracota (ave posada entre los juncos), el indicador "Error inesperado", el titular serif "Algo salió mal" y un texto de apoyo
 - **AND** la página hereda el Header y el Footer del `layout.tsx`
+- **AND** el error se registra con `console.error` antes o durante el render de la pantalla
 
 #### Scenario: Reintentar tras el error
 
 - **WHEN** la persona pulsa el botón primario "Intentar de nuevo"
 - **THEN** se invoca el callback `reset()` de Next para reintentar el render del segmento
 - **AND** existe además un enlace secundario "Volver al inicio" que lleva a `/`
+
+#### Scenario: Ocurre un error en el root layout
+
+- **WHEN** el propio `layout.tsx` (o algo que renderiza antes que él) lanza un error
+- **THEN** `global-error.tsx` lo captura, registra el error con `console.error` y muestra una UI mínima con opción de reintentar
+- **AND** esa UI no depende de Header/Footer (renderiza su propio `<html>`/`<body>`, como exige Next para este boundary)
 
 ### Requirement: Coherencia visual con el sistema de diseño
 
@@ -70,3 +84,4 @@ El diseño de las páginas de error SHALL ser el mismo (genérico) en ambas apps
 - **WHEN** se implementan las páginas de error
 - **THEN** cada app contiene su propio `not-found.tsx`, `error.tsx` y componente de ilustración interno
 - **AND** la única variación admitida entre apps son los destinos de enlace (vía `lib/links.ts`) y, opcionalmente, el copy del 404
+
