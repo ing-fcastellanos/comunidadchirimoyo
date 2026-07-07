@@ -1,24 +1,4 @@
-# analitica-web Specification
-
-## Purpose
-TBD - created by archiving change analitica-privada-cloudflare. Update Purpose after archive.
-## Requirements
-### Requirement: Analítica web sin rastreo en las apps públicas
-
-El sistema SHALL integrar analítica web mediante Cloudflare Web Analytics (beacon JS) en las apps de cara al público (`sitio` y `catalogo`). La analítica SHALL registrar únicamente métricas agregadas (p. ej. pageviews) y MUST NOT establecer cookies, MUST NOT recolectar datos personales (PII) y MUST NOT requerir banner de consentimiento.
-
-#### Scenario: Carga del beacon de analítica en producción
-
-- **WHEN** un visitante carga cualquier página de `sitio` o `catalogo` con la configuración de analítica presente
-- **THEN** el navegador carga el beacon de Cloudflare Web Analytics vía `next/script`
-- **AND** se registra el pageview en el "site" de Cloudflare correspondiente
-
-#### Scenario: Sin cookies ni datos personales
-
-- **WHEN** un visitante navega por las apps con la analítica activa
-- **THEN** no se establece ninguna cookie de rastreo ni almacenamiento en el navegador
-- **AND** no se recolecta ni transmite ningún dato personal identificable
-- **AND** no se muestra ningún banner de consentimiento
+## MODIFIED Requirements
 
 ### Requirement: Resolución del token por dominio
 
@@ -64,13 +44,3 @@ sin romper la app.
 
 - **WHEN** se construye `sitio` o `catalogo` con su `.env.production` presente
 - **THEN** el bundle resultante incluye el beacon de Cloudflare con el token del dominio canónico de esa app (`chirimoyo.org` o `fauna.chirimoyo.org` respectivamente)
-
-### Requirement: Transparencia en el aviso de privacidad
-
-El aviso/página de privacidad de `sitio` SHALL declarar de forma legible que se usa analítica agregada sin rastreo ni datos personales. La declaración MUST ser coherente con ADR-0020 y ADR-0012.
-
-#### Scenario: El visitante puede leer la práctica de analítica
-
-- **WHEN** un visitante abre el aviso/página de privacidad
-- **THEN** encuentra una declaración de que se usa analítica agregada sin cookies de rastreo ni recolección de datos personales
-

@@ -16,6 +16,10 @@ build/
 .env
 .env.*
 !.env.example
+# Excepción: los .env.production de las apps solo contienen el token PÚBLICO del
+# beacon de Cloudflare Web Analytics (ADR-0020), que ya viaja en el JS del navegador.
+# No son secretos; se versionan para hornear la analítica en el build. Ver analitica-web.
+!apps/*/.env.production
 **/env_files/.env.*
 **/*service_account*.json
 **/*service-account*.json
