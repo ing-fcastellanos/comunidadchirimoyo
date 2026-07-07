@@ -14,9 +14,10 @@ def inscripcion():
     payload = request.get_json(silent=True) or {}
     try:
         resultado = inscripcion_service.procesar_inscripcion(payload)
-    except Exception:
-        # Fallo de persistencia u otro error: sin pistas y sin PII en el log.
-        log_event("inscripcion_error_persistencia")
+    except Exception as exc:
+        # Fallo de persistencia u otro error: solo el tipo de excepción (no
+        # mensaje ni traceback) para no filtrar PII, ver ADR-0012 / #26.
+        log_event("inscripcion_error_persistencia", exception_type=type(exc).__name__)
         return jsonify({"error": "No se pudo procesar la inscripción"}), 500
 
     estado = resultado["resultado"]
