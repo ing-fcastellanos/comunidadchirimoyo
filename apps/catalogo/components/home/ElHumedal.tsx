@@ -10,7 +10,7 @@ export function ElHumedal() {
       <Section className="py-14 sm:py-20">
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
           <div>
-            <div className="mb-3 text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
+            <div className="mb-3 text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">
               El humedal
             </div>
             <h2 className="font-serif text-[clamp(30px,4.5vw,44px)] font-semibold leading-[1.05] text-forest-deep text-balance">

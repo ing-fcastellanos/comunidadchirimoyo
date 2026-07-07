@@ -31,6 +31,7 @@
   --color-ink-soft: #3a5547;
 
   --color-ochre: #b08a2e;
+  --color-ochre-deep: #7d5f1c; /* texto sobre badges ochre/ochre-wash (contraste AA) */
   --color-terra: #b5543a;
   --color-terra-wash: #f6e1da; /* fondo suave para badges de error */
   --color-terra-deep: #8f3c25; /* texto sobre terra-wash (contraste AA) */
@@ -50,8 +51,11 @@
 }
 
 /* ===== Reglas base ===== */
-html {
-  scroll-behavior: smooth;
+/* Scroll suave solo si la persona no pidió menos movimiento (WCAG 2.3.3). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {

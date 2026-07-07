@@ -23,7 +23,7 @@ export function Proximamente({
         <span className="grid h-16 w-16 place-items-center rounded-2xl bg-mint-wash text-forest-deep ring-1 ring-forest/10">
           <Icon name={icon} className="h-8 w-8" />
         </span>
-        <p className="mt-6 text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
+        <p className="mt-6 text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">
           {eyebrow}
         </p>
         <h1 className="mt-2 font-serif text-[clamp(32px,5vw,48px)] font-semibold leading-[1.05] text-forest-deep text-balance">

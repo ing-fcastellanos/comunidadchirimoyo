@@ -19,7 +19,7 @@ const LEGALES = [
 
 function Kicker({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="mb-4 text-[12px] font-bold uppercase tracking-[0.22em] text-forest">
+    <h3 className="mb-4 text-[12px] font-bold uppercase tracking-[0.22em] text-forest-deep">
       {children}
     </h3>
   );

@@ -62,7 +62,7 @@ function HitoItem({ hito, ultimo }: { hito: Hito; ultimo: boolean }) {
       {/* contenido */}
       <div className="min-w-0 flex-1 pt-0.5">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <time className="font-mono text-[12px] font-semibold uppercase tracking-[0.16em] text-forest">
+          <time className="font-mono text-[12px] font-semibold uppercase tracking-[0.16em] text-forest-deep">
             {formatearFecha(fecha)}
           </time>
           {etiqueta && (

@@ -40,7 +40,7 @@ export function DestacadasFauna({ especies }: { especies: Especie[] }) {
     <Section className="py-14 sm:py-20">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div className="max-w-2xl">
-          <p className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
+          <p className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">
             <Icon name="Sparkles" className="h-4 w-4" />
             El catálogo
           </p>

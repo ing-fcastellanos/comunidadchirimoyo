@@ -213,7 +213,7 @@ function DetailedSearch({ filters, especies, setText, toggleVal, setOne, count, 
 
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-forest/10 pt-5">
         <span className="text-[15px] text-ink/80"><strong className="font-bold text-forest-deep">{count}</strong> {count === 1 ? "ave coincide" : "aves coinciden"}</span>
-        <button type="button" onClick={clearAll} className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-[14px] font-semibold text-forest ring-1 ring-inset ring-forest/20 transition-colors hover:bg-mint-wash">
+        <button type="button" onClick={clearAll} className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-[14px] font-semibold text-forest-deep ring-1 ring-inset ring-forest/20 transition-colors hover:bg-mint-wash">
           <Ico name="x" className="h-4 w-4" /> Limpiar filtros
         </button>
       </div>

@@ -37,7 +37,7 @@ export function Footer() {
             </p>
           </div>
           <div>
-            <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-forest">
+            <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-forest-deep">
               Fuentes
             </div>
             <ul className="mt-3 space-y-1.5 text-[15px] text-ink/75">
@@ -50,7 +50,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-forest">
+            <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-forest-deep">
               El proyecto
             </div>
             <ul className="mt-3 space-y-1.5 text-[15px] text-ink/75">

@@ -19,7 +19,7 @@ export function SectionTitle({ children, kicker, icon }: Props) {
       )}
       <div>
         {kicker && (
-          <div className="mb-0.5 text-[12px] font-bold uppercase tracking-[0.22em] text-forest">
+          <div className="mb-0.5 text-[12px] font-bold uppercase tracking-[0.22em] text-forest-deep">
             {kicker}
           </div>
         )}

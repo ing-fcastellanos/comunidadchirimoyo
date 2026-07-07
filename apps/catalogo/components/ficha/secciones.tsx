@@ -29,7 +29,7 @@ export function HeroFicha({ ficha, fotos, badges, resumen }: { ficha: FichaEspec
         <FichaCarrusel fotos={fotos} />
         <div className="flex flex-col justify-center gap-6 bg-paper px-6 py-12 sm:px-12 lg:py-16">
           <div>
-            <div className="mb-3 flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
+            <div className="mb-3 flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">
               <Icon name={GRUPO_ICON[ficha.grupo]} className="h-4 w-4" />
               Ficha de especie · {ficha.categoria}
             </div>
@@ -373,7 +373,7 @@ export function TaxonomiaSec({ ficha }: { ficha: FichaEspecie }) {
       <div className="overflow-hidden rounded-2xl bg-paper-card shadow-card ring-1 ring-forest/[0.07]">
         <table className="w-full text-left">
           <thead>
-            <tr className="bg-mint-wash text-[12px] font-bold uppercase tracking-[0.18em] text-forest">
+            <tr className="bg-mint-wash text-[12px] font-bold uppercase tracking-[0.18em] text-forest-deep">
               <th className="px-7 py-4">Nivel</th><th className="px-7 py-4">Taxón</th>
             </tr>
           </thead>

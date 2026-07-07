@@ -21,7 +21,7 @@ export function ListadoNoticias({
 }) {
   return (
     <Section className="py-16 sm:py-24">
-      <SectionTitle kicker="Comunidad" icon="Newspaper">
+      <SectionTitle as="h1" kicker="Comunidad" icon="Newspaper">
         Noticias
       </SectionTitle>
 
@@ -29,7 +29,7 @@ export function ListadoNoticias({
         <>
           <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {notas.map((nota) => (
-              <NoticiaCard key={nota.slug} nota={nota} />
+              <NoticiaCard key={nota.slug} nota={nota} titleAs="h2" />
             ))}
           </div>
           <PaginacionNoticias pagina={pagina} totalPaginas={totalPaginas} />

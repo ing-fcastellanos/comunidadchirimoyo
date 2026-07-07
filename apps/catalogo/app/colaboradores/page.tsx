@@ -30,7 +30,7 @@ export default async function ColaboradoresPage() {
   return (
     <Section className="py-12 sm:py-16">
       <header className="max-w-2xl">
-        <p className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
+        <p className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">
           Guía de fauna del Chirimoyo
         </p>
         <h1 className="mt-2 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.05] text-forest-deep text-balance">

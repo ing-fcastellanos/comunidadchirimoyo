@@ -31,7 +31,7 @@ export default async function BuscadorGrupo({ params }: { params: Promise<{ grup
   return (
     <div className="mx-auto max-w-6xl px-6 pb-20">
       <div className="pt-8 sm:pt-10">
-        <p className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
+        <p className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">
           Laguna del Chirimoyo
         </p>
         <h1 className="mt-2 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.05] text-forest-deep">
@@ -39,7 +39,7 @@ export default async function BuscadorGrupo({ params }: { params: Promise<{ grup
         </h1>
         <p className="mt-3 max-w-xl text-[16px] leading-relaxed text-ink/75">
           Busca entre{" "}
-          <strong className="font-semibold text-forest">{especies.length} especies</strong>{" "}
+          <strong className="font-semibold text-forest-deep">{especies.length} especies</strong>{" "}
           registradas en la laguna por forma, tamaño, color o dónde la viste.
         </p>
       </div>

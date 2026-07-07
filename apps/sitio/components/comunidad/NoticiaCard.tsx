@@ -8,7 +8,16 @@ import { Icon } from "@/components/ui/Icon";
 import type { NoticiaMeta } from "@/lib/noticias";
 import { formatearFecha } from "@/lib/noticias-paginacion";
 
-export function NoticiaCard({ nota }: { nota: NoticiaMeta }) {
+export function NoticiaCard({
+  nota,
+  titleAs: Titulo = "h3",
+}: {
+  nota: NoticiaMeta;
+  /** Nivel del título de la card según su contexto de anidación. Default `h3`
+      (bajo una sección `h2`). En el listado de noticias, donde el título de la
+      página es `h1`, se usa `h2` para no saltar niveles. */
+  titleAs?: "h2" | "h3";
+}) {
   return (
     <Link
       href={`/comunidad/noticias/${nota.slug}`}
@@ -33,9 +42,9 @@ export function NoticiaCard({ nota }: { nota: NoticiaMeta }) {
         <time dateTime={nota.fecha} className="text-[12px] font-bold uppercase tracking-[0.16em] text-forest">
           {formatearFecha(nota.fecha)}
         </time>
-        <h3 className="mt-2 font-serif text-[22px] font-semibold leading-tight text-forest-deep text-balance">
+        <Titulo className="mt-2 font-serif text-[22px] font-semibold leading-tight text-forest-deep text-balance">
           {nota.titulo}
-        </h3>
+        </Titulo>
         <p className="mt-2 line-clamp-3 flex-1 text-[15px] leading-relaxed text-ink/75 text-pretty">
           {nota.resumen}
         </p>

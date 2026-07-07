@@ -33,7 +33,7 @@ export function Hero({ titulo, resumen, slides }: HeroProps) {
       >
         {/* ---- Columna de texto ---- */}
         <div className="max-w-xl">
-          <div className="mb-5 inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
+          <div className="mb-5 inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">
             <Icon name="MapPin" className="h-4 w-4" />
             Humedal del Chirimoyo · Orizaba, Veracruz
           </div>

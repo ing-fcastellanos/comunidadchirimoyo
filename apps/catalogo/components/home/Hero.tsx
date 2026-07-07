@@ -61,7 +61,7 @@ export function Hero({ slides, content }: { slides: HeroSlide[]; content: HeroCo
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-14 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-24">
         {/* ---- Columna de texto ---- */}
         <div className="max-w-xl">
-          <div className="mb-5 inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
+          <div className="mb-5 inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">
             <Icon name="MapPin" className="h-4 w-4" />
             {content.eyebrow}
           </div>
