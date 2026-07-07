@@ -52,8 +52,16 @@ export default function RootLayout({
       className={`${serif.variable} ${sans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-paper text-ink">
+        <a
+          href="#contenido"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-forest-deep focus:px-5 focus:py-3 focus:text-[15px] focus:font-semibold focus:text-paper-card focus:shadow-card focus:outline-none focus:ring-4 focus:ring-mint/40"
+        >
+          Saltar al contenido
+        </a>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="contenido" tabIndex={-1} className="flex-1 focus:outline-none">
+          {children}
+        </main>
         <Footer />
         <Analytics />
       </body>

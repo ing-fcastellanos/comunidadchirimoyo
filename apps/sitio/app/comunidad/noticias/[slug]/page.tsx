@@ -56,7 +56,7 @@ function VecinoLink({
       rel={esAnterior ? "prev" : "next"}
       className={`group flex max-w-[48%] flex-col gap-1 ${esAnterior ? "items-start text-left" : "ml-auto items-end text-right"}`}
     >
-      <span className="inline-flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.16em] text-forest">
+      <span className="inline-flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.16em] text-forest-deep">
         {esAnterior && <Icon name="ArrowLeft" className="h-[14px] w-[14px]" />}
         {esAnterior ? "Anterior" : "Siguiente"}
         {!esAnterior && <Icon name="ArrowRight" className="h-[14px] w-[14px]" />}
@@ -120,7 +120,7 @@ export default async function NotaPage({
         </Link>
 
         <header className="mt-6 max-w-3xl">
-          <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-forest">Noticias</p>
+          <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-forest-deep">Noticias</p>
           <h1 className="mt-2 font-serif text-[clamp(30px,5vw,48px)] font-semibold leading-[1.05] text-forest-deep text-balance">
             {nota.titulo}
           </h1>

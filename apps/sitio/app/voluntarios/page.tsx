@@ -31,7 +31,7 @@ export default async function Voluntarios() {
   return (
     <>
       <Section className="pt-16 sm:pt-24">
-        <div className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
+        <div className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">
           Voluntarios · Humedal del Chirimoyo
         </div>
         <h1 className="mt-3 font-serif text-[clamp(40px,7vw,72px)] font-semibold leading-[0.95] text-forest-deep">

@@ -84,7 +84,7 @@ export default async function Landing() {
           className="group flex flex-col gap-4 rounded-2xl bg-paper-card p-7 shadow-card ring-1 ring-forest/[0.07] transition-all hover:-translate-y-0.5 hover:ring-forest/25 focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25 sm:flex-row sm:items-center sm:justify-between sm:p-8"
         >
           <div className="max-w-2xl">
-            <div className="text-[12px] font-bold uppercase tracking-[0.22em] text-forest">
+            <div className="text-[12px] font-bold uppercase tracking-[0.22em] text-forest-deep">
               Conoce a la comunidad
             </div>
             <p className="mt-2 font-serif text-[22px] font-semibold leading-tight text-forest-deep text-balance sm:text-[26px]">

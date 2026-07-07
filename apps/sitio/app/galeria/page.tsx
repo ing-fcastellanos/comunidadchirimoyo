@@ -14,7 +14,7 @@ export default async function GaleriaPage() {
 
   return (
     <Section className="py-16 sm:py-24">
-      <div className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest">
+      <div className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">
         Imágenes del humedal · chirimoyo.org
       </div>
       <h1 className="mt-3 font-serif text-[clamp(36px,6vw,64px)] font-semibold leading-[0.98] text-forest-deep text-balance">

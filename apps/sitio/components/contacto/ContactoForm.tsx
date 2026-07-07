@@ -30,11 +30,9 @@ function Flecha({ className = "" }: { className?: string }) {
 }
 function Spinner({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+    <svg viewBox="0 0 24 24" className={cn("animate-spin motion-reduce:animate-none", className)} fill="none" aria-hidden="true">
       <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="3" strokeOpacity="0.3" />
-      <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-        <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.8s" repeatCount="indefinite" />
-      </path>
+      <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
     </svg>
   );
 }
@@ -224,7 +222,7 @@ export function ContactoForm() {
     <main className="mx-auto max-w-[640px] px-6 py-14 sm:py-20">
       {/* intro */}
       <header className="mb-9 text-center">
-        <span className="inline-flex items-center gap-2 font-mono text-[12px] font-bold uppercase tracking-[0.22em] text-forest">
+        <span className="inline-flex items-center gap-2 font-mono text-[12px] font-bold uppercase tracking-[0.22em] text-forest-deep">
           <Hoja className="h-4 w-4" />
           Escríbenos
         </span>

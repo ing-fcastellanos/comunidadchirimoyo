@@ -7,9 +7,12 @@ type Props = {
   children: ReactNode;
   kicker?: string;
   icon?: IconName;
+  /** Nivel del encabezado. Default `h2` (sección). Usar `h1` cuando el título
+      de la sección ES el título principal de la página (p. ej. un listado). */
+  as?: "h1" | "h2";
 };
 
-export function SectionTitle({ children, kicker, icon }: Props) {
+export function SectionTitle({ children, kicker, icon, as: Heading = "h2" }: Props) {
   return (
     <header className="mb-7 flex items-end gap-4">
       {icon && (
@@ -19,13 +22,13 @@ export function SectionTitle({ children, kicker, icon }: Props) {
       )}
       <div>
         {kicker && (
-          <div className="mb-0.5 text-[12px] font-bold uppercase tracking-[0.22em] text-forest">
+          <div className="mb-0.5 text-[12px] font-bold uppercase tracking-[0.22em] text-forest-deep">
             {kicker}
           </div>
         )}
-        <h2 className="font-serif text-[34px] font-semibold leading-none text-forest-deep">
+        <Heading className="font-serif text-[34px] font-semibold leading-none text-forest-deep">
           {children}
-        </h2>
+        </Heading>
       </div>
     </header>
   );

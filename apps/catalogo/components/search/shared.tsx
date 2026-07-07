@@ -103,7 +103,7 @@ export function ActiveFilters({ pills, clearAll }: { pills: Pill[]; clearAll: ()
           <span className="grid h-4 w-4 place-items-center rounded-full bg-forest/15 transition-colors group-hover:bg-forest/30"><Ico name="x" className="h-3 w-3" sw={2.5} /></span>
         </button>
       ))}
-      <button type="button" onClick={clearAll} className="ml-1 text-[13px] font-semibold text-forest underline-offset-2 hover:underline">Limpiar todo</button>
+      <button type="button" onClick={clearAll} className="ml-1 text-[13px] font-semibold text-forest-deep underline-offset-2 hover:underline">Limpiar todo</button>
     </div>
   );
 }

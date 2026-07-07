@@ -20,7 +20,7 @@ export function GruposFauna({ counts }: { counts: Partial<Record<Grupo, number>>
   return (
     <Section className="py-14 sm:py-20">
       <div className="mb-8 max-w-2xl">
-        <p className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest">El catálogo</p>
+        <p className="text-[12px] font-bold uppercase tracking-[0.24em] text-forest-deep">El catálogo</p>
         <h2 className="mt-2 font-serif text-[clamp(28px,4vw,40px)] font-semibold leading-[1.08] text-forest-deep text-balance">
           Explora la fauna por grupo
         </h2>
@@ -42,7 +42,7 @@ export function GruposFauna({ counts }: { counts: Partial<Record<Grupo, number>>
                     {count} especies
                   </span>
                 ) : (
-                  <span className="rounded-full bg-ochre/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-ochre">
+                  <span className="rounded-full bg-ochre/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-ochre-deep">
                     Próximamente
                   </span>
                 )}
