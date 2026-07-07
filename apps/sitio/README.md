@@ -40,9 +40,9 @@ npm run deploy_prod    # docker build/push → Cloud Run 'sitio' → firebase de
 
 Analítica respetuosa de la privacidad ([ADR-0020](../../docs/decisions/0020-analitica-cloudflare-web-analytics.md), supersede ADR-0010): sin cookies, sin PII, sin banner. Seguimiento **por dominio** — `components/Analytics.tsx` resuelve el token del beacon de Cloudflare según el host. Config por entorno (ver [`.env.example`](.env.example)):
 
-- `NEXT_PUBLIC_CF_BEACON_TOKENS` — JSON host→token (un "site" de Cloudflare por dominio que sirve la app; tras ADR-0023 `apps/sitio` sirve un único dominio, `chirimoyo.org`).
+- `NEXT_PUBLIC_CF_BEACON_TOKENS` — JSON host→token. Tras ADR-0023 `apps/sitio` sirve un único dominio (`chirimoyo.org`), así que basta una entrada: `{"chirimoyo.org":"<token>"}`.
 
-`sitio` corre en Cloud Run: define esta variable como **env var del servicio** (`gcloud run ... --set-env-vars` o en la consola) o inyéctala en el build de la imagen. Si falta, la analítica se desactiva sin romper la app. El componente es copia sincronizada con `apps/catalogo` (ADR-0013).
+**Importante — es build-time, no runtime.** Las `NEXT_PUBLIC_*` se **inlinean en `next build`**, no se leen en el runtime del contenedor. Por eso `gcloud run --set-env-vars` **no** activa la analítica: para cuando el contenedor corre, el bundle ya se compiló. El token vive versionado en [`.env.production`](.env.production) (el beacon de Cloudflare es **público**, no un secreto), y el `Dockerfile` lo hornea en el stage `builder` vía `COPY . .` — sin `--build-arg`. Si el archivo faltara, la analítica se desactiva sin romper la app. El componente es copia sincronizada con `apps/catalogo` (ADR-0013).
 
 ## Sistema de diseño
 

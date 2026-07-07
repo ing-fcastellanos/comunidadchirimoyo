@@ -81,14 +81,16 @@ Al terminar, Firebase imprime la **Hosting URL**. El deploy reemplaza la página
 ### Analítica (Cloudflare Web Analytics) — variables de build
 
 El catálogo es export estático: las `NEXT_PUBLIC_*` se inyectan en **`next build`**, no en
-runtime. Para que la analítica ([ADR-0020](../decisions/0020-analitica-cloudflare-web-analytics.md))
-quede en el `out/` desplegado, define **antes** de `npm run deploy_prod` (en `.env.local` o en
-el entorno que ejecuta el comando):
+runtime. La analítica ([ADR-0020](../decisions/0020-analitica-cloudflare-web-analytics.md)) queda
+horneada automáticamente porque el token vive versionado en
+[`apps/catalogo/.env.production`](../../apps/catalogo/.env.production):
 
 - `NEXT_PUBLIC_CF_BEACON_TOKENS` — JSON `{"fauna.chirimoyo.org":"<token>"}` (token del "site" de Cloudflare).
 
-Ver [`apps/catalogo/.env.example`](../../apps/catalogo/.env.example). Si falta, el sitio
-despliega igual pero **sin analítica** (degradación segura, sin error).
+El token de beacon es **público** (viaja en el JS del navegador), por eso se versiona sin riesgo.
+No hace falta ningún paso manual antes de `npm run deploy_prod`. Si el archivo faltara, el sitio
+despliega igual pero **sin analítica** (degradación segura, sin error). El `.env.example` queda
+como plantilla con el token vacío.
 
 ## 3. Smoke test en producción
 
