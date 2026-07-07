@@ -29,7 +29,12 @@ function Card({ aliado }: { aliado: Aliado }) {
     <article className="flex h-full flex-col gap-3 rounded-2xl bg-paper-card p-6 shadow-card ring-1 ring-forest/[0.07] transition-colors group-hover:ring-forest/20">
       <div className="flex items-center gap-3">
         {logo ? (
-          /* eslint-disable-next-line @next/next/no-img-element -- logo desde bucket (ADR-0021) */
+          /* eslint-disable-next-line @next/next/no-img-element -- excluido deliberadamente de
+             la migración a next/image (#26): `mediaUrl` deja pasar URLs externas arbitrarias
+             (el logo de un aliado puede vivir en su propia página de Facebook/sitio), no
+             restringidas al bucket de comunidad. next/image exige que el hostname esté en
+             `images.remotePatterns`; no se puede mantener un allowlist de todos los dominios
+             posibles de logos de terceros. */
           <img
             src={logo}
             alt={`Logo de ${aliado.nombre}`}

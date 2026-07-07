@@ -2,6 +2,7 @@
    Portado del handoff v0.dev (components/LineaTiempo.jsx). Server Component
    (sin estado ni eventos). Recibe los hitos YA ordenados y con la foto resuelta;
    tolera `foto: null` sin mostrar huecos rotos. */
+import Image from "next/image";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
@@ -82,13 +83,15 @@ function HitoItem({ hito, ultimo }: { hito: Hito; ultimo: boolean }) {
             </p>
           )}
           {foto && (
-            /* eslint-disable-next-line @next/next/no-img-element -- foto servida desde public/ (interino) o bucket (ADR-0021) */
-            <img
-              src={foto}
-              alt={titulo || "Foto del logro"}
-              loading="lazy"
-              className="mt-4 h-40 w-full max-w-xs rounded-xl object-cover ring-1 ring-forest/10 sm:h-44"
-            />
+            <div className="relative mt-4 h-40 w-full max-w-xs overflow-hidden rounded-xl ring-1 ring-forest/10 sm:h-44">
+              <Image
+                src={foto}
+                alt={titulo || "Foto del logro"}
+                fill
+                sizes="(max-width: 640px) 100vw, 320px"
+                className="object-cover"
+              />
+            </div>
           )}
         </div>
       </div>

@@ -2,6 +2,7 @@
    amenaza / qué pedimos / cómo lo demostramos). Server Component. El texto NO se
    duplica: llega como secciones desde el data-layer. Renderiza **negritas** de
    markdown de forma segura (contenido propio del repo). */
+import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Icon } from "@/components/ui/Icon";
@@ -60,12 +61,12 @@ export function ElCaso({ secciones, fotoUrl, fotoAlt }: ElCasoProps) {
         {fotoUrl && (
           <figure className="relative self-start">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-paper-deep shadow-card ring-1 ring-forest/10">
-              {/* eslint-disable-next-line @next/next/no-img-element -- foto servida desde public/ (interino) o bucket (ADR-0021) */}
-              <img
+              <Image
                 src={fotoUrl}
                 alt={fotoAlt ?? "El humedal del Chirimoyo"}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
               />
             </div>
             <figcaption className="mt-3 flex items-center gap-2 text-[13px] text-ink-soft/80">
