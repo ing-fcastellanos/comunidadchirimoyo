@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "sync:tokens": "node ../../scripts/sync-design-tokens.mjs",
     "smoke:firestore": "node ./scripts/smoke-firestore.mjs",
+    "seed:firestore": "tsx ./scripts/seed-firestore.mts",
     "docker:build": "docker build -t northamerica-south1-docker.pkg.dev/chirimoyo/containers/sitio:latest .",
     "docker:push": "docker push northamerica-south1-docker.pkg.dev/chirimoyo/containers/sitio:latest",
     "deploy_run": "npm run docker:build && npm run docker:push && gcloud run deploy sitio --image=northamerica-south1-docker.pkg.dev/chirimoyo/containers/sitio:latest --project=chirimoyo --region=us-central1 --platform=managed --allow-unauthenticated --min-instances=0 --port=8080",
@@ -38,6 +39,7 @@
     "eslint": "^9",
     "eslint-config-next": "^15.0.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.0",
     "typescript": "^5"
   },
   "engines": {

@@ -1,6 +1,8 @@
 # content/noticias/
 
-Notas de comunidad de **chirimoyo.org/comunidad** (épica #20). Cada nota es **un archivo Markdown con frontmatter** en `content/noticias/<slug>.md`. El data-layer está en [`apps/sitio/lib/noticias.ts`](../../apps/sitio/lib/noticias.ts) y el cuerpo se renderiza con [`components/ui/Markdown.tsx`](../../apps/sitio/components/ui/Markdown.tsx) (`react-markdown`, [ADR-0026](../../docs/decisions/0026-renderizador-markdown.md)).
+> **⚠️ En migración a Firestore (Fase 6, [ADR-0028](../../docs/decisions/0028-noticias-jornadas-dinamicas-firestore.md)).** La fuente de verdad de las noticias pasa a ser la colección `noticias` de Firestore, editable desde el panel admin. Estos `.md` ya se sembraron en Firestore (issue #135) y se conservan **solo** mientras el sitio siga leyéndolos; se eliminan junto con `lib/noticias.ts` en el cutover a los db-readers (issues #136/#137). Las notas nuevas se redactan desde el admin, no aquí.
+
+Notas de comunidad de **chirimoyo.org/comunidad** (épica #20). Cada nota fue originalmente **un archivo Markdown con frontmatter** en `content/noticias/<slug>.md`. El loader histórico está en [`apps/sitio/lib/noticias.ts`](../../apps/sitio/lib/noticias.ts) (el lector de Firestore, en [`lib/noticias-db.ts`](../../apps/sitio/lib/noticias-db.ts)) y el cuerpo se renderiza con [`components/ui/Markdown.tsx`](../../apps/sitio/components/ui/Markdown.tsx) (`react-markdown`, [ADR-0026](../../docs/decisions/0026-renderizador-markdown.md)).
 
 > Las notas son **contenido público**: no incluyas datos personales ni sensibles.
 
