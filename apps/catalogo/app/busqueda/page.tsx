@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { getAllFichas } from "@/lib/content";
 import { fichaToEspecie } from "@/lib/search";
 import { BuscadorGeneral } from "@/components/search/BuscadorGeneral";
@@ -33,7 +34,9 @@ export default async function BusquedaPage() {
         </p>
       </div>
 
-      <BuscadorGeneral especies={especies} />
+      <Suspense fallback={null}>
+        <BuscadorGeneral especies={especies} />
+      </Suspense>
     </div>
   );
 }

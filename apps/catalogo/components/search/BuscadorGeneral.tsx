@@ -4,6 +4,7 @@
    ./shared (filtros activos, barra de resultados, estado vacío) y la card. No
    toca el buscador especializado de aves. Ver #85. */
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { PanelGeneral } from "./PanelGeneral";
 import { EspecieCard } from "./EspecieCard";
 import { ResultsBar, EmptyState, ActiveFilters, GROUP_NAME, labelFor, catLabel, type Pill } from "./shared";
@@ -13,7 +14,14 @@ import { EMPTY_FILTERS, filterAndSort, type Especie, type Filters, type SortKey 
 const PILL_KEYS: (keyof Filters)[] = ["grupos", "ordenes", "familias", "presencias", "conservaciones", "observaciones"];
 
 export function BuscadorGeneral({ especies }: { especies: Especie[] }) {
-  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
+  const searchParams = useSearchParams();
+  /* Deep-link (p. ej. desde /proteccion): ?conservaciones=NOM-059 seedea el
+     filtro de conservación al montar. Solo se lee una vez; sin el parámetro,
+     el comportamiento es idéntico al de antes (EMPTY_FILTERS). */
+  const [filters, setFilters] = useState<Filters>(() => {
+    const conservacion = searchParams.get("conservaciones");
+    return conservacion ? { ...EMPTY_FILTERS, conservaciones: [conservacion] } : EMPTY_FILTERS;
+  });
   const [sort, setSort] = useState<SortKey>("relevancia");
   const [view, setView] = useState<"grid" | "list">("grid");
 

@@ -1,0 +1,123 @@
+{
+  "cifras": {
+    "totalEspecies": 76,
+    "aves": 64,
+    "anfibiosReptiles": 12,
+    "conEstatus": 9
+  },
+  "nom059": [
+    {
+      "cat": "pr",
+      "label": "Protección Especial",
+      "resumen": "Se cuida por prevención: todavía no está en peligro, pero es sensible o poco conocida, así que se protege para evitar que su situación empeore.",
+      "especies": [
+        "Tlaconete",
+        "Rana Leopardo",
+        "Rana de Orejas Chicas",
+        "Iguana Verde",
+        "Zambullidor Menor",
+        "Polluela Rojiza",
+        "Oropéndola de Moctezuma"
+      ]
+    },
+    {
+      "cat": "a",
+      "label": "Amenazada",
+      "resumen": "Sus poblaciones o su hábitat están disminuyendo. Si las presiones continúan, podría pasar a «En Peligro».",
+      "especies": ["Avetoro Norteño", "Culebra Listonada"]
+    },
+    {
+      "cat": "p",
+      "label": "En Peligro de Extinción",
+      "resumen": "Su área de distribución o su número de individuos se ha reducido drásticamente. Necesita acciones urgentes.",
+      "especies": []
+    },
+    {
+      "cat": "e",
+      "label": "Probablemente Extinta",
+      "resumen": "No hay registros de ejemplares vivos en su hábitat natural del país; es la categoría más grave de la norma.",
+      "especies": []
+    }
+  ],
+  "iucn": [
+    { "code": "LC", "label": "Preocupación Menor" },
+    { "code": "NT", "label": "Casi Amenazada" },
+    { "code": "VU", "label": "Vulnerable" },
+    { "code": "EN", "label": "En Peligro" },
+    { "code": "CR", "label": "Peligro Crítico" },
+    { "code": "EW / EX", "label": "Extinta (en vida silvestre / total)" },
+    { "code": "DD", "label": "Datos Insuficientes" },
+    { "code": "NE", "label": "No Evaluada" }
+  ],
+  "cites": {
+    "especie": "Iguana Verde",
+    "apendice": "II",
+    "nota": "no está en peligro inminente, pero su comercio se controla para que no llegue a estarlo, por la presión del comercio de mascotas y consumo."
+  },
+  "fuentes": [
+    {
+      "rol": "NOM-059 · la ley mexicana",
+      "icono": "Scale",
+      "enlaces": [
+        {
+          "nombre": "Categorías de riesgo en México",
+          "fuente": "CONABIO",
+          "enlace": "https://www.biodiversidad.gob.mx/especies/catRiesMexico"
+        },
+        {
+          "nombre": "Texto oficial de la NOM-059",
+          "fuente": "Diario Oficial de la Federación",
+          "enlace": "https://www.dof.gob.mx/nota_detalle.php?codigo=5578808&fecha=14/11/2019"
+        }
+      ]
+    },
+    {
+      "rol": "Lista Roja UICN · el diagnóstico mundial",
+      "icono": "Globe",
+      "enlaces": [
+        {
+          "nombre": "The IUCN Red List of Threatened Species",
+          "fuente": "IUCN",
+          "enlace": "https://www.iucnredlist.org/"
+        },
+        {
+          "nombre": "Categorías de riesgo en el mundo",
+          "fuente": "CONABIO",
+          "enlace": "https://www.biodiversidad.gob.mx/especies/catRiesMundo"
+        }
+      ]
+    },
+    {
+      "rol": "CITES · comercio internacional",
+      "icono": "PackageSearch",
+      "enlaces": [
+        {
+          "nombre": "Apéndices I, II y III",
+          "fuente": "CITES",
+          "enlace": "https://cites.org/esp/app/index.php"
+        },
+        {
+          "nombre": "Especies CITES en México",
+          "fuente": "CONABIO",
+          "enlace": "https://www.biodiversidad.gob.mx/planeta/cites/especies"
+        }
+      ]
+    },
+    {
+      "rol": "Buscar una especie",
+      "icono": "Search",
+      "enlaces": [
+        {
+          "nombre": "Enciclovida",
+          "fuente": "CONABIO",
+          "enlace": "https://enciclovida.mx/"
+        },
+        {
+          "nombre": "NaturaLista",
+          "fuente": "iNaturalist México",
+          "enlace": "https://www.naturalista.mx/"
+        }
+      ]
+    }
+  ]
+}
