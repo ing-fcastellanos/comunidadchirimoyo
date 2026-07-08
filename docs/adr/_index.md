@@ -7,7 +7,7 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0001 | Layout del monorepo (2 apps + 1 service, sin tooling) | Accepted | 0 | [0001-monorepo-layout.md](../decisions/0001-monorepo-layout.md) |
 | 0002 | Stack heredado de Sociedad Salvaje | Accepted | 0 | [0002-stack-heredado.md](../decisions/0002-stack-heredado.md) |
 | 0003 | Hosting, DB, storage y ambientes (GCP nuevo) | Accepted | 0 | [0003-hosting-db-ambientes.md](../decisions/0003-hosting-db-ambientes.md) |
-| 0004 | Contenido en repo (Markdown/JSON) en vez de CMS | Accepted | 0 | [0004-contenido-en-repo.md](../decisions/0004-contenido-en-repo.md) |
+| 0004 | Contenido en repo (Markdown/JSON) en vez de CMS | Accepted · refinado por 0028 | 0 | [0004-contenido-en-repo.md](../decisions/0004-contenido-en-repo.md) |
 | 0005 | Catálogo de fauna estático; anfibios como categoría | Accepted · refinado por 0024/0025 | 1 | [0005-catalogo-estatico-anfibios-categoria.md](../decisions/0005-catalogo-estatico-anfibios-categoria.md) |
 | 0006 | API mínima: inscripciones + contacto | Accepted | 0 | [0006-api-minima.md](../decisions/0006-api-minima.md) |
 | 0007 | Donaciones informativas (sin pasarela) | Accepted | 4 | [0007-donaciones-informativas.md](../decisions/0007-donaciones-informativas.md) |
@@ -31,6 +31,9 @@ Decisiones arquitectónicas (tomadas o pendientes) de Comunidad Chirimoyo. Cada 
 | 0025 | Esquema de ficha de fauna group-aware (común + bloques por grupo) | Accepted | 2 | [0025-esquema-ficha-fauna-group-aware.md](../decisions/0025-esquema-ficha-fauna-group-aware.md) |
 | 0026 | Renderizador de markdown editorial (`react-markdown`) | Accepted | 3 | [0026-renderizador-markdown.md](../decisions/0026-renderizador-markdown.md) |
 | 0027 | Retención automática de inscripciones con Firestore TTL (refuerza 0012) | Accepted | 4 | [0027-retencion-inscripciones-firestore-ttl.md](../decisions/0027-retencion-inscripciones-firestore-ttl.md) |
+| 0028 | Noticias y jornadas dinámicas en Firestore (refina 0004) | Accepted | 6 | [0028-noticias-jornadas-dinamicas-firestore.md](../decisions/0028-noticias-jornadas-dinamicas-firestore.md) |
+| 0029 | Autenticación del panel admin con Firebase Authentication | Accepted | 6 | [0029-auth-admin-firebase-auth.md](../decisions/0029-auth-admin-firebase-auth.md) |
+| 0030 | App de administración `apps/admin` (Next, Firebase-native; preserva 0006) | Accepted | 6 | [0030-app-admin-firebase-native.md](../decisions/0030-app-admin-firebase-native.md) |
 
 ## Estados
 

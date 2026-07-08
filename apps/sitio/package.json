@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "sync:tokens": "node ../../scripts/sync-design-tokens.mjs",
+    "smoke:firestore": "node ./scripts/smoke-firestore.mjs",
     "docker:build": "docker build -t northamerica-south1-docker.pkg.dev/chirimoyo/containers/sitio:latest .",
     "docker:push": "docker push northamerica-south1-docker.pkg.dev/chirimoyo/containers/sitio:latest",
     "deploy_run": "npm run docker:build && npm run docker:push && gcloud run deploy sitio --image=northamerica-south1-docker.pkg.dev/chirimoyo/containers/sitio:latest --project=chirimoyo --region=us-central1 --platform=managed --allow-unauthenticated --min-instances=0 --port=8080",
@@ -16,7 +17,9 @@
     "deploy_prod": "npm run deploy_run && npm run firebase:deploy"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.9.1",
     "clsx": "^2.1.1",
+    "firebase-admin": "^14.1.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.460.0",
     "next": "^15.0.0",
