@@ -63,6 +63,15 @@ export function Footer() {
                   Colaboradores
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/proteccion"
+                  className="inline-flex items-center gap-2 transition-colors hover:text-forest-deep focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25 rounded-md"
+                >
+                  <Icon name="ShieldCheck" className="h-4 w-4 text-mint-deep" />
+                  Protección de especies
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

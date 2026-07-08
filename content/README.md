@@ -128,6 +128,43 @@ El catálogo inicial de aves se migra (issue #10) desde [`fauna/_origen/aves-esp
 
 Las **atribuciones CC externas** (iNaturalist) y los **grabadores de audio** (xeno-canto) NO son colaboradores del proyecto: su autoría se acredita por ficha, no en este archivo. La categoría comunidad/voluntarios se reconoce en la sección `/comunidad` del sitio, no aquí.
 
+## Protección de especies (fauna)
+
+[`fauna/proteccion.json`](fauna/proteccion.json) es un archivo **curado** que alimenta la página `/proteccion` del catálogo (#78): explica los sistemas de protección (NOM-059, IUCN, CITES) y los cruza con las especies documentadas del humedal del Chirimoyo. Estructura:
+
+```jsonc
+{
+  "cifras": { "totalEspecies": 76, "aves": 64, "anfibiosReptiles": 12, "conEstatus": 9 },
+  "nom059": [                          // las 4 categorías de la NOM-059, en orden
+    {
+      "cat": "pr",                     // pr | a | p | e — mismo vocabulario que conservacion.nom059 de las fichas
+      "label": "Protección Especial",
+      "resumen": "texto divulgativo de la categoría",
+      "especies": ["Nombre Común", "..."]   // nombres comunes curados a mano; [] si ninguna especie del humedal está aquí
+    }
+  ],
+  "iucn": [                            // escala completa de la Lista Roja, informativa (no por especie)
+    { "code": "LC", "label": "Preocupación Menor" }
+  ],
+  "cites": {                           // ejemplo curado único, respaldado por el texto de una ficha existente
+    "especie": "Iguana Verde",
+    "apendice": "II",
+    "nota": "por qué está en ese apéndice"
+  },
+  "fuentes": [                         // fuentes oficiales agrupadas por sistema
+    {
+      "rol": "NOM-059 · la ley mexicana",
+      "icono": "Scale",               // nombre PascalCase de lucide-react (ver apps/catalogo/components/ui/Icon.tsx)
+      "enlaces": [
+        { "nombre": "Categorías de riesgo en México", "fuente": "CONABIO", "enlace": "https://..." }
+      ]
+    }
+  ]
+}
+```
+
+Los arrays `especies` de cada categoría NOM-059 **no se derivan automáticamente** de las fichas en build: si el `conservacion.nom059` de una ficha cambia, este archivo debe actualizarse junto con ella. El dato de `cites` tampoco viene de un campo del schema de fichas (no existe `conservacion.cites`): vive únicamente aquí, curado a mano.
+
 ## Aportar contenido sin programar
 
 Si quieres aportar una ficha, foto o texto y no usas git, abre una issue con el material o escribe al correo de contacto. El equipo lo integra. Ver [CONTRIBUTING.md](../CONTRIBUTING.md).
