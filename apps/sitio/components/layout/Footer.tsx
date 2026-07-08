@@ -1,6 +1,7 @@
 /* Footer.tsx — pie del ecosistema "Comunidad Chirimoyo", compartido por los 3
    subdominios. Server Component (async): deriva enlaces de content/landing/enlaces.json
    (getEnlaces). Portado del handoff v0.dev (FooterEcosistema.jsx). */
+import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { getEnlaces } from "@/lib/landing";
@@ -37,10 +38,11 @@ export async function Footer() {
           {/* marca + redes */}
           <div>
             <div className="flex items-center gap-3">
-              {/* eslint-disable-next-line @next/next/no-img-element -- logo pequeño desde public/ */}
-              <img
+              <Image
                 src="/logo-chirimoyo.png"
                 alt="Comunidad Chirimoyo"
+                width={48}
+                height={48}
                 className="h-12 w-12 shrink-0 object-contain"
               />
               <span className="font-serif text-[24px] font-semibold leading-none text-forest-deep">

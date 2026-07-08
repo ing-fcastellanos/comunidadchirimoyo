@@ -1,6 +1,7 @@
 /* Header.tsx — barra superior del ecosistema "Comunidad Chirimoyo" (propio de
    sitio, distinto del de la guía de aves). Server Component; el menú móvil (drawer)
    vive en el subcomponente cliente MobileNav. Portado del handoff v0.dev. */
+import Image from "next/image";
 import Link from "next/link";
 import { MobileNav, type NavLink } from "./MobileNav";
 import { COMUNIDAD_URL, VOLUNTARIOS_URL, AVES_URL } from "@/lib/links";
@@ -24,10 +25,12 @@ export function Header() {
           href="/"
           className="flex items-center gap-3 rounded-full focus:outline-none focus-visible:ring-4 focus-visible:ring-forest/25"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element -- logo pequeño servido desde public/ */}
-          <img
+          <Image
             src="/logo-chirimoyo.png"
             alt="Comunidad Chirimoyo"
+            width={44}
+            height={44}
+            priority
             className="h-11 w-11 shrink-0 object-contain"
           />
           <span className="whitespace-nowrap font-serif text-[19px] font-semibold leading-none text-forest-deep sm:text-[21px]">

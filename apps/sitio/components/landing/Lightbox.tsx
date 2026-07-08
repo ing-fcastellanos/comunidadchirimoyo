@@ -126,7 +126,12 @@ export function Lightbox({
       )}
 
       <figure className="flex max-h-full max-w-3xl flex-col items-center gap-4">
-        {/* eslint-disable-next-line @next/next/no-img-element -- foto desde public/ (interino) o bucket (ADR-0021) */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- excluido deliberadamente de la
+           migración a next/image (#26): el tamaño es intrínsecamente dinámico
+           (max-h-[72vh] w-auto, sin contenedor de aspect-ratio fijo — la imagen se ajusta a su
+           propia relación de aspecto dentro de un máximo). next/image exige `width`/`height`
+           conocidos o un contenedor `fill` de tamaño fijo; forzarlo aquí requeriría un rework de
+           layout no pedido por ese change. Foto desde public/ (interino) o bucket (ADR-0021). */}
         <img
           src={foto.src}
           alt={foto.alt}

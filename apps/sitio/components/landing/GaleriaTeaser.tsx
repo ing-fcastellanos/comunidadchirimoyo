@@ -1,6 +1,7 @@
 /* GaleriaTeaser.tsx — franja del landing con unas pocas fotos que enlaza a la
    galería completa (/galeria). Server Component (sin lightbox: eso vive en
    /galeria). Las fotos llegan resueltas desde el data-layer. */
+import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
@@ -38,12 +39,12 @@ export function GaleriaTeaser({
         <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">
           {muestra.map((foto) => (
             <div key={foto.slug} className="relative aspect-square overflow-hidden bg-paper-deep">
-              {/* eslint-disable-next-line @next/next/no-img-element -- foto desde el bucket (ADR-0021) */}
-              <img
+              <Image
                 src={foto.src}
                 alt={foto.alt}
-                loading="lazy"
-                className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.04]"
+                fill
+                sizes="(max-width: 640px) 50vw, 25vw"
+                className="object-cover transition duration-300 group-hover:scale-[1.04]"
               />
             </div>
           ))}

@@ -3,6 +3,7 @@
    fotos documentales del humedal/comunidad (de galeria.json, marcadas hero:true),
    no fauna. Server Component. Si no hay fotos, cae a una sola columna de texto.
    El título/resumen vienen de lucha.md; los slides se resuelven en el data-layer. */
+import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { VOLUNTARIOS_URL } from "@/lib/links";
@@ -71,14 +72,14 @@ export function Hero({ titulo, resumen, slides }: HeroProps) {
           <figure className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-paper-deep shadow-card ring-1 ring-forest/10 sm:aspect-[4/5] lg:aspect-[4/5]">
               {slides.map((s, i) => (
-                /* eslint-disable-next-line @next/next/no-img-element -- foto servida desde public/ (interino) o bucket (ADR-0021) */
-                <img
+                <Image
                   key={s.slug}
                   src={s.src}
                   alt={s.alt}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  fetchPriority={i === 0 ? "high" : "auto"}
-                  className={`absolute inset-0 h-full w-full object-cover ${animated ? "hero-slide" : ""}`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  priority={i === 0}
+                  className={`object-cover ${animated ? "hero-slide" : ""}`}
                   style={
                     animated ? { animationDelay: delayFor(i, slides.length) } : undefined
                   }
