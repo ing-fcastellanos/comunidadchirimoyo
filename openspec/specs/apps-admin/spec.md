@@ -19,21 +19,29 @@ El repositorio SHALL contener una app **`apps/admin`** (Next 15, App Router) con
 - **WHEN** se ejecuta `node scripts/sync-design-tokens.mjs` desde la raíz del repo
 - **THEN** `apps/admin/app/tokens.css` se actualiza con el contenido canónico, igual que las demás apps
 
-### Requirement: Route group de autenticación (stub)
+### Requirement: Route group de autenticación
 
-`apps/admin` SHALL declarar un route group `app/(authed)/` con un `layout.tsx` que por ahora **no** realiza ningún chequeo de sesión (renderiza `children` sin gate), estableciendo la estructura de rutas que usarán las páginas protegidas del panel sin necesidad de reestructurarse cuando se implemente el login.
+`apps/admin` SHALL declarar un route group `app/(authed)/` cuyo `layout.tsx` verifica la sesión del usuario (ver capability `auth-admin`) antes de renderizar cualquier página protegida, redirigiendo a `/login` cuando no hay sesión válida. El route group SHALL contener al menos una página de prueba (`app/(authed)/dashboard/page.tsx`) que confirme la sesión activa y ofrezca cerrar sesión, hasta que sea reemplazada por el dashboard real del panel.
 
-#### Scenario: El route group existe sin lógica de auth
+#### Scenario: El route group gatea sus páginas
 - **WHEN** se inspecciona `apps/admin/app/(authed)/layout.tsx`
-- **THEN** el archivo existe y renderiza sus `children` sin redirigir ni verificar sesión
+- **THEN** el archivo verifica la sesión server-side y redirige a `/login` si no es válida
 
-### Requirement: Configuración de Firebase Web SDK documentada (sin implementar)
+#### Scenario: Página de prueba disponible
+- **WHEN** se accede a `(authed)/` con una sesión válida
+- **THEN** se muestra una página que confirma la sesión activa y permite cerrar sesión
 
-`apps/admin/.env.example` SHALL documentar las variables públicas del Web SDK de Firebase (`NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, y las demás requeridas por la inicialización estándar), sin que el scaffold instale el paquete `firebase` ni inicialice ningún cliente.
+### Requirement: Configuración e inicialización del Firebase Web SDK
 
-#### Scenario: Variables documentadas, sin dependencia de auth
-- **WHEN** se revisa `apps/admin/.env.example` y `apps/admin/package.json`
-- **THEN** las variables `NEXT_PUBLIC_FIREBASE_*` están documentadas, y el paquete `firebase` NO aparece en las dependencias
+`apps/admin` SHALL inicializar el Web SDK de Firebase (`firebase`, paquete de cliente) usando las variables `NEXT_PUBLIC_FIREBASE_*` documentadas en `.env.example`, para el flujo de login (capability `auth-admin`). El paquete `firebase` SHALL aparecer en las dependencias de `apps/admin/package.json`.
+
+#### Scenario: SDK inicializado con las variables documentadas
+- **WHEN** se revisa `apps/admin/lib/firebase-client.ts`
+- **THEN** inicializa el Web SDK de Firebase leyendo las variables `NEXT_PUBLIC_FIREBASE_*`
+
+#### Scenario: Dependencia presente
+- **WHEN** se revisa `apps/admin/package.json`
+- **THEN** el paquete `firebase` aparece en las dependencias
 
 ### Requirement: Despliegue en `admin.chirimoyo.org`
 
