@@ -1,0 +1,17 @@
+# dependencias
+/node_modules
+
+# builds
+/.next/
+/out/
+
+# next
+next-env.d.ts
+*.tsbuildinfo
+
+# firebase
+.firebase/
+firebase-debug.log
+
+# entorno
+.env*.local
