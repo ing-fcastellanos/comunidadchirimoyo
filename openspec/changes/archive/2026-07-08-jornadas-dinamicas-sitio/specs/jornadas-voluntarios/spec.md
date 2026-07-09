@@ -1,8 +1,10 @@
-# jornadas-voluntarios Specification
+## RENAMED Requirements
 
-## Purpose
-TBD - created by archiving change jornadas-voluntarios. Update Purpose after archive.
-## Requirements
+- FROM: `### Requirement: Jornadas como contenido en repo`
+- TO: `### Requirement: Jornadas dinámicas en Firestore`
+
+## MODIFIED Requirements
+
 ### Requirement: Jornadas dinámicas en Firestore
 
 Las jornadas de voluntariado SHALL tener su **fuente de verdad en Firestore** (colección `jornadas`, ver `contenido-dinamico`), leída **server-side en runtime** por el sitio y editable desde el panel admin. NO SHALL gestionarse ni persistirse en el **API Flask** (ADR-0006: el API permanece mínimo; el acceso es vía Admin SDK server-side). `content/jornadas/` SHALL conservarse **solo como fixture de seed/dev** (poblar el emulator y la migración one-shot a producción), no como la fuente viva. El modelo SHALL distinguir jornadas **recurrentes** (con una regla de recurrencia) de **eventos puntuales** (con fecha). Cada jornada SHALL declarar al menos `titulo`, `tipo` (`limpieza` | `pajareada` | `evento`), `hora` y si admite `inscripcion`; PUEDE declarar `lugar` y `descripcion`. La recurrencia SHALL soportar al menos **semanal** (un día de la semana) y **mensual por ordinal** (p. ej. 1er y 3er sábado).
@@ -14,14 +16,6 @@ Las jornadas de voluntariado SHALL tener su **fuente de verdad en Firestore** (c
 #### Scenario: Editar una jornada es editar Firestore
 - **WHEN** se cambia una jornada (p. ej. su hora o su recurrencia) desde el admin y se revalida
 - **THEN** el sitio refleja el cambio sin re-desplegar y sin tocar el backend Flask
-
-### Requirement: Expansión de recurrencia a próximas ocurrencias
-
-El data-layer (`lib/jornadas.ts`) SHALL exponer las **próximas jornadas** expandiendo las reglas de recurrencia a sus ocurrencias reales relativas a la fecha actual, e intercalando los eventos puntuales futuros, ordenadas por fecha y hora ascendente, acotadas a una ventana/cantidad razonable. Las ocurrencias pasadas NO SHALL incluirse.
-
-#### Scenario: Próximas ocurrencias ordenadas
-- **WHEN** se solicitan las próximas jornadas en una fecha dada
-- **THEN** se obtienen las siguientes fechas de las recurrentes (p. ej. los próximos jueves; el 1er/3er sábado venideros) y los eventos futuros, ordenadas y sin fechas pasadas
 
 ### Requirement: Sección "Próximas jornadas" en /voluntarios
 
@@ -38,4 +32,3 @@ El data-layer (`lib/jornadas.ts`) SHALL exponer las **próximas jornadas** expan
 #### Scenario: El build no accede a Firestore
 - **WHEN** se ejecuta `next build` sin credenciales de Firestore
 - **THEN** el build completa sin errores y `/voluntarios` se sirve dinámicamente en runtime
-

@@ -1,6 +1,6 @@
 # content/jornadas/
 
-> **⚠️ En migración a Firestore (Fase 6, [ADR-0028](../../docs/decisions/0028-noticias-jornadas-dinamicas-firestore.md)).** La fuente de verdad de las jornadas pasa a ser la colección `jornadas` de Firestore, editable desde el panel admin. Este `jornadas.json` ya se sembró en Firestore (issue #135) y se conserva **solo** mientras el sitio siga leyéndolo; se elimina junto con `lib/jornadas.ts` en el cutover a los db-readers (issues #136/#137). No edites aquí esperando que el cambio persista tras la migración.
+> **📌 Fixture de seed/dev — la fuente viva es Firestore (Fase 6, [ADR-0028](../../docs/decisions/0028-noticias-jornadas-dinamicas-firestore.md)).** La fuente de verdad de las jornadas es la colección `jornadas` de Firestore, editable desde el panel admin; el sitio (issues #134/#137) ya no lee este archivo. Se **conserva intencionalmente** como fixture: siembra el Firestore emulator en dev y es el origen de la migración one-shot a producción (`scripts/seed-firestore.mts`, issue #135). No edites aquí esperando que el cambio se refleje en el sitio.
 
 Jornadas de voluntariado del humedal. Contenido originalmente en repo (ADR-0004); el sitio (`/voluntarios`) expande la recurrencia a las **próximas fechas** y las muestra. El loader histórico vive en [`apps/sitio/lib/jornadas.ts`](../../apps/sitio/lib/jornadas.ts); el lector de Firestore, en [`lib/jornadas-db.ts`](../../apps/sitio/lib/jornadas-db.ts).
 
