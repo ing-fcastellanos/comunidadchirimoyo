@@ -7,8 +7,13 @@ import { MisionVision } from "@/components/comunidad/MisionVision";
 import { QueHacemos } from "@/components/comunidad/QueHacemos";
 import { LineaTiempo } from "@/components/comunidad/LineaTiempo";
 import { NoticiaCard } from "@/components/comunidad/NoticiaCard";
-import { getAllNoticias } from "@/lib/noticias";
+import { getAllNoticiasCached } from "@/lib/noticias-cache";
 import { getLucha, getActividades, getLogros, getMisionVision, mediaUrl } from "@/lib/landing";
+
+// Dinámico (Fase 6, #136): el teaser de noticias lee Firestore en runtime; el
+// resto del contenido viene de archivos. `force-dynamic` para no tocar Firestore
+// en el build.
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Comunidad",
@@ -21,7 +26,7 @@ export default async function Comunidad() {
     getMisionVision(),
     getActividades(),
     getLogros(),
-    getAllNoticias(),
+    getAllNoticiasCached(),
   ]);
   const ultimas = noticias.slice(0, 3);
 

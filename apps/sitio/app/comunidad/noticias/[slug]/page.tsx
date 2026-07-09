@@ -1,6 +1,7 @@
 /* /comunidad/noticias/[slug] — detalle de una nota de comunidad (#72). Server
-   Component estático (espejo del patrón del catálogo [grupo]/[slug]): rutas
-   pre-generadas con generateStaticParams; notFound() si el slug no existe. El
+   Component DINÁMICO (Fase 6, #136): lee la nota de Firestore en runtime
+   (`getNoticiaCached`) con revalidación; `force-dynamic` para que el build NO
+   acceda a Firestore. notFound() si el slug no existe (o es borrador en prod). El
    cuerpo se renderiza con Markdown (#69); la imagen OG la genera opengraph-image. */
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -9,15 +10,10 @@ import { notFound } from "next/navigation";
 import { Section } from "@/components/ui/Section";
 import { Icon } from "@/components/ui/Icon";
 import { Markdown } from "@/components/ui/Markdown";
-import { getAllNoticias, getNoticia } from "@/lib/noticias";
+import { getAllNoticiasCached, getNoticiaCached } from "@/lib/noticias-cache";
 import { formatearFecha, vecinos } from "@/lib/noticias-paginacion";
 
-export const dynamicParams = false;
-
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const notas = await getAllNoticias();
-  return notas.map((n) => ({ slug: n.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -25,7 +21,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const nota = await getNoticia(slug);
+  const nota = await getNoticiaCached(slug);
   if (!nota) return {};
   return {
     title: nota.titulo,
@@ -74,10 +70,10 @@ export default async function NotaPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const nota = await getNoticia(slug);
+  const nota = await getNoticiaCached(slug);
   if (!nota) notFound();
 
-  const notas = await getAllNoticias();
+  const notas = await getAllNoticiasCached();
   const { anterior, siguiente } = vecinos(notas, slug);
 
   /* Datos estructurados NewsArticle (JSON-LD). Estático en el servidor, sin

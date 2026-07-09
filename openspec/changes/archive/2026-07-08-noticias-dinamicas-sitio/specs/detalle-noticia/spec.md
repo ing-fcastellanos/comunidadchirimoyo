@@ -1,8 +1,5 @@
-# detalle-noticia Specification
+## MODIFIED Requirements
 
-## Purpose
-TBD - created by archiving change detalle-noticia. Update Purpose after archive.
-## Requirements
 ### Requirement: Página de detalle de nota
 
 `apps/sitio` SHALL servir `/comunidad/noticias/<slug>` como página de detalle de una nota de comunidad, **Server Component** que lee la nota de **Firestore en runtime** (`getNoticiaDb`). La página SHALL renderizarse **dinámicamente** (sin `generateStaticParams` ni `dynamicParams = false`): `next build` MUST NOT acceder a Firestore, y las rutas se sirven en el primer request y se cachean por revalidación. Un slug que no corresponde a una nota (o una nota en `borrador` en producción) SHALL responder `notFound()` (404). La página SHALL mostrar una **cabecera** (título, fecha, autor; y la portada como hero si la nota la tiene) y el **cuerpo** renderizado con el renderizador de markdown editorial (`markdown-editorial`).
@@ -19,35 +16,14 @@ TBD - created by archiving change detalle-noticia. Update Purpose after archive.
 - **WHEN** se ejecuta `next build` sin credenciales de Firestore
 - **THEN** el build completa sin pre-generar ninguna ruta de detalle contra Firestore
 
-### Requirement: Metadata de artículo
-
-La página SHALL exponer `generateMetadata` con `title` (título de la nota), `description` (resumen), `openGraph` con `type: "article"` (incluyendo fecha de publicación y autor cuando existan) y `twitter` (`summary_large_image`), además del canonical de la nota. La imagen OpenGraph SHALL provenir de la imagen generada por el segmento (no se fijan `images` manuales en el metadata).
-
-#### Scenario: Metadata de artículo presente
-- **WHEN** se inspecciona el `<head>` de una nota
-- **THEN** incluye título, descripción (resumen), `og:type=article` y etiquetas de Twitter card, con canonical de la nota
-
 ### Requirement: Imagen OpenGraph generada por nota
 
 El segmento de detalle SHALL generar una **imagen OpenGraph dinámica** por nota (`opengraph-image`, `ImageResponse`, 1200×630), generada **en runtime al solicitarse** (no pre-generada en build), leyendo la nota de Firestore. La imagen SHALL mostrar la **identidad del proyecto** y el **título de la nota** (y su fecha), y SHALL generarse sin requerir runtime edge (funciona en el runtime Node del sitio). El metadata de la página SHALL referenciar esta imagen automáticamente.
 
 #### Scenario: OG generado al solicitarse
 - **WHEN** se solicita la imagen OpenGraph de una nota publicada
-- **THEN** se genera un PNG OpenGraph con su título y la marca del proyecto, sin haber requerido acceso a Firestore durante el build
+- **THEN** se genera un PNG 1200×630 con su título y la marca del proyecto, sin haber requerido acceso a Firestore durante el build
 
 #### Scenario: og:image apunta a la imagen generada
 - **WHEN** se inspeccionan las etiquetas OpenGraph/Twitter de una nota
 - **THEN** `og:image`/`twitter:image` apuntan a la imagen generada del segmento
-
-### Requirement: Navegación del detalle
-
-La página SHALL ofrecer un enlace de **regreso al listado** (`/comunidad/noticias`) y enlaces a las notas **anterior/siguiente** (vecinas por fecha, derivadas de `getAllNoticias()`); cada enlace de vecino SHALL omitirse cuando no exista (extremos de la lista).
-
-#### Scenario: Regreso al listado
-- **WHEN** se observa el detalle de una nota
-- **THEN** hay un enlace que lleva a `/comunidad/noticias`
-
-#### Scenario: Vecinos por fecha
-- **WHEN** una nota tiene una nota más reciente y/o más antigua contigua
-- **THEN** se muestran los enlaces a esas notas; en los extremos, el enlace ausente se omite
-

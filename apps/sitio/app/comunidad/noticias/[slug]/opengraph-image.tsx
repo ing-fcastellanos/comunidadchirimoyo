@@ -1,20 +1,18 @@
 /* opengraph-image.tsx — imagen OpenGraph generada por nota (#72). ImageResponse
-   (next/og): un PNG 1200×630 por nota, pre-generado en build (generateStaticParams
-   con los mismos slugs que la página). Runtime Node (el sitio es standalone; NO
-   edge). Satori no procesa Tailwind/CSS vars → estilos inline con colores hex de
-   marca. Fuente por defecto de ImageResponse (la serif de marca es pulido futuro). */
+   (next/og): un PNG 1200×630 por nota, generado en RUNTIME al solicitarse (Fase 6,
+   #136; `force-dynamic`, sin pre-generar en build → el build no toca Firestore).
+   Runtime Node (el sitio es standalone; NO edge). Satori no procesa Tailwind/CSS
+   vars → estilos inline con colores hex de marca. Fuente por defecto de
+   ImageResponse (la serif de marca es pulido futuro). */
 import { ImageResponse } from "next/og";
-import { getAllNoticias, getNoticia } from "@/lib/noticias";
+import { getNoticiaCached } from "@/lib/noticias-cache";
 import { formatearFecha } from "@/lib/noticias-paginacion";
+
+export const dynamic = "force-dynamic";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = "Noticia de la Comunidad del Chirimoyo";
-
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const notas = await getAllNoticias();
-  return notas.map((n) => ({ slug: n.slug }));
-}
 
 // Colores de marca (tokens.css) — Satori no entiende CSS vars.
 const FOREST_DEEP = "#0c5a36";
@@ -32,7 +30,7 @@ export default async function OpengraphImage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const nota = await getNoticia(slug);
+  const nota = await getNoticiaCached(slug);
   const titulo = nota ? recortar(nota.titulo) : "Comunidad del Chirimoyo";
   const fecha = nota?.fecha ? formatearFecha(nota.fecha) : "";
 

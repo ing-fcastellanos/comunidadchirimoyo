@@ -1,14 +1,17 @@
 import type { MetadataRoute } from "next";
-import { getAllNoticias } from "@/lib/noticias";
+import { getAllNoticiasCached } from "@/lib/noticias-cache";
 import { totalPaginas } from "@/lib/noticias-paginacion";
 
 /* sitemap.ts — sitemap único del dominio (ADR-0023: todas las secciones son
    paths de chirimoyo.org, sin ruteo por host). URLs absolutas resueltas contra
    el origen canónico. Incluye las rutas estáticas públicas y las de noticias
-   derivadas del contenido (listado, paginación y detalle por slug), para que las
-   notas —el contenido más fresco— se descubran por sitemap. Al agregar una
-   sección pública nueva, súmala a RUTAS. No se incluyen rutas no indexables
-   (not-found, error). */
+   derivadas de Firestore (listado, paginación y detalle por slug), para que las
+   notas —el contenido más fresco— se descubran por sitemap. DINÁMICO (Fase 6,
+   #136): lee Firestore en runtime con revalidación; `force-dynamic` para que el
+   build NO acceda a Firestore. Al agregar una sección pública nueva, súmala a
+   RUTAS. No se incluyen rutas no indexables (not-found, error). */
+
+export const dynamic = "force-dynamic";
 
 const BASE = "https://chirimoyo.org";
 
@@ -23,7 +26,7 @@ const RUTAS = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const notas = await getAllNoticias();
+  const notas = await getAllNoticiasCached();
 
   const estaticas = RUTAS.map((ruta) => ({
     url: `${BASE}${ruta === "/" ? "" : ruta}`,
