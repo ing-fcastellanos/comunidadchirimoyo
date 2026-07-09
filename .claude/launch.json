@@ -21,6 +21,13 @@
       "runtimeArgs": ["run", "dev", "--prefix", "apps/admin"],
       "port": 3002,
       "autoPort": true
+    },
+    {
+      "name": "linktree",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "linktree/public", "-l", "3003"],
+      "port": 3003,
+      "autoPort": true
     }
   ]
 }
