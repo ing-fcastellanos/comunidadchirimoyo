@@ -1,22 +1,14 @@
-/* /comunidad/noticias/pagina/[n] — páginas 2..N del listado (#71). SSG: las
-   rutas se pre-generan con generateStaticParams; cualquier `n` fuera de rango da
-   404 (dynamicParams=false). La página 1 vive en /comunidad/noticias. */
+/* /comunidad/noticias/pagina/[n] — páginas 2..N del listado (#71). DINÁMICO
+   (Fase 6, #136): lee Firestore en runtime (`getAllNoticiasCached`) con
+   revalidación; `force-dynamic` para que el build NO acceda a Firestore. Un `n`
+   fuera de rango o no numérico da 404. La página 1 vive en /comunidad/noticias. */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllNoticias } from "@/lib/noticias";
-import { paginar, totalPaginas as calcTotalPaginas } from "@/lib/noticias-paginacion";
+import { getAllNoticiasCached } from "@/lib/noticias-cache";
+import { paginar } from "@/lib/noticias-paginacion";
 import { ListadoNoticias } from "@/components/comunidad/ListadoNoticias";
 
-export const dynamicParams = false;
-
-export async function generateStaticParams(): Promise<{ n: string }[]> {
-  const notas = await getAllNoticias();
-  const total = calcTotalPaginas(notas.length);
-  // Solo las páginas 2..total (la 1 vive en la ruta base).
-  const params: { n: string }[] = [];
-  for (let n = 2; n <= total; n++) params.push({ n: String(n) });
-  return params;
-}
+export const dynamic = "force-dynamic";
 
 function parsePagina(raw: string): number | null {
   if (!/^\d+$/.test(raw)) return null;
@@ -45,7 +37,7 @@ export default async function NoticiasPaginaPage({
   const pagina = parsePagina(n);
   if (pagina === null) notFound();
 
-  const notas = await getAllNoticias();
+  const notas = await getAllNoticiasCached();
   const { slice, totalPaginas } = paginar(notas, pagina);
   if (pagina > totalPaginas) notFound();
 
