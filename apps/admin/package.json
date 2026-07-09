@@ -16,7 +16,10 @@
     "deploy_prod": "npm run deploy_run && npm run firebase:deploy"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.9.1",
     "clsx": "^2.1.1",
+    "firebase": "^12.16.0",
+    "firebase-admin": "^14.1.0",
     "lucide-react": "^0.460.0",
     "next": "^15.0.0",
     "react": "^19.0.0",
