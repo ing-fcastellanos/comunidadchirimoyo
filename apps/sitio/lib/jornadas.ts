@@ -1,8 +1,16 @@
-/* jornadas.ts — loader SERVER-ONLY de las jornadas de voluntariado
-   (content/jornadas/jornadas.json). Las jornadas son CONTENIDO en repo
-   (ADR-0004); NO se gestionan en el API (ADR-0006, mínimo). Las recurrentes se
-   definen por regla y este módulo las expande a las PRÓXIMAS ocurrencias
-   relativas a hoy; los eventos son puntuales. Importa node:fs → solo server. */
+/* jornadas.ts — dos partes con vidas distintas tras la Fase 6 (#137):
+   1) `getJornadas()` (lee content/jornadas/jornadas.json) es SOLO-SEED: el sitio
+      ya NO la usa para servir /voluntarios (lee Firestore vía jornadas-db.ts /
+      jornadas-cache.ts). Su único consumidor en producto es
+      scripts/seed-firestore.mts (siembra el emulator en dev y migra a prod).
+      content/jornadas/ se conserva como fixture (ver su README). NO se gestiona
+      en el API (ADR-0006, mínimo).
+   2) `proximasJornadas`/`etiquetaOcurrencia`/helpers de fecha son PURAS y siguen
+      siendo código de PRODUCTO: expanden las reglas de recurrencia (leídas de
+      Firestore) a las próximas ocurrencias relativas a hoy; los eventos son
+      puntuales. Los TIPOS también son la fuente de verdad del contrato, reusados
+      por jornadas-db.ts. Importa node:fs → no importar `getJornadas` desde
+      Client Components (las funciones puras sí son seguras). */
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 

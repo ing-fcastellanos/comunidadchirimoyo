@@ -1,10 +1,13 @@
-/* noticias.ts — loader SERVER-ONLY de las notas de comunidad (content/noticias/).
-   Lee y tipa cada <slug>.md (frontmatter + cuerpo markdown) en build. Importa
-   node:fs/path → NO importar desde Client Components (solo los TIPOS son seguros
-   en cliente). El cuerpo se renderiza con components/ui/Markdown.tsx (ADR-0026).
-
-   Fuente de verdad: content/noticias/ (ADR-0004). Las imágenes viven en el bucket
-   de comunidad (ADR-0021). Las notas son contenido PÚBLICO: sin PII. */
+/* noticias.ts — loader SERVER-ONLY de content/noticias/ (frontmatter + cuerpo).
+   SOLO-SEED (Fase 6, #136/#137): el sitio ya NO usa este loader para servir
+   noticias (lee Firestore vía lib/noticias-db.ts / noticias-cache.ts); su único
+   consumidor en producto es scripts/seed-firestore.mts, que puebla el emulator
+   en dev y migra a prod. content/noticias/ se conserva como fixture (ver su
+   README). Los TIPOS (`Noticia`, `NoticiaMeta`) siguen siendo la fuente de verdad
+   del contrato y los reusan los db-readers y componentes — esos sí son seguros
+   de importar en cliente. Importa node:fs/path → no importar el resto desde
+   Client Components. El cuerpo se renderiza con components/ui/Markdown.tsx
+   (ADR-0026). Las notas son contenido PÚBLICO: sin PII. */
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";

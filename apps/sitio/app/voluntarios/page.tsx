@@ -5,21 +5,24 @@ import { InscripcionForm } from "@/components/voluntarios/InscripcionForm";
 import { ProximasJornadas } from "@/components/voluntarios/ProximasJornadas";
 import { Donaciones } from "@/components/landing/Donaciones";
 import { getEnlaces, getDonaciones } from "@/lib/landing";
-import { getJornadas, proximasJornadas, etiquetaOcurrencia } from "@/lib/jornadas";
+import { proximasJornadas, etiquetaOcurrencia } from "@/lib/jornadas";
+import { getJornadasCached } from "@/lib/jornadas-cache";
 
 export const metadata = {
   title: "Voluntarios",
   alternates: { canonical: "/voluntarios" },
 };
 
-// Las próximas jornadas se calculan relativas a "hoy"; revalida a diario para
-// que las fechas avancen sin reconstruir (ISR).
-export const revalidate = 86400;
+// DINÁMICO (Fase 6, #137): lee las jornadas de Firestore en runtime (cacheadas
+// y revalidables por tag); `force-dynamic` para que el build NO acceda a
+// Firestore. Las próximas jornadas se calculan relativas a "hoy" en cada
+// request (más preciso que el `revalidate` diario anterior).
+export const dynamic = "force-dynamic";
 
 export default async function Voluntarios() {
   const [{ jornadas: calendario }, jornadasData, donaciones] = await Promise.all([
     getEnlaces(),
-    getJornadas(),
+    getJornadasCached(),
     getDonaciones(),
   ]);
   const proximas = proximasJornadas(jornadasData);
