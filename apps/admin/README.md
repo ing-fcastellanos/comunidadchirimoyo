@@ -33,6 +33,14 @@ El service account runtime del servicio Cloud Run `admin` necesita **`roles/iam.
 
 Referencias: [Firebase IAM permissions](https://firebase.google.com/docs/projects/iam/permissions), [Create Custom Tokens](https://firebase.google.com/docs/auth/admin/create-custom-tokens).
 
+## Noticias (CRUD, #140)
+
+CRUD de noticias sobre la colección Firestore `noticias` (ADR-0028), vía server actions + Firebase Admin SDK (`lib/firestore.ts`, mismo patrón lazy-singleton que `lib/firebase-admin.ts`). El SA runtime de Cloud Run necesita **`roles/datastore.user`** (el mismo rol que ya usa `sitio`, distinto del `serviceAccountTokenCreator` de arriba).
+
+### Revalidación del sitio
+
+Al crear/editar/despublicar/borrar una noticia que **es o fue** `publicado`, el admin llama `POST {SITIO_BASE_URL}/api/revalidate` (endpoint ya expuesto por `apps/sitio`) con `Authorization: Bearer {REVALIDATE_SECRET}`. **`REVALIDATE_SECRET` debe ser idéntico** al configurado en `apps/sitio` — es un secreto compartido entre las dos apps. Si la llamada falla (secreto desincronizado, sitio caído, red), la escritura en Firestore **no se revierte**: es best-effort, y el `revalidate: 3600` del sitio corrige la mayoría de los casos igual. Ver `.env.example` para `SITIO_BASE_URL`/`REVALIDATE_SECRET`.
+
 ## Hosting
 
 `firebase.json` usa el target `prod` → site **`admin-chirimoyo`** (ya existente), rewrite `**` → Cloud Run `admin` en **`us-central1`** (Firebase Hosting no soporta rewrites a `northamerica-south1` — ADR-0015). DNS de `admin.chirimoyo.org` en Porkbun (fuera del repo).
