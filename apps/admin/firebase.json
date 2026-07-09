@@ -1,0 +1,33 @@
+{
+  "hosting": [
+    {
+      "target": "prod",
+      "public": "public",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**",
+        "**/app/**",
+        "**/components/**",
+        "**/lib/**",
+        "**/.next/**",
+        "**/Dockerfile",
+        "**/package*.json",
+        "**/tsconfig.json",
+        "**/next.config.ts",
+        "**/postcss.config.mjs",
+        "**/eslint.config.mjs",
+        "**/README.md"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "run": {
+            "serviceId": "admin",
+            "region": "us-central1"
+          }
+        }
+      ]
+    }
+  ]
+}

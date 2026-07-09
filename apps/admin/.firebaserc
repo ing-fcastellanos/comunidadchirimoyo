@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "chirimoyo"
+  },
+  "targets": {
+    "chirimoyo": {
+      "hosting": {
+        "prod": ["admin-chirimoyo"]
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+/* =====================================================================
+   tokens.css — Sistema de diseño canónico de Comunidad Chirimoyo
+   FUENTE DE VERDAD. Las copias en apps/<app>/app/tokens.css se generan
+   con `node scripts/sync-design-tokens.mjs` — NO editarlas a mano.
+   Editar aquí y re-sincronizar. Derivado del handoff v0.dev (theme.js).
+
+   La app entrante (globals.css) hace `@import "tailwindcss";` y luego
+   `@import "./tokens.css";`. Este archivo son SOLO tokens + reglas base. */
+
+@theme {
+  /* ===== Color =====
+     Los verdes dominan (~90% de la superficie). Los acentos cálidos
+     (ochre/terra/teal) se reservan para señales de estado en badges. */
+  --color-forest: #15824c;
+  --color-forest-deep: #0c5a36;
+  --color-forest-soft: #2f9d6a;
+
+  --color-pine: #073d24;
+  --color-pine-deep: #052e1b;
+
+  --color-mint: #8ed8c0;
+  --color-mint-soft: #cdeedd;
+  --color-mint-deep: #46b08c;
+  --color-mint-wash: #e4f3ec;
+
+  --color-paper: #eef5ef;
+  --color-paper-card: #ffffff;
+  --color-paper-deep: #e1eee5;
+
+  --color-ink: #143226;
+  --color-ink-soft: #3a5547;
+
+  --color-ochre: #b08a2e;
+  --color-ochre-deep: #7d5f1c; /* texto sobre badges ochre/ochre-wash (contraste AA) */
+  --color-terra: #b5543a;
+  --color-terra-wash: #f6e1da; /* fondo suave para badges de error */
+  --color-terra-deep: #8f3c25; /* texto sobre terra-wash (contraste AA) */
+  --color-teal: #2f8d77;
+
+  /* ===== Tipografía =====
+     serif/sans se cargan con next/font (ver docs/design-system/fonts.ts),
+     que define --font-cormorant y --font-source-sans en <html>.
+     La monoespaciada usa el stack del sistema (sin webfont). */
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-source-sans), "Source Sans 3", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  /* ===== Sombras (verdosas, no grises) ===== */
+  --shadow-card: 0 1px 2px rgba(7, 61, 36, 0.04), 0 8px 24px -12px rgba(7, 61, 36, 0.22);
+  --shadow-soft: 0 1px 2px rgba(7, 61, 36, 0.06);
+}
+
+/* ===== Reglas base ===== */
+/* Scroll suave solo si la persona no pidió menos movimiento (WCAG 2.3.3). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-forest);
+  color: #ffffff;
+}
+
+/* Placeholder cuando una ficha aún no tiene foto */
+.placeholder-stripes {
+  background-color: var(--color-paper-deep);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(7, 61, 36, 0.08) 0 2px,
+    transparent 2px 12px
+  );
+}
+
+/* Cita lateral con comillas angulares «...» */
+.pull-quote::before {
+  content: "\00AB";
+}
+.pull-quote::after {
+  content: "\00BB";
+}

@@ -1,0 +1,49 @@
+{
+  "name": "admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "sync:tokens": "node ../../scripts/sync-design-tokens.mjs",
+    "docker:build": "docker build -t northamerica-south1-docker.pkg.dev/chirimoyo/containers/admin:latest .",
+    "docker:push": "docker push northamerica-south1-docker.pkg.dev/chirimoyo/containers/admin:latest",
+    "deploy_run": "npm run docker:build && npm run docker:push && gcloud run deploy admin --image=northamerica-south1-docker.pkg.dev/chirimoyo/containers/admin:latest --project=chirimoyo --region=us-central1 --platform=managed --allow-unauthenticated --min-instances=0 --port=8080",
+    "firebase:deploy": "firebase deploy --only hosting:prod --project=chirimoyo",
+    "deploy_prod": "npm run deploy_run && npm run firebase:deploy"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.460.0",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^15.0.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=24.0.0 <25.0.0"
+  },
+  "comments": {
+    "engines": "Toolchain fijo (Node 24, ver .nvmrc y ADR-0022); engine-strict en .npmrc lo hace obligatorio para que el lockfile sea reproducible entre máquinas y CI.",
+    "overrides": "Endurecimiento extra: fija las deps wasm opcionales/transitivas de @emnapi (fallback de eslint/tailwind, no usadas con bindings nativos), un punto conocido de no-determinismo en lockfiles npm."
+  },
+  "overrides": {
+    "@emnapi/core": "1.11.1",
+    "@emnapi/runtime": "1.11.1",
+    "@emnapi/wasi-threads": "1.2.2"
+  }
+}
