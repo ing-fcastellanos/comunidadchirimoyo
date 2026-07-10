@@ -11,6 +11,7 @@ import { Campo } from "./Campo";
 import { EditorCuerpo } from "./EditorCuerpo";
 import { EstadoBadge } from "./EstadoBadge";
 import { AlternarEstadoBoton } from "./AlternarEstadoBoton";
+import { PortadaUpload } from "./PortadaUpload";
 import { Icon } from "@/components/ui/Icon";
 import type { Noticia } from "@/lib/noticias/types";
 import type { NoticiaActionState } from "@/lib/noticias/actions";
@@ -108,22 +109,14 @@ export function NoticiaFormulario({ modo, noticia, accion }: Props) {
             ayuda="Una o dos frases: se usa en el listado público y OpenGraph."
           />
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <Campo
-              id="portada"
-              etiqueta="Portada"
-              defaultValue={noticia?.portada ?? ""}
-              placeholder="noticias/archivo.webp"
-              ayuda="Ruta relativa dentro del bucket de comunidad (ya subida)."
+          {modo === "editar" && noticia && (
+            <PortadaUpload
+              slug={noticia.slug}
+              portadaInicial={noticia.portada ?? ""}
+              portadaAltInicial={noticia.portadaAlt ?? ""}
+              errorAlt={errores.portadaAlt}
             />
-            <Campo
-              id="portadaAlt"
-              etiqueta="Texto alternativo"
-              defaultValue={noticia?.portadaAlt ?? ""}
-              error={errores.portadaAlt}
-              placeholder="Describe la imagen"
-            />
-          </div>
+          )}
 
           <Campo
             id="tags"

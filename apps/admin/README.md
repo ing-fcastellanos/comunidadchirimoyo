@@ -41,6 +41,14 @@ CRUD de noticias sobre la colección Firestore `noticias` (ADR-0028), vía serve
 
 Al crear/editar/despublicar/borrar una noticia que **es o fue** `publicado`, el admin llama `POST {SITIO_BASE_URL}/api/revalidate` (endpoint ya expuesto por `apps/sitio`) con `Authorization: Bearer {REVALIDATE_SECRET}`. **`REVALIDATE_SECRET` debe ser idéntico** al configurado en `apps/sitio` — es un secreto compartido entre las dos apps. Si la llamada falla (secreto desincronizado, sitio caído, red), la escritura en Firestore **no se revierte**: es best-effort, y el `revalidate: 3600` del sitio corrige la mayoría de los casos igual. Ver `.env.example` para `SITIO_BASE_URL`/`REVALIDATE_SECRET`.
 
+## Subida de portadas a GCS (#142)
+
+La imagen de portada de una noticia se sube desde el propio formulario de edición (`/noticias/{slug}/editar`) vía `POST /api/noticias/{slug}/portada` (Route Handler, no Server Action ni signed URL — evita el límite de 1MB de Server Actions y no requiere configurar CORS en el bucket). El archivo se guarda en `noticias/{slug}-portada.<ext>` dentro del bucket `comunidad-chirimoyo` (ADR-0021); una re-subida sobreescribe el objeto anterior. El endpoint **solo sube el archivo**: la ruta resultante se persiste en Firestore como cualquier otro campo, al guardar el formulario (`actualizarNoticia`), no desde el propio endpoint.
+
+El SA runtime de Cloud Run necesita **`roles/storage.objectAdmin`**, otorgado **a nivel del bucket `comunidad-chirimoyo`** (no a nivel de proyecto) — rol nuevo, distinto de `serviceAccountTokenCreator` (Auth) y `datastore.user` (Firestore). Sin este rol, la subida falla en producción con un error de permisos aunque el login/CRUD de noticias funcionen con normalidad.
+
+Solo se aceptan imágenes JPEG/PNG/WebP de hasta 5MB; no hay optimización ni conversión automática (sigue siendo responsabilidad editorial, ver `content/noticias/README.md`). El objeto de una noticia borrada **no** se borra del bucket (limpieza manual si hace falta, mismo criterio que el resto del proyecto).
+
 ## Hosting
 
 `firebase.json` usa el target `prod` → site **`admin-chirimoyo`** (ya existente), rewrite `**` → Cloud Run `admin` en **`us-central1`** (Firebase Hosting no soporta rewrites a `northamerica-south1` — ADR-0015). DNS de `admin.chirimoyo.org` en Porkbun (fuera del repo).
