@@ -7,7 +7,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/session";
 import { existeNoticia } from "@/lib/noticias/read";
-import { validarArchivoPortada } from "@/lib/portada/validation";
+import { validarArchivoPortada, verificarFirmaBinaria } from "@/lib/portada/validation";
 import { subirPortada } from "@/lib/portada/subir";
 
 export async function POST(req: Request, { params }: { params: Promise<{ slug: string }> }) {
@@ -33,6 +33,10 @@ export async function POST(req: Request, { params }: { params: Promise<{ slug: s
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());
+  if (!verificarFirmaBinaria(buffer, extension)) {
+    return NextResponse.json({ error: "El archivo no parece ser una imagen válida." }, { status: 400 });
+  }
+
   const path = await subirPortada(slug, extension, file.type, buffer);
 
   return NextResponse.json({ path });
