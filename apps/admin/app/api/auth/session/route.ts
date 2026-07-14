@@ -19,6 +19,16 @@ import { SESSION_COOKIE } from "@/lib/session";
 /** 5 días, en milisegundos (createSessionCookie) y segundos (cookie maxAge). */
 const EXPIRES_IN_MS = 5 * 24 * 60 * 60 * 1000;
 
+/** Solo rutas relativas del mismo origen (#143, revisión de seguridad): un solo
+    `/` inicial, nunca `//` ni `/\` — esas formas las interpretan los
+    navegadores como URL absoluta a otro host (open redirect). Hoy ningún
+    caller envía `redirectTo`; esto es defensa en profundidad para cuando se
+    agregue un flujo de "volver a X tras iniciar sesión". */
+function rutaSegura(valor: string | undefined): string {
+  if (valor && /^\/(?!\/|\\)/.test(valor)) return valor;
+  return "/dashboard";
+}
+
 export async function POST(req: Request) {
   let body: { idToken?: string; redirectTo?: string };
   try {
@@ -43,7 +53,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "No se pudo iniciar sesión." }, { status: 401 });
   }
 
-  const response = NextResponse.json({ ok: true, redirectTo: body.redirectTo || "/dashboard" });
+  const response = NextResponse.json({ ok: true, redirectTo: rutaSegura(body.redirectTo) });
   response.cookies.set(SESSION_COOKIE, sessionCookie, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
