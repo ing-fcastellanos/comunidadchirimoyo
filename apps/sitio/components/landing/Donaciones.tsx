@@ -41,6 +41,16 @@ export function Donaciones({ data }: { data: DonacionesData }) {
                       {m.clabeDisplay}
                     </dd>
                   </div>
+                  {m.cuentaDisplay && (
+                    <div>
+                      <dt className="font-semibold text-forest-deep">
+                        Número de cuenta
+                      </dt>
+                      <dd className="font-mono text-[15px] tracking-wide text-ink">
+                        {m.cuentaDisplay}
+                      </dd>
+                    </div>
+                  )}
                   {m.beneficiario && (
                     <div>
                       <dt className="font-semibold text-forest-deep">

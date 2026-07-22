@@ -155,6 +155,8 @@ export interface MetodoDonacion {
   icono: IconName;
   clabe?: string;
   clabeDisplay?: string;
+  cuenta?: string;
+  cuentaDisplay?: string;
   beneficiario?: string;
   banco?: string;
   url?: string;
