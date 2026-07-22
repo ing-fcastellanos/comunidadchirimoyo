@@ -52,3 +52,7 @@ Solo se aceptan imágenes JPEG/PNG/WebP de hasta 5MB; no hay optimización ni co
 ## Hosting
 
 `firebase.json` usa el target `prod` → site **`admin-chirimoyo`** (ya existente), rewrite `**` → Cloud Run `admin` en **`us-central1`** (Firebase Hosting no soporta rewrites a `northamerica-south1` — ADR-0015). DNS de `admin.chirimoyo.org` en Porkbun (fuera del repo).
+
+## Deploy a producción (#144)
+
+Runbook completo, de punta a punta (prerequisitos, roles IAM, env vars del servicio Cloud Run, provisión en Firebase Console, pasos de deploy, smoke test): [docs/guias/desplegar-admin-produccion.md](../../docs/guias/desplegar-admin-produccion.md). Las secciones de arriba documentan el *por qué* de cada rol/env var por issue; el runbook es la fuente de verdad del *cómo*, en orden.
