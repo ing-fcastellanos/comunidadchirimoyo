@@ -11,6 +11,7 @@ Sitios web de la **Comunidad Chirimoyo** — un grupo de vecinos y ecologistas q
 | `chirimoyo.org/voluntarios` | Jornadas de limpieza, calendario, inscripción y donaciones | `apps/sitio` |
 | `fauna.chirimoyo.org` | Catálogo de fauna (aves, anfibios y reptiles): hub, índices por grupo, buscador, detalle y PDFs | `apps/catalogo` |
 | `api.chirimoyo.org` | Servicio mínimo: inscripciones de voluntarios y contacto | `services/api` |
+| `admin.chirimoyo.org` | Panel de administración: CRUD de noticias y jornadas, login con Firebase Auth | `apps/admin` |
 
 `comunidad.chirimoyo.org` y `voluntarios.chirimoyo.org` se conservan solo como **redirects vanity 301** hacia su path equivalente (ADR-0023). `aves.chirimoyo.org` es un **vanity 301** hacia `fauna.chirimoyo.org/aves` (ADR-0024).
 
@@ -18,8 +19,9 @@ Sitios web de la **Comunidad Chirimoyo** — un grupo de vecinos y ecologistas q
 
 - **Frontend**: Next.js 15 (App Router) · TypeScript 5 · Tailwind v4 · shadcn/ui
 - **Backend**: Python 3.12 · Flask · Google Cloud Firestore
+- **Admin**: Next.js 15 Firebase-native (`apps/admin`) — Firebase Authentication (login) + Firebase Admin SDK (CRUD de noticias/jornadas sobre Firestore, sin pasar por `services/api`)
 - **Infra**: Docker → Artifact Registry → Cloud Run · Firebase Hosting (rewrites) · región `northamerica-south1`
-- **Contenido**: Markdown/JSON versionado en `content/` (sin CMS)
+- **Contenido**: Markdown/JSON versionado en `content/` (sin CMS) — excepto noticias/jornadas, dinámicas en Firestore
 
 ## Estructura
 
@@ -27,10 +29,11 @@ Sitios web de la **Comunidad Chirimoyo** — un grupo de vecinos y ecologistas q
 comunidadchirimoyo/
 ├── apps/
 │   ├── sitio/        Next 15 → landing + comunidad + voluntarios
-│   └── catalogo/     Next 15 → fauna (aves, anfibios, reptiles)
+│   ├── catalogo/     Next 15 → fauna (aves, anfibios, reptiles)
+│   └── admin/        Next 15 → panel admin (noticias/jornadas, Firebase-native)
 ├── services/
 │   └── api/          Flask + Firestore (inscripciones + contacto)
-├── content/          Markdown/JSON: fauna (aves, anfibios, reptiles), landing, noticias, historia, jornadas
+├── content/          Markdown/JSON: fauna (aves, anfibios, reptiles), landing, historia (noticias/jornadas: Firestore, ver apps/admin)
 ├── docs/             documentación del monorepo (arquitectura, ADRs, gestión)
 ├── scripts/          setup-*.sh (labels, milestones, project, issues)
 └── openspec/         specs + changes (contrato de comportamiento)
