@@ -9,6 +9,7 @@ Guía para Claude (y otros agentes IA) trabajando en este repositorio.
 - `apps/sitio` — Next.js 15 (App Router). Sirve **chirimoyo.org** en un solo dominio, con las secciones por path: landing + linktree + contacto (`/`), **`/comunidad`** (historia, acciones, misión/visión, noticias) y **`/voluntarios`** (jornadas, calendario, inscripción, donaciones). Los subdominios `comunidad.*` y `voluntarios.*` son solo redirects vanity 301 (ADR-0023).
 - `apps/catalogo` — Next.js 15 (App Router). Sirve **fauna.chirimoyo.org**: catálogo de fauna con **hub** (`/`: grupos + destacadas + acceso a búsqueda), **paths por grupo** (`/aves`, `/anfibios`, `/reptiles`), **buscador general** en cliente (`/busqueda`), **detalle** (`/<grupo>/<slug>`) y **PDFs** por disciplina (aves + herpetofauna) — todo **estático**. `aves.chirimoyo.org` es solo un redirect vanity 301 a `fauna.chirimoyo.org/aves` (ADR-0024).
 - `services/api` — Python 3.12 + Flask + Firestore, en Cloud Run. **Mínimo**: solo inscripciones de voluntarios y formulario de contacto.
+- `apps/admin` — Next.js 15 (App Router). Panel de administración en **admin.chirimoyo.org** (Cloud Run, ADR-0015): CRUD de noticias y jornadas, con login por Firebase Authentication (ADR-0029). Firebase-native (ADR-0030): server actions/route handlers vía Firebase Admin SDK, sin extender `services/api`.
 
 El stack y las convenciones se heredan de **Sociedad Salvaje** (`C:\Users\Frank\source_code\sociedadsalvaje`). Lee [README.md](README.md) y [docs/architecture/overview.md](docs/architecture/overview.md) antes de cambios cross-cutting.
 
@@ -25,10 +26,11 @@ El stack y las convenciones se heredan de **Sociedad Salvaje** (`C:\Users\Frank\
 | Frontend framework | Next.js 15 (App Router) |
 | Frontend estilos | Tailwind v4 + shadcn/ui (tokens derivados de los diseños v0.dev de aves) |
 | Frontend hosting | Cloud Run + Firebase Hosting rewrites |
-| Contenido | Markdown/JSON en `content/` |
+| Contenido | Markdown/JSON en `content/` — **excepto** noticias/jornadas, en Firestore (ver aviso crítico abajo, ADR-0028) |
 | Analítica | Privada (Cloudflare Web Analytics, ADR-0020) — sin cookies de rastreo |
+| Admin auth | Firebase Authentication, solo para el panel `apps/admin` (ADR-0029) |
 
-**No** hay PostgreSQL, **no** hay Nx/Turborepo/workspaces, **no** hay CMS, **no** hay auth de usuarios, **no** hay pasarela de pagos. Si ves restos de otra stack: márcalo y corrige.
+**No** hay PostgreSQL, **no** hay Nx/Turborepo/workspaces, **no** hay CMS, **no** hay pasarela de pagos. **No** hay auth para visitantes públicos de `sitio`/`catalogo`/`api` — la única auth del proyecto es la del panel `apps/admin` (staff, sin auto-registro). Si ves restos de otra stack: márcalo y corrige.
 
 ## ⚠️ Avisos críticos
 
@@ -39,6 +41,10 @@ El buscador y el detalle de aves/anfibios **no llaman al API**. Los datos viven 
 ### El API es mínimo
 
 `services/api` existe **solo** para recibir inscripciones de voluntarios y mensajes de contacto. No tiene auth de usuarios, ni RBAC, ni pagos. Ver [ADR-0006](docs/decisions/0006-api-minima.md). Antes de agregarle responsabilidades, abre un ADR.
+
+### Noticias y jornadas viven en Firestore, no en `content/`
+
+Desde [ADR-0028](docs/decisions/0028-noticias-jornadas-dinamicas-firestore.md), las colecciones `noticias` y `jornadas` son la fuente de verdad — se editan desde `apps/admin`, no con un PR a `content/noticias/*.md` o `content/jornadas/jornadas.json`. El resto del contenido (fauna, landing, historia, misión/visión) sigue en `content/` sin cambios. `apps/sitio` lee ambas colecciones server-side (Firebase Admin SDK, ISR con revalidación on-demand); las reglas de Firestore para estas colecciones permanecen `deny-all` para el client SDK.
 
 ### Datos de voluntarios = datos personales
 
@@ -89,7 +95,7 @@ comunidadchirimoyo/
 
 ### Contenido
 
-- Fichas, noticias y jornadas en `content/` como Markdown/JSON. Respeta el esquema definido en su issue/spec.
+- Fichas de fauna, historia y misión/visión en `content/` como Markdown/JSON. Respeta el esquema definido en su issue/spec. Noticias y jornadas son la excepción: viven en Firestore, se editan desde `apps/admin` (ver aviso crítico arriba, ADR-0028).
 - Imágenes optimizadas; nombres en kebab-case.
 - **Markdown editorial** (cuerpos de notas de comunidad): se renderiza con `react-markdown` + `remark-gfm` vía `apps/sitio/components/ui/Markdown.tsx`, **sin HTML crudo** ([ADR-0026](docs/decisions/0026-renderizador-markdown.md)). El *layout estructurado* (landing, fichas) sigue usando los parsers caseros `splitSecciones`/`parseSecciones` — no son markdown libre. Ya no es cierto el "cero dependencias de markdown".
 

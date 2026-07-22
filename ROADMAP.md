@@ -12,6 +12,7 @@ El trabajo está dividido en fases ordenadas por dependencia técnica y priorida
 | **3** | Presencia | `chirimoyo.org` (landing + linktree + contacto) + `comunidad` (historia, acciones, misión, noticias) | Narrativa pública de la lucha |
 | **4** | Voluntarios | Jornadas, calendario, formulario de inscripción (API), donaciones informativas, emails | Convocatoria a jornadas de limpieza |
 | **5** | Difusión & pulido | Analítica, SEO/OpenGraph, accesibilidad, sitemap, performance, observabilidad básica | Maximizar alcance y calidad |
+| **6** | Contenido dinámico + Admin | Noticias/jornadas migradas a Firestore, panel `apps/admin` (Firebase-native, login con Firebase Auth), runbook de deploy | Editar noticias/jornadas en runtime sin PR ni deploy |
 
 ## Decisiones de arquitectura
 
@@ -24,6 +25,10 @@ Las decisiones no triviales se documentan como [ADRs](docs/adr/_index.md). Las q
 - ADR-0008 — Multi-subdominio desde una sola app
 - ADR-0024 — Catálogo de fauna en dominio único `fauna.chirimoyo.org`, grupos por path
 - ADR-0025 — Esquema de ficha de fauna group-aware
+- ADR-0027 — Retención automática de inscripciones con Firestore TTL
+- ADR-0028 — Noticias y jornadas dinámicas en Firestore
+- ADR-0029 — Autenticación del panel admin con Firebase Authentication
+- ADR-0030 — App de administración `apps/admin` (Firebase-native)
 
 ## Principios
 

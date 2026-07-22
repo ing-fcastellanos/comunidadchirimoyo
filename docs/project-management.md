@@ -6,7 +6,7 @@ Cómo está organizado el trabajo en este repo. Si vas a abrir issues, planear f
 
 - **GitHub Issues** — todas las tareas, bugs y propuestas de ADR
 - **GitHub Projects v2** — tablero kanban "Comunidad Chirimoyo Roadmap"
-- **GitHub Milestones** — uno por fase (Fase 0 a Fase 5)
+- **GitHub Milestones** — uno por fase (Fase 0 a Fase 6)
 - **Labels** — taxonomía de sub-dominio × tipo × prioridad
 - **Scripts `setup-*.sh`** — reproducen la estructura del board desde cero
 
@@ -22,6 +22,7 @@ Ver el [`ROADMAP.md`](../ROADMAP.md) para el detalle. Resumen:
 | **3. Presencia** | Landing + comunidad (historia, misión, noticias) |
 | **4. Voluntarios** | Jornadas, inscripción, donaciones, emails |
 | **5. Difusión & pulido** | Analítica, SEO, accesibilidad, performance |
+| **6. Contenido dinámico + Admin** | Noticias/jornadas en Firestore, panel `apps/admin` (Firebase-native) |
 
 Cada fase es un **milestone**. Cada issue se asigna al milestone de su fase.
 
@@ -37,6 +38,7 @@ Tres dimensiones por issue:
 - `subdomain: aves` — Catálogo de aves/anfibios
 - `subdomain: voluntarios` — Jornadas, inscripción, donaciones
 - `subdomain: api` — Servicio Flask
+- `subdomain: admin` — App `apps/admin` (panel de gestión, `admin.chirimoyo.org`)
 
 Una issue puede tener varios sub-dominios cuando cruza fronteras.
 
@@ -105,6 +107,7 @@ bash scripts/setup-phase0-foundation.sh
 # Luego las fases en orden de prioridad:
 bash scripts/setup-phase1-aves.sh
 # ... fases 2-5 cuando se llegue a ellas
+bash scripts/setup-phase6-contenido-admin.sh   # Fase 6 — Contenido dinámico + Admin
 ```
 
 `setup-github-project.sh` es idempotente en labels y milestones. Los scripts de fase **no** son idempotentes para issues (correrlos dos veces duplica issues).
