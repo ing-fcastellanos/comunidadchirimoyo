@@ -167,6 +167,15 @@
     letter-spacing: 0.02em;
   }
 
+  .campo-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin: 0.6rem 0 0.2rem;
+  }
+
+  .campo-label:first-of-type { margin-top: 0.4rem; }
+
   .copy-btn {
     border: none;
     background: var(--forest);
@@ -239,11 +248,17 @@
     <div class="donacion-card">
       <div class="titulo"><span class="icon">🏦</span> Transferencia bancaria (SPEI)</div>
       <p>Desde cualquier banco a la CLABE. Llega como transferencia SPEI normal.</p>
+      <div class="campo-label">CLABE</div>
       <div class="clabe-row">
-        <code id="clabe">7289 6900 0163 929 043</code>
-        <button class="copy-btn" onclick="copiarClabe()" id="copy-btn">Copiar</button>
+        <code id="clabe">7289 6900 0180 4187 28</code>
+        <button class="copy-btn" onclick="copiarCampo('clabe', 'copy-btn')" id="copy-btn">Copiar</button>
       </div>
-      <div class="beneficiario">Diana Angeles Solares · Spin by OXXO</div>
+      <div class="campo-label">Número de cuenta</div>
+      <div class="clabe-row">
+        <code id="cuenta">9500 5014 6154 7009 082</code>
+        <button class="copy-btn" onclick="copiarCampo('cuenta', 'copy-cuenta-btn')" id="copy-cuenta-btn">Copiar</button>
+      </div>
+      <div class="beneficiario">Marlene Oyola Rodriguez · Spin by OXXO</div>
     </div>
 
     <div class="donacion-card">
@@ -273,24 +288,24 @@
 </main>
 
 <script>
-  function copiarClabe() {
-    var clabeEl = document.getElementById('clabe');
-    var clabe = clabeEl.textContent.replace(/\s/g, '');
-    var btn = document.getElementById('copy-btn');
+  function copiarCampo(campoId, btnId) {
+    var campoEl = document.getElementById(campoId);
+    var valor = campoEl.textContent.replace(/\s/g, '');
+    var btn = document.getElementById(btnId);
     var marcarCopiada = function () {
       var original = btn.textContent;
-      btn.textContent = '¡Copiada!';
+      btn.textContent = '¡Copiado!';
       setTimeout(function () { btn.textContent = original; }, 1500);
     };
     var seleccionarTexto = function () {
       var range = document.createRange();
-      range.selectNodeContents(clabeEl);
+      range.selectNodeContents(campoEl);
       var selection = window.getSelection();
       selection.removeAllRanges();
       selection.addRange(range);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(clabe).then(marcarCopiada, seleccionarTexto);
+      navigator.clipboard.writeText(valor).then(marcarCopiada, seleccionarTexto);
     } else {
       seleccionarTexto();
     }
