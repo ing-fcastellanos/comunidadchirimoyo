@@ -1,11 +1,12 @@
 import re
+from html import escape
 
 from flask import current_app
 
 from app.datastore.contacto_datastore import guardar_mensaje
 from app.logging_utils import log_event
 from app.models.mensaje_contacto import MensajeContacto
-from app.services.email_service import enviar_correo
+from app.services.email_service import enviar_correo, plantilla_html
 
 # Campo señuelo (honeypot). Un humano no lo ve ni lo rellena; un bot sí.
 _HONEYPOT = "website"
@@ -84,6 +85,7 @@ def _notificar(mensaje: MensajeContacto) -> None:
     fallo de SMTP se loguea (sin PII) y NO interrumpe el flujo."""
     inbox = current_app.config["CONTACTO_INBOX"]
     try:
+        mensaje_html = escape(mensaje.mensaje).replace("\n", "<br>")
         enviar_correo(
             asunto=f"[Contacto chirimoyo.org] {mensaje.asunto}",
             destinatarios=[inbox],
@@ -93,6 +95,13 @@ def _notificar(mensaje: MensajeContacto) -> None:
                 f"Correo: {mensaje.correo}\n"
                 f"Asunto: {mensaje.asunto}\n\n"
                 f"{mensaje.mensaje}\n"
+            ),
+            html=plantilla_html(
+                "Nuevo mensaje de contacto",
+                f"<p style=\"margin:0 0 12px;\"><strong>Nombre:</strong> {escape(mensaje.nombre)}<br>"
+                f"<strong>Correo:</strong> {escape(mensaje.correo)}<br>"
+                f"<strong>Asunto:</strong> {escape(mensaje.asunto)}</p>"
+                f"<p style=\"margin:0;\">{mensaje_html}</p>",
             ),
             responder_a=mensaje.correo,
         )
@@ -104,6 +113,12 @@ def _notificar(mensaje: MensajeContacto) -> None:
                 "Gracias por escribir a la Comunidad Chirimoyo. Recibimos tu "
                 "mensaje y te responderemos pronto.\n\n"
                 "Por la defensa del humedal de Chirimoyo.\n"
+            ),
+            html=plantilla_html(
+                "¡Gracias por escribirnos!",
+                f"<p style=\"margin:0 0 12px;\">Hola {escape(mensaje.nombre)}:</p>"
+                "<p style=\"margin:0 0 12px;\">Gracias por escribir a la Comunidad Chirimoyo. "
+                "Recibimos tu mensaje y te responderemos pronto.</p>",
             ),
         )
     except Exception:
