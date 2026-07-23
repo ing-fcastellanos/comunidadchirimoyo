@@ -1,11 +1,12 @@
 import re
+from html import escape
 
 from flask import current_app
 
 from app.datastore.inscripciones_datastore import guardar_inscripcion
 from app.logging_utils import log_event
 from app.models.inscripcion import Inscripcion
-from app.services.email_service import enviar_correo
+from app.services.email_service import enviar_correo, plantilla_html
 
 # Campo señuelo (honeypot). Un humano no lo ve ni lo rellena; un bot sí.
 _HONEYPOT = "website"
@@ -130,6 +131,14 @@ def _notificar(inscripcion: Inscripcion) -> None:
                 f"Jornada: {jornada}\n"
                 f"Acompañantes: {inscripcion.acompanantes}\n"
             ),
+            html=plantilla_html(
+                "Nueva inscripción de voluntario",
+                f"<p style=\"margin:0 0 12px;\"><strong>Nombre:</strong> {escape(inscripcion.nombre)}<br>"
+                f"<strong>Correo:</strong> {escape(inscripcion.correo)}<br>"
+                f"<strong>Teléfono:</strong> {escape(telefono)}<br>"
+                f"<strong>Jornada:</strong> {escape(jornada)}<br>"
+                f"<strong>Acompañantes:</strong> {inscripcion.acompanantes}</p>",
+            ),
             responder_a=inscripcion.correo,
         )
         enviar_correo(
@@ -141,6 +150,13 @@ def _notificar(inscripcion: Inscripcion) -> None:
                 "Registramos tu inscripción y te compartiremos los detalles de la "
                 "jornada pronto.\n\n"
                 "Por la defensa del humedal de Chirimoyo.\n"
+            ),
+            html=plantilla_html(
+                "¡Gracias por sumarte!",
+                f"<p style=\"margin:0 0 12px;\">Hola {escape(inscripcion.nombre)}:</p>"
+                "<p style=\"margin:0 0 12px;\">Gracias por sumarte a las jornadas de la "
+                "Comunidad Chirimoyo. Registramos tu inscripción y te compartiremos los "
+                "detalles de la jornada pronto.</p>",
             ),
         )
     except Exception:
