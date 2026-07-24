@@ -121,6 +121,6 @@ def _notificar(mensaje: MensajeContacto) -> None:
                 "Recibimos tu mensaje y te responderemos pronto.</p>",
             ),
         )
-    except Exception:
+    except Exception:  # noqa: BLE001 — best-effort: cualquier fallo de SMTP no debe romper el flujo
         # Nunca logueamos el contenido (PII). Solo el evento.
         log_event("contacto_email_fallido")

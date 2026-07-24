@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Purga de inscripciones de voluntarios vencidas (politica de retencion, ADR-0012).
 
 Borra de la coleccion `voluntarios_inscripciones` los documentos cuyo `creado_en`

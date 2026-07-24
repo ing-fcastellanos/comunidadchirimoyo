@@ -1,4 +1,5 @@
 import os
+from typing import ClassVar
 
 from dotenv import load_dotenv
 
@@ -8,7 +9,11 @@ load_dotenv()
 class Config:
     """Configuración mínima del API (ADR-0006). Sin JWT, pagos ni Meta."""
 
-    APP_CONFIG = {
+    # ClassVar: Config nunca se instancia (Flask lo consume vía
+    # app.config.from_object(Config) como namespace estático), así que el dict
+    # no se comparte entre instancias — solo se anota para que ruff (RUF012)
+    # no lo confunda con un mutable default real.
+    APP_CONFIG: ClassVar[dict] = {
         "ENV": os.getenv("ENV", "dev"),
         "APP_PORT": os.getenv("APP_PORT", "8080"),
         "CORS_ORIGINS": os.getenv(
@@ -20,7 +25,7 @@ class Config:
         ),
     }
 
-    DB_CONFIG = {
+    DB_CONFIG: ClassVar[dict] = {
         # Base Firestore. (default) en northamerica-south1 (ver ADR-0003).
         "DB_NAME": os.getenv("DB_NAME", "(default)"),
     }
