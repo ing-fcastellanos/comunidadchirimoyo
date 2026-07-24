@@ -41,3 +41,14 @@ class Config:
 
     # Buzón interno que recibe el aviso de cada inscripción de voluntario.
     VOLUNTARIOS_INBOX = os.getenv("VOLUNTARIOS_INBOX", "voluntarios@chirimoyo.org")
+
+    # Base pública del propio API, para construir el link de desuscripción que
+    # va DENTRO del correo (lo abre un humano en su navegador, a diferencia de
+    # API_URL de sitio que es server-to-server). api.chirimoyo.org no tiene DNS
+    # configurado (fuera de alcance del runbook de deploy, docs/guias/
+    # desplegar-sitio-produccion.md) — el default es la URL real de Cloud Run.
+    API_BASE_URL = os.getenv("API_BASE_URL", "https://api-9902000097.northamerica-south1.run.app")
+
+    # Secreto compartido con apps/sitio para el trigger semanal de notificación
+    # (mismo patrón que REVALIDATE_SECRET de sitio/admin). Server-only.
+    NOTIFICAR_VOLUNTARIOS_SECRET = os.getenv("NOTIFICAR_VOLUNTARIOS_SECRET")

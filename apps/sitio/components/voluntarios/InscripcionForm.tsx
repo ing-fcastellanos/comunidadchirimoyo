@@ -267,7 +267,8 @@ export function InscripcionForm({ jornadas }: { jornadas?: { value: string; labe
               He leído y acepto el{" "}
               <Link href="/privacidad" className={cn("font-semibold text-forest underline underline-offset-2 hover:text-forest-deep", FOCO)}>
                 aviso de privacidad
-              </Link>.{" "}
+              </Link>. Recibiré un resumen semanal de jornadas y eventos próximos por
+              correo; puedo darme de baja cuando quiera desde el propio correo.{" "}
               <span className="text-terra" aria-hidden="true">*</span>
             </span>
           </label>

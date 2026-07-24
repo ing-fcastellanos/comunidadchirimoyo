@@ -49,6 +49,19 @@ export default async function DashboardPage() {
             <span className="block text-[14px] text-ink-soft">Gestionar jornadas recurrentes y eventos puntuales</span>
           </span>
         </Link>
+
+        <Link
+          href="/voluntarios"
+          className="flex items-center gap-4 rounded-2xl bg-paper-card p-5 shadow-card ring-1 ring-forest/10 transition-colors hover:bg-mint-wash/40 focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40"
+        >
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-mint-wash text-forest-deep ring-1 ring-forest/10">
+            <Icon name="Users" className="h-6 w-6" />
+          </span>
+          <span>
+            <span className="block font-serif text-[18px] font-semibold text-forest-deep">Voluntarios</span>
+            <span className="block text-[14px] text-ink-soft">Ver inscritos, registrar contactos y exportar a CSV</span>
+          </span>
+        </Link>
       </div>
 
       <div className="mt-6">
