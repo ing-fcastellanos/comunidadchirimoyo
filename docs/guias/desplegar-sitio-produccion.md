@@ -91,6 +91,41 @@ gcloud firestore indexes composite list --project=chirimoyo --format="table(name
 
 Ya está desplegado y `READY` al momento de escribir este runbook — este paso solo es necesario de nuevo si se agrega una consulta nueva que requiera otro índice compuesto (Firestore te da el link exacto para crearlo en el propio mensaje de error).
 
+### 1.4 Secreto compartido para el resumen semanal de voluntarios
+
+Necesario desde que se agregó la suscripción a jornadas/eventos (issue de notificaciones + panel de voluntarios). Mismo patrón que `REVALIDATE_SECRET`: un solo valor configurado **igual en `sitio` y en `api`**.
+
+```powershell
+# Genera un valor y configúralo en ambos servicios (mismo valor en los dos).
+$secreto = -join ((48..57)+(97..102) | Get-Random -Count 64 | ForEach-Object {[char]$_})
+
+gcloud run services update sitio --project=chirimoyo --region=us-central1 `
+  --update-env-vars="NOTIFICAR_VOLUNTARIOS_SECRET=$secreto"
+
+gcloud run services update api --project=chirimoyo --region=northamerica-south1 `
+  --update-env-vars="NOTIFICAR_VOLUNTARIOS_SECRET=$secreto"
+```
+
+### 1.5 Cloud Scheduler semanal
+
+Dispara el Route Handler de `sitio` (`POST /api/notificar-voluntarios-semana`) una vez por semana. Apunta directo a la URL de Cloud Run de `sitio` (no a `chirimoyo.org`, para no depender de Firebase Hosting):
+
+```powershell
+gcloud scheduler jobs create http notificar-voluntarios-semana `
+  --project=chirimoyo `
+  --location=us-central1 `
+  --schedule="0 8 * * 1" `
+  --uri="https://sitio-cjqkpivz4a-uc.a.run.app/api/notificar-voluntarios-semana" `
+  --http-method=POST `
+  --headers="Authorization=Bearer $secreto,Content-Type=application/json"
+```
+
+(`0 8 * * 1` = lunes 8:00 AM, hora del servidor de Cloud Scheduler — configurable con `--time-zone` si prefieres otra zona horaria explícita.) Verifica manualmente disparándolo una vez:
+
+```powershell
+gcloud scheduler jobs run notificar-voluntarios-semana --project=chirimoyo --location=us-central1
+```
+
 ## 2. Deploy de `services/api` (primero)
 
 Desde `services/api`:
@@ -176,7 +211,9 @@ curl.exe -sI https://voluntarios.chirimoyo.org/cualquier-cosa | Select-String "l
 - [ ] **Comunidad** (`/comunidad`): historia, misión/visión, noticias (leídas de Firestore, ver ADR-0028).
 - [ ] **Voluntarios** (`/voluntarios`): jornadas, calendario, inscripción, donaciones.
 - [ ] **Formulario de contacto**: envío real de prueba → `201`, el mensaje aparece en `contacto_mensajes` (Firestore), llega el aviso a `contacto@chirimoyo.org` y la confirmación al remitente.
-- [ ] **Inscripción de voluntarios**: envío real de prueba → `201`, aparece en la colección de inscripciones, llega el aviso a `voluntarios@chirimoyo.org`.
+- [ ] **Inscripción de voluntarios**: envío real de prueba → `201`, aparece en la colección de inscripciones (con `suscrito: true`), llega el aviso a `voluntarios@chirimoyo.org`.
+- [ ] **Resumen semanal**: disparar el Cloud Scheduler manualmente (`gcloud scheduler jobs run notificar-voluntarios-semana`) y confirmar que llega un correo con la agenda de la semana y un link de desuscripción funcional.
+- [ ] **Panel de voluntarios** (`admin.chirimoyo.org/voluntarios`): la lista carga, los filtros funcionan, se puede registrar un contacto y exportar CSV.
 - [ ] **Redirects vanity**: `comunidad.*`/`voluntarios.*` responden 301 a la raíz de su sección.
 - [ ] **Analítica**: pageview en Cloudflare Web Analytics para `chirimoyo.org`.
 - [ ] **SSL** válido en `chirimoyo.org`, `www`, y ambos vanity.

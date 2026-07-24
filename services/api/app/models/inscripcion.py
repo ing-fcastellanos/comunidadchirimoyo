@@ -42,4 +42,8 @@ class Inscripcion:
             "creado_en": firestore.SERVER_TIMESTAMP,
             "expira_en": expira_en,
             "origen": self.origen,
+            # Suscripción al resumen semanal de jornadas (#voluntarios-suscripcion).
+            # Solo las inscripciones nuevas la traen — las viejas no se migran
+            # retroactivamente (consentimiento informado real, ADR-0012).
+            "suscrito": True,
         }
