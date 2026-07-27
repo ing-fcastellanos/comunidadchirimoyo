@@ -96,8 +96,13 @@ Ya está desplegado y `READY` al momento de escribir este runbook — este paso 
 Necesario desde que se agregó la suscripción a jornadas/eventos (issue de notificaciones + panel de voluntarios). Mismo patrón que `REVALIDATE_SECRET`: un solo valor configurado **igual en `sitio` y en `api`**.
 
 ```powershell
-# Genera un valor y configúralo en ambos servicios (mismo valor en los dos).
-$secreto = -join ((48..57)+(97..102) | Get-Random -Count 64 | ForEach-Object {[char]$_})
+# Genera un valor de 64 caracteres (muestreo CON repetición — `Get-Random -Count`
+# sobre un pool de 16 caracteres sin repetición solo daría 16, no 64) y
+# configúralo en ambos servicios EN EL MISMO comando/sesión: si vuelves a correr
+# la línea de $secreto por separado obtienes un valor NUEVO y distinto, y los
+# tres pasos (sitio, api, Cloud Scheduler más abajo) quedan desincronizados.
+$pool = (48..57) + (97..102)
+$secreto = -join (1..64 | ForEach-Object { [char]($pool | Get-Random) })
 
 gcloud run services update sitio --project=chirimoyo --region=us-central1 `
   --update-env-vars="NOTIFICAR_VOLUNTARIOS_SECRET=$secreto"
@@ -108,7 +113,9 @@ gcloud run services update api --project=chirimoyo --region=northamerica-south1 
 
 ### 1.5 Cloud Scheduler semanal
 
-Dispara el Route Handler de `sitio` (`POST /api/notificar-voluntarios-semana`) una vez por semana. Apunta directo a la URL de Cloud Run de `sitio` (no a `chirimoyo.org`, para no depender de Firebase Hosting):
+Dispara el Route Handler de `sitio` (`POST /api/notificar-voluntarios-semana`) una vez por semana. Apunta directo a la URL de Cloud Run de `sitio` (no a `chirimoyo.org`, para no depender de Firebase Hosting).
+
+> **Corre esto en la MISMA sesión de PowerShell que 1.4** (donde `$secreto` sigue en memoria). Si abriste una terminal nueva o `$secreto` ya no está definido, **no regeneres el valor** — recupéralo de donde ya quedó configurado: `(gcloud run services describe sitio --project=chirimoyo --region=us-central1 --format="value(spec.template.spec.containers[0].env.filter('name:NOTIFICAR_VOLUNTARIOS_SECRET').value)")`. Regenerar un valor nuevo aquí desincroniza el Scheduler de lo que ya está en `sitio`/`api` — exactamente el bug que causó el primer `401 UNAUTHENTICATED` en producción.
 
 ```powershell
 gcloud scheduler jobs create http notificar-voluntarios-semana `
@@ -124,6 +131,20 @@ gcloud scheduler jobs create http notificar-voluntarios-semana `
 
 ```powershell
 gcloud scheduler jobs run notificar-voluntarios-semana --project=chirimoyo --location=us-central1
+```
+
+Confirma el resultado en logs (dale unos segundos a que aparezca):
+
+```powershell
+gcloud logging read "resource.type=cloud_scheduler_job AND resource.labels.job_id=notificar-voluntarios-semana" `
+  --project=chirimoyo --limit=2 --format="value(timestamp,httpRequest.status,jsonPayload.debugInfo)" --freshness=5m
+```
+
+`httpRequest.status` debe ser `200`. Si ves `401` con `debugInfo: "...ERROR_AUTHENTICATION..."`, el secreto del header del Scheduler no coincide con el configurado en `sitio`/`api` — compáralos directamente en vez de asumir cuál está mal:
+
+```powershell
+gcloud scheduler jobs describe notificar-voluntarios-semana --project=chirimoyo --location=us-central1 --format="value(httpTarget.headers.Authorization)"
+gcloud run services describe sitio --project=chirimoyo --region=us-central1 --format="value(spec.template.spec.containers[0].env)"
 ```
 
 ## 2. Deploy de `services/api` (primero)
