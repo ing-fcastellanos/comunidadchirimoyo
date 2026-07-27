@@ -30,5 +30,6 @@ def desuscribir(doc_id: str) -> None:
     db = getDbClient()
     try:
         db.collection(_COLECCION).document(doc_id).update({"suscrito": False})
-    except Exception:
-        pass  # ID inexistente u otro error: no se revela, no se propaga
+    except Exception:  # noqa: BLE001, S110 — silencio intencional: el endpoint público
+        # nunca debe revelar si un ID existía o no (ver design.md D4).
+        pass

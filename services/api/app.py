@@ -10,5 +10,5 @@ if __name__ == "__main__":
     app.run(
         debug=(os.environ.get("ENV", "dev") != "prod"),
         host="0.0.0.0",
-        port=int(os.environ.get("APP_PORT", 8080)),
+        port=int(os.environ.get("APP_PORT", "8080")),
     )

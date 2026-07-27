@@ -18,7 +18,7 @@ def inscripcion():
     payload = request.get_json(silent=True) or {}
     try:
         resultado = inscripcion_service.procesar_inscripcion(payload)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 — red de seguridad ante cualquier fallo de persistencia
         # Fallo de persistencia u otro error: solo el tipo de excepción (no
         # mensaje ni traceback) para no filtrar PII, ver ADR-0012 / #26.
         log_event("inscripcion_error_persistencia", exception_type=type(exc).__name__)
