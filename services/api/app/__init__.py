@@ -61,9 +61,9 @@ def _set_cors(app: Flask) -> Flask:
 
 
 def _register_blueprints(app: Flask) -> Flask:
+    import app.controllers.contacto_controller as contacto_ctl
     import app.controllers.health_controller as health_ctl
     import app.controllers.voluntarios_controller as voluntarios_ctl
-    import app.controllers.contacto_controller as contacto_ctl
 
     app.register_blueprint(health_ctl.bp)  # /health (sin prefijo)
     app.register_blueprint(voluntarios_ctl.bp, url_prefix="/api/voluntarios")

@@ -98,7 +98,7 @@ def notificar_semana(agenda: list[dict]) -> dict:
                 ),
             )
             enviados += 1
-        except Exception:
+        except Exception:  # noqa: BLE001 — un envío fallido no debe interrumpir el resto (best-effort)
             log_event("notificar_semana_email_fallido")  # sin PII
 
     return {"enviados": enviados, "suscritos": len(suscritos)}

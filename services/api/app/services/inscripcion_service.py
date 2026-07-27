@@ -159,6 +159,6 @@ def _notificar(inscripcion: Inscripcion) -> None:
                 "detalles de la jornada pronto.</p>",
             ),
         )
-    except Exception:
+    except Exception:  # noqa: BLE001 — best-effort: cualquier fallo de SMTP no debe romper el flujo
         # Nunca logueamos el contenido (PII). Solo el evento.
         log_event("inscripcion_email_fallido")
