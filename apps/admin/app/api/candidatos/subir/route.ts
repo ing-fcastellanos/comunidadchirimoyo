@@ -11,7 +11,7 @@ import { getDb } from "@/lib/firestore";
 import { getSession } from "@/lib/session";
 import { getGrupo } from "@/lib/candidatos/types";
 import { getUltimoCorte, actualizarUltimoCorte } from "@/lib/candidatos/grupos";
-import { parsearExportWhatsapp, filtrarPosterioresA } from "@/lib/candidatos/whatsapp-parser";
+import { parsearExportWhatsapp, filtrarPosterioresA, dividirEnLotes } from "@/lib/candidatos/whatsapp-parser";
 import { extraerCandidatos } from "@/lib/candidatos/extraccion";
 import { OpenAINoConfiguradoError } from "@/lib/candidatos/openai-client";
 
@@ -46,12 +46,20 @@ export async function POST(req: Request) {
   const nuevos = filtrarPosterioresA(todos, corte);
 
   if (nuevos.length === 0) {
-    return NextResponse.json({ creados: 0, mensaje: "No hay mensajes nuevos desde el último corte de este grupo." });
+    return NextResponse.json({ creados: 0, restantes: 0, mensaje: "No hay mensajes nuevos desde el último corte de este grupo." });
   }
+
+  // Un export puede traer meses de historial (sobre todo la primera subida
+  // de un grupo, cuando el corte todavía es null) — se procesa de a un lote
+  // acotado por request para no exceder el contexto/tiempo de una sola
+  // llamada a la IA. El cliente (SubirExportForm) reintenta automáticamente
+  // con el mismo archivo hasta que `restantes` llega a 0.
+  const [lote, ...resto] = dividirEnLotes(nuevos);
+  const restantes = resto.reduce((acc, l) => acc + l.length, 0);
 
   let extraidos;
   try {
-    extraidos = await extraerCandidatos(nuevos);
+    extraidos = await extraerCandidatos(lote);
   } catch (err) {
     if (err instanceof OpenAINoConfiguradoError) {
       return NextResponse.json({ error: "La IA no está configurada (falta OPENAI_API_KEY)." }, { status: 500 });
@@ -79,11 +87,12 @@ export async function POST(req: Request) {
   }
   if (extraidos.length > 0) await batch.commit();
 
-  // El corte avanza en cuanto se analiza el lote, haya o no candidatos
-  // publicables en él — así una subida futura no vuelve a enviar estos
-  // mismos mensajes a la IA.
-  const ultimoMensaje = nuevos[nuevos.length - 1];
+  // El corte avanza en cuanto se analiza el LOTE (no todo `nuevos`), haya o
+  // no candidatos publicables en él — así una subida repetida no vuelve a
+  // enviar estos mismos mensajes a la IA, y el progreso sobrevive si un lote
+  // posterior falla.
+  const ultimoMensaje = lote[lote.length - 1];
   await actualizarUltimoCorte(grupo.id, ultimoMensaje.fecha);
 
-  return NextResponse.json({ creados: extraidos.length });
+  return NextResponse.json({ creados: extraidos.length, restantes });
 }

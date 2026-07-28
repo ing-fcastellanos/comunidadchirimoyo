@@ -79,11 +79,20 @@ export async function extraerCandidatos(mensajes: MensajeWhatsapp[]): Promise<Ca
       { role: "user", content: formatearMensajes(mensajes) },
     ],
     response_format: { type: "json_schema", json_schema: ESQUEMA },
+    // Los lotes ya vienen acotados (dividirEnLotes, whatsapp-parser.ts), así
+    // que un lote razonable nunca debería necesitar tantos candidatos — este
+    // límite es solo un margen de seguridad para no dejar una respuesta JSON
+    // truncada (que rompería el JSON.parse de abajo).
+    max_tokens: 4096,
   });
 
   const contenido = respuesta.choices[0]?.message?.content;
   if (!contenido) return [];
 
+  // Si la respuesta viene truncada (finish_reason "length"), NO se traga el
+  // error como lote vacío: el llamador (route.ts) necesita que esto explote
+  // para que el corte NO avance y el lote se pueda reintentar (mismo
+  // criterio que cualquier otro fallo de la IA, ver design.md).
   const parsed = JSON.parse(contenido) as { candidatos: CandidatoExtraido[] };
   return parsed.candidatos ?? [];
 }
