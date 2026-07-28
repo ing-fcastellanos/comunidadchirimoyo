@@ -49,6 +49,18 @@ El SA runtime de Cloud Run necesita **`roles/storage.objectAdmin`**, otorgado **
 
 Solo se aceptan imágenes JPEG/PNG/WebP de hasta 5MB; no hay optimización ni conversión automática (sigue siendo responsabilidad editorial, ver `content/noticias/README.md`). El objeto de una noticia borrada **no** se borra del bucket (limpieza manual si hace falta, mismo criterio que el resto del proyecto).
 
+## Candidatos de WhatsApp (candidatos-admin)
+
+Sección `/candidatos`: sube un export manual de un chat de WhatsApp ("Exportar chat", sin medios, siempre un acto humano — nunca se automatiza WhatsApp en sí) y una IA (OpenAI) extrae y clasifica candidatos de contenido publicable (noticia, jornada, evento, logro, aliado) para revisarlos en el panel.
+
+**Grupos de origen**: los 3 grupos de WhatsApp de la comunidad son una constante de código (`lib/candidatos/types.ts`, `GRUPOS_WHATSAPP`) — **renombra los placeholders con los nombres reales antes de desplegar**. Cada grupo lleva su propio corte de fecha (`candidatos_grupos/{grupoId}.ultimoCorte`, creado de forma perezosa en la primera subida) para no reprocesar mensajes ya analizados en una subida anterior.
+
+**Privacidad**: el archivo `.txt` subido se parsea en memoria y se descarta al terminar el request — nunca se guarda en Firestore ni en Cloud Storage. Solo persisten los candidatos ya extraídos (un resumen generado por la IA, no el mensaje original completo), en el espíritu de ADR-0012 aunque no se trate de PII de voluntarios.
+
+**Aprobación asimétrica**: noticia/jornada/evento redirigen al formulario de creación ya existente con los campos prellenados (el humano revisa/edita y confirma con el mismo flujo de siempre); logro/aliado generan un fragmento JSON copiable para pegar a mano en `content/landing/{logros,aliados}.json` (sin CRUD nuevo para estos dos tipos, ADR-0004).
+
+El SA runtime de Cloud Run necesita la variable **`OPENAI_API_KEY`** (secreto real — inyectar como variable/secret del servicio, nunca en un `.env` versionado, mismo criterio que `MAIL_PASSWORD` en `services/api`). Sin este valor, la extracción y la redacción fallan de forma explícita en vez de silenciosa.
+
 ## Hosting
 
 `firebase.json` usa el target `prod` → site **`admin-chirimoyo`** (ya existente), rewrite `**` → Cloud Run `admin` en **`us-central1`** (Firebase Hosting no soporta rewrites a `northamerica-south1` — ADR-0015). DNS de `admin.chirimoyo.org` en Porkbun (fuera del repo).

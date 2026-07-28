@@ -29,17 +29,29 @@ const DIAS = [
 const ORDINALES = [1, 2, 3, 4, 5];
 const ORDINAL_ETIQUETA: Record<number, string> = { 1: "1º", 2: "2º", 3: "3º", 4: "4º", 5: "5º" };
 
+/** Valores iniciales al crear desde un candidato de WhatsApp aprobado
+    (candidatos-admin, design.md D6) — solo se usan en modo "crear". La IA no
+    puede inferir una regla de recurrencia confiable desde una mención casual
+    en el chat, así que el prellenado siempre asume `kind: "evento"`. */
+interface Prellenado {
+  titulo?: string;
+  descripcion?: string;
+  fecha?: string;
+  kind?: "evento";
+}
+
 interface Props {
   modo: "crear" | "editar";
   jornada?: Jornada;
+  prellenado?: Prellenado;
   accion: (prevState: JornadaActionState, formData: FormData) => Promise<JornadaActionState>;
 }
 
-export function JornadaFormulario({ modo, jornada, accion }: Props) {
+export function JornadaFormulario({ modo, jornada, prellenado, accion }: Props) {
   const [estado, formAction, enviando] = useActionState(accion, ESTADO_INICIAL);
   const errores = estado.errores ?? {};
 
-  const [kindCreando, setKindCreando] = useState<"recurrente" | "evento" | "">("");
+  const [kindCreando, setKindCreando] = useState<"recurrente" | "evento" | "">(prellenado?.kind ?? "");
   const kind = modo === "editar" ? jornada?.kind : kindCreando;
 
   const recurrenciaTipoInicial =
@@ -137,7 +149,7 @@ export function JornadaFormulario({ modo, jornada, accion }: Props) {
             </div>
           )}
 
-          <Campo id="titulo" etiqueta="Título" requerido defaultValue={jornada?.titulo} error={errores.titulo} />
+          <Campo id="titulo" etiqueta="Título" requerido defaultValue={jornada?.titulo ?? prellenado?.titulo} error={errores.titulo} />
 
           {modo === "editar" && jornada && (
             <Campo id="slug" etiqueta="Slug (URL)" defaultValue={jornada.slug} disabled ayuda="El slug no se puede editar." />
@@ -174,7 +186,7 @@ export function JornadaFormulario({ modo, jornada, accion }: Props) {
             </label>
           </div>
 
-          <Campo id="descripcion" etiqueta="Descripción" textarea filas={2} defaultValue={jornada?.descripcion ?? ""} placeholder="Opcional" />
+          <Campo id="descripcion" etiqueta="Descripción" textarea filas={2} defaultValue={jornada?.descripcion ?? prellenado?.descripcion ?? ""} placeholder="Opcional" />
 
           {kind === "recurrente" ? (
             <div className="rounded-xl border border-forest/15 bg-paper p-4">
@@ -243,7 +255,7 @@ export function JornadaFormulario({ modo, jornada, accion }: Props) {
                 etiqueta="Fecha"
                 tipo="date"
                 requerido
-                defaultValue={jornada?.kind === "evento" ? jornada.fecha : undefined}
+                defaultValue={jornada?.kind === "evento" ? jornada.fecha : prellenado?.fecha}
                 error={errores.fecha}
               />
             </div>
