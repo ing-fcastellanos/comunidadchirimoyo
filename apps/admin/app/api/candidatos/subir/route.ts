@@ -13,7 +13,7 @@ import { getGrupo } from "@/lib/candidatos/types";
 import { getUltimoCorte, actualizarUltimoCorte } from "@/lib/candidatos/grupos";
 import { parsearExportWhatsapp, filtrarPosterioresA, dividirEnLotes } from "@/lib/candidatos/whatsapp-parser";
 import { extraerCandidatos } from "@/lib/candidatos/extraccion";
-import { OpenAINoConfiguradoError } from "@/lib/candidatos/openai-client";
+import { OpenAINoConfiguradoError, resumenErrorSeguro } from "@/lib/candidatos/openai-client";
 
 const COLECCION = "candidatos";
 
@@ -64,6 +64,10 @@ export async function POST(req: Request) {
     if (err instanceof OpenAINoConfiguradoError) {
       return NextResponse.json({ error: "La IA no está configurada (falta OPENAI_API_KEY)." }, { status: 500 });
     }
+    // Nunca se loguea el error crudo (puede traer la API key en el mensaje
+    // si el header Authorization quedó mal formado, como pasó en producción)
+    // ni contenido del chat — solo un resumen ya redactado (resumenErrorSeguro).
+    console.error("candidatos/subir: fallo al extraer candidatos —", resumenErrorSeguro(err));
     return NextResponse.json({ error: "No se pudo analizar el chat con la IA. Intenta de nuevo." }, { status: 502 });
   }
 
