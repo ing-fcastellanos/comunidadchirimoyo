@@ -20,13 +20,23 @@ const FOCO = "focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40
 
 const ESTADO_INICIAL: NoticiaActionState = { ok: false };
 
+/** Valores iniciales al crear desde un candidato de WhatsApp aprobado
+    (candidatos-admin, design.md D6) — solo se usan en modo "crear". */
+interface Prellenado {
+  titulo?: string;
+  resumen?: string;
+  cuerpo?: string;
+  fecha?: string;
+}
+
 interface Props {
   modo: "crear" | "editar";
   noticia?: Noticia;
+  prellenado?: Prellenado;
   accion: (prevState: NoticiaActionState, formData: FormData) => Promise<NoticiaActionState>;
 }
 
-export function NoticiaFormulario({ modo, noticia, accion }: Props) {
+export function NoticiaFormulario({ modo, noticia, prellenado, accion }: Props) {
   const [estado, formAction, enviando] = useActionState(accion, ESTADO_INICIAL);
   const errores = estado.errores ?? {};
 
@@ -81,7 +91,7 @@ export function NoticiaFormulario({ modo, noticia, accion }: Props) {
 
       <form action={formAction} className="rounded-2xl bg-paper-card p-6 shadow-card ring-1 ring-forest/10 sm:p-8">
         <div className="flex flex-col gap-5">
-          <Campo id="titulo" etiqueta="Título" requerido defaultValue={noticia?.titulo} error={errores.titulo} />
+          <Campo id="titulo" etiqueta="Título" requerido defaultValue={noticia?.titulo ?? prellenado?.titulo} error={errores.titulo} />
 
           {modo === "editar" && noticia && (
             <Campo
@@ -94,7 +104,7 @@ export function NoticiaFormulario({ modo, noticia, accion }: Props) {
           )}
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <Campo id="fecha" etiqueta="Fecha" tipo="date" requerido defaultValue={noticia?.fecha} error={errores.fecha} />
+            <Campo id="fecha" etiqueta="Fecha" tipo="date" requerido defaultValue={noticia?.fecha ?? prellenado?.fecha} error={errores.fecha} />
             <Campo id="autor" etiqueta="Autor" defaultValue={noticia?.autor ?? ""} placeholder="Opcional" />
           </div>
 
@@ -104,7 +114,7 @@ export function NoticiaFormulario({ modo, noticia, accion }: Props) {
             textarea
             filas={2}
             requerido
-            defaultValue={noticia?.resumen}
+            defaultValue={noticia?.resumen ?? prellenado?.resumen}
             error={errores.resumen}
             ayuda="Una o dos frases: se usa en el listado público y OpenGraph."
           />
@@ -127,7 +137,7 @@ export function NoticiaFormulario({ modo, noticia, accion }: Props) {
             ayuda="Separadas por coma, en kebab-case."
           />
 
-          <EditorCuerpo defaultValue={noticia?.cuerpo ?? ""} error={errores.cuerpo} />
+          <EditorCuerpo defaultValue={noticia?.cuerpo ?? prellenado?.cuerpo ?? ""} error={errores.cuerpo} />
         </div>
 
         <div className="mt-8 flex items-center gap-3">
