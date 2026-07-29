@@ -2,8 +2,11 @@
 /* SubirExportForm.tsx — sube un export de WhatsApp (candidatos-admin,
    design.md D1). El archivo se envía de inmediato al elegirlo (mismo criterio
    que PortadaUpload.tsx), a POST /api/candidatos/subir junto con el grupo
-   seleccionado. El Route Handler procesa, persiste candidatos si los hay, y
-   descarta el archivo — nunca se guarda en ningún lado. */
+   seleccionado. El Route Handler procesa UN LOTE por request (el archivo
+   puede traer meses de historial, sobre todo en la primera subida de un
+   grupo) y descarta el archivo — nunca se guarda en ningún lado. Este
+   componente reenvía el MISMO archivo en un loop hasta que el servidor
+   confirme `restantes === 0`, mostrando progreso en cada vuelta. */
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Icon } from "@/components/ui/Icon";
@@ -27,31 +30,62 @@ export function SubirExportForm() {
     setEstado("subiendo");
     setMensaje(null);
 
+    let totalCreados = 0;
+    let sinMensajesNuevos = false;
     try {
-      const formData = new FormData();
-      formData.set("file", file);
-      formData.set("grupoId", grupoId);
-      const resp = await fetch("/api/candidatos/subir", { method: "POST", body: formData });
-      const data = (await resp.json().catch(() => ({}))) as {
-        creados?: number;
-        mensaje?: string;
-        error?: string;
-      };
+      // El mismo File se reenvía en cada vuelta — el servidor procesa un
+      // lote por request y avanza el corte, así que la siguiente vuelta
+      // automáticamente retoma donde quedó (no hay que trocear el archivo
+      // en el cliente).
+      let restantes = 1;
+      while (restantes > 0) {
+        const formData = new FormData();
+        formData.set("file", file);
+        formData.set("grupoId", grupoId);
+        const resp = await fetch("/api/candidatos/subir", { method: "POST", body: formData });
+        const data = (await resp.json().catch(() => ({}))) as {
+          creados?: number;
+          restantes?: number;
+          mensaje?: string;
+          error?: string;
+        };
 
-      if (!resp.ok) {
-        setEstado("error");
-        setMensaje(data.error ?? "No se pudo procesar el export.");
-        return;
+        if (!resp.ok) {
+          setEstado("error");
+          setMensaje(
+            totalCreados > 0
+              ? `${data.error ?? "No se pudo continuar."} (ya se guardaron ${totalCreados} candidato(s) antes del error — puedes volver a subir el mismo archivo para continuar).`
+              : (data.error ?? "No se pudo procesar el export."),
+          );
+          router.refresh();
+          return;
+        }
+
+        totalCreados += data.creados ?? 0;
+        restantes = data.restantes ?? 0;
+        if (data.mensaje && totalCreados === 0 && restantes === 0) {
+          sinMensajesNuevos = true;
+          setMensaje(data.mensaje);
+        } else if (restantes > 0) {
+          setMensaje(`Analizando historial… ${totalCreados} candidato(s) hasta ahora, quedan ${restantes} mensaje(s) por revisar.`);
+        }
       }
 
       setEstado("idle");
-      setMensaje(
-        data.mensaje ?? (data.creados === 0 ? "No se encontró contenido publicable en los mensajes nuevos." : `${data.creados} candidato(s) nuevo(s).`),
-      );
+      if (totalCreados > 0) {
+        setMensaje(`${totalCreados} candidato(s) nuevo(s).`);
+      } else if (!sinMensajesNuevos) {
+        setMensaje("No se encontró contenido publicable en los mensajes nuevos.");
+      }
       router.refresh();
     } catch {
       setEstado("error");
-      setMensaje("No se pudo subir el archivo. Revisa tu conexión.");
+      setMensaje(
+        totalCreados > 0
+          ? `Se interrumpió la conexión (ya se guardaron ${totalCreados} candidato(s) — puedes volver a subir el mismo archivo para continuar).`
+          : "No se pudo subir el archivo. Revisa tu conexión.",
+      );
+      router.refresh();
     }
   }
 

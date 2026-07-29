@@ -20,11 +20,37 @@ export class OpenAINoConfiguradoError extends Error {
   }
 }
 
-/** Cliente de OpenAI server-only (lazy singleton). */
+/** Resumen seguro de un error para logs (Cloud Run, nunca al cliente): NUNCA
+    se loguea el error crudo. Un error de conexión/HTTP inválido puede traer
+    el header `Authorization` (con la API key completa) en su mensaje o
+    `cause` — pasó en producción con un valor de secret con salto de línea,
+    ver PR de este fix — así que además de tomar solo nombre+mensaje, se
+    redacta cualquier cosa con forma de Bearer token o de API key de OpenAI. */
+export function resumenErrorSeguro(err: unknown): string {
+  const partes: string[] = [];
+  if (err instanceof Error) {
+    partes.push(`${err.name}: ${err.message}`);
+    const cause = (err as { cause?: unknown }).cause;
+    if (cause instanceof Error) partes.push(`cause: ${cause.name}: ${cause.message}`);
+  } else {
+    partes.push(String(err));
+  }
+  return partes
+    .join(" | ")
+    .replace(/Bearer\s+\S+/gi, "Bearer [REDACTADO]")
+    .replace(/sk-[A-Za-z0-9_-]{10,}/gi, "[REDACTADO]");
+}
+
+/** Cliente de OpenAI server-only (lazy singleton). `trim()` defensivo: un
+    salto de línea colado al cargar el secret (p. ej. al pegarlo por stdin en
+    `gcloud secrets versions add`) vuelve el header `Authorization: Bearer
+    <key>` inválido y el SDK falla con un TypeError de bajo nivel en vez de un
+    401 claro — visto en producción, ver PR de este fix. */
 export function getOpenAIClient(): OpenAI {
-  if (!process.env.OPENAI_API_KEY) throw new OpenAINoConfiguradoError();
+  const apiKey = process.env.OPENAI_API_KEY?.trim();
+  if (!apiKey) throw new OpenAINoConfiguradoError();
   if (!globalForOpenAI.__chirimoyoOpenAI) {
-    globalForOpenAI.__chirimoyoOpenAI = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    globalForOpenAI.__chirimoyoOpenAI = new OpenAI({ apiKey });
   }
   return globalForOpenAI.__chirimoyoOpenAI;
 }
