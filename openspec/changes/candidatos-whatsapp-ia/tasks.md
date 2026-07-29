@@ -44,3 +44,11 @@
 - [x] 6.2 Verificado que si la extracción falla (sin `OPENAI_API_KEY`), el `ultimoCorte` NO avanza — una subida repetida del mismo export reintenta el mismo lote en vez de perderlo. El caso "extracción exitosa sin mensajes nuevos" se validó a nivel de lógica (`filtrarPosterioresA`), no con una clave real.
 - [x] 6.3 Por diseño, el archivo nunca se escribe a ningún almacenamiento (se lee a `string` en memoria y se descarta al terminar el request) — no hay nada que verificar "después" en Firestore porque nunca se persiste antes.
 - [x] 6.4 `apps/admin/README.md` actualizado con la sección "Candidatos de WhatsApp", `OPENAI_API_KEY` documentada en `.env.example` y aviso de renombrar los 3 placeholders de grupo antes de desplegar.
+
+## 7. Hallazgos de producción (post-deploy)
+
+- [x] 7.1 Parser tolerante a formatos reales de WhatsApp (MM/DD vs DD/MM heurístico, AM/PM, corchetes de iPhone, segundos) — el formato asumido originalmente no coincidía con un export real
+- [x] 7.2 Procesamiento por lotes (`dividirEnLotes`): la primera subida de un grupo manda todo el historial, que puede exceder el contexto de una sola llamada a la IA; el cliente reintenta automáticamente hasta agotar los lotes, con progreso visible
+- [x] 7.3 `trim()` defensivo en `OPENAI_API_KEY` y logging seguro (nunca el error crudo, que puede exponer el header Authorization) — un salto de línea en el secret rompía el header y el primer intento de loguear el error terminó exponiendo la key en Cloud Run logs (ya rotada)
+- [x] 7.4 Paginación del listado (`getAllCandidatosAdmin` con `count()`+`offset()`+`limit()`, 20 por página) — a diferencia de noticias/jornadas/voluntarios, candidatos sí puede acumular volumen alto
+- [x] 7.5 Cambio de estado inline desde el listado sin entrar al detalle: `Fila.tsx` compone `AprobarBoton`/`DescartarBoton` (prop `compacto`) cuando `estado === "pendiente"`, y un nuevo `RevertirBoton` (+ server action `revertirAPendiente`) cuando ya está aprobado/descartado — agregado también a la página de detalle por consistencia

@@ -48,9 +48,9 @@ Al procesar los mensajes nuevos de una subida, el sistema SHALL invocar la API d
 - **WHEN** el lote de mensajes nuevos no contiene menciones de actividades, noticias, logros o proyectos aliados
 - **THEN** no se crea ningún candidato para esa subida
 
-### Requirement: Listado de candidatos con filtros
+### Requirement: Listado de candidatos con filtros y paginación
 
-`apps/admin` SHALL ofrecer un listado de candidatos filtrable por tipo, por grupo de origen y por estado (`pendiente`, `aprobado`, `descartado`). Cada fila SHALL mostrar al menos: tipo, grupo de origen, resumen, confianza y estado.
+`apps/admin` SHALL ofrecer un listado de candidatos filtrable por tipo, por grupo de origen y por estado (`pendiente`, `aprobado`, `descartado`). Cada fila SHALL mostrar al menos: tipo, grupo de origen, resumen, confianza y estado. A diferencia de otras listas del admin de bajo volumen (noticias, jornadas, voluntarios), el listado de candidatos SHALL paginarse (20 por página), ya que puede acumular volumen alto tras varias subidas.
 
 #### Scenario: Filtrar por estado pendiente
 - **WHEN** se aplica el filtro de estado `pendiente`
@@ -59,6 +59,10 @@ Al procesar los mensajes nuevos de una subida, el sistema SHALL invocar la API d
 #### Scenario: Filtrar por grupo de origen
 - **WHEN** se aplica el filtro de uno de los 3 grupos
 - **THEN** el listado muestra solo los candidatos extraídos de exports de ese grupo
+
+#### Scenario: Navegar a la siguiente página
+- **WHEN** hay más de 20 candidatos con los filtros activos y el staff avanza de página
+- **THEN** el listado muestra los siguientes 20 candidatos, conservando los filtros activos en la navegación
 
 ### Requirement: Redacción con tono para candidatos de tipo noticia
 
@@ -91,6 +95,18 @@ Al aprobar un candidato de tipo `noticia`, `jornada` o `evento`, el sistema SHAL
 #### Scenario: Descartar un candidato irrelevante
 - **WHEN** el staff descarta un candidato desde el listado o su detalle
 - **THEN** el candidato queda con `estado: "descartado"` y deja de aparecer en el filtro de pendientes
+
+### Requirement: Cambio de estado desde el listado, sin entrar al detalle
+
+Cada fila del listado SHALL ofrecer las mismas acciones de cambio de estado disponibles en la página de detalle, sin requerir navegar a ella: para un candidato `pendiente`, aprobar y descartar; para un candidato `aprobado` o `descartado`, revertir a `pendiente`. Aprobar una noticia/jornada/evento desde el listado SHALL dirigir al formulario de creación prellenado, igual que desde el detalle.
+
+#### Scenario: Aprobar desde el listado
+- **WHEN** el staff aprueba un candidato `pendiente` de tipo `logro` directamente desde su fila en el listado
+- **THEN** el candidato queda marcado como `aprobado` sin haber salido del listado
+
+#### Scenario: Revertir a pendiente desde el listado
+- **WHEN** el staff revierte un candidato `aprobado` o `descartado` directamente desde su fila
+- **THEN** el candidato vuelve a `estado: "pendiente"` y puede aprobarse o descartarse de nuevo
 
 ### Requirement: Acceso server-only vía Firebase Admin SDK, sin RBAC
 
