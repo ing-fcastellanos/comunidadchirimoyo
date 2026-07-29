@@ -1,9 +1,13 @@
 /* Fila.tsx — fila de la tabla de candidatos (candidatos-admin). Server
-   Component: la interactividad (aprobar/descartar/redactar) vive en la
-   página de detalle, no en el listado. */
+   Component que compone client components de acción (Aprobar/Descartar/
+   Revertir, versión `compacto`) para poder cambiar el estado directamente
+   desde el listado, sin entrar a la página de detalle. */
 import Link from "next/link";
 import { TipoBadge } from "./TipoBadge";
 import { EstadoBadge } from "./EstadoBadge";
+import { AprobarBoton } from "./AprobarBoton";
+import { DescartarBoton } from "./DescartarBoton";
+import { RevertirBoton } from "./RevertirBoton";
 import type { Candidato } from "@/lib/candidatos/types";
 
 const FOCO = "focus:outline-none focus-visible:ring-4 focus-visible:ring-mint/40";
@@ -32,8 +36,20 @@ export function Fila({ candidato }: { candidato: Candidato }) {
       <td className={`whitespace-nowrap py-4 pr-4 text-[13px] font-semibold ${CONFIANZA_TONO[candidato.confianza]}`}>
         {candidato.confianza}
       </td>
-      <td className="whitespace-nowrap py-4">
+      <td className="whitespace-nowrap py-4 pr-4">
         <EstadoBadge estado={candidato.estado} />
+      </td>
+      <td className="py-4">
+        <div className="flex items-center gap-1.5">
+          {candidato.estado === "pendiente" ? (
+            <>
+              <AprobarBoton candidatoId={candidato.id} compacto />
+              <DescartarBoton candidatoId={candidato.id} compacto />
+            </>
+          ) : (
+            <RevertirBoton candidatoId={candidato.id} compacto />
+          )}
+        </div>
       </td>
     </tr>
   );

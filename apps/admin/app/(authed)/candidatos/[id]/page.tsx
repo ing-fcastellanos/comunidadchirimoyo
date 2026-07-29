@@ -9,6 +9,7 @@ import { EstadoBadge } from "@/components/candidatos/EstadoBadge";
 import { TonoSelector } from "@/components/candidatos/TonoSelector";
 import { AprobarBoton } from "@/components/candidatos/AprobarBoton";
 import { DescartarBoton } from "@/components/candidatos/DescartarBoton";
+import { RevertirBoton } from "@/components/candidatos/RevertirBoton";
 import { FragmentoJson } from "@/components/candidatos/FragmentoJson";
 import { getCandidatoAdmin } from "@/lib/candidatos/read";
 import { armarFragmentoJson } from "@/lib/candidatos/fragmento";
@@ -59,11 +60,13 @@ export default async function CandidatoDetallePage({ params }: { params: Promise
         </div>
       )}
 
-      {candidato.estado === "pendiente" && (
+      {candidato.estado === "pendiente" ? (
         <div className="flex items-center gap-3">
           <AprobarBoton candidatoId={candidato.id} />
           <DescartarBoton candidatoId={candidato.id} />
         </div>
+      ) : (
+        <RevertirBoton candidatoId={candidato.id} />
       )}
     </main>
   );
