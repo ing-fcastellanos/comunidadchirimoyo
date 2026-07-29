@@ -40,19 +40,47 @@ export interface FiltrosCandidatos {
   tipo?: TipoCandidato | "todos";
   grupoId?: string | "todos";
   estado?: EstadoCandidato | "todos";
+  /** 1-indexado. */
+  pagina?: number;
 }
 
-/** Todos los candidatos que coinciden con los filtros, más recientes primero.
-    Sin paginación (volumen bajo, mismo criterio que noticias/jornadas/voluntarios). */
-export async function getAllCandidatosAdmin(filtros: FiltrosCandidatos = {}): Promise<Candidato[]> {
+export const TAMANO_PAGINA_CANDIDATOS = 20;
+
+export interface PaginaCandidatos {
+  candidatos: Candidato[];
+  paginaActual: number;
+  totalPaginas: number;
+  total: number;
+}
+
+/** Candidatos que coinciden con los filtros, paginados (más recientes
+    primero). A diferencia de noticias/jornadas/voluntarios (volumen bajo,
+    sin paginación), candidatos puede acumular cientos por grupo tras varias
+    subidas — sí pagina. */
+export async function getAllCandidatosAdmin(filtros: FiltrosCandidatos = {}): Promise<PaginaCandidatos> {
   const db = getDb();
   let query: FirebaseFirestore.Query = db.collection(COLECCION);
   if (filtros.tipo && filtros.tipo !== "todos") query = query.where("tipo", "==", filtros.tipo);
   if (filtros.grupoId && filtros.grupoId !== "todos") query = query.where("grupoId", "==", filtros.grupoId);
   if (filtros.estado && filtros.estado !== "todos") query = query.where("estado", "==", filtros.estado);
 
-  const snap = await query.orderBy("creadoEn", "desc").get();
-  return snap.docs.map((doc) => aCandidato(doc.id, doc.data()));
+  const conteo = await query.count().get();
+  const total = conteo.data().count;
+  const totalPaginas = Math.max(1, Math.ceil(total / TAMANO_PAGINA_CANDIDATOS));
+  const paginaActual = Math.min(Math.max(1, Math.trunc(filtros.pagina ?? 1) || 1), totalPaginas);
+
+  const snap = await query
+    .orderBy("creadoEn", "desc")
+    .offset((paginaActual - 1) * TAMANO_PAGINA_CANDIDATOS)
+    .limit(TAMANO_PAGINA_CANDIDATOS)
+    .get();
+
+  return {
+    candidatos: snap.docs.map((doc) => aCandidato(doc.id, doc.data())),
+    paginaActual,
+    totalPaginas,
+    total,
+  };
 }
 
 /** Un candidato por ID, o `null` si no existe. */

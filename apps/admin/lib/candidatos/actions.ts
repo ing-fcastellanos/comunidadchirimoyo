@@ -70,6 +70,23 @@ export async function descartarCandidato(candidatoId: string): Promise<Candidato
   return { ok: true };
 }
 
+/** Devuelve un candidato ya aprobado/descartado a `pendiente` (corrige un
+    clic equivocado sin tener que borrar y volver a subir el export). No
+    toca `tono`/`redaccion` ya generados: si vuelve a aprobarse, se conservan. */
+export async function revertirAPendiente(candidatoId: string): Promise<CandidatoActionState> {
+  await exigirSesion();
+
+  await getDb()
+    .collection(COLECCION)
+    .doc(candidatoId)
+    .update({ estado: "pendiente", revisadoEn: null });
+
+  revalidatePath("/candidatos");
+  revalidatePath(`/candidatos/${candidatoId}`);
+
+  return { ok: true };
+}
+
 /** Marca un candidato como aprobado. Para noticia/jornada/evento, redirige al
     formulario de creación existente con los campos prellenados (design.md
     D6) — no escribe directamente en noticias/jornadas. Para logro/aliado, no

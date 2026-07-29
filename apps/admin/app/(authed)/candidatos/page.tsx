@@ -1,12 +1,13 @@
 /* app/(authed)/candidatos/page.tsx — listado de candidatos extraídos de
-   WhatsApp (candidatos-admin). Server Component: lee filtros de la query
-   string (mismo patrón que voluntarios/page.tsx) y consulta Firestore ya
-   filtrado. Sin paginación (volumen bajo, mismo criterio que el resto del
-   admin). Default de estado: "pendiente" — es una cola de revisión, no un
-   archivo histórico. */
+   WhatsApp (candidatos-admin). Server Component: lee filtros + página de la
+   query string (mismo patrón que voluntarios/page.tsx) y consulta Firestore
+   ya filtrado/paginado (a diferencia de noticias/jornadas/voluntarios,
+   candidatos sí pagina — puede acumular cientos por grupo). Default de
+   estado: "pendiente" — es una cola de revisión, no un archivo histórico. */
 import { Icon } from "@/components/ui/Icon";
 import { Fila } from "@/components/candidatos/Fila";
 import { FiltrosBar } from "@/components/candidatos/FiltrosBar";
+import { Paginador } from "@/components/candidatos/Paginador";
 import { SubirExportForm } from "@/components/candidatos/SubirExportForm";
 import { getAllCandidatosAdmin } from "@/lib/candidatos/read";
 import type { EstadoCandidato, TipoCandidato } from "@/lib/candidatos/types";
@@ -33,8 +34,14 @@ export default async function CandidatosPage({
   const tipo = comoTipo(typeof sp.tipo === "string" ? sp.tipo : undefined);
   const grupoId = typeof sp.grupoId === "string" ? sp.grupoId : "todos";
   const estado = comoEstado(typeof sp.estado === "string" ? sp.estado : undefined);
+  const pagina = Number(sp.pagina) || 1;
 
-  const candidatos = await getAllCandidatosAdmin({ tipo, grupoId, estado });
+  const { candidatos, paginaActual, totalPaginas, total } = await getAllCandidatosAdmin({
+    tipo,
+    grupoId,
+    estado,
+    pagina,
+  });
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-12">
@@ -42,7 +49,7 @@ export default async function CandidatosPage({
         <div className="mb-0.5 text-[12px] font-bold uppercase tracking-[0.22em] text-forest">Panel · Admin</div>
         <h1 className="font-serif text-[32px] font-semibold leading-tight text-forest-deep">Candidatos</h1>
         <p className="mt-1 text-[14px] text-ink-soft">
-          {candidatos.length} candidato(s) con estos filtros · extraídos de exports de WhatsApp
+          {total} candidato(s) con estos filtros · extraídos de exports de WhatsApp
         </p>
       </header>
 
@@ -67,6 +74,7 @@ export default async function CandidatosPage({
                 <th className="px-3 pb-3 text-[12px] font-bold uppercase tracking-wide text-ink-soft">Grupo</th>
                 <th className="px-3 pb-3 text-[12px] font-bold uppercase tracking-wide text-ink-soft">Confianza</th>
                 <th className="px-3 pb-3 text-[12px] font-bold uppercase tracking-wide text-ink-soft">Estado</th>
+                <th className="px-3 pb-3 text-[12px] font-bold uppercase tracking-wide text-ink-soft">Acciones</th>
               </tr>
             </thead>
             <tbody className="[&_td]:px-3">
@@ -77,6 +85,8 @@ export default async function CandidatosPage({
           </table>
         )}
       </div>
+
+      <Paginador paginaActual={paginaActual} totalPaginas={totalPaginas} tipo={tipo} grupoId={grupoId} estado={estado} />
     </main>
   );
 }
